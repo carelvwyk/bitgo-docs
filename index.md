@@ -7,9 +7,9 @@ language_tabs:
 
 toc_footers:
  - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a>
- - <a href="http://bitgoinc.com/bitgo-services-agreement/" target="_new">Services Agreement</a>
- - <a href="/settings" target="_new">BitGo Settings (Get API Access Token)</a>
-
+ - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a>
+ - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a>
+ 
 ---
 
 # Getting Started
