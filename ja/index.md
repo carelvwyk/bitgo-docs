@@ -1,6 +1,6 @@
 * * *
 
-title: BitGo API Reference
+タイトル： BitGo APIレファレンス
 
 language_tabs: - javascript - shell
 
