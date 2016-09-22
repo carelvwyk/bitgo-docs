@@ -1,4 +1,4 @@
 files:
   - 
-    source: index.md
+    source: index.html.md
     translation: '%original_file_name%'
