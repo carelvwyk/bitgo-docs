@@ -14,11 +14,11 @@ toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサ�
 
 ### 概要
 
-BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
+BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
 
-The BitGo SDK enables the following operations:
+BitGo SDKは以下の操作を可能にします：
 
-* Creation of P2SH (multi-signature) wallets
+* P2SH(マルチシグネチャ) ウォレットの作成
 * Hierarchical Deterministic Wallet management (BIP32)
 * Transaction creation
 * Transaction signing
