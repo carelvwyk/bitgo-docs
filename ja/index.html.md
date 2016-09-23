@@ -8,7 +8,7 @@ toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサ�
 
 * * *
 
-# はじめに<aside class="info"> 私達の開発プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
 
 [BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
@@ -19,9 +19,9 @@ BitGoは、マルチシグ技術を現行のあなたのビットコインアプ
 BitGo SDKは以下の操作を可能にします：
 
 * P2SH(マルチシグネチャ) ウォレットの作成
-* Hierarchical Deterministic Wallet management (BIP32)
-* Transaction creation
-* Transaction signing
+* 階層的決定性ウォレット管理(BIP32)
+* トランザクションの作成
+* トランザクション署名
 * Spending limits
 * Multi-signer wallet flow
 
