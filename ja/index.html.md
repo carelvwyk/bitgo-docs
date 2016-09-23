@@ -1034,7 +1034,9 @@ Returns an array of Wallet Model objects.
 | 400 Bad Request  | The request parameters were missing or incorrect. |
 | 401 Unauthorized | The authentication parameters did not match.      |
 
-## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, \[Create Wallet With Keychains\](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
+## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
+
+[Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -4090,9 +4092,50 @@ Returns the tag.
 
 You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
 
-| Parameter | Type | Required | Description        | Possible Values |
-| --------- | ---- | -------- | ------------------ | --------------- |
-| tag       | id   | YES      | The id of the tag. |                 |
+<table>
+  <tr>
+    <th>
+      Parameter
+    </th>
+    
+    <th>
+      Type
+    </th>
+    
+    <th>
+      Required
+    </th>
+    
+    <th>
+      Description
+    </th>
+    
+    <th>
+      Possible Values
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      tag
+    </td>
+    
+    <td>
+      id
+    </td>
+    
+    <td>
+      YES
+    </td>
+    
+    <td>
+      The id of the tag.
+    </td>
+    
+    <td>
+    </td>
+  </tr>
+</table>
 
 ### Response
 
