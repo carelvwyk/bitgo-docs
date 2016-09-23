@@ -1,4 +1,4 @@
----
+* * *
 
 タイトル： BitGo APIレファレンス
 
@@ -6,11 +6,9 @@
 
 toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](../index.html) - [- Japanese 日本語](index.html) - [- Chinese (Simplified) 简体中文](../zh-CN/index.html)
 
----
+* * *
 
-# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
-
-[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
+# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには \[BitGoプラットフォームポータル\](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
 ### 概要
 
@@ -1034,9 +1032,7 @@ Returns an array of Wallet Model objects.
 | 400 Bad Request  | The request parameters were missing or incorrect. |
 | 401 Unauthorized | The authentication parameters did not match.      |
 
-## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
-
-[Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
+## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, \[Create Wallet With Keychains\](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -4092,50 +4088,9 @@ Returns the tag.
 
 You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
 
-<table>
-  <tr>
-    <th>
-      Parameter
-    </th>
-    
-    <th>
-      Type
-    </th>
-    
-    <th>
-      Required
-    </th>
-    
-    <th>
-      Description
-    </th>
-    
-    <th>
-      Possible Values
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      tag
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      YES
-    </td>
-    
-    <td>
-      The id of the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-</table>
+| Parameter | Type | Required | Description        | Possible Values |
+| --------- | ---- | -------- | ------------------ | --------------- |
+| tag       | id   | YES      | The id of the tag. |                 |
 
 ### Response
 
