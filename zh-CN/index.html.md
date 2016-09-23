@@ -1,12 +1,20 @@
-* * *
-
+---
 title: BitGo API Reference
 
-language_tabs: - javascript - shell
+language_tabs:
+- javascript
+- shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a> - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a> - <a>Languages</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
+toc_footers:
+- <a href="https://www.bitgo.com/" target="_new">BitGo Website</a>
+- <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a>
+- <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a>
+- <a>Languages</a>
+- <a href="../index.html">- English</a>
+- <a href="../ja/index.html">- Japanese 日本語</a>
+- <a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
 
-* * *
+---
 
 # Getting Started<aside class="info"> Our developer platform is live. Visit the 
 
