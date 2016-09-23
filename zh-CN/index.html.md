@@ -1,29 +1,31 @@
 * * *
 
-タイトル： BitGo APIレファレンス
+title: BitGo API Reference
 
-言語タブ: -javascript -シェルスクリプト
+language_tabs: - javascript - shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](../index.html) - [- Japanese 日本語](index.html) - [- Chinese (Simplified) 简体中文](../zh-CN/index.html)
+toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a> - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a> - <a>Languages</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
 
 * * *
 
-# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには \[BitGoプラットフォームポータル\](https://www.bitgo.com/platform)にお越しください。 </aside> 
+# Getting Started<aside class="info"> Our developer platform is live. Visit the 
 
-### 概要
+[BitGo Platform Portal](https://www.bitgo.com/platform) to sign up for integration support, access tokens and more information. </aside> 
 
-BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
+### Overview
 
-BitGo SDKは以下の操作を可能にします：
+BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
 
-* P2SH(マルチシグネチャ) ウォレットの作成
-* 階層的決定性ウォレット管理(BIP32)
-* トランザクションの作成
-* トランザクション署名
-* 支出制限
-* マルチサイナーウォレットフロー
+The BitGo SDK enables the following operations:
 
-### マルチシグネチャウォレット
+* Creation of P2SH (multi-signature) wallets
+* Hierarchical Deterministic Wallet management (BIP32)
+* Transaction creation
+* Transaction signing
+* Spending limits
+* Multi-signer wallet flow
+
+### Multi-Signature Wallets
 
 The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
@@ -1032,7 +1034,9 @@ Returns an array of Wallet Model objects.
 | 400 Bad Request  | The request parameters were missing or incorrect. |
 | 401 Unauthorized | The authentication parameters did not match.      |
 
-## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, \[Create Wallet With Keychains\](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
+## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
+
+[Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -4088,9 +4092,50 @@ Returns the tag.
 
 You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
 
-| Parameter | Type | Required | Description        | Possible Values |
-| --------- | ---- | -------- | ------------------ | --------------- |
-| tag       | id   | YES      | The id of the tag. |                 |
+<table>
+  <tr>
+    <th>
+      Parameter
+    </th>
+    
+    <th>
+      Type
+    </th>
+    
+    <th>
+      Required
+    </th>
+    
+    <th>
+      Description
+    </th>
+    
+    <th>
+      Possible Values
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      tag
+    </td>
+    
+    <td>
+      id
+    </td>
+    
+    <td>
+      YES
+    </td>
+    
+    <td>
+      The id of the tag.
+    </td>
+    
+    <td>
+    </td>
+  </tr>
+</table>
 
 ### Response
 
