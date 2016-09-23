@@ -22,7 +22,7 @@ BitGo SDKは以下の操作を可能にします：
 * 階層的決定性ウォレット管理(BIP32)
 * トランザクションの作成
 * トランザクション署名
-* Spending limits
+* 支出制限
 * Multi-signer wallet flow
 
 ### Multi-Signature Wallets
