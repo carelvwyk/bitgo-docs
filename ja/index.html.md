@@ -23,9 +23,9 @@ BitGo SDKは以下の操作を可能にします：
 * トランザクションの作成
 * トランザクション署名
 * 支出制限
-* Multi-signer wallet flow
+* マルチサイナーウォレットフロー
 
-### Multi-Signature Wallets
+### マルチシグネチャウォレット
 
 The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
