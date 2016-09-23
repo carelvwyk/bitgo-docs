@@ -1,31 +1,31 @@
-* * *
+---
 
-title: BitGo API Reference
+タイトル： BitGo APIレファレンス
 
-language_tabs: - javascript - shell
+言語タブ: -javascript -シェルスクリプト
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a> - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a> - <a>Languages</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
+toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](../index.html) - [- Japanese 日本語](index.html) - [- Chinese (Simplified) 简体中文](../zh-CN/index.html)
 
-* * *
+---
 
-# Getting Started<aside class="info"> Our developer platform is live. Visit the 
+# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
 
-[BitGo Platform Portal](https://www.bitgo.com/platform) to sign up for integration support, access tokens and more information. </aside> 
+[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
-### Overview
+### 概要
 
-BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
+BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
 
-The BitGo SDK enables the following operations:
+BitGo SDKは以下の操作を可能にします：
 
-* Creation of P2SH (multi-signature) wallets
-* Hierarchical Deterministic Wallet management (BIP32)
-* Transaction creation
-* Transaction signing
-* Spending limits
-* Multi-signer wallet flow
+* P2SH(マルチシグネチャ) ウォレットの作成
+* 階層的決定性ウォレット管理(BIP32)
+* トランザクションの作成
+* トランザクション署名
+* 支出制限
+* マルチサイナーウォレットフロー
 
-### Multi-Signature Wallets
+### マルチシグネチャウォレット
 
 The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
