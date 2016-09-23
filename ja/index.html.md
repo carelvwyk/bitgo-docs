@@ -8,11 +8,11 @@ toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサ�
 
 * * *
 
-# はじめに<aside class="info"> Our developer platform is live. Visit the 
+# はじめに<aside class="info"> 私達の開発プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
 
-[BitGo Platform Portal](https://www.bitgo.com/platform) to sign up for integration support, access tokens and more information. </aside> 
+[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
-### Overview
+### 概要
 
 BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
 
