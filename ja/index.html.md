@@ -27,7 +27,7 @@ BitGo SDKは以下の操作を可能にします：
 
 ### マルチシグネチャウォレット
 
-The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
+マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
 Traditionally, it has been so difficult to secure these single person / single machine systems, that many vendors have opted to simply use "cold storage" and move Bitcoin offline entirely.
 
