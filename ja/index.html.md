@@ -53,18 +53,18 @@ BitGo APIは、開発者にマルチシグウォレットの作成、管理、�
 
 そのような理由から、私達は<a href="https://github.com/BitGo/BitGoJS" target="_new">ソフトウェア開発キット(SDK)</a>を提供の上、利用をお勧めします。このSDKは、これらのクライアントサイドのウォレット機能を実装し、私達のAPIとインターフェースするものです。 実際には、BitGo APIの利用を検討している開発者は、おそらくBitGoクライアントサイドSDKもBitGo RESTサービスも利用するでしょう。
 
-現在、私達のSDKはjavascriptで利用可能で、node.jsまたはブラウザで実行されます。 If you are using a non-supported programming language, see the "BitGo Express REST API" section of the documentation for how to setup BitGo Express, or contact us for further help.
+現在、私達のSDKはjavascriptで利用可能で、node.jsまたはブラウザで実行されます。 サポートされていないプログラミング言語を利用している場合、BitGo Expressの設定方法について「BitGo Express REST API」のドキュメンテーションのセクションを参照いただくか、私達にお問い合わせください。
 
-Installing the Javascript SDK (via npm)
+Javascript SDKのインストール (npmを通じ)
 
 `npm install bitgo --save`
 
-Installing the Javascript SDK (via Github)
+Javascript SDKのインストール (Githubを通じ)
 
-* <a href="https://github.com/BitGo/BitGoJS" target="_new">Visit our open-source SDK page</a> on Github.
-* Install git and nodejs/npm (recommended to follow the examples).
-* Clone our repository locally by running the command: `git clone git@github.com:BitGo/BitGoJS.git`
-* In the BitGoJS directory, install dependencies using: `npm install`
+* Githubにある<a href="https://github.com/BitGo/BitGoJS" target="_new">オープンソースSDKページ</a>をご覧ください。
+* Gitとnodejs/npmをインストール(例に従うことを推奨)
+* 次のコマンドを実行することにより、ローカルに私達のレポジトリをクローン `git clone git@github.com:BitGo/BitGoJS.git`
+* BitGoJSディレクトリで次によって依存関係をインストール：`npm install`
 * Check out the examples directory to see how you can use the SDK! In the example directory, run
 
 `node auth.js <testusername> <testpassword> 0000000`
