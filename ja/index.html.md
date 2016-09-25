@@ -86,9 +86,9 @@ bitgo.ping({}, function(err, res) {
 
 ライブラリをインポートするには、`src/index.js`ファイルが必要なだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
 
-| パラメーター        | 値                                                           |
-| ------------- | ----------------------------------------------------------- |
-| useproduction | Whether or not to connect to production. Defaults to false. |
+| パラメーター        | 値                          |
+| ------------- | -------------------------- |
+| useproduction | プロダクションに接続するかどうか。デフォルト値は偽。 |
 
 The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
 
