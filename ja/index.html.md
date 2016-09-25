@@ -33,11 +33,11 @@ BitGo SDKは以下の操作を可能にします：
 
 マルチシグウォレットはビットコインをオフラインに置くことなく、あなたがモダンなビットコインアドレスに求める柔軟性を提供します。 BitGo APIは、自分のアプリケーションでマルチシグネチャ機能を利用し、複数ユーザー、連署者、最先端の不正検出サービスが持つ完全な柔軟性を損失や盗難から保護するため活用するのを可能にします
 
-For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.
+詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。
 
-### HD Wallets
+### HDウォレット
 
-All BitGo wallets are hierarchical deterministic wallets - also known as "HD Wallets". HD Wallets are implemented using the bitcoin <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>. As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
+全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
 
 * More secure backups
     
