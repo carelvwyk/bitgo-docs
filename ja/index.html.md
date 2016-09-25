@@ -37,13 +37,13 @@ BitGo SDKは以下の操作を可能にします：
 
 ### HDウォレット
 
-全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
+全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo' HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。
 
-* More secure backups
+* よりセキュアなバックアップ
     
-    Because keychains can be backed up with a single secret, a wallet can use many public keys all of which are maintained by a single backup key.
+    キーチェーンは単一のシークレットキーでバックアップされているため、ウォレットは単一のバックアップキーで保全される多数のパブリックキーを用いることが出来ます。
 
-* Blockchain Privacy
+* ブロックチェーンプライバシー
     
     With HD Wallets, applications can create new keys with every transaction such that no two transactions ever appear to come from the same wallet. This protects the wallet holder from revealing the true size of the wallet.
 
