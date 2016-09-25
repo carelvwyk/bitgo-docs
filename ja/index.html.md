@@ -65,28 +65,28 @@ Javascript SDKのインストール (Githubを通じ)
 * Gitとnodejs/npmをインストール(例に従うことを推奨)
 * 次のコマンドを実行することにより、ローカルに私達のレポジトリをクローン `git clone git@github.com:BitGo/BitGoJS.git`
 * BitGoJSディレクトリで次によって依存関係をインストール：`npm install`
-* Check out the examples directory to see how you can use the SDK! In the example directory, run
+* 「例」のディレクトリをチェックして、SDKをどのように利用できるかを参照して、次を実行ください
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library
+### ライブラリのインポートと初期化
 
 ```javascript
-// If importing via package
+// パーケージからインポートしている場合
 var BitGoJS = require('BitGoJS/src/index.js');
 var bitgo = new BitGoJS.BitGo();
 
-// If importing from npm install bitgo
+// npm install bitgoからインストールしている場合
 // var bitgo = require('bitgo');
 
 bitgo.ping({}, function(err, res) {
-    // do stuff here
+    // ここでやりたいことをやる
 });
 ```
 
-To import the library, you simply require the `src/index.js` file. You can then initialize the SDK by doing `BitGoJS.BitGo()`.
+ライブラリをインポートするには、`src/index.js`ファイルが必要なだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
 
-| Parameter     | Value                                                       |
+| パラメーター        | 値                                                           |
 | ------------- | ----------------------------------------------------------- |
 | useproduction | Whether or not to connect to production. Defaults to false. |
 
