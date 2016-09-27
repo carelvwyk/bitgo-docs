@@ -94,9 +94,9 @@ Javascript SDKはpromiseとコールバックの両方をサポートしてい�
 
 ### テスト環境に関する重要な注意
 
-Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
 
-## BitGo API Endpoints
+## BitGo API エンドポイント
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -120,7 +120,7 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
+BitGoは開発とプロダクション向けに2つの個別の環境を利用可能にしています。
 
 All responses are of content-type `application/json`
 
