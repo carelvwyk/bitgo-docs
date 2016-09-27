@@ -176,7 +176,7 @@ BitGo Expressを利用するには:
 
 ## エラー処理
 
-> Example JSON Error
+> JSON エラーの例
 
 ```json
 {
