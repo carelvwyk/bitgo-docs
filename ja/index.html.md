@@ -124,7 +124,7 @@ BitGoは開発とプロダクション向けに2つの個別の環境を利用�
 
 すべての応答は、`application/json`コンテンツタイプです
 
-> Example Response
+> 応答の例
 
     {
         "status": "service is ok!",
@@ -132,9 +132,9 @@ BitGoは開発とプロダクション向けに2つの個別の環境を利用�
     }
     
 
-### Production Environment
+### プロダクション環境
 
-The BitGo production endpoint is live and used by partners and our own web application on www.bitgo.com.
+BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
 
 * Production Site: https://www.bitgo.com/
 * Production API: https://www.bitgo.com/api/v1
