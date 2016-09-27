@@ -163,18 +163,18 @@ curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 
 BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。
 
-BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.
+BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Ecpressは、標準のBitGo REST APIをプロクシサーバーに送ることも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
 
-To use BitGo Express:
+BitGo Expressを利用するには:
 
-* Install [BitGoJS](#software-development-kit)
-* Run the following command in the bin directory:
+* [BitGoJS](#software-development-kit) をインストールします
+* bin ディレクトリで次のコマンドを実行します:
 
 `./bitgo-express --debug --port 3080 --env test --bind localhost`
 
-* Make **ALL** BitGo REST API calls to the machine on which bitgo-express is running
+* **全ての**BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う
 
-## Error Handling
+## エラー処理
 
 > Example JSON Error
 
