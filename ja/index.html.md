@@ -200,7 +200,7 @@ BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出
 
 デフォルトで、トークンは単一のIPアドレスに制限され、60分間有効です。それが過ぎたらユーザーは再認証する必要があります。
 
-一部のAPIコールについては、有効なセッショントークンだけでは不十分です。 これらのAPIコールにアクセスするには、セッションはUnlock APIを用いて、追加の2要素コードによって明示的にアンロックされなければなりません。 A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
+一部のAPIコールについては、有効なセッショントークンだけでは不十分です。 これらのAPIコールにアクセスするには、セッションはUnlock APIを用いて、追加の2要素コードによって明示的にアンロックされなければなりません。 単一のアンロックコールはユーザーが任意のサイズのトランザクション（ウォレットポリシーの対象）、または内部のBitGoが管理するクォータ以下の、任意の回数のトランザクションを行うことを可能にします。<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
 
 Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
 
