@@ -148,7 +148,7 @@ BitGo プロダクションエンドポイントは立ち上がっており、�
 
 テスト環境の場合のみ、（自動テストを目的として）BitGoでの認証においてOTPの代わりに`0000000`が使えます。
 
-This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
+この環境は、ナビゲーションに<a href="http://tbtc.blockr.io/" target="_new">Blockr</a>を利用できるビットコインテストネットに接続されています。 テストコインを取得するには、<a href="http://tpfaucet.appspot.com/" target="_new">フォーセット</a>か、あるいはご連絡ください。
 
 ## BitGo Express REST API
 
