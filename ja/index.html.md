@@ -122,7 +122,7 @@ curl "$TEST_ENDPOINT/ping"
 
 BitGoは開発とプロダクション向けに2つの個別の環境を利用可能にしています。
 
-All responses are of content-type `application/json`
+すべての応答は、`application/json`コンテンツタイプです
 
 > Example Response
 
