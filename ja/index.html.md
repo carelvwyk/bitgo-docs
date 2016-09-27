@@ -232,12 +232,12 @@ bitgo.session({}, function callback(err, session) {
 
 トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
 
-### Token Parameters
+### トークンパラメーター
 
-| Parameter      | Description                                                                                                                                       |
+| パラメーター         | 説明                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label          | A label used to identify the token so that you can choose to revoke it later.                                                                     |
-| Duration       | Time in seconds which the token will be valid for.                                                                                                |
+| Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                                                                                             |
+| Duration       | トークンが有効であり続ける秒数                                                                                                                                   |
 | Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
 | IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
 | Permissions    | Auth Scope that the token will be created with                                                                                                    |
