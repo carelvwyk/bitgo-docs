@@ -224,7 +224,7 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
+自動化の目的で、開発者は、1時間で期限が切れない一定額の資金についてアンロックされた長寿命のアクセストークンをリクエストすることができます。
 
   1. Access the BitGo dashboard and head into the "Settings" page.
   2. Click on the "Developer" tab.
