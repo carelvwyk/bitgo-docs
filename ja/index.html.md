@@ -36,7 +36,7 @@ BitGo SDKは以下の操作を可能にします：
 * 支出制限
 * マルチサイナーウォレットフロー
 
-### Multi-Signature Wallets
+### Multi-Signature Wallets マルチシグネチャウォレット
 
 マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、あなたの持つ全てのビットコインが失われることがあります。
 
@@ -107,7 +107,7 @@ Javascript SDKはpromiseとコールバックの両方をサポートしてい�
 
 私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
 
-## BitGo API Endpoints BitGo API エンドポイント
+## BitGo API Endpoints, BitGo API エンドポイント
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -215,7 +215,7 @@ BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出
 
 また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。
 
-## API Access Tokens APIアクセストークン
+## API Access Tokens, APIアクセストークン
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
