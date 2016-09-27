@@ -1,16 +1,27 @@
-* * *
+---
 
-タイトル： BitGo APIレファレンス
+title: BitGo APIレファレンス
 
-言語タブ: -javascript -シェルスクリプト
+language_tabs:
+- javascript
+- shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
+toc_footers:
+- <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a>
+- <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a>
+- <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a>
+- <a>言語</a>
+- <a href="../index.html">- English　英語</a>
+- <a href="index.html">- Japanese 日本語</a>
+- <a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
 
-* * *
+---
 
-# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# はじめに
 
-[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
+<aside class="info">
+私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには<a href="https://www.bitgo.com/platform">BitGoプラットフォームポータル</a>にお越しください。
+</aside> 
 
 ### 概要
 
