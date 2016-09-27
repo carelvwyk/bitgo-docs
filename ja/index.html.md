@@ -1,4 +1,5 @@
 ---
+
 title: BitGo APIレファレンス
 
 language_tabs:
@@ -16,9 +17,11 @@ toc_footers:
 
 ---
 
-# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# はじめに
 
-[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
+<aside class="info">
+私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには<a href="https://www.bitgo.com/platform">BitGoプラットフォームポータル</a>にお越しください。
+</aside> 
 
 ### 概要
 
@@ -35,76 +38,76 @@ BitGo SDKは以下の操作を可能にします：
 
 ### マルチシグネチャウォレット
 
-The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
+マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、あなたの持つ全てのビットコインが失われることがあります。
 
-Traditionally, it has been so difficult to secure these single person / single machine systems, that many vendors have opted to simply use "cold storage" and move Bitcoin offline entirely.
+これまで、これらの１人の人間 / シングルマシンのセキュリティを確保するのは非常に困難で、多くのベンダーは単に「コールドストレージ」を用いてビットコインを完全にオフラインに置くことを選んんでいました。
 
-Multi-signature wallets offer all the flexibility you would expect from a modern Bitcoin address without having to take your bitcoin offline. The BitGo API enables you to use multi-signature features in your own applications so you can harness the full flexibility of multiple users, cosigners and state-of-the-art fraud detection services to protect against loss and theft.
+マルチシグウォレットはビットコインをオフラインに置くことなく、あなたがモダンなビットコインアドレスに求める柔軟性を提供します。 BitGo APIは、自分のアプリケーションでマルチシグネチャ機能を利用し、複数ユーザー、連署者、最先端の不正検出サービスが持つ完全な柔軟性を損失や盗難から保護するため活用するのを可能にします
 
-For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.
+詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。
 
-### HD Wallets
+### HDウォレット
 
-All BitGo wallets are hierarchical deterministic wallets - also known as "HD Wallets". HD Wallets are implemented using the bitcoin <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>. As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
+全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo' HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。
 
-* More secure backups
+* よりセキュアなバックアップ
     
-    Because keychains can be backed up with a single secret, a wallet can use many public keys all of which are maintained by a single backup key.
+    キーチェーンは単一のシークレットキーでバックアップされているため、ウォレットは単一のバックアップキーで保全される多数のパブリックキーを用いることが出来ます。
 
-* Blockchain Privacy
+* ブロックチェーンプライバシー
     
-    With HD Wallets, applications can create new keys with every transaction such that no two transactions ever appear to come from the same wallet. This protects the wallet holder from revealing the true size of the wallet.
+    HDウォレットなら、どのトランザクションも同一のウォレットから到着したと見えないよう、アプリケーションはトランザクション毎に新たなキーを作成できます。 これにより、ウォレットの本当の大きさが漏洩することからウォレット保持者が保護されます。
 
-## Software Development Kit
+## ソフトウェア開発キット
 
-The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network. However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
+BitGo APIは、開発者にマルチシグウォレットの作成、管理、ポリシーの操作、そしてビットコインネットワークとやり取りする方法を提供します。 ただし、ユーザの秘密鍵やトランザクションの署名など、いくつかセンシティブな操作がクライアントサイドで行われる必要があります。
 
-For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs. In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.
+そのような理由から、私達は<a href="https://github.com/BitGo/BitGoJS" target="_new">ソフトウェア開発キット(SDK)</a>を提供の上、利用をお勧めします。このSDKは、これらのクライアントサイドのウォレット機能を実装し、私達のAPIとインターフェースするものです。 実際には、BitGo APIの利用を検討している開発者は、おそらくBitGoクライアントサイドSDKもBitGo RESTサービスも利用するでしょう。
 
-Currently, our SDK is available in Javascript and runs in either node.js or a browser. If you are using a non-supported programming language, see the "BitGo Express REST API" section of the documentation for how to setup BitGo Express, or contact us for further help.
+現在、私達のSDKはjavascriptで利用可能で、node.jsまたはブラウザで実行されます。 サポートされていないプログラミング言語を利用している場合、BitGo Expressの設定方法について「BitGo Express REST API」のドキュメンテーションのセクションを参照いただくか、私達にお問い合わせください。
 
-Installing the Javascript SDK (via npm)
+Javascript SDKのインストール (npmを通じ)
 
 `npm install bitgo --save`
 
-Installing the Javascript SDK (via Github)
+Javascript SDKのインストール (Githubを通じ)
 
-* <a href="https://github.com/BitGo/BitGoJS" target="_new">Visit our open-source SDK page</a> on Github.
-* Install git and nodejs/npm (recommended to follow the examples).
-* Clone our repository locally by running the command: `git clone git@github.com:BitGo/BitGoJS.git`
-* In the BitGoJS directory, install dependencies using: `npm install`
-* Check out the examples directory to see how you can use the SDK! In the example directory, run
+* Githubにある<a href="https://github.com/BitGo/BitGoJS" target="_new">オープンソースSDKページ</a>をご覧ください。
+* Gitとnodejs/npmをインストール(例に従うことを推奨)
+* 次のコマンドを実行することにより、ローカルに私達のレポジトリをクローン `git clone git@github.com:BitGo/BitGoJS.git`
+* BitGoJSディレクトリで次によって依存関係をインストール：`npm install`
+* 「例」のディレクトリをチェックして、SDKをどのように利用できるかを参照して、次を実行ください
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library
+### ライブラリのインポートと初期化
 
 ```javascript
-// If importing via package
+// パーケージからインポートしている場合
 var BitGoJS = require('BitGoJS/src/index.js');
 var bitgo = new BitGoJS.BitGo();
 
-// If importing from npm install bitgo
+// npm install bitgoからインストールしている場合
 // var bitgo = require('bitgo');
 
 bitgo.ping({}, function(err, res) {
-    // do stuff here
+    // ここでやりたいことをやる
 });
 ```
 
-To import the library, you simply require the `src/index.js` file. You can then initialize the SDK by doing `BitGoJS.BitGo()`.
+ライブラリをインポートするには、`src/index.js`ファイルが必要なだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
 
-| Parameter     | Value                                                       |
-| ------------- | ----------------------------------------------------------- |
-| useproduction | Whether or not to connect to production. Defaults to false. |
+| パラメーター        | 値                          |
+| ------------- | -------------------------- |
+| useproduction | プロダクションに接続するかどうか。デフォルト値は偽。 |
 
-The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
+Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。
 
-### Important notes on test environment
+### テスト環境に関する重要な注意
 
-Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
 
-## BitGo API Endpoints
+## BitGo API エンドポイント
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -128,11 +131,11 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
+BitGoは開発とプロダクション向けに2つの個別の環境を利用可能にしています。
 
-All responses are of content-type `application/json`
+すべての応答は、`application/json`コンテンツタイプです
 
-> Example Response
+> 応答の例
 
     {
         "status": "service is ok!",
@@ -140,23 +143,23 @@ All responses are of content-type `application/json`
     }
     
 
-### Production Environment
+### プロダクション環境
 
-The BitGo production endpoint is live and used by partners and our own web application on www.bitgo.com.
+BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
 
-* Production Site: https://www.bitgo.com/
-* Production API: https://www.bitgo.com/api/v1
+* プロダクションサイト: https://www.bitgo.com/
+* プロダクションAPI: https://www.bitgo.com/api/v1
 
-### Test Environment
+### テスト環境
 
-The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts. You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
+私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。
 
-* BitGo Test Site: https://test.bitgo.com/
-* Test Environment API: https://test.bitgo.com/api/v1
+* BitGo テスト サイト: https://test.bitgo.com/
+* テスト環境 API: https://test.bitgo.com/api/v1
 
-On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
+テスト環境の場合のみ、（自動テストを目的として）BitGoでの認証においてOTPの代わりに`0000000`が使えます。
 
-This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
+この環境は、ナビゲーションに<a href="http://tbtc.blockr.io/" target="_new">Blockr</a>を利用できるビットコインテストネットに接続されています。 テストコインを取得するには、<a href="http://tpfaucet.appspot.com/" target="_new">フォーセット</a>か、あるいはご連絡ください。
 
 ## BitGo Express REST API
 
@@ -169,22 +172,22 @@ BITGO_EXPRESS_HOST='localhost'
 curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 ```
 
-The BitGo Express REST API is a lightweight service for developers that want to take advantage of BitGo but are developing in a language without a native BitGo SDK.
+BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。
 
-BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo. This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.
+BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Ecpressは、標準のBitGo REST APIをプロクシサーバーに送ることも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
 
-To use BitGo Express:
+BitGo Expressを利用するには:
 
-* Install [BitGoJS](#software-development-kit)
-* Run the following command in the bin directory:
+* [BitGoJS](#software-development-kit) をインストールします
+* bin ディレクトリで次のコマンドを実行します:
 
 `./bitgo-express --debug --port 3080 --env test --bind localhost`
 
-* Make **ALL** BitGo REST API calls to the machine on which bitgo-express is running
+* **全ての**BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う
 
-## Error Handling
+## エラー処理
 
-> Example JSON Error
+> JSON エラーの例
 
 ```json
 {
@@ -193,26 +196,26 @@ To use BitGo Express:
 }
 ```
 
-All errors follow general REST principles. Included in the body of any error response (e.g. non-200 status code) will be an error object of the form:
+全てのエラーは一般的なRESTの原則に従います。エラー応答の本文(例えば非200ステータスコード)に含まれるのは次の形式のエラーオブジェクトになります：
 
-| Parameter | Value                                 |
-| --------- | ------------------------------------- |
-| status    | The HTTP error status returned        |
-| error     | The detailed description of the error |
+| パラメーター | 値                                     |
+| ------ | ------------------------------------- |
+| status | The HTTP error status returned        |
+| error  | The detailed description of the error |
 
-# User Authentication
+# ユーザー認証
 
-BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
+BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出し元がアクセストークンを指定するのを可能にします。
 
-Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths. Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
+アクセストークンはセッションを維持するのに利用され、パスワードログイン（ワンタイムパスワード（OTP）が必要）によって作成されます。 典型的なアクセストークンは1時間の間有効で、消費された資金をアンロックするのにOTPを必要とします。
 
-By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.
+デフォルトで、トークンは単一のIPアドレスに制限され、60分間有効です。それが過ぎたらユーザーは再認証する必要があります。
 
-For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code. A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
+一部のAPIコールについては、有効なセッショントークンだけでは不十分です。 これらのAPIコールにアクセスするには、セッションはUnlock APIを用いて、追加の2要素コードによって明示的にアンロックされなければなりません。 単一のアンロックコールはユーザーが任意のサイズのトランザクション（ウォレットポリシーの対象）、または内部のBitGoが管理するクォータ以下の、任意の回数のトランザクションを行うことを可能にします。<aside class="info"> アンロックが必要なAPIは、セッションが現在ロックされている場合または現在のアンロックセッションのトランザクションクォータの残りが不十分でない場合、応答にneedsUnlock=trueを含みます。 </aside> 
 
-Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
+また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。
 
-## API Access Tokens
+## APIアクセストークン
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -232,20 +235,20 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
+自動化の目的で、開発者は、1時間で期限が切れない一定額の資金について、アンロックされた長寿命のアクセストークンをリクエストすることができます。
 
-  1. Access the BitGo dashboard and head into the "Settings" page.
-  2. Click on the "Developer" tab.
-  3. You can now create a long-lived access token.
+  1. BitGoダッシュボードへアクセスして、「設定」のページへ行く
+  2. 「開発者」のタブをクリック
+  3. 長寿命のアクセストークンを作成できるようになりました
 
-The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
+トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
 
-### Token Parameters
+### トークンパラメーター
 
-| Parameter      | Description                                                                                                                                       |
+| パラメーター         | 説明                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label          | A label used to identify the token so that you can choose to revoke it later.                                                                     |
-| Duration       | Time in seconds which the token will be valid for.                                                                                                |
+| Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                                                                                             |
+| Duration       | トークンが有効であり続ける秒数                                                                                                                                   |
 | Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
 | IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
 | Permissions    | Auth Scope that the token will be created with                                                                                                    |
