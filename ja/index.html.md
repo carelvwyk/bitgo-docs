@@ -1,29 +1,18 @@
----
+* * *
 
-title: BitGo APIレファレンス
+タイトル： BitGo APIレファレンス
 
-language_tabs:
-- javascript
-- shell
+言語タブ: -javascript -シェルスクリプト
 
-toc_footers:
-- <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a>
-- <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a>
-- <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a>
-- <a>言語</a>
-- <a href="../index.html">- English　英語</a>
-- <a href="index.html">- Japanese 日本語</a>
-- <a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
+toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
 
----
+* * *
 
-# Getting Started はじめに
+# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
 
-<aside class="info">
-私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには<a href="https://www.bitgo.com/platform">BitGoプラットフォームポータル</a>にお越しください。
-</aside> 
+[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
-### Overview 概要
+### 概要
 
 BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
 
@@ -36,7 +25,7 @@ BitGo SDKは以下の操作を可能にします：
 * 支出制限
 * マルチサイナーウォレットフロー
 
-### Multi-Signature Wallets マルチシグネチャウォレット
+### マルチシグネチャウォレット
 
 マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、あなたの持つ全てのビットコインが失われることがあります。
 
@@ -58,7 +47,7 @@ BitGo SDKは以下の操作を可能にします：
     
     HDウォレットなら、どのトランザクションも同一のウォレットから到着したと見えないよう、アプリケーションはトランザクション毎に新たなキーを作成できます。 これにより、ウォレットの本当の大きさが漏洩することからウォレット保持者が保護されます。
 
-## Software Development Kit ソフトウェア開発キット
+## ソフトウェア開発キット
 
 BitGo APIは、開発者にマルチシグウォレットの作成、管理、ポリシーの操作、そしてビットコインネットワークとやり取りする方法を提供します。 ただし、ユーザの秘密鍵やトランザクションの署名など、いくつかセンシティブな操作がクライアントサイドで行われる必要があります。
 
@@ -80,7 +69,7 @@ Javascript SDKのインストール (Githubを通じ)
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library ライブラリのインポートと初期化
+### ライブラリのインポートと初期化
 
 ```javascript
 // パーケージからインポートしている場合
@@ -103,11 +92,11 @@ bitgo.ping({}, function(err, res) {
 
 Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。
 
-### Important notes on test environment テスト環境に関する重要な注意
+### テスト環境に関する重要な注意
 
 私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
 
-## BitGo API Endpoints, BitGo API エンドポイント
+## BitGo API エンドポイント
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -143,14 +132,14 @@ BitGoは開発とプロダクション向けに2つの個別の環境を利用�
     }
     
 
-### Production Environment プロダクション環境
+### プロダクション環境
 
 BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
 
 * プロダクションサイト: https://www.bitgo.com/
 * プロダクションAPI: https://www.bitgo.com/api/v1
 
-### Test Environment テスト環境
+### テスト環境
 
 私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。
 
@@ -174,7 +163,7 @@ curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 
 BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。
 
-BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APのプロクシとして振舞うことも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
+BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APIをプロクシサーバーに送ることも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
 
 BitGo Expressを利用するには:
 
@@ -185,7 +174,7 @@ BitGo Expressを利用するには:
 
 * **全ての**BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う
 
-## Error Handling エラー処理
+## エラー処理
 
 > JSON エラーの例
 
@@ -203,7 +192,7 @@ BitGo Expressを利用するには:
 | status | The HTTP error status returned        |
 | error  | The detailed description of the error |
 
-# User Authentication ユーザー認証
+# ユーザー認証
 
 BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出し元がアクセストークンを指定するのを可能にします。
 
@@ -215,7 +204,7 @@ BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出
 
 また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。
 
-## API Access Tokens, APIアクセストークン
+## APIアクセストークン
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -243,7 +232,7 @@ bitgo.session({}, function callback(err, session) {
 
 トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
 
-### Token Parameters トークンパラメーター
+### トークンパラメーター
 
 | パラメーター         | 説明                                                                           |
 | -------------- | ---------------------------------------------------------------------------- |
