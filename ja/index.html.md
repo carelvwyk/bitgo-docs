@@ -185,14 +185,14 @@ BitGo Expressを利用するには:
 }
 ```
 
-All errors follow general REST principles. Included in the body of any error response (e.g. non-200 status code) will be an error object of the form:
+全てのエラーは一般的なRESTの原則に従います。エラー応答の本文(例えば非200ステータスコード)に含まれるのは次の形式のエラーオブジェクトになります：
 
-| Parameter | Value                                 |
-| --------- | ------------------------------------- |
-| status    | The HTTP error status returned        |
-| error     | The detailed description of the error |
+| パラメーター | 値                                     |
+| ------ | ------------------------------------- |
+| status | The HTTP error status returned        |
+| error  | The detailed description of the error |
 
-# User Authentication
+# ユーザー認証
 
 BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
 
