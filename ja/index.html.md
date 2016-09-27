@@ -90,9 +90,9 @@ bitgo.ping({}, function(err, res) {
 | ------------- | -------------------------- |
 | useproduction | プロダクションに接続するかどうか。デフォルト値は偽。 |
 
-The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
+Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。
 
-### Important notes on test environment
+### テスト環境に関する重要な注意
 
 Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
 
