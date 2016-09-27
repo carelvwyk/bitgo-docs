@@ -224,13 +224,13 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-自動化の目的で、開発者は、1時間で期限が切れない一定額の資金についてアンロックされた長寿命のアクセストークンをリクエストすることができます。
+自動化の目的で、開発者は、1時間で期限が切れない一定額の資金について、アンロックされた長寿命のアクセストークンをリクエストすることができます。
 
-  1. Access the BitGo dashboard and head into the "Settings" page.
-  2. Click on the "Developer" tab.
-  3. You can now create a long-lived access token.
+  1. BitGoダッシュボードへアクセスして、「設定」のページへ行く
+  2. 「開発者」のタブをクリック
+  3. 長寿命のアクセストークンを作成できるようになりました
 
-The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
+トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
 
 ### Token Parameters
 
