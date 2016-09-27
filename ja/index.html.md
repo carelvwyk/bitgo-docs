@@ -136,17 +136,17 @@ BitGoは開発とプロダクション向けに2つの個別の環境を利用�
 
 BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
 
-* Production Site: https://www.bitgo.com/
-* Production API: https://www.bitgo.com/api/v1
+* プロダクションサイト: https://www.bitgo.com/
+* プロダクションAPI: https://www.bitgo.com/api/v1
 
-### Test Environment
+### テスト環境
 
-The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts. You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
+私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。
 
-* BitGo Test Site: https://test.bitgo.com/
-* Test Environment API: https://test.bitgo.com/api/v1
+* BitGo テスト サイト: https://test.bitgo.com/
+* テスト環境 API: https://test.bitgo.com/api/v1
 
-On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
+テスト環境の場合のみ、（自動テストを目的として）BitGoでの認証においてOTPの代わりに`0000000`が使えます。
 
 This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
 
