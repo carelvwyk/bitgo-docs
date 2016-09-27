@@ -119,13 +119,13 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id=">はじめに</h1>
+        <h1 id="getting-started">Getting Started はじめに</h1>
 
 <aside class="info">
 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには<a href="https://www.bitgo.com/platform">BitGoプラットフォームポータル</a>にお越しください。
 </aside> 
 
-<h3 id=">概要</h3>
+<h3 id="overview">Overview 概要</h3>
 
 <p>BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。</p>
 
@@ -140,7 +140,7 @@
 <li>マルチサイナーウォレットフロー</li>
 </ul>
 
-<h3 id=">マルチシグネチャウォレット</h3>
+<h3 id="multi-signature-wallets">Multi-Signature Wallets マルチシグネチャウォレット</h3>
 
 <p>マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、あなたの持つ全てのビットコインが失われることがあります。</p>
 
@@ -150,7 +150,7 @@
 
 <p>詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。</p>
 
-<h3 id="hd">HDウォレット</h3>
+<h3 id="hd-wallets-hd">HD Wallets HDウォレット</h3>
 
 <p>全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo&rsquo; HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。</p>
 
@@ -163,7 +163,7 @@
 <p>HDウォレットなら、どのトランザクションも同一のウォレットから到着したと見えないよう、アプリケーションはトランザクション毎に新たなキーを作成できます。 これにより、ウォレットの本当の大きさが漏洩することからウォレット保持者が保護されます。</p></li>
 </ul>
 
-<h2 id=">ソフトウェア開発キット</h2>
+<h2 id="software-development-kit">Software Development Kit ソフトウェア開発キット</h2>
 
 <p>BitGo APIは、開発者にマルチシグウォレットの作成、管理、ポリシーの操作、そしてビットコインネットワークとやり取りする方法を提供します。 ただし、ユーザの秘密鍵やトランザクションの署名など、いくつかセンシティブな操作がクライアントサイドで行われる必要があります。</p>
 
@@ -187,7 +187,7 @@
 
 <p><code class="prettyprint">node auth.js &lt;testusername&gt; &lt;testpassword&gt; 0000000</code></p>
 
-<h3 id=">ライブラリのインポートと初期化</h3>
+<h3 id="importing-and-initializing-the-library">Importing and initializing the library ライブラリのインポートと初期化</h3>
 <pre class="highlight javascript"><code><span class="c1">// パーケージからインポートしている場合</span>
 <span class="kd">var</span> <span class="nx">BitGoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'BitGoJS/src/index.js'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BitGoJS</span><span class="p">.</span><span class="nx">BitGo</span><span class="p">();</span>
@@ -216,11 +216,11 @@
 
 <p>Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。</p>
 
-<h3 id=">テスト環境に関する重要な注意</h3>
+<h3 id="important-notes-on-test-environment">Important notes on test environment テスト環境に関する重要な注意</h3>
 
 <p>私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は<a href="#bitgo-api-endpoints">テスト環境</a>のセクションを参照してください。</p>
 
-<h2 id="bitgo-api">BitGo API エンドポイント</h2>
+<h2 id="bitgo-api-endpoints-bitgo-api">BitGo API Endpoints, BitGo API エンドポイント</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">BitGoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'BitGoJS/src/index.js'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">useProduction</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -253,7 +253,7 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
         &ldquo;environment&rdquo;: &ldquo;BitGo Test&rdquo;
     }</p>
 
-<h3 id=">プロダクション環境</h3>
+<h3 id="production-environment">Production Environment プロダクション環境</h3>
 
 <p>BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。</p>
 
@@ -262,7 +262,7 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 <li>プロダクションAPI: https://www.bitgo.com/api/v1</li>
 </ul>
 
-<h3 id=">テスト環境</h3>
+<h3 id="test-environment">Test Environment テスト環境</h3>
 
 <p>私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。</p>
 
@@ -299,7 +299,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 <li><strong>全ての</strong>BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う</li>
 </ul>
 
-<h2 id=">エラー処理</h2>
+<h2 id="error-handling">Error Handling エラー処理</h2>
 
 <blockquote>
 <p>JSON エラーの例</p>
@@ -328,7 +328,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 </tr>
 </tbody></table>
 
-<h1 id=">ユーザー認証</h1>
+<h1 id="user-authentication">User Authentication ユーザー認証</h1>
 
 <p>BitGoの認証は&quot;Authorization&quot;のヘッダーを通じて行われ、呼び出し元がアクセストークンを指定するのを可能にします。</p>
 
@@ -340,7 +340,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 
 <p>また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。</p>
 
-<h2 id="api">APIアクセストークン</h2>
+<h2 id="api-access-tokens-api">API Access Tokens, APIアクセストークン</h2>
 <pre class="highlight shell"><code><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="s1">'DeveloperAccessToken'</span>
 curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{}'</span> <span class="se">\</span>
@@ -366,7 +366,7 @@ https://test.bitgo.com/api/v1/user/session
 
 <p>トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。</p>
 
-<h3 id=">トークンパラメーター</h3>
+<h3 id="token-parameters">Token Parameters トークンパラメーター</h3>
 
 <table><thead>
 <tr>
