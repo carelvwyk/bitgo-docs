@@ -113,19 +113,23 @@
             <li><a>Languages</a></li>
             <li><a href="../index.html">- English</a></li>
             <li><a href="../ja/index.html">- Japanese 日本語</a></li>
-            <li><a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a></li>
+            <li><a href="index.html">- Chinese (Simplified) 简体中文</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="getting-started-our-developer-platform-is-live-visit-the">Getting Started<aside class="info"> Our developer platform is live. Visit the</h1>
+        <h1 id="getting-started">Getting Started</h1>
 
-<p><a href="https://www.bitgo.com/platform">BitGo Platform Portal</a> to sign up for integration support, access tokens and more information. </aside> </p>
+<aside class="info">
+Our developer platform is live. Visit the <a href="https://www.bitgo.com/platform">BitGo Platform Portal</a>  to sign up for integration support, access tokens and more information.
+</aside>
 
 <h3 id="overview">Overview</h3>
 
-<p>BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.</p>
+<p>BitGo provides a simple and robust REST-ful API as well as a simple
+client javascript SDK to integrate multi-signature technology into
+your existing bitcoin applications and services.</p>
 
 <p>The BitGo SDK enables the following operations:</p>
 
@@ -140,32 +144,51 @@
 
 <h3 id="multi-signature-wallets">Multi-Signature Wallets</h3>
 
-<p>The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.</p>
+<p>The primary advantage of multi-signature wallets is the ability for multiple
+machines and people to work together to approve a given transaction.  Without
+multiple signatures on a transaction, all credentials to approve a
+transaction must reside with a single person on a machine.  If that person,
+or machine is compromised by an attacker, all of your bitcoin can be taken.</p>
 
-<p>Traditionally, it has been so difficult to secure these single person / single machine systems, that many vendors have opted to simply use &ldquo;cold storage&rdquo; and move Bitcoin offline entirely.</p>
+<p>Traditionally, it has been so difficult to secure these single person / single
+machine systems, that many vendors have opted to simply use &ldquo;cold storage&rdquo; and
+move Bitcoin offline entirely.</p>
 
-<p>Multi-signature wallets offer all the flexibility you would expect from a modern Bitcoin address without having to take your bitcoin offline. The BitGo API enables you to use multi-signature features in your own applications so you can harness the full flexibility of multiple users, cosigners and state-of-the-art fraud detection services to protect against loss and theft.</p>
+<p>Multi-signature wallets offer all the flexibility you would expect from a modern
+Bitcoin address without having to take your bitcoin offline.  The BitGo API
+enables you to use multi-signature features in your own applications so you can harness
+the full flexibility of multiple users, cosigners and state-of-the-art
+fraud detection services to protect against loss and theft.</p>
 
 <p>For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.</p>
 
 <h3 id="hd-wallets">HD Wallets</h3>
 
-<p>All BitGo wallets are hierarchical deterministic wallets - also known as &ldquo;HD Wallets&rdquo;. HD Wallets are implemented using the bitcoin <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>. As such, BitGo&rsquo;s HD Wallets are built from &lsquo;keychains&rsquo; rather than from individual keys, and offer two distinct security and privacy enhancing features:</p>
+<p>All BitGo wallets are hierarchical deterministic wallets - also known as
+&ldquo;HD Wallets&rdquo;.  HD Wallets are implemented using the bitcoin
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>.  As such, BitGo&rsquo;s HD Wallets are built from &lsquo;keychains&rsquo; rather
+than from individual keys, and offer two distinct security and privacy
+enhancing features:</p>
 
 <ul>
 <li><p>More secure backups</p>
 
-<p>Because keychains can be backed up with a single secret, a wallet can use many public keys all of which are maintained by a single backup key.</p></li>
+<p>Because keychains can be backed up with a single secret, a wallet can use
+many public keys all of which are maintained by a single backup key.</p></li>
 <li><p>Blockchain Privacy</p>
 
-<p>With HD Wallets, applications can create new keys with every transaction such that no two transactions ever appear to come from the same wallet. This protects the wallet holder from revealing the true size of the wallet.</p></li>
+<p>With HD Wallets, applications can create new keys with every transaction
+such that no two transactions ever appear to come from the same wallet.
+This protects the wallet holder from revealing the true size of the wallet.</p></li>
 </ul>
 
 <h2 id="software-development-kit">Software Development Kit</h2>
 
-<p>The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network. However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.</p>
+<p>The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network.
+However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.</p>
 
-<p>For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs. In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.</p>
+<p>For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs.
+In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.</p>
 
 <p>Currently, our SDK is available in Javascript and runs in either node.js or a browser. If you are using a non-supported programming language, see the &ldquo;BitGo Express REST API&rdquo; section of the documentation for how to setup BitGo Express, or contact us for further help.</p>
 
@@ -198,7 +221,8 @@
 <span class="p">});</span>
 </code></pre>
 
-<p>To import the library, you simply require the <code class="prettyprint">src/index.js</code> file. You can then initialize the SDK by doing <code class="prettyprint">BitGoJS.BitGo()</code>.</p>
+<p>To import the library, you simply require the <code class="prettyprint">src/index.js</code> file.
+You can then initialize the SDK by doing <code class="prettyprint">BitGoJS.BitGo()</code>.</p>
 
 <table><thead>
 <tr>
@@ -245,11 +269,11 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 <blockquote>
 <p>Example Response</p>
 </blockquote>
-
-<p>{
-        &ldquo;status&rdquo;: &ldquo;service is ok!&rdquo;,
-        &ldquo;environment&rdquo;: &ldquo;BitGo Test&rdquo;
-    }</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service is ok!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BitGo Test"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="production-environment">Production Environment</h3>
 
@@ -262,7 +286,8 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 
 <h3 id="test-environment">Test Environment</h3>
 
-<p>The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts. You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.</p>
+<p>The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts.
+You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.</p>
 
 <ul>
 <li>BitGo Test Site: https://test.bitgo.com/</li>
@@ -271,7 +296,8 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 
 <p>On the test environment only, you can use <code class="prettyprint">0000000</code> in place of the OTP when authenticating with BitGo (for the purpose of automated tests).</p>
 
-<p>This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.</p>
+<p>This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate.
+To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.</p>
 
 <h2 id="bitgo-express-rest-api">BitGo Express REST API</h2>
 <pre class="highlight shell"><code>./bitgo-express --debug --port 3080 --env <span class="nb">test</span> --bind localhost
@@ -282,7 +308,8 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 
 <p>The BitGo Express REST API is a lightweight service for developers that want to take advantage of BitGo but are developing in a language without a native BitGo SDK.</p>
 
-<p>BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo. This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.</p>
+<p>BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo.
+This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.</p>
 
 <p>To use BitGo Express:</p>
 
@@ -308,7 +335,9 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>All errors follow general REST principles. Included in the body of any error response (e.g. non-200 status code) will be an error object of the form:</p>
+<p>All errors follow general REST principles.  Included in the body of any
+error response (e.g. non-200 status code) will be an error object of the
+form:</p>
 
 <table><thead>
 <tr>
@@ -330,11 +359,18 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 
 <p>BitGo&rsquo;s authentication is via the &ldquo;Authorization&rdquo; header, which allows the caller to specify an access token.</p>
 
-<p>Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths. Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.</p>
+<p>Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths.
+Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.</p>
 
 <p>By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.</p>
 
-<p>For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code. A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> </p>
+<p>For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code.
+A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.</p>
+
+<aside class="info">
+APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or
+if the current unlock session has insufficient transaction quota remaining.
+</aside>
 
 <p>Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.</p>
 
@@ -435,7 +471,9 @@ https://test.bitgo.com/api/v1/user/me
 
 <h2 id="login">Login</h2>
 
-<p>Get a token for first-party access to the BitGo API. First-party access is only intended for users accessing their own BitGo accounts. For 3rd party access to the BitGo API on behalf of another user, please see <strong>Partner Authentication</strong>.</p>
+<p>Get a token for first-party access to the BitGo API.  First-party access is only intended for users
+accessing their own BitGo accounts.  For 3rd party access to the BitGo API on behalf of another
+user, please see <strong>Partner Authentication</strong>.</p>
 <pre class="highlight shell"><code><span class="nv">EMAIL</span><span class="o">=</span><span class="s2">"janedoe@bitgo.com"</span>
 <span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">"mypassword"</span>
 <span class="nv">HMAC</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="s2">"</span><span class="nv">$PASSWORD</span><span class="s2">"</span> | openssl dgst -sha256 -hmac <span class="s2">"</span><span class="nv">$EMAIL</span><span class="s2">"</span> | sed <span class="s1">'s/^.* //'</span> <span class="sb">`</span>
@@ -523,7 +561,8 @@ Note: The rest of the shell examples the share variable assume the shell variabl
 
 <p>Returns a token for use with the API.</p>
 
-<p>The token must be added as a HTTP header to all API calls in the HTTP &ldquo;Authorization&rdquo; header:</p>
+<p>The token must be added as a HTTP header to all API calls in the HTTP
+&ldquo;Authorization&rdquo; header:</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;your token goes here&gt;</code></p>
 
@@ -590,28 +629,28 @@ https://test.bitgo.com/api/v1/user/session
 <blockquote>
 <p>Example response</p>
 </blockquote>
-
-<p>{ &ldquo;client&rdquo;: &ldquo;bitgo&rdquo;,
-      &ldquo;user&rdquo;: &ldquo;5458141599f715232500000530a94fd2&rdquo;,
-      &ldquo;scope&rdquo;:
-       [ &ldquo;user_manage&rdquo;,
-         &ldquo;openid&rdquo;,
-         &ldquo;profile&rdquo;,
-         &ldquo;wallet_create&rdquo;,
-         &ldquo;wallet_manage_all&rdquo;,
-         &ldquo;wallet_approve_all&rdquo;,
-         &ldquo;wallet_spend_all&rdquo;,
-         &ldquo;wallet_edit_all&rdquo;,
-         &ldquo;wallet_view_all&rdquo; ],
-      &ldquo;expires&rdquo;: &ldquo;2015-01-21T02:18:11.534Z&rdquo;,
-      &ldquo;origin&rdquo;: &ldquo;test.bitgo.com&rdquo;,
-      &ldquo;unlock&rdquo;:
-          { &ldquo;time&rdquo;: &ldquo;2015-01-21T01:20:25.366Z&rdquo;,
-            &ldquo;expires&rdquo;: &ldquo;2015-01-21T01:30:25.366Z&rdquo;,
-            &ldquo;txCount&rdquo;: 0,
-            &ldquo;txValue&rdquo;: 0
-          }
-    }</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"client"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitgo"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5458141599f715232500000530a94fd2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="w">
+   </span><span class="p">[</span><span class="w"> </span><span class="s2">"user_manage"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"openid"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_create"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_manage_all"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_approve_all"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_spend_all"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_edit_all"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wallet_view_all"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"expires"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-21T02:18:11.534Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.bitgo.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unlock"</span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-21T01:20:25.366Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"expires"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-21T01:30:25.366Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"txCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"txValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -695,7 +734,8 @@ https://test.bitgo.com/api/v1/user/sendotp
 
 <h2 id="unlock">Unlock</h2>
 
-<p>Unlock the current session, which is required for certain other sensitive API calls.</p>
+<p>Unlock the current session, which is required for certain other
+sensitive API calls.</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{"otp": "0000000"}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -794,13 +834,21 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
 
 <h2 id="partner-authentication">Partner Authentication</h2>
 
-<p>3rd party applications using the BitGo API use OAuth to authenticate through BitGo. Please contact BitGo for a partner ID and more information.</p>
+<p>3rd party applications using the BitGo API use OAuth to authenticate through BitGo.
+Please contact BitGo for a partner ID and more information.</p>
 
 <h1 id="keychains">Keychains</h1>
 
-<p>All BitGo wallets are created using keychains. A keychain is a standard <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> extended HD key. Unlike traditional bitcoin keys, which represent a single <a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair, a keychain can represent many key pairs, all derived from a common private key. This allows the user to retain a single private key, but generate an infinite number of public keys. BitGo uses these extended keys to keep your bitcoin more private and secure.</p>
+<p>All BitGo wallets are created using keychains. A keychain is a standard
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a>
+extended HD key.  Unlike traditional bitcoin keys, which represent a single
+<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair,
+a keychain can represent many key pairs, all derived from a common private key.
+This allows the user to retain a single private key, but generate an infinite
+number of public keys.  BitGo uses these extended keys to keep your bitcoin more private and secure.</p>
 
-<p>To make wallet creation simple, BitGo maintains a list of Keychains for each user. Each keychain may be used in any number of BitGo Wallets.</p>
+<p>To make wallet creation simple, BitGo maintains a list of Keychains
+for each user.  Each keychain may be used in any number of BitGo Wallets.</p>
 
 <p>There are two types of keychains:</p>
 
@@ -810,12 +858,19 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
 <p>These are comprised of a single BIP32 extended public key (xpub).</p></li>
 <li><p>Private Keychains</p>
 
-<p>These are comprised of a single BIP32 extended private key (xprv), which is always stored in encrypted form.</p></li>
+<p>These are comprised of a single BIP32 extended private key (xprv),
+which is always stored in encrypted form.</p></li>
 </ul>
 
-<p>All keychains are identified by their xpub. For convenience, each keychain may have a label.</p>
+<p>All keychains are identified by their xpub.  For convenience, each keychain may have a label.</p>
 
-<p>Before creating your first wallet, you must create keychains to use with that wallet.<aside class="success"> Note that accessing the private keychain (even in encrypted form) always requires 2-factor-authentication. </aside> </p>
+<p>Before creating your first wallet, you must create keychains to use
+with that wallet.</p>
+
+<aside class="success">
+Note that accessing the private keychain (even in encrypted form) always requires
+2-factor-authentication.
+</aside>
 
 <h2 id="list-keychains">List Keychains</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -830,7 +885,11 @@ https://test.bitgo.com/api/v1/keychain
 <span class="p">});</span>
 </code></pre>
 
-<p>Get the list of public keychains for the user<aside class="success"> This API only provides the public keys and never the private data for a keychain. </aside> </p>
+<p>Get the list of public keychains for the user</p>
+
+<aside class="success">
+This API only provides the public keys and never the private data for a keychain.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -875,7 +934,7 @@ https://test.bitgo.com/api/v1/keychain
 <td>skip</td>
 <td>number</td>
 <td>NO</td>
-<td>The starting index number to list from. Default is 0.</td>
+<td>The starting index number to list from.  Default is 0.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -930,9 +989,16 @@ curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keyc
 
 <p>Local client-side function to create a new keychain.</p>
 
-<p>Optionally, a single parameter, &#39;seed&rsquo;, may be provided which uses a deterministic seed to create your keychain. The seed should be an array of numbers at least 32 elements long. Calling this function with the same seed will generate the same BIP32 keychain.<aside class="warning"> Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it. </aside> </p>
+<p>Optionally, a single parameter, &#39;seed&rsquo;, may be provided which uses a deterministic seed to create your keychain.  The seed should
+be an array of numbers at least 32 elements long.  Calling this function with the same seed will generate the same BIP32 keychain.</p>
 
-<p>Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service. To use it with the BitGo service, use the Keychains.Add API.</p>
+<aside class="warning">
+Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random
+number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it.
+</aside>
+
+<p>Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service.
+To use it with the BitGo service, use the Keychains.Add API.</p>
 
 <p>For security reasons, it is highly recommended that you <a href="#encrypt">encrypt</a> and destroy the original xprv immediately to prevent theft.</p>
 
@@ -958,7 +1024,13 @@ https://test.bitgo.com/api/v1/keychain
 
 <p>Registers a new keychain for the user. You must supply at least the public key. An encrypted private key may be uploaded, but it will be treated as opaque to the server.</p>
 
-<p>The purpose in providing an encrypted private key with the address is so users will be able to access their keys securely whenever they are connected to BitGo without the burden of storing it. It is highly recommended that you encrypt any private keys stored at the server with a strong password from the user. Encryption must be performed on the client. For convenience, you can use BitGo&rsquo;s <a href="#encrypt">encrypt/decrypt functions</a>, but you can use any encryption you wish.<aside class="warning"> If you provide the encrypted xprv, the security of this keychain is only as good as your encryption. Encryption is your responsibility. </aside> </p>
+<p>The purpose in providing an encrypted private key with the address is so users will be able to access their keys securely whenever they are connected to BitGo without the burden of storing it.
+It is highly recommended that you encrypt any private keys stored at the server with a strong password from the user. Encryption must be performed on the client.
+For convenience, you can use BitGo&rsquo;s <a href="#encrypt">encrypt/decrypt functions</a>, but you can use any encryption you wish.</p>
+
+<aside class="warning">
+If you provide the encrypted xprv, the security of this keychain is only as good as your encryption.  Encryption is your responsibility.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1034,7 +1106,8 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 <span class="p">});</span>
 </code></pre>
 
-<p>Creates a new keychain on BitGo&rsquo;s servers and returns the public keychain to the caller.</p>
+<p>Creates a new keychain on BitGo&rsquo;s servers and returns the public keychain to
+the caller.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1089,7 +1162,8 @@ https://test.bitgo.com/api/v1/keychain/backup
 <span class="p">});</span>
 </code></pre>
 
-<p>Creates a new backup keychain on a third party specializing in key recovery services. This keychain will be stored on the third party service and usable for recovery purposes only.</p>
+<p>Creates a new backup keychain on a third party specializing in key recovery services.
+This keychain will be stored on the third party service and usable for recovery purposes only.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1139,7 +1213,11 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 <span class="p">});</span>
 </code></pre>
 
-<p>Lookup a keychain by xpub<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> </p>
+<p>Lookup a keychain by xpub</p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1219,7 +1297,18 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 <span class="p">});</span>
 </code></pre>
 
-<p>Update a keychain. This is used if you wish to store a new version of the xprv (for example, if you changed the password used to encrypt the xprv).<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> <aside class="warning"> If you change the encryptedXprv, the existing value is overwritten. If the new value is incorrect, or you forget the password to the new value, your ability to sign with this keychain will be lost forever. </aside> </p>
+<p>Update a keychain.  This is used if you wish to store a new version of the
+xprv (for example, if you changed the password used to encrypt the xprv).</p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
+
+<aside class="warning">
+If you change the encryptedXprv, the existing value
+is overwritten.  If the new value is incorrect, or you forget the password
+to the new value, your ability to sign with this keychain will be lost forever.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1282,11 +1371,19 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 
 <h1 id="wallets">Wallets</h1>
 
-<p>All BitGo Wallets are multi-signature, hierarchical, deterministic wallets. Multi-signature wallets are comprised of <em>N</em> keys, and require <em>M</em> keys to sign a transaction before the transaction is valid. This is called an <em>M-of-N</em> wallet.</p>
+<p>All BitGo Wallets are multi-signature, hierarchical, deterministic wallets.
+Multi-signature wallets are comprised of <em>N</em> keys, and require <em>M</em> keys
+to sign a transaction before the transaction is valid.
+This is called an <em>M-of-N</em> wallet.</p>
 
 <p>BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.</p>
 
-<p>To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last must be a BitGo keychain. While BitGo can see the public portion of the first two keys, BitGo never has access to the private portion of these keys and therefore cannot conduct transactions without the user. BitGo&rsquo;s single key is not sufficient to sign transactions, and BitGo will only use this key in accordance with the policies set by the user.</p>
+<p>To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last
+must be a BitGo keychain. While BitGo can see the public portion of the first
+two keys, BitGo never has access to the private portion of these keys and
+therefore cannot conduct transactions without the user.  BitGo&rsquo;s single
+key is not sufficient to sign transactions, and BitGo will only use this key
+in accordance with the policies set by the user.</p>
 
 <h2 id="list-wallets">List Wallets</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
@@ -1364,7 +1461,7 @@ https://test.bitgo.com/api/v1/wallet
 <td>skip</td>
 <td>number</td>
 <td>NO</td>
-<td>The starting index number to list from. Default is 0.</td>
+<td>The starting index number to list from.  Default is 0.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1396,9 +1493,12 @@ https://test.bitgo.com/api/v1/wallet
 </tr>
 </tbody></table>
 
-<h2 id="add-wallet-this-method-is-for-advanced-api-users-and-allows-manual-creation-of-keys-and-specification-of-user-and-backup-key-xpubs-for-most-scenarios-in-the-sdk">Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK,</h2>
+<h2 id="add-wallet">Add Wallet</h2>
 
-<p><a href="#create-wallet-with-keychains">Create Wallet With Keychains</a> is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> </p>
+<aside class="warning">
+This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs.
+For most scenarios in the SDK, <a href="#create-wallet-with-keychains">Create Wallet With Keychains</a> is the simpler and recommended SDK method to send bitcoins from a wallet.
+</aside>
 <pre class="highlight shell"><code><span class="nv">XPUB_USER</span><span class="o">=</span>xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
 
 <span class="nv">XPUB_BACKUP</span><span class="o">=</span>xpub661MyMwAqRbcF3MqMfvo7swQwRzEVRyCPry4rmp346Dv6zR4CNFzrtu4bMpeNazCNNa9p3p5z56svzRcnF9LEm3Ha2zSgq2cLrperm7z4oh
@@ -1429,13 +1529,22 @@ https://test.bitgo.com/api/v1/wallet
 <span class="p">});</span>
 </code></pre>
 
-<p>This API creates a new wallet for the user. The keychains to use with the new wallet must be registered with BitGo prior to using this API.</p>
+<p>This API creates a new wallet for the user.  The keychains to use with the
+new wallet must be registered with BitGo prior to using this API.</p>
 
-<p>BitGo currently only supports 2-of-3 (e.g. m=2 and n=3) wallets. The third keychain, and <strong>only</strong> the third keychain, <em>must</em> be a BitGo key. The first keychain is by convention the user key, with it&rsquo;s <strong>encrypted</strong> xpriv is stored on BitGo.</p>
+<p>BitGo currently only supports 2-of-3 (e.g. m=2 and n=3) wallets. The third keychain, and
+<strong>only</strong> the third keychain, <em>must</em> be a BitGo key.
+The first keychain is by convention the user key, with it&rsquo;s <strong>encrypted</strong> xpriv is stored on BitGo.</p>
 
-<p>BitGo wallets currently are hard-coded with their root at <strong>m/0/0</strong> across all 3 keychains (however, older legacy wallets may use different key paths). Below the root, the wallet supports two chains of addresses, 0 and 1. The <strong>0-chain</strong> is for external receiving addresses, while the <strong>1-chain</strong> is for internal (change) addresses.</p>
+<p>BitGo wallets currently are hard-coded with their root at <strong>m/0/0</strong> across all
+3 keychains (however, older legacy wallets may use different key paths).
+Below the root, the wallet supports two chains of addresses, 0 and 1. The
+<strong>0-chain</strong> is for external receiving addresses, while the <strong>1-chain</strong> is for internal
+(change) addresses.</p>
 
-<p>The first receiving address of a wallet is at the BIP32 path <strong>m/0/0/0/0</strong>, which is also the ID used to refer to a wallet in BitGo&rsquo;s system. The first change address of a wallet is at <strong>m/0/0/1/0</strong>. </aside></p>
+<p>The first receiving address of a wallet is at the BIP32 path <strong>m/0/0/0/0</strong>, which
+is also the ID used to refer to a wallet in BitGo&rsquo;s system. The first change address of a wallet is at <strong>m/0/0/1/0</strong>.
+</aside></p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1778,8 +1887,13 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 <li>Encrypts the user keychain</li>
 <li>Uploads the encrypted user and backup keychains to BitGo</li>
 <li>Creates the BitGo key on the service</li>
-<li>Creates the wallet on BitGo with the 3 public keys above<aside class="warning"> It is <strong>VERY IMPORTANT</strong> to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> </li>
+<li>Creates the wallet on BitGo with the 3 public keys above</li>
 </ol>
+
+<aside class="warning">
+It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys.
+Failure to do so can result in the loss of funds!
+</aside>
 
 <h3 id="bitgo-instant-wallets">BitGo Instant Wallets</h3>
 
@@ -1848,9 +1962,9 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
  </span><span class="nt">"pendingApprovals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<p>User keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;v2aVEG5A8VwnI+ewS&hellip;&rdquo;}
-    Backup keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;vNOUQpzUmHNPwKt&hellip;&rdquo;}</p>
+<pre class="highlight plaintext"><code>User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
+Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
+</code></pre>
 
 <h3 id="response">Response</h3>
 
@@ -1898,11 +2012,17 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 
 <h1 id="wallet-operations-basic">Wallet Operations - Basic</h1>
 
-<p>Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin. The Wallet API provides helpful interfaces for interacting with a user&rsquo;s wallets.</p>
+<p>Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin.
+The Wallet API provides helpful interfaces for interacting with a user&rsquo;s wallets.</p>
 
 <h2 id="create-address">Create Address</h2>
 
-<p>Creates a new address for an existing wallet. BitGo wallets consist of two independent chains of addresses, designated 0 and 1. The 0-chain is typically used for receiving funds, while the 1-chain is used internally for creating change when spending from a wallet. It is considered best practice to generate a new receiving address for each new incoming transaction, in order to help maximize privacy.</p>
+<p>Creates a new address for an existing wallet. BitGo wallets consist of
+two independent chains of addresses, designated 0 and 1. The 0-chain is
+typically used for receiving funds, while the 1-chain is used internally
+for creating change when spending from a wallet. It is considered best practice
+to generate a new receiving address for each new incoming transaction, in order
+to help maximize privacy.</p>
 <pre class="highlight shell"><code><span class="nv">CHAIN</span><span class="o">=</span>0
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s2">"3GonoRKFSzcqJCktZPA2NHDd3jJoH4154o"</span>
 curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -2052,7 +2172,11 @@ curl -X POST <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/sendcoins
 </code></pre>
 
-<p>Easiest way to send coins from your BitGo wallet to a destination Bitcoin address.<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> </p>
+<p>Easiest way to send coins from your BitGo wallet to a destination Bitcoin address.</p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
 <p>This method will perform the following on the client:</p>
 
@@ -2259,7 +2383,11 @@ curl -X POST <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/sendmany
 </code></pre>
 
-<p>Convenience function to send Bitcoin to multiple destination addresses in a single transaction.<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> </p>
+<p>Convenience function to send Bitcoin to multiple destination addresses in a single transaction.</p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -2543,7 +2671,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 <td>skip</td>
 <td>number</td>
 <td>NO</td>
-<td>The starting index number to list from. Default is 0.</td>
+<td>The starting index number to list from.  Default is 0.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -2561,7 +2689,9 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 
 <h3 id="response">Response</h3>
 
-<p>Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected any wallet or bitcoin address involved in the transaction.</p>
+<p>Returns an array of Transaction objects.  Each transaction contains summary
+information about how that transaction affected any wallet or bitcoin address involved
+in the transaction.</p>
 
 <h3 id="errors">Errors</h3>
 
@@ -3047,7 +3177,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
 
 <h1 id="wallet-operations-advanced">Wallet Operations - Advanced</h1>
 
-<p>These features are available and recommended for advanced developers. Using these APIs will provide expanded (but potentially complex) functionality and greater control of the transaction creation process.</p>
+<p>These features are available and recommended for advanced developers.
+Using these APIs will provide expanded (but potentially complex) functionality and greater control of the transaction creation process.</p>
 
 <h2 id="get-transaction-by-sequence-id">Get Transaction By Sequence Id</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -3106,7 +3237,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Get the transaction on a wallet sequence ID that was passed in when sending an outgoing transaction (via sendCoins or sendTransaction). This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.</p>
+<p>Get the transaction on a wallet sequence ID that was passed in when sending an outgoing transaction (via sendCoins or sendTransaction).
+This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.</p>
 
 <p>A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.</p>
 
@@ -3186,7 +3318,9 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 
 <p>Gets a list of unspent input transactions for a wallet.</p>
 
-<p>In order to create a bitcoin transaction, the creator of the transaction will need to accumulate a set of bitcoin &#39;inputs&rsquo; for use in creation of that transaction.</p>
+<p>In order to create a bitcoin transaction, the creator of the transaction
+will need to accumulate a set of bitcoin &#39;inputs&rsquo; for use in creation of
+that transaction.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3230,7 +3364,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 <td>skip</td>
 <td>number</td>
 <td>NO</td>
-<td>The starting index number to list from. Default is 0.</td>
+<td>The starting index number to list from.  Default is 0.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -3377,7 +3511,8 @@ curl -X PUT <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/consolidateunspents
 </code></pre>
 
-<p>Coalesce the unspents currently held in a wallet to a smaller number. This is an iterative process, largely due to transaction size limits and signing speed. Each iteration requires its own transaction fees.</p>
+<p>Coalesce the unspents currently held in a wallet to a smaller number. This is an iterative process, largely due to
+transaction size limits and signing speed. Each iteration requires its own transaction fees.</p>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -3506,43 +3641,47 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">recipients</span><span class="se">\"</span><span class="s2">: [{ </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 1500000}, { </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 2500000 }] }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/createtransaction
-<span class="sb">```</span>&lt;aside <span class="nv">class</span><span class="o">=</span><span class="s2">"warning"</span>&gt; This method is <span class="k">for </span>advanced API users. For most scenarios, <span class="se">\[</span>sendCoins<span class="se">\]</span><span class="o">(</span><span class="c">#send-coins-to-address) is the recommended method to send bitcoins from a wallet. &lt;/aside&gt; </span>
-
-Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only <span class="k">in </span>the SDK.
-
-Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address <span class="o">(</span>path of /1<span class="o">)</span> on the wallet.
-
-This is an advanced method that allows you to manually specify the miner fee <span class="o">(</span>could be 0<span class="o">)</span> and decrypted keychain.
-
-<span class="k">**</span>WARNING<span class="k">**</span>: If you provide an insufficient fee, your transaction may not get confirmed and your unspents may be unusable <span class="k">for </span>some time.
-
-<span class="gp">&gt; </span>Example Response
-
-<span class="sb">```</span>json
-<span class="o">{</span>
-    <span class="s2">"changeAddress"</span>: <span class="o">{</span>
-        <span class="s2">"address"</span>: <span class="s2">"2MvaEJUHmL6wzsxwqW8Xm8Qac4PTa3zMuvE"</span>,
-        <span class="s2">"path"</span>: <span class="s2">"/1/65"</span>
-    <span class="o">}</span>,
-    <span class="s2">"fee"</span>: 20000,
-    <span class="s2">"transactionHex"</span>: <span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d..."</span>,
-    <span class="s2">"unspents"</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">"chainPath"</span>: <span class="s2">"/0/10"</span>,
-            <span class="s2">"redeemScript"</span>: <span class="s2">"522102f96f3d88ca43810306a7fff2e99da9f052d56a26c73a094237c55b5ec72fead62102981092615521d2d6a44a652631309b5136f589f6c625dbf94efa3edae74ddd2f2103b08e8933fc38a3eb2dc0616f336910b884f9ad80b4a7984f2d9f9e19759ff01553ae"</span>
-        <span class="o">}</span>,
-        ...
-    <span class="o">]</span>,
-    <span class="s2">"walletId"</span>: <span class="s2">"2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"</span>,
-    <span class="s2">"walletKeychains"</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">"path"</span>: <span class="s2">"/0/0"</span>,
-            <span class="s2">"xpub"</span>: <span class="s2">"xpub661MyMwAqRbcGM9kbvxAfLzr9WwqaVKSqw1dEm16mZmPmigQBrqzVQz314kd9jV68JjpRLCtrRWRpEJqe3FCaN4fuMTZNaDa3uMSjxUaZEj"</span>
-        <span class="o">}</span>,
-        ...
-    <span class="o">]</span>
-<span class="o">}</span>
 </code></pre>
+
+<aside class="warning">
+This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+</aside>
+
+<p>Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only in the SDK.</p>
+
+<p>Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address (path of /1) on the wallet.</p>
+
+<p>This is an advanced method that allows you to manually specify the miner fee (could be 0) and decrypted keychain.</p>
+
+<p><b>WARNING</b>: If you provide an insufficient fee, your transaction may not get confirmed and your unspents may be unusable for some time.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changeAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MvaEJUHmL6wzsxwqW8Xm8Qac4PTa3zMuvE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1/65"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"transactionHex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"unspents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"chainPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/0/10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522102f96f3d88ca43810306a7fff2e99da9f052d56a26c73a094237c55b5ec72fead62102981092615521d2d6a44a652631309b5136f589f6c625dbf94efa3edae74ddd2f2103b08e8933fc38a3eb2dc0616f336910b884f9ad80b4a7984f2d9f9e19759ff01553ae"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"walletKeychains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/0/0"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGM9kbvxAfLzr9WwqaVKSqw1dEm16mZmPmigQBrqzVQz314kd9jV68JjpRLCtrRWRpEJqe3FCaN4fuMTZNaDa3uMSjxUaZEj"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -3660,19 +3799,23 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">transactionHex</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$TRANSACTIONHEX</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">unspents</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$UNSPENTS</span><span class="s2">, </span><span class="se">\"</span><span class="s2">keychain</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$KEYCHAIN</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/signtransaction
-<span class="sb">```</span>&lt;aside <span class="nv">class</span><span class="o">=</span><span class="s2">"warning"</span>&gt; This method is <span class="k">for </span>advanced API users. For most scenarios, <span class="se">\[</span>sendCoins<span class="se">\]</span><span class="o">(</span><span class="c">#send-coins-to-address) is the recommended method to send bitcoins from a wallet. &lt;/aside&gt; </span>
-
-Sign a multi-sig transaction using a created transaction hex, keychain and unspent information <span class="o">(</span>derivation paths and redeem scripts<span class="o">)</span>. Typically used with the output from createTransaction.
-
-Can be performed offline.
-
-This is client-side functionality only <span class="k">in </span>the SDK.
-
-<span class="gp">&gt; </span>Example Response
-
-<span class="sb">```</span>json
-<span class="o">{</span><span class="s2">"tx"</span>:<span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."</span><span class="o">}</span>
 </code></pre>
+
+<aside class="warning">
+This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+</aside>
+
+<p>Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.</p>
+
+<p>Can be performed offline.</p>
+
+<p>This is client-side functionality only in the SDK.</p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="nt">"tx"</span><span class="p">:</span><span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -3765,25 +3908,38 @@ https://test.bitgo.com/api/v1/tx/send
     <span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-<span class="err">```</span><span class="o">&lt;</span><span class="nx">aside</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"warning"</span><span class="o">&gt;</span> <span class="nx">This</span> <span class="nx">method</span> <span class="nx">is</span> <span class="k">for</span> <span class="nx">advanced</span> <span class="nx">API</span> <span class="nx">users</span><span class="p">.</span> <span class="nx">For</span> <span class="nx">most</span> <span class="nx">scenarios</span><span class="p">,</span> <span class="err">\</span><span class="p">[</span><span class="nx">sendCoins</span><span class="err">\</span><span class="p">](</span><span class="err">#</span><span class="nx">send</span><span class="o">-</span><span class="nx">coins</span><span class="o">-</span><span class="nx">to</span><span class="o">-</span><span class="nx">address</span><span class="p">)</span> <span class="nx">is</span> <span class="nx">the</span> <span class="nx">recommended</span> <span class="nx">method</span> <span class="nx">to</span> <span class="nx">send</span> <span class="nx">bitcoins</span> <span class="nx">from</span> <span class="nx">a</span> <span class="nx">wallet</span><span class="p">.</span> <span class="o">&lt;</span><span class="sr">/aside&gt;</span><span class="err"> 
-</span>
-<span class="nx">Send</span> <span class="nx">a</span> <span class="nx">partially</span><span class="o">-</span><span class="nx">signed</span> <span class="nx">transaction</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">server</span> <span class="nx">will</span> <span class="k">do</span> <span class="nx">one</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">following</span><span class="err">:</span> <span class="o">*</span> <span class="nx">reject</span> <span class="nx">the</span> <span class="nx">transaction</span> <span class="o">*</span> <span class="nx">gather</span> <span class="nx">additional</span> <span class="nx">approvals</span> <span class="nx">from</span> <span class="nx">other</span> <span class="nx">wallet</span> <span class="nx">admins</span> <span class="o">*</span> <span class="nx">apply</span> <span class="nx">the</span> <span class="kr">final</span> <span class="nx">signature</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">submit</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">Bitcoin</span> <span class="nx">P2P</span> <span class="nx">network</span><span class="o">&lt;</span><span class="nx">aside</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"info"</span><span class="o">&gt;</span> <span class="nx">This</span> <span class="nx">API</span> <span class="nx">requires</span> <span class="nx">the</span> <span class="nx">session</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">unlocked</span> <span class="nx">using</span> <span class="nx">the</span> <span class="nx">Unlock</span> <span class="nx">API</span> <span class="nx">A</span> <span class="nx">single</span> <span class="nx">call</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">Unlock</span> <span class="nx">API</span> <span class="nx">allows</span> <span class="nx">any</span> <span class="nx">single</span> <span class="nx">transaction</span><span class="p">,</span> <span class="nx">or</span> <span class="nx">multiple</span> <span class="nx">transactions</span> <span class="nx">up</span> <span class="nx">to</span> <span class="nx">an</span> <span class="nx">internally</span><span class="o">-</span><span class="nx">set</span> <span class="nx">BitGo</span> <span class="nx">quota</span> <span class="p">(</span><span class="nx">currently</span> <span class="nx">set</span> <span class="nx">at</span> <span class="mi">50</span> <span class="nx">BTC</span><span class="p">).</span> <span class="o">&lt;</span><span class="sr">/aside&gt;</span><span class="err"> 
-</span>
-<span class="err">###</span> <span class="nx">HTTP</span> <span class="nx">Request</span>
-
-<span class="err">`</span><span class="nx">POST</span> <span class="o">/</span><span class="nx">api</span><span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">tx</span><span class="o">/</span><span class="nx">send</span><span class="err">`</span>
-
-<span class="o">&gt;</span> <span class="nx">Example</span> <span class="nx">Response</span>
-
-<span class="err">```</span><span class="nx">json</span>
-<span class="p">{</span>
-  <span class="s2">"tx"</span><span class="err">:</span> <span class="s2">"01000000022cbc51a1d73a7e8ef3feaf30ad51b08b53cf91c672ba73.."</span><span class="p">,</span>
-  <span class="s2">"hash"</span><span class="err">:</span> <span class="s2">"b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d846.."</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="err">:</span> <span class="s2">"accepted"</span><span class="p">,</span>
-  <span class="s2">"instant"</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">"instantId"</span><span class="err">:</span> <span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span>
-<span class="p">}</span>
 </code></pre>
+
+<aside class="warning">
+This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+</aside>
+
+<p>Send a partially-signed transaction. The server will do one of the following:
+* reject the transaction
+* gather additional approvals from other wallet admins
+* apply the final signature, and submit to the Bitcoin P2P network</p>
+
+<aside class="info">
+This API requires the session to be unlocked using the Unlock API
+A single call to the Unlock API allows any single transaction, or multiple transactions up
+to an internally-set BitGo quota (currently set at 50 BTC).
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/v1/tx/send</code></p>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01000000022cbc51a1d73a7e8ef3feaf30ad51b08b53cf91c672ba73.."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d846.."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"instant"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"instantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="body-parameters">BODY Parameters</h3>
 
@@ -3901,7 +4057,13 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 <span class="p">});</span>
 </code></pre>
 
-<p>BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo against double spends. As a co-signer on a multi-sig wallet, BitGo will never double-spend an output. We back our promise with a cryptographically signed guarantee on each transaction, enabling receivers to accept funds without the need for any block confirmations.<aside class="info"> Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet. </aside> </p>
+<p>BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo against double spends.
+As a co-signer on a multi-sig wallet, BitGo will never double-spend an output.
+We back our promise with a cryptographically signed guarantee on each transaction, enabling receivers to accept funds without the need for any block confirmations.</p>
+
+<aside class="info">
+Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3983,7 +4145,8 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 
 <p><code class="prettyprint">assert(bitcoin.Message.verify(&#39;1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja&#39;, signature, guarantee, process.config.bitcoin.network));</code></p>
 
-<p>If the signature is valid, you may accept the transaction instantly without the need for any block information. You can save the guarantee &amp; signature locally to provide an audit record in case of a dispute.</p>
+<p>If the signature is valid, you may accept the transaction instantly without the need for any block information.
+You can save the guarantee &amp; signature locally to provide an audit record in case of a dispute.</p>
 
 <h3 id="errors">Errors</h3>
 
@@ -4005,7 +4168,8 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 
 <h2 id="get-wallet-by-address">Get Wallet by Address</h2>
 
-<p>Given an address, returns the address information (including balances) and wallet the address is associated with. Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.</p>
+<p>Given an address, returns the address information (including balances) and wallet the address is associated with.
+Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
 
 curl -X GET <span class="se">\</span>
@@ -4142,7 +4306,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Prevent all spend activity on a wallet. This call is designed to be used in cases of emergency, and prevent spends for a default of 1 hour.</p>
+<p>Prevent all spend activity on a wallet. This call is designed to be used in cases of emergency, and prevent spends
+for a default of 1 hour.</p>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -4200,9 +4365,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 
 <h1 id="wallet-sharing">Wallet Sharing</h1>
 
-<p>A BitGo wallet may be shared between multiple users. All users on a wallet share the same private key (although each individual user may encrypt it separately).</p>
+<p>A BitGo wallet may be shared between multiple users.
+All users on a wallet share the same private key (although each individual user may encrypt it separately).</p>
 
-<p>Security on a shared wallet is enforced by BitGo, which requires that users log in and authenticate before co-signing. Wallet permission levels define what an individual user is able to do on a wallet.</p>
+<p>Security on a shared wallet is enforced by BitGo, which requires that users log in and authenticate before co-signing.
+Wallet permission levels define what an individual user is able to do on a wallet.</p>
 
 <h3 id="wallet-permissions">Wallet Permissions</h3>
 
@@ -4265,49 +4432,112 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m/999999/26697279/124485569"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">```&lt;aside</span><span class="w"> </span><span class="err">class=</span><span class="s2">"info"</span><span class="err">&gt;</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">operation</span><span class="w"> </span><span class="err">requires</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">session</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">unlocked</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">Unlock</span><span class="w"> </span><span class="err">API.</span><span class="w"> </span><span class="err">&lt;/aside&gt;</span><span class="w"> 
-
-</span><span class="err">Sharing</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">involves</span><span class="w"> </span><span class="err">giving</span><span class="w"> </span><span class="err">another</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">permission</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">through</span><span class="w"> </span><span class="err">BitGo.</span><span class="w">
-
-</span><span class="err">In</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet,</span><span class="w"> </span><span class="err">we</span><span class="w"> </span><span class="err">also</span><span class="w"> </span><span class="err">need</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">them.</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">creates</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">public-private</span><span class="w"> </span><span class="err">keypair</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">purpose</span><span class="w"> </span><span class="err">during</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">signup</span><span class="w"> </span><span class="err">process.</span><span class="w">
-
-</span><span class="err">The</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">SDK</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">client-side</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">new</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share:</span><span class="w">
-
-</span><span class="err">*</span><span class="w"> </span><span class="err">Get</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiving</span><span class="w"> </span><span class="err">user's</span><span class="w"> </span><span class="err">sharing</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">(a</span><span class="w"> </span><span class="err">derived</span><span class="w"> </span><span class="err">path</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiver's</span><span class="w"> </span><span class="err">public</span><span class="w"> </span><span class="err">key)</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Decrypt</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">shared</span><span class="w"> </span><span class="err">locally.</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Re-encrypt</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">against</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">public</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">above,</span><span class="w"> </span><span class="err">so</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiver</span><span class="w"> </span><span class="err">may</span><span class="w"> </span><span class="err">decrypt</span><span class="w"> </span><span class="err">it.</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Upload</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">keys</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">service,</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">informs</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiver</span><span class="w"> </span><span class="err">they</span><span class="w"> </span><span class="err">have</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">pending</span><span class="w"> </span><span class="err">share.</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Parameters</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">Parameter</span><span class="w">        </span><span class="err">|</span><span class="w"> </span><span class="err">Type</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">Required</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w">                                                                                </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">----------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">--------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">------------------------------------------------------------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">email</span><span class="w">            </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">Email</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">with</span><span class="w">                                                 </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">permissions</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">Comma-separated</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">permissions,</span><span class="w"> </span><span class="err">e.g.</span><span class="w"> </span><span class="err">view,spend,admin</span><span class="w">                                 </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletPassphrase</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">Passphrase</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">being</span><span class="w"> </span><span class="err">shared</span><span class="w">                                                      </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">skipKeychain</span><span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">boolean</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">sharing</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">another</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">obtain</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">keychain</span><span class="w"> </span><span class="err">out-of-band</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">disableEmail</span><span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">boolean</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">prevent</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">notification</span><span class="w"> </span><span class="err">email</span><span class="w"> </span><span class="err">sent</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">added</span><span class="w">                         </span><span class="err">|</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">Field</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w">                                                                               </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">-----------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------------------------------------------------------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">id</span><span class="w">          </span><span class="err">|</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">walletShare,</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">accept</span><span class="w"> </span><span class="err">it</span><span class="w">                                              </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletId</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">being</span><span class="w"> </span><span class="err">shared</span><span class="w">                                                         </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletLabel</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Label</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w">                                                </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">fromUser</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">sharing</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w">                                                   </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">toUser</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">receiving</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w">                                                 </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">permissions</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Comma-separated</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">permissions</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">give</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiving</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">keychain</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">keychain</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">receiver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">decrypt</span><span class="w"> </span><span class="err">(to</span><span class="w"> </span><span class="err">obtain</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">key)</span><span class="w">            </span><span class="err">|</span><span class="w">
-
-</span><span class="err">##</span><span class="w"> </span><span class="err">List</span><span class="w"> </span><span class="err">Wallet</span><span class="w"> </span><span class="err">Shares</span><span class="w">
-
-</span><span class="err">```shell</span><span class="w">
-</span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Authorization: Bearer $ACCESS_TOKEN"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">https://test.bitgo.com/api/v</span><span class="mi">1</span><span class="err">/walletShare</span><span class="w">
 </span></code></pre>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
+
+<p>Sharing a wallet involves giving another user permission to use the wallet through BitGo.</p>
+
+<p>In order for the receiver to use the wallet, we also need to share the private key with them.
+Each user on BitGo creates a public-private keypair for this purpose during their signup process.</p>
+
+<p>The BitGo SDK does the following client-side to create a new wallet share:</p>
+
+<ul>
+<li>Get the receiving user&rsquo;s sharing key (a derived path of the receiver&rsquo;s public key)</li>
+<li>Decrypt the wallet to be shared locally.</li>
+<li>Re-encrypt the wallet against the public key above, so that only the receiver may decrypt it.</li>
+<li>Upload the encrypted keys to the BitGo service, which informs the receiver they have a pending share.</li>
+</ul>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>YES</td>
+<td>Email of the user to share the wallet with</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>string</td>
+<td>YES</td>
+<td>Comma-separated list of permissions, e.g. view,spend,admin</td>
+</tr>
+<tr>
+<td>walletPassphrase</td>
+<td>string</td>
+<td>NO</td>
+<td>Passphrase on the wallet being shared</td>
+</tr>
+<tr>
+<td>skipKeychain</td>
+<td>boolean</td>
+<td>NO</td>
+<td>Set to true if sharing a wallet with another user who will obtain the keychain out-of-band</td>
+</tr>
+<tr>
+<td>disableEmail</td>
+<td>boolean</td>
+<td>NO</td>
+<td>Set to true to prevent a notification email sent to the user added</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The id of the walletShare, used to accept it</td>
+</tr>
+<tr>
+<td>walletId</td>
+<td>The id of the wallet being shared</td>
+</tr>
+<tr>
+<td>walletLabel</td>
+<td>Label of the wallet to present to the user</td>
+</tr>
+<tr>
+<td>fromUser</td>
+<td>BitGo ID of the user sharing the wallet</td>
+</tr>
+<tr>
+<td>toUser</td>
+<td>BitGo ID of the user receiving the wallet</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>Comma-separated list of permissions that the wallet share will give to the receiving user</td>
+</tr>
+<tr>
+<td>keychain</td>
+<td>The encrypted keychain for the receiver to decrypt (to obtain the private key)</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-wallet-shares">List Wallet Shares</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+https://test.bitgo.com/api/v1/walletShare
+</code></pre>
 <pre class="highlight javascript"><code>  <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">listShares</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
@@ -4410,41 +4640,83 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
 <p>Example Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w"> </span><span class="nt">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="err">```&lt;aside</span><span class="w"> </span><span class="err">class=</span><span class="s2">"info"</span><span class="err">&gt;</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">operation</span><span class="w"> </span><span class="err">requires</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">session</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">unlocked</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">Unlock</span><span class="w"> </span><span class="err">API.</span><span class="w"> </span><span class="err">&lt;/aside&gt;</span><span class="w"> 
-
-</span><span class="err">Client-side</span><span class="w"> </span><span class="err">operation</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">accept</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share.</span><span class="w"> </span><span class="err">Performs</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">steps:</span><span class="w">
-
-</span><span class="err">*</span><span class="w"> </span><span class="err">Get</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">incoming</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share,</span><span class="w"> </span><span class="err">including</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">keychain.</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user's</span><span class="w"> </span><span class="err">sharing</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">xPub,</span><span class="w"> </span><span class="err">derive</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">decrypt</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">keychain.</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Re-encrypt</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user's</span><span class="w"> </span><span class="err">chosen</span><span class="w"> </span><span class="err">passphrase</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">future</span><span class="w"> </span><span class="err">use.</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">Upload</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">keys</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">BitGo</span><span class="w"> </span><span class="err">service</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">sets</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">accepted,</span><span class="w"> </span><span class="err">giving</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">access</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">BitGo.</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Parameters</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">Parameter</span><span class="w">             </span><span class="err">|</span><span class="w"> </span><span class="err">Type</span><span class="w">                     </span><span class="err">|</span><span class="w"> </span><span class="err">Required</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w">                                                                                    </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">---------------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">------------------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">--------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">----------------------------------------------------------------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletShareId</span><span class="w">         </span><span class="err">|</span><span class="w"> </span><span class="err">bitcoin</span><span class="w"> </span><span class="err">address</span><span class="w"> </span><span class="err">(string)</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">incoming</span><span class="w"> </span><span class="err">wallet</span><span class="w"> </span><span class="err">share</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">accept</span><span class="w">                                                         </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">newWalletPassphrase</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">                   </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">passphrase</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">wallet,</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">during</span><span class="w"> </span><span class="err">future</span><span class="w"> </span><span class="err">spends</span><span class="w">                              </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">userPassword</span><span class="w">          </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">                   </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user's</span><span class="w"> </span><span class="err">password</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">decrypt</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">shared</span><span class="w"> </span><span class="err">private</span><span class="w"> </span><span class="err">key</span><span class="w">                                          </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">overrideEncryptedXprv</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">string</span><span class="w">                   </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">an</span><span class="w"> </span><span class="err">alternate</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">xprv</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">wish</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">store</span><span class="w"> </span><span class="err">an</span><span class="w"> </span><span class="err">encrypted</span><span class="w"> </span><span class="err">xprv</span><span class="w"> </span><span class="err">received</span><span class="w"> </span><span class="err">out-of-band</span><span class="w"> </span><span class="err">|</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">Field</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w">                                     </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">-------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">state</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">end</span><span class="w"> </span><span class="err">state</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">walletShare</span><span class="w"> </span><span class="err">(should</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">'accepted')</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">changed</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">successful</span><span class="w">                              </span><span class="err">|</span><span class="w">
-
-</span><span class="err">##</span><span class="w"> </span><span class="err">Cancel</span><span class="w"> </span><span class="err">Wallet</span><span class="w"> </span><span class="err">Share</span><span class="w">
-
-</span><span class="err">```shell</span><span class="w">
-</span><span class="err">SHAREID='</span><span class="mi">54</span><span class="err">c</span><span class="mi">594802</span><span class="err">ebe</span><span class="mi">8510790092958</span><span class="err">f</span><span class="mi">526</span><span class="err">f</span><span class="mi">47</span><span class="err">'</span><span class="w">
-
-</span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">DELETE</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Authorization: Bearer $ACCESS_TOKEN"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">https://test.bitgo.com/api/v</span><span class="mi">1</span><span class="err">/walletshare/$SHAREID</span><span class="w">
 </span></code></pre>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
+
+<p>Client-side operation to accept a wallet share. Performs the following steps:</p>
+
+<ul>
+<li>Get the incoming wallet share, including the encrypted private keychain.</li>
+<li>Using the user&rsquo;s sharing private key and the wallet share xPub, derive the key to decrypt the private keychain.</li>
+<li>Re-encrypt the wallet with the user&rsquo;s chosen passphrase for future use.</li>
+<li>Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.</li>
+</ul>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletShareId</td>
+<td>bitcoin address (string)</td>
+<td>YES</td>
+<td>The incoming wallet share ID to accept</td>
+</tr>
+<tr>
+<td>newWalletPassphrase</td>
+<td>string</td>
+<td>NO</td>
+<td>the passphrase to set on the wallet, for use during future spends</td>
+</tr>
+<tr>
+<td>userPassword</td>
+<td>string</td>
+<td>NO</td>
+<td>the user&rsquo;s password to decrypt the shared private key</td>
+</tr>
+<tr>
+<td>overrideEncryptedXprv</td>
+<td>string</td>
+<td>NO</td>
+<td>Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>state</td>
+<td>end state of walletShare (should be &#39;accepted&rsquo;)</td>
+</tr>
+<tr>
+<td>changed</td>
+<td>true if successful</td>
+</tr>
+</tbody></table>
+
+<h2 id="cancel-wallet-share">Cancel Wallet Share</h2>
+<pre class="highlight shell"><code><span class="nv">SHAREID</span><span class="o">=</span><span class="s1">'54c594802ebe8510790092958f526f47'</span>
+
+curl -X DELETE <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
+</code></pre>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">cancelShare</span><span class="p">({</span> <span class="na">walletShareId</span><span class="p">:</span> <span class="nx">cancelledWalletShareId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
@@ -4558,13 +4830,24 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 
 <h1 id="wallet-policy">Wallet Policy</h1>
 
-<p>BitGo wallets feature advanced security features such as multi-user or 2FA approval of transactions and spending limits. To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will triggered an associated action (set by the user). The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).</p>
+<p>BitGo wallets feature advanced security features such as multi-user or 2FA approval of transactions and spending limits.
+To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will triggered an associated action (set by the user).
+The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).</p>
 
-<p>If a wallet carries a balance and there are more than two &ldquo;admin&rdquo; users associated with a Wallet, any policy change will require approval by another administrator before it will take effect (if there are no additional &ldquo;admin&rdquo; users, this will not be necessary). It is thus highly recommended to create wallets with at least 2 administrators by <a href="#wallet-sharing">performing a wallet share</a>. This way, policy can be effective even if a single user is compromised.</p>
+<p>If a wallet carries a balance and there are more than two &ldquo;admin&rdquo; users associated with a Wallet,
+any policy change will require approval by another administrator before it will take effect (if there are no additional &ldquo;admin&rdquo; users, this will not be necessary).
+It is thus highly recommended to create wallets with at least 2 administrators by <a href="#wallet-sharing">performing a wallet share</a>.
+This way, policy can be effective even if a single user is compromised.</p>
 
-<p>For policies with the &ldquo;getOTP&rdquo; action type, successfully sending a transaction will require a 7 digit OTP code before the transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself. The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the &ldquo;otp&rdquo; parameter at <a href="#send-coins-to-address">Sends Coins to Address</a> for further details.</p>
+<p>For policies with the &ldquo;getOTP&rdquo; action type, successfully sending a transaction will require a 7 digit OTP code before the
+transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself.
+The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire
+the code from the user, make another send transaction call with the otp code included as a parameter in the API call
+and the transaction will successfully send. See the &ldquo;otp&rdquo; parameter at <a href="#send-coins-to-address">Sends Coins to Address</a> for further details.</p>
 
-<p>This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet. Further custom policy may be implemented using the <a href="#set-policy-rule">webhook policy type</a>, which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.</p>
+<p>This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet.
+Further custom policy may be implemented using the <a href="#set-policy-rule">webhook policy type</a>,
+which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.</p>
 
 <p>Advanced policy involving multiple wallets may be implemented by contacting BitGo directly.</p>
 
@@ -4752,7 +5035,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT /api/v1/wallet/:wallet/policy/rule</code><aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> </p>
+<p><code class="prettyprint">PUT /api/v1/wallet/:wallet/policy/rule</code></p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
 <h3 id="body-parameters">BODY Parameters</h3>
 
@@ -4973,7 +5260,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h3 id="policy-type-webhook">Policy Type - webhook</h3>
 
-<p>When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition. The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.</p>
+<p>When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition.
+The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.</p>
 
 <p>Conditions for this rule:</p>
 
@@ -5023,7 +5311,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 <tr>
 <td>approvalCount</td>
 <td>The number of user approvals on the wallet thus far</td>
-<td></td>
+<td>0</td>
 </tr>
 <tr>
 <td>unsignedRawTx</td>
@@ -5039,7 +5327,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h3 id="policy-action-object">Policy Action Object</h3>
 
-<p>An action is the action to take when the condition is not met by a transaction.</p>
+<p>An action is the action to take when the condition is not met by a
+transaction.</p>
 
 <table><thead>
 <tr>
@@ -5110,7 +5399,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE /api/v1/wallet/:WALLETID/policy/rule</code><aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> </p>
+<p><code class="prettyprint">DELETE /api/v1/wallet/:WALLETID/policy/rule</code></p>
+
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
 <h3 id="body-parameters">BODY Parameters</h3>
 
@@ -5138,7 +5431,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h2 id="list-pending-approvals">List Pending Approvals</h2>
 
-<p>List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.</p>
+<p>List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.  </p>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -5305,7 +5598,11 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
 
 <h1 id="address-labels">Address Labels</h1>
 
-<p>Labels allow you to keep track of addresses with human readable notes. You can add a label to any valid address; the address does not need to be one controlled by the wallet. Address labels are distinct from wallet labels, but they are tied to a wallet so that when you share the wallet with other users they will be also able to view the labels.</p>
+<p>Labels allow you to keep track of addresses with human readable notes.
+You can add a label to any valid address; the address does not need to be
+one controlled by the wallet. Address labels are distinct from wallet labels,
+but they are tied to a wallet so that when you share the wallet with other users
+they will be also able to view the labels.</p>
 
 <h2 id="list-labels-for-all-wallets">List Labels For All Wallets</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
@@ -5509,7 +5806,9 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <span class="p">});</span>
 </code></pre>
 
-<p>Set a label on a specific address and associate it with a specific wallet. Labels are limited to 250 characters in length. Labels cannot be set on a wallet&rsquo;s first receiving address because it reserved for the wallet&rsquo;s label.</p>
+<p>Set a label on a specific address and associate it with a specific wallet.
+Labels are limited to 250 characters in length. Labels cannot be set on a wallet&rsquo;s first receiving address
+because it reserved for the wallet&rsquo;s label.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -5728,113 +6027,44 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 
 <p>The tag must have a name and exactly one of either a user, wallet, or enterprise.</p>
 
-<table>
-  <tr>
-    <th>
-      Parameter
-    </th>
-    
-    <th>
-      Type
-    </th>
-    
-    <th>
-      Required
-    </th>
-    
-    <th>
-      Description
-    </th>
-    
-    <th>
-      Possible Values
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      name
-    </td>
-    
-    <td>
-      string
-    </td>
-    
-    <td>
-      YES
-    </td>
-    
-    <td>
-      The name of the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      user
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      The user id of the user who owns the tag, which can only be the id of the user adding the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      wallet
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      The id, not bitcoin address, of the wallet to own the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      enterprise
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      The id of the enterprise to own the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-</table>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Possible Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>YES</td>
+<td>The name of the tag.</td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>id</td>
+<td>NO</td>
+<td>The user id of the user who owns the tag, which can only be the id of the user adding the tag.</td>
+<td></td>
+</tr>
+<tr>
+<td>wallet</td>
+<td>id</td>
+<td>NO</td>
+<td>The id, not bitcoin address, of the wallet to own the tag.</td>
+<td></td>
+</tr>
+<tr>
+<td>enterprise</td>
+<td>id</td>
+<td>NO</td>
+<td>The id of the enterprise to own the tag.</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <h3 id="response">Response</h3>
 
@@ -5868,52 +6098,26 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 
 <h3 id="body-parameters">BODY Parameters</h3>
 
-<p>You must specify the id of the tag you are adding to the wallet, and no other parameters are required.</p>
+<p>You must specify the id of the tag you are adding to the wallet, and no other parameters
+are required.</p>
 
-<table>
-  <tr>
-    <th>
-      Parameter
-    </th>
-    
-    <th>
-      Type
-    </th>
-    
-    <th>
-      Required
-    </th>
-    
-    <th>
-      Description
-    </th>
-    
-    <th>
-      Possible Values
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      tag
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      YES
-    </td>
-    
-    <td>
-      The id of the tag.
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-</table>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Possible Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>id</td>
+<td>YES</td>
+<td>The id of the tag.</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <h3 id="response">Response</h3>
 
@@ -5944,29 +6148,31 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <blockquote>
 <p>Example transaction Webhook callback</p>
 </blockquote>
-
-<p>POST http://your.server.com/webhook
-    {
-      &ldquo;type&rdquo;: &ldquo;transaction&rdquo;,
-      &ldquo;walletId&rdquo;: &ldquo;2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg&rdquo;,
-      &ldquo;hash&rdquo;: &ldquo;c9a55f32d4b63d02a617eea58873227e4f011d0dfc836cb2e9cab531c4db0c4a&rdquo;
-    }</p>
+<pre class="highlight plaintext"><code>POST http://your.server.com/webhook
+{
+  "type": "transaction",
+  "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
+  "hash": "c9a55f32d4b63d02a617eea58873227e4f011d0dfc836cb2e9cab531c4db0c4a"
+}
+</code></pre>
 
 <blockquote>
 <p>Example pending approval Webhook callback</p>
 </blockquote>
+<pre class="highlight plaintext"><code>POST http://your.server.com/webhook
+{
+  "type": "pendingapproval",
+  "pendingApprovalId": "55e79a1b5f9a20da1d3fe5b988a71c93",
+  "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
+  "state": "accepted"
+}
+</code></pre>
 
-<p>POST http://your.server.com/webhook
-    {
-      &ldquo;type&rdquo;: &ldquo;pendingapproval&rdquo;,
-      &ldquo;pendingApprovalId&rdquo;: &ldquo;55e79a1b5f9a20da1d3fe5b988a71c93&rdquo;,
-      &ldquo;walletId&rdquo;: &ldquo;2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg&rdquo;,
-      &ldquo;state&rdquo;: &ldquo;accepted&rdquo;
-    }</p>
+<p>Webhooks may be setup up to programmatically receive callbacks from BitGo. These may be attached to wallets (in the case of transactions), or to a user (for block notifications).
+Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.</p>
 
-<p>Webhooks may be setup up to programmatically receive callbacks from BitGo. These may be attached to wallets (in the case of transactions), or to a user (for block notifications). Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.</p>
-
-<p>BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a <code class="prettyprint">HTTP 200 OK</code>. If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.</p>
+<p>BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a <code class="prettyprint">HTTP 200 OK</code>.
+If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.</p>
 
 <p>Developers should take care to ensure that their application succeeds even in the cases of transient network error, or if receive the same webhook twice due to an improper acknowledgement.</p>
 
@@ -6065,7 +6271,8 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>Gets list of webhooks set up on the wallet. Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.</p>
+<p>Gets list of webhooks set up on the wallet.
+Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -6122,9 +6329,12 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Adds a Webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. There is a limit of 10 Webhooks of each type per wallet.</p>
+<p>Adds a Webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered.
+There is a limit of 10 Webhooks of each type per wallet.</p>
 
-<p>There are 2 types of wallet webhooks available: 1. Transaction webhooks will fire on any transaction on the wallet. 2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.</p>
+<p>There are 2 types of wallet webhooks available:
+1. Transaction webhooks will fire on any transaction on the wallet.
+2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -6507,7 +6717,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 <span class="o">{</span> <span class="s2">"encrypted"</span> : <span class="s2">"{</span><span class="se">\"</span><span class="s2">iv</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">U4uRz85ytmlCeTe2P3iOmg==</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">v</span><span class="se">\"</span><span class="s2">:1,</span><span class="se">\"</span><span class="s2">iter</span><span class="se">\"</span><span class="s2">:10000,</span><span class="se">\"</span><span class="s2">ks</span><span class="se">\"</span><span class="s2">:256,</span><span class="se">\"</span><span class="s2">ts</span><span class="se">\"</span><span class="s2">:64,</span><span class="se">\"</span><span class="s2">mode</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">ccm</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">adata</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">cipher</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">aes</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">salt</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">zvLyve+4AJU=</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">ct</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">/tRnUh9LUyI7L5e5LPqpvnPR7RD1CdUi</span><span class="se">\"</span><span class="s2">}"</span> <span class="o">}</span>
 </code></pre>
 
-<p>Client-side function to encrypt a string. All data stored with BitGo is encrypted using this API.</p>
+<p>Client-side function to encrypt a string.  All data stored with BitGo is encrypted using this API.</p>
 
 <h2 id="estimate-transaction-fees">Estimate Transaction Fees</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">estimateFee</span><span class="p">({</span> <span class="na">numBlocks</span><span class="p">:</span> <span class="mi">6</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -6517,7 +6727,8 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 <pre class="highlight shell"><code>curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks<span class="o">=</span>6
 </code></pre>
 
-<p>Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions. Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.</p>
+<p>Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions.
+Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -6692,7 +6903,11 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 <pre class="highlight shell"><code>curl https://www.bitgo.com/api/v1/malware/bitcoin
 </code></pre>
 
-<p>BitGo maintains a list of addresses known to be used by address-swapping malware. BitGo will refuse to co-sign transactions to these addresses. This API provides the list of addresses which are currently blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your customers is infected and requests a withdrawal.</p>
+<p>BitGo maintains a list of addresses known to be used by address-swapping malware. BitGo will refuse to
+co-sign transactions to these addresses. This API provides the list of addresses which are currently
+blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain
+your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your
+customers is infected and requests a withdrawal.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -6743,7 +6958,8 @@ curl -X POST <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 </code></pre>
 
-<p>Client-side function to verify that a given string is a valid Bitcoin Address. Supports both v1 addresses (e.g. &ldquo;1&hellip;&rdquo;) and P2SH addresses (e.g. &ldquo;3&hellip;&rdquo;).</p>
+<p>Client-side function to verify that a given string is a valid Bitcoin Address.  Supports both v1 addresses (e.g. &ldquo;1&hellip;&rdquo;)
+and P2SH addresses (e.g. &ldquo;3&hellip;&rdquo;).</p>
 
 <p>Returns true if the address is valid.</p>
 
@@ -6757,9 +6973,15 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 
 <h1 id="blockchain-data">Blockchain Data</h1>
 
-<p>BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets. The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).</p>
+<p>BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets.
+The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).</p>
 
-<p>For most wallet use cases, developers will want to use the Wallet and Keychain APIs. They support many more operations, such as checking the combined balances of HD wallets, creating addresses, sending transactions, etc.<aside class="success"> The Blockchain Data API does not require authentication, since it returns only public blockchain data. It is still recommended to send the access token in the header to achieve a higher rate limit allowance from our service. </aside> </p>
+<p>For most wallet use cases, developers will want to use the Wallet and Keychain APIs. They support many more operations, such as checking the combined balances of HD wallets, creating addresses, sending transactions, etc.</p>
+
+<aside class="success">
+The Blockchain Data API does not require authentication, since it returns only public blockchain data.
+It is still recommended to send the access token in the header to achieve a higher rate limit allowance from our service.
+</aside>
 
 <h2 id="get-address">Get Address</h2>
 
@@ -6897,7 +7119,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
 <td>skip</td>
 <td>number</td>
 <td>NO</td>
-<td>The starting index number to list from. Default is 0.</td>
+<td>The starting index number to list from.  Default is 0.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -6960,7 +7182,9 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
 
 <h3 id="response">Response</h3>
 
-<p>Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected the net balance of any bitcoin address involved in the transaction.</p>
+<p>Returns an array of Transaction objects.  Each transaction contains summary
+information about how that transaction affected the net balance of any
+bitcoin address involved in the transaction.</p>
 
 <h3 id="errors">Errors</h3>
 
@@ -7043,7 +7267,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
 
 <h3 id="response">Response</h3>
 
-<p>Returns an array of unspent Transaction objects. Each transaction contains the following information</p>
+<p>Returns an array of unspent Transaction objects.  Each transaction contains the following information</p>
 
 <table><thead>
 <tr>
@@ -7291,27 +7515,46 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 
 <h1 id="bitgo-instant">BitGo Instant</h1>
 
-<p>BitGo Instant allows sending on-chain transactions which can be credited instantly by recipients, due to a financial guarantee by BitGo against double-spending. Anyone can receive BitGo Instant transactions. In order to send BitGo Instant transactions, you will need either a BitGo KRS wallet, or will need to arrange a collateral agreement with BitGo.</p>
+<p>BitGo Instant allows sending on-chain transactions which can be credited instantly by recipients, due to a financial
+guarantee by BitGo against double-spending. Anyone can receive BitGo Instant transactions. In order to send BitGo Instant
+transactions, you will need either a BitGo KRS wallet, or will need to arrange a collateral agreement with BitGo.</p>
 
 <h2 id="receiving">Receiving</h2>
 
-<p>In order to credit BitGo Instant transactions instantly, you will need to respect the <strong>instant: true</strong> property on the transaction objects returned from the <a href="#list-wallet-transactions">List Wallet Transactions</a> and <a href="#get-wallet-transaction">Get Wallet Transaction</a> APIs. Instant transactions will also have a field <strong>instantId</strong> which can be used to <a href="#get-instant-guarantee">Get the Instant Guarantee</a> on a transaction.</p>
+<p>In order to credit BitGo Instant transactions instantly, you will need to respect the <strong>instant: true</strong> property on the
+transaction objects returned from the <a href="#list-wallet-transactions">List Wallet Transactions</a> and
+<a href="#get-wallet-transaction">Get Wallet Transaction</a> APIs. Instant transactions will also have a field <strong>instantId</strong> which
+can be used to <a href="#get-instant-guarantee">Get the Instant Guarantee</a> on a transaction.</p>
 
 <h2 id="sending">Sending</h2>
 
-<p>You will first need a BitGo Instant-compatible wallet. This can be done by creating a KRS-enabled wallet in the web interface, or using the <a href="#create-wallet-with-keychains">Create Wallet API</a> with a <strong>backupXpubProvider</strong> specified. If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a collateral agreement with BitGo.</p>
+<p>You will first need a BitGo Instant-compatible wallet. This can be done by creating a KRS-enabled wallet in
+the web interface, or using the <a href="#create-wallet-with-keychains">Create Wallet API</a> with a <strong>backupXpubProvider</strong> specified.
+If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a
+collateral agreement with BitGo.</p>
 
-<p>In order to send a BitGo Instant transaction, use the <strong>instant: true</strong> flag on any of the transaction APIs, such as <a href="#send-coins-to-address">Send Coins to Address</a> or <a href="#create-transaction">Create Transaction</a>. BitGoD also has the capability to send BitGo Instant transactions through its JSON interface.</p>
+<p>In order to send a BitGo Instant transaction, use the <strong>instant: true</strong> flag on any of the transaction APIs,
+such as <a href="#send-coins-to-address">Send Coins to Address</a> or <a href="#create-transaction">Create Transaction</a>. BitGoD
+also has the capability to send BitGo Instant transactions through its JSON interface.</p>
 
-<p>BitGo Instant transactions have stricter requirements about the depths of the inputs being spent. This means that the balance of a wallet available for sending a BitGo Instant transaction may be less than the total balance of the wallet. The <strong>instantBalance</strong> property on the wallet object returned by the <a href="#get-wallet">Get Wallet API</a> will tell you the available balance for sending a BitGo Instant transaction.</p>
+<p>BitGo Instant transactions have stricter requirements about the depths of the inputs being spent. This means
+that the balance of a wallet available for sending a BitGo Instant transaction may be less than the total
+balance of the wallet. The <strong>instantBalance</strong> property on the wallet object returned by
+the <a href="#get-wallet">Get Wallet API</a> will tell you the available balance for sending a BitGo Instant transaction.</p>
 
-<p>When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures when sending a BitGo Instant transaction, and possibly retry as a standard transaction.</p>
+<p>When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed
+unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported
+for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit
+BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures
+when sending a BitGo Instant transaction, and possibly retry as a standard transaction.</p>
 
-<p>BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional pricing plans, including volume discount plans.</p>
+<p>BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional
+pricing plans, including volume discount plans.</p>
 
 <h1 id="partner-oauth">Partner OAuth</h1>
 
-<p>BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts. BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.</p>
+<p>BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts.
+BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.</p>
 
 <p>To begin, partners should obtain OAuth application parameters by getting in touch with us. The OAuth flow typically goes as follows:</p>
 
@@ -7351,7 +7594,8 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 
 <h3 id="scope-values">Scope Values</h3>
 
-<p>The scope values define the allowed operations within an OAuth session. These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.</p>
+<p>The scope values define the allowed operations within an OAuth session.
+These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.</p>
 
 <p>Please specify scopes separated using spaces, e.g. &ldquo;openid profile wallet_view_enterprise wallet_spend_enterprise&rdquo;.</p>
 
@@ -7418,8 +7662,8 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 <blockquote>
 <p>Example OAuth gateway redirect to send your users to BitGo OAuth</p>
 </blockquote>
-
-<p>https://test.bitgo.com/oauth/authorize?client_id=FBExchange&amp;redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&amp;scope=openid%20profile%20wallet_view_enterprise&amp;email=test@bitgo.com&amp;signup=false</p>
+<pre class="highlight plaintext"><code>https://test.bitgo.com/oauth/authorize?client_id=FBExchange&amp;redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&amp;scope=openid%20profile%20wallet_view_enterprise&amp;email=test@bitgo.com&amp;signup=false
+</code></pre>
 
 <p>The first step in the OAuth flow is to redirect your users to the BitGo OAuth gateway with the Client ID, Scope and Redirect Uri parameters.</p>
 
@@ -7435,8 +7679,8 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 <blockquote>
 <p>Example redirect URL from BitGo sending users back to your site</p>
 </blockquote>
-
-<p>https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e</p>
+<pre class="highlight plaintext"><code>https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
+</code></pre>
 
 <table><thead>
 <tr>
@@ -7580,7 +7824,8 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>Our server will return an access token for use with the API.</p>
 
-<p>The token must be added as a HTTP header to all API calls in the HTTP &ldquo;Authorization&rdquo; header:</p>
+<p>The token must be added as a HTTP header to all API calls in the HTTP
+&ldquo;Authorization&rdquo; header:</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;your token goes here&gt;</code></p>
 
@@ -7618,9 +7863,12 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <h2 id="openid-json-web-token">OpenID JSON Web Token</h2>
 
-<p>If the partner authentication request had an openid profile scope, a id_token in JSON Web Token (JWT) base64-encoded format will be returned in the response to the OAuth access token request above. You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).</p>
+<p>If the partner authentication request had an openid profile scope, a id_token in JSON Web Token (JWT) base64-encoded
+format will be returned in the response to the OAuth access token request above.
+You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).</p>
 
-<p>This token will contain user profile information. You should take care to store this information securely so as not to expose your users to scammers or phishing.</p>
+<p>This token will contain user profile information. You should take care to store this information securely so as not to
+ expose your users to scammers or phishing.</p>
 
 <blockquote>
 <p>Example decrypted id_token (from the above access token response)</p>
@@ -7780,9 +8028,15 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <h1 id="examples">Examples</h1>
 
-<p>BitGo has provided examples of how to perform several common wallet operations using our SDK. The more important ones are covered here.<aside class="info"> Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Do refer to the [Test Environments](#bitgo-api-endpoints) section for further details. </aside> </p>
+<p>BitGo has provided examples of how to perform several common wallet operations using our SDK. The more important ones are covered here.</p>
 
-<p>The examples below (and more!) can be found in the <code class="prettyprint">BitGoJS/examples</code> directory in our SDK repository. Please report problems with the examples via email or Git issues.</p>
+<aside class="info">
+Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet.
+Do refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+</aside>
+
+<p>The examples below (and more!) can be found in the <code class="prettyprint">BitGoJS/examples</code> directory in our SDK repository.
+Please report problems with the examples via email or Git issues.</p>
 
 <h3 id="obtaining-the-wallet-id">Obtaining the Wallet ID</h3>
 
@@ -7805,17 +8059,18 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
-<p>$ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</p>
+<pre class="highlight plaintext"><code>$ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+</code></pre>
 
 <blockquote>
 <p>Example output</p>
 </blockquote>
+<pre class="highlight plaintext"><code>Logged in!
+Balance is: 0.6274
+</code></pre>
 
-<p>Logged in!
-    Balance is: 0.6274</p>
-
-<p>This simple example shows how to authenticate and get the wallet. The balance in bitcoins can be found on the wallet model.</p>
+<p>This simple example shows how to authenticate and get the wallet.
+The balance in bitcoins can be found on the wallet model.</p>
 
 <h3 id="usage">Usage</h3>
 
@@ -7886,19 +8141,19 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
-<p>$ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</p>
+<pre class="highlight plaintext"><code>$ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+</code></pre>
 
 <blockquote>
 <p>Example output</p>
 </blockquote>
-
-<p>Logged in!
-    Balance is: 0.6274
-    b9573e0e1d8f22fbfe314760b9abd0b6942132cfb2bd7f9fee9713b545a62689: Received 0.56000000BTC on 2014-11-17T21:20:59.000Z
-    b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d84631a0acc67b: Received 0.00010000BTC on 2014-11-17T21:00:58.000Z
-    7f5d6a27ea832b2d0a9b63ecdbccecaadbd582b5be41d5bdeabcce72243366a3: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
-    690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z</p>
+<pre class="highlight plaintext"><code>Logged in!
+Balance is: 0.6274
+b9573e0e1d8f22fbfe314760b9abd0b6942132cfb2bd7f9fee9713b545a62689: Received 0.56000000BTC on 2014-11-17T21:20:59.000Z
+b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d84631a0acc67b: Received 0.00010000BTC on 2014-11-17T21:00:58.000Z
+7f5d6a27ea832b2d0a9b63ecdbccecaadbd582b5be41d5bdeabcce72243366a3: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
+690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
+</code></pre>
 
 <p>This example shows how to get the list of transactions on a wallet. This may be useful for verifying received transaction IDs.</p>
 
@@ -7943,19 +8198,19 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tbody></table>
 
 <h2 id="address-labels">Address Labels</h2>
-
-<p>$ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000</p>
+<pre class="highlight plaintext"><code>$ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
+</code></pre>
 
 <blockquote>
 <p>Example output</p>
 </blockquote>
-
-<p>Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
-    Which label action do you wish to perform? [list, set, delete]: list
-     muYhgJrYZHffyGUmuzETjMcBQZJqFo9Vkg    Secret Stash
-     2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD   another label
-     2MzjET9tYPPZQtsahFvabhaaPWuDdKn3Dh6   descriptive text
-     n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address</p>
+<pre class="highlight plaintext"><code>Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+Which label action do you wish to perform? [list, set, delete]: list
+ muYhgJrYZHffyGUmuzETjMcBQZJqFo9Vkg    Secret Stash
+ 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD   another label
+ 2MzjET9tYPPZQtsahFvabhaaPWuDdKn3Dh6   descriptive text
+ n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address
+</code></pre>
 
 <p>This example shows how to list, set, and delete labels on addresses.</p>
 
@@ -8008,14 +8263,14 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Backup keychain xPub: "</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">backupKeychain</span><span class="p">.</span><span class="nx">xpub</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<p>$ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 &#39;My API wallet&rsquo;</p>
+<pre class="highlight plaintext"><code>$ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
+</code></pre>
 
 <blockquote>
 <p>Example output</p>
 </blockquote>
-
-<p>New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf</p>
+<pre class="highlight plaintext"><code>New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf"</span><span class="p">,</span><span class="w">
  </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testwallet"</span><span class="p">,</span><span class="w">
  </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -8028,10 +8283,10 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
  </span><span class="nt">"pendingApprovals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<p>BACK THIS UP:
-    User keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;v2aVEG5A8VwnI+ewS&hellip;&rdquo;}
-    Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5</p>
+<pre class="highlight plaintext"><code>BACK THIS UP:
+User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
+Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
+</code></pre>
 
 <p>Creates a wallet on BitGo. The example performs the following steps:</p>
 
@@ -8041,8 +8296,13 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>Creates the user keychain on the client, encrypts it with the password and sends it to the server.</li>
 <li>Creates the backup keychain on the client.</li>
 <li>Creates the BitGo keychain on the BitGo server.</li>
-<li>Creates the wallet with the corresponding public keys to the keychains above.<aside class="warning"> It is <strong>VERY IMPORTANT</strong> to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> </li>
+<li>Creates the wallet with the corresponding public keys to the keychains above.</li>
 </ol>
+
+<aside class="warning">
+It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys.
+Failure to do so can result in the loss of funds!
+</aside>
 
 <h3 id="usage">Usage</h3>
 
@@ -8106,16 +8366,16 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
-<p>$ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000</p>
+<pre class="highlight plaintext"><code>$ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
+</code></pre>
 
 <blockquote>
 <p>Example output</p>
 </blockquote>
-
-<p>{ &ldquo;tx&rdquo;: &ldquo;01000000017bc6aca03146d8d10b875781&hellip;&rdquo;,
-      &ldquo;hash&rdquo;: &ldquo;101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7&rdquo;,
-      &ldquo;fee&rdquo;: 10000 }</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01000000017bc6aca03146d8d10b875781..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>Sends Bitcoin to another bitcoin address. The example uses the following steps:</p>
 
@@ -8233,24 +8493,24 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <blockquote>
 <p>Example output</p>
 </blockquote>
-
-<p>Getting wallet..
-    Balance is: 1.2582
-    { id: &#39;webhookRule1&rsquo;,
-      type: &#39;webhook&rsquo;,
-      action: { type: &#39;deny&rsquo; },
-      condition: { url: &#39;https://486d7844.ngrok.com/&rsquo; } }
-    Setting webhook policy rule..
-    New policy:
-    { id: &#39;5632aa4039cccac60913ea0ed44276c0&rsquo;,
-      rules:
-       [ { id: &#39;webhookRule1&rsquo;,
-           type: &#39;webhook&rsquo;,
-           action: [Object],
-           condition: [Object] } ] }
-    { status: &#39;accepted&rsquo;,
-      tx: &#39;0100000001a89f36c0b714878cdd4cddf5&hellip;&rsquo; }
-    Removed policy rule</p>
+<pre class="highlight plaintext"><code>Getting wallet..
+Balance is: 1.2582
+{ id: 'webhookRule1',
+  type: 'webhook',
+  action: { type: 'deny' },
+  condition: { url: 'https://486d7844.ngrok.com/' } }
+Setting webhook policy rule..
+New policy:
+{ id: '5632aa4039cccac60913ea0ed44276c0',
+  rules:
+   [ { id: 'webhookRule1',
+       type: 'webhook',
+       action: [Object],
+       condition: [Object] } ] }
+{ status: 'accepted',
+  tx: '0100000001a89f36c0b714878cdd4cddf5...' }
+Removed policy rule
+</code></pre>
 
 <blockquote>
 <p>Example webhook callback (sent to the URL provided, any non-200 response will trigger the policy denial)</p>
@@ -8277,7 +8537,8 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This example demonstrates how to set up a webhook policy on a wallet capable of executing any custom external logic via a URL endpoint (potentially a script or other program) on the Internet. This allows external state to be mapped into a contract where various users share a single wallet (the URL acts as the &ldquo;oracle&rdquo;).</p>
+<p>This example demonstrates how to set up a webhook policy on a wallet capable of executing any custom external logic via a URL endpoint (potentially a script or other program) on the Internet.
+This allows external state to be mapped into a contract where various users share a single wallet (the URL acts as the &ldquo;oracle&rdquo;).</p>
 
 <p>When a transaction is made, the URL provided is hit. If it returns a 200 status, then the transaction will be allowed. If not, then the policy rule is fired and the transaction denied.</p>
 
@@ -8358,15 +8619,20 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <h2 id="recover-wallet">Recover Wallet</h2>
 
-<p>RecoverWallet is a tool that can recover funds from a BitGo wallet without using the BitGo service. It is provided for demonstration purposes and to prove that BitGo wallets are 100% recoverable even if the BitGo Service is unavailable. It is not expected that this tool would be used for production environments.</p>
+<p>RecoverWallet is a tool that can recover funds from a BitGo wallet without using the BitGo service.
+It is provided for demonstration purposes and to prove that BitGo wallets are 100% recoverable
+even if the BitGo Service is unavailable.  It is not expected that this tool would be used for
+production environments.</p>
 
-<p>Given only the information on a wallet&rsquo;s keycard, the tool constructs a transaction which moves all of the funds within that wallet to a new account of the user&rsquo;s choice. This is done without using any BitGo Service APIs.</p>
+<p>Given only the information on a wallet&rsquo;s keycard, the tool constructs a transaction
+which moves all of the funds within that wallet to a new account of the user&rsquo;s choice.  This is done
+without using any BitGo Service APIs.</p>
 
 <p>The RecoverWallet tool is interactive or command line driven.</p>
 
 <h3 id="usage">Usage</h3>
 
-<p>node recoverwallet.js &ndash;userKey <userkey from keycard> &ndash;backupKey <backupkey from keycard> &ndash;bitgoKey <bitgo public key from keycard></p>
+<p>node recoverwallet.js &ndash;userKey <UserKey from Keycard> &ndash;backupKey <BackupKey from Keycard> &ndash;bitgoKey <BitGo public key from Keycard></p>
 
 <h3 id="parameters">Parameters</h3>
 
@@ -8382,7 +8648,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 <tr>
 <td>backupKey</td>
-<td>The backup extended private key for the wallet. (Box B from the Wallet KeyCard)</td>
+<td>The backup extended private key for the wallet.  (Box B from the Wallet KeyCard)</td>
 </tr>
 <tr>
 <td>bitgoKey</td>
