@@ -2,17 +2,17 @@
 
 タイトル： BitGo APIレファレンス
 
-言語タブ: -javascript -シェルスクリプト
+language_tabs: - javascript - shell
 
 toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
 
 * * *
 
-# はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# Getting Started はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
 
 [BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
 
-### 概要
+### Overview 概要
 
 BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
 
@@ -25,7 +25,7 @@ BitGo SDKは以下の操作を可能にします：
 * 支出制限
 * マルチサイナーウォレットフロー
 
-### マルチシグネチャウォレット
+### Multi-Signature Wallets マルチシグネチャウォレット
 
 マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、あなたの持つ全てのビットコインが失われることがあります。
 
@@ -35,7 +35,7 @@ BitGo SDKは以下の操作を可能にします：
 
 詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。
 
-### HDウォレット
+### HD Wallets, HDウォレット
 
 全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo' HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。
 
@@ -47,7 +47,7 @@ BitGo SDKは以下の操作を可能にします：
     
     HDウォレットなら、どのトランザクションも同一のウォレットから到着したと見えないよう、アプリケーションはトランザクション毎に新たなキーを作成できます。 これにより、ウォレットの本当の大きさが漏洩することからウォレット保持者が保護されます。
 
-## ソフトウェア開発キット
+## Software Development Kit ソフトウェア開発キット
 
 BitGo APIは、開発者にマルチシグウォレットの作成、管理、ポリシーの操作、そしてビットコインネットワークとやり取りする方法を提供します。 ただし、ユーザの秘密鍵やトランザクションの署名など、いくつかセンシティブな操作がクライアントサイドで行われる必要があります。
 
@@ -69,7 +69,7 @@ Javascript SDKのインストール (Githubを通じ)
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### ライブラリのインポートと初期化
+### Importing and initializing the library ライブラリのインポートと初期化
 
 ```javascript
 // パーケージからインポートしている場合
@@ -92,11 +92,11 @@ bitgo.ping({}, function(err, res) {
 
 Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。
 
-### テスト環境に関する重要な注意
+### Important notes on test environment テスト環境に関する重要な注意
 
 私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
 
-## BitGo API エンドポイント
+## BitGo API Endpoints, BitGo API エンドポイント
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -132,14 +132,14 @@ BitGoは開発とプロダクション向けに2つの個別の環境を利用�
     }
     
 
-### プロダクション環境
+### Production Environment プロダクション環境
 
 BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
 
 * プロダクションサイト: https://www.bitgo.com/
 * プロダクションAPI: https://www.bitgo.com/api/v1
 
-### テスト環境
+### Test Environment テスト環境
 
 私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。
 
@@ -174,7 +174,7 @@ BitGo Expressを利用するには:
 
 * **全ての**BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う
 
-## エラー処理
+## Error Handling エラー処理
 
 > JSON エラーの例
 
@@ -192,7 +192,7 @@ BitGo Expressを利用するには:
 | status | The HTTP error status returned        |
 | error  | The detailed description of the error |
 
-# ユーザー認証
+# User Authentication ユーザー認証
 
 BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出し元がアクセストークンを指定するのを可能にします。
 
@@ -204,7 +204,7 @@ BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出
 
 また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。
 
-## APIアクセストークン
+## API Access Tokens, APIアクセストークン
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -232,7 +232,7 @@ bitgo.session({}, function callback(err, session) {
 
 トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
 
-### トークンパラメーター
+### Token Parameters トークンパラメーター
 
 | パラメーター         | 説明                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
