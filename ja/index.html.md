@@ -299,7 +299,7 @@ curl -X POST \
 -d "{\"email\": \"$EMAIL\", \"password\": \"$HMAC\", \"otp\": \"0000000\"}" \
 https://test.bitgo.com/api/v1/user/login
 
-Note: The rest of the shell examples the share variable assume the shell variable ACCESS_TOKEN contains the access token.
+注意 : 以降のシェルの例では、シェル変数ACCESS_TOKENがアクセストークンを含んでいることを前提とします。
 ```
 
 ```javascript
@@ -315,18 +315,18 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/user/login`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter  | Type    | Required | Description                                                                  |
-| ---------- | ------- | -------- | ---------------------------------------------------------------------------- |
-| email      | string  | YES      | The email address of the user                                                |
-| password   | string  | YES      | The password of the user                                                     |
-| otp        | string  | YES      | The 2-factor-authentication token (Authy token).                             |
-| extensible | boolean | NO       | True if the session is supposed to be extensible beyond a one-hour duration. |
+| パラメーター     | 種類      | 必須か | 説明                                                                           |
+| ---------- | ------- | --- | ---------------------------------------------------------------------------- |
+| email      | string  | YES | The email address of the user                                                |
+| password   | string  | YES | The password of the user                                                     |
+| otp        | string  | YES | The 2-factor-authentication token (Authy token).                             |
+| extensible | boolean | NO  | True if the session is supposed to be extensible beyond a one-hour duration. |
 
 > Example Response
 
