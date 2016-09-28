@@ -258,13 +258,13 @@ bitgo.me({}, function callback(err, user) {
 });
 ```
 
-Get information about the current authenticated user.
+現在認証されているユーザーについて情報を得る。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/user/me`
 
-> Example User Model response
+> 例としてのユーザモデルの応答
 
 ```json
 {
@@ -281,13 +281,13 @@ Get information about the current authenticated user.
 }
 ```
 
-### Response
+### 応答
 
-Returns a User Model object for the currently authenticated user.
+現在認証されているユーザーのユーザモデルのオブジェクトを返す。
 
-## Login
+## Login　ログイン　
 
-Get a token for first-party access to the BitGo API. First-party access is only intended for users accessing their own BitGo accounts. For 3rd party access to the BitGo API on behalf of another user, please see **Partner Authentication**.
+BitGo APIへのファーストパーティアクセスのためのトークンを取得します。 ファーストパーティアクセスは、自身のBitGoアカウントへアクセスしているユーザーのみ向けです。 別のユーザーの代わりでのBitGo APIへサードパーティアクセスの場合、**パートナー認証**を参照下さい。
 
 ```shell
 EMAIL="janedoe@bitgo.com"
