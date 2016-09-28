@@ -234,15 +234,15 @@ bitgo.session({}, function callback(err, session) {
 
 ### Token Parameters トークンパラメーター
 
-| パラメーター         | 説明                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                                                                                             |
-| Duration       | トークンが有効であり続ける秒数                                                                                                                                   |
-| Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
-| IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
-| Permissions    | Auth Scope that the token will be created with                                                                                                    |
+| パラメーター         | 説明                                                                           |
+| -------------- | ---------------------------------------------------------------------------- |
+| Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                        |
+| Duration       | トークンが有効であり続ける秒数                                                              |
+| Spending Limit | トークンは、BTC建ての支出制限の額までのアンロックされた状態で来ます。制限がリセットされるので、API経由でトークンをアンロックしようとしないで下さい |
+| IP Addresses   | BitGoが特定のIPアドレスからのみ受け付けるよう、トークンをロックダウンします                                    |
+| Permissions    | トークンが生成される際の認証の範囲                                                            |
 
-## Current User Profile
+## Current User Profile 現在のユーザープロファイル
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
