@@ -352,20 +352,20 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 
 APIで使用するトークンを返す。
 
-The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
+トークンはHTTP"Authorization"ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。
 
-`Authorization: Bearer <your token goes here>`
+`Authorization: Bearer <あなたのトークンはここ>`
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Logout
+## Logout ログアウト
 
-Logout of the BitGo service.
+BitGoサービスからのログアウト。
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -381,17 +381,17 @@ bitgo.logout({}, function callback(err) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/user/logout`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-None
+なし
 
-### Response
+### Response 応答
 
-None
+なし
 
 ## Session Information
 
