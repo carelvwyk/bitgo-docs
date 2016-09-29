@@ -444,14 +444,14 @@ bitgo.session({}, function callback(err, session) {
 
 ### Response 応答
 
-| フィールド   | 説明                                                                                           |
-| ------- | -------------------------------------------------------------------------------------------- |
-| client  | ユーザートークンが取得された所のOAuthクライアントID                                                                |
-| user    | BitGo ユーザー ID                                                                                |
-| expires | ログインセッションがその時間まで有効なタイムスタンプ                                                                   |
-| scope   | このセッショントークンについて許可されている権限のリスト                                                                 |
-| origin  | Origin hostname where token was created, if the session was initiated in the browser         |
-| unlock  | Available if session is unlocked. Shows number of transactions and expiry time of the unlock |
+| フィールド   | 説明                                             |
+| ------- | ---------------------------------------------- |
+| client  | ユーザートークンが取得された所のOAuthクライアントID                  |
+| user    | BitGo ユーザー ID                                  |
+| expires | ログインセッションがその時間まで有効なタイムスタンプ                     |
+| scope   | このセッショントークンについて許可されている権限のリスト                   |
+| origin  | ブラウザでセッションが開始された場合、トークンが作成されたオリジンホスト名          |
+| unlock  | セッションがアンロックされた時に利用可能。トランザクションの回数とアンロックの有効期限を示す |
 
 ## Send OTP
 
