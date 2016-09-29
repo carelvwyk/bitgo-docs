@@ -453,9 +453,9 @@ bitgo.session({}, function callback(err, session) {
 | origin  | ブラウザでセッションが開始された場合、トークンが作成されたオリジンホスト名          |
 | unlock  | セッションがアンロックされた時に利用可能。トランザクションの回数とアンロックの有効期限を示す |
 
-## Send OTP
+## Send OTP ワンタイムパスワードを送信
 
-Sends the one time password (2nd Factor Auth) token to the user, which can be used for login / unlock.
+ワンタイムパスワード(第二因子認証) トークンをユーザーに送信します。ログイン/アンロックに使用することができます。
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -473,11 +473,11 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト 
 
 `POST /api/v1/user/sendotp`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
 | Name     | Type    | Required | Description                                                         |
 | -------- | ------- | -------- | ------------------------------------------------------------------- |
