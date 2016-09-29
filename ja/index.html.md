@@ -393,9 +393,9 @@ bitgo.logout({}, function callback(err) {
 
 なし
 
-## Session Information
+## Session Information セッション情報
 
-Get information about the current session access token
+現在のセッションのアクセストークンに関する情報を取得する
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -413,7 +413,7 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-> Example response
+> 応答の例
 
     { "client": "bitgo",
       "user": "5458141599f715232500000530a94fd2",
@@ -438,18 +438,18 @@ bitgo.session({}, function callback(err, session) {
     }
     
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/user/session`
 
-### Response
+### Response 応答
 
-| Field   | Description                                                                                  |
+| フィールド   | 説明                                                                                           |
 | ------- | -------------------------------------------------------------------------------------------- |
-| client  | OAuth client ID where the user token was obtained                                            |
-| user    | BitGo user ID                                                                                |
-| expires | Timestamp which the login session is good until                                              |
-| scope   | List of allowed privileges for this session token                                            |
+| client  | ユーザートークンが取得された所のOAuthクライアントID                                                                |
+| user    | BitGo ユーザー ID                                                                                |
+| expires | ログインセッションがその時間まで有効なタイムスタンプ                                                                   |
+| scope   | このセッショントークンについて許可されている権限のリスト                                                                 |
 | origin  | Origin hostname where token was created, if the session was initiated in the browser         |
 | unlock  | Available if session is unlocked. Shows number of transactions and expiry time of the unlock |
 
