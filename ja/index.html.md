@@ -321,14 +321,14 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 
 ### BODY Parameters BODYパラメーター
 
-| パラメーター     | 種類      | 必須か | 説明                                                                           |
-| ---------- | ------- | --- | ---------------------------------------------------------------------------- |
-| email      | string  | YES | The email address of the user                                                |
-| password   | string  | YES | The password of the user                                                     |
-| otp        | string  | YES | The 2-factor-authentication token (Authy token).                             |
-| extensible | boolean | NO  | True if the session is supposed to be extensible beyond a one-hour duration. |
+| パラメーター     | 種類    | 必須か | 説明                      |
+| ---------- | ----- | --- | ----------------------- |
+| email      | 文字列   | YES | ユーザのメールアドレス             |
+| password   | 文字列   | YES | ユーザのパスワード               |
+| otp        | 文字列   | YES | 2要素認証トークン(Authyトークン)。   |
+| extensible | ブーリアン | NO  | セッションが１時間よりも延長可能である場合に真 |
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -348,9 +348,9 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a token for use with the API.
+APIで使用するトークンを返す。
 
 The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
 
