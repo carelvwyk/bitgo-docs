@@ -163,7 +163,7 @@ curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 
 BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。
 
-BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APIをプロクシサーバーに送ることも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
+BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APのプロクシとして振舞うことも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
 
 BitGo Expressを利用するには:
 
@@ -264,7 +264,7 @@ bitgo.me({}, function callback(err, user) {
 
 `GET /api/v1/user/me`
 
-> 例としてのユーザモデルの応答
+> ユーザモデルの応答の例
 
 ```json
 {
