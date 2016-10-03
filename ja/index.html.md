@@ -479,13 +479,13 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 
 ### BODY Parameters BODYパラメーター
 
-| 名        | Type    | Required | Description                                                         |
-| -------- | ------- | -------- | ------------------------------------------------------------------- |
-| forceSMS | boolean | NO       | Use SMS to send the OTP to the user, even if they have Authy set up |
+| 名        | 種類    | 必須か | 説明                                            |
+| -------- | ----- | --- | --------------------------------------------- |
+| forceSMS | ブーリアン | NO  | Authyが設定されている場合でも、SMSを使ってワンタイムパスワードをユーザに送信する。 |
 
-### Response
+### Response 応答
 
-None
+なし
 
 ## Unlock
 
