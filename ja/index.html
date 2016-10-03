@@ -150,7 +150,7 @@
 
 <p>詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。</p>
 
-<h3 id="hd-wallets-hd">HD Wallets HDウォレット</h3>
+<h3 id="hd-wallets-hd">HD Wallets, HDウォレット</h3>
 
 <p>全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo&rsquo; HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。</p>
 
@@ -284,7 +284,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 
 <p>BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。</p>
 
-<p>BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Ecpressは、標準のBitGo REST APIをプロクシサーバーに送ることも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。</p>
+<p>BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APのプロクシとして振舞うことも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。</p>
 
 <p>BitGo Expressを利用するには:</p>
 
@@ -384,19 +384,19 @@ https://test.bitgo.com/api/v1/user/session
 </tr>
 <tr>
 <td>Spending Limit</td>
-<td>The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit.</td>
+<td>トークンは、BTC建ての支出制限の額までのアンロックされた状態で来ます。制限がリセットされるので、API経由でトークンをアンロックしようとしないで下さい</td>
 </tr>
 <tr>
 <td>IP Addresses</td>
-<td>Lock down the token such that BitGo will only accept it from certain IP addresses.</td>
+<td>BitGoが特定のIPアドレスからのみ受け付けるよう、トークンをロックダウンします</td>
 </tr>
 <tr>
 <td>Permissions</td>
-<td>Auth Scope that the token will be created with</td>
+<td>トークンが生成される際の認証の範囲</td>
 </tr>
 </tbody></table>
 
-<h2 id="current-user-profile">Current User Profile</h2>
+<h2 id="current-user-profile">Current User Profile 現在のユーザープロファイル</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/me
 </code></pre>
@@ -408,14 +408,14 @@ https://test.bitgo.com/api/v1/user/me
 <span class="p">});</span>
 </code></pre>
 
-<p>Get information about the current authenticated user.</p>
+<p>現在認証されているユーザーについて情報を得る。</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/me</code></p>
 
 <blockquote>
-<p>Example User Model response</p>
+<p>ユーザモデルの応答の例</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -431,13 +431,13 @@ https://test.bitgo.com/api/v1/user/me
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="response">Response</h3>
+<h3 id=">応答</h3>
 
-<p>Returns a User Model object for the currently authenticated user.</p>
+<p>現在認証されているユーザーのユーザモデルのオブジェクトを返す。</p>
 
-<h2 id="login">Login</h2>
+<h2 id="login">Login　ログイン　</h2>
 
-<p>Get a token for first-party access to the BitGo API. First-party access is only intended for users accessing their own BitGo accounts. For 3rd party access to the BitGo API on behalf of another user, please see <strong>Partner Authentication</strong>.</p>
+<p>BitGo APIへのファーストパーティアクセスのためのトークンを取得します。 ファーストパーティアクセスは、自身のBitGoアカウントへアクセスしているユーザーのみ向けです。 別のユーザーの代わりでのBitGo APIへサードパーティアクセスの場合、<strong>パートナー認証</strong>を参照下さい。</p>
 <pre class="highlight shell"><code><span class="nv">EMAIL</span><span class="o">=</span><span class="s2">"janedoe@bitgo.com"</span>
 <span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">"mypassword"</span>
 <span class="nv">HMAC</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="s2">"</span><span class="nv">$PASSWORD</span><span class="s2">"</span> | openssl dgst -sha256 -hmac <span class="s2">"</span><span class="nv">$EMAIL</span><span class="s2">"</span> | sed <span class="s1">'s/^.* //'</span> <span class="sb">`</span>
@@ -447,7 +447,7 @@ curl -X POST <span class="se">\</span>
 -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">email</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$EMAIL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$HMAC</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">otp</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">0000000</span><span class="se">\"</span><span class="s2">}"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/login
 
-Note: The rest of the shell examples the share variable assume the shell variable ACCESS_TOKEN contains the access token.
+注意 : 以降のシェルの例では、シェル変数ACCESS_TOKENがアクセストークンを含んでいることを前提とします。
 </code></pre>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">useTestnet</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bitgo</span><span class="p">(</span><span class="nx">useTestnet</span><span class="p">);</span>
@@ -461,48 +461,48 @@ Note: The rest of the shell examples the share variable assume the shell variabl
 <span class="p">});</span>
 </code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/login</code></p>
 
-<h3 id="body-parameters">BODY Parameters</h3>
+<h3 id="body-parameters-body">BODY Parameters BODYパラメーター</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>パラメーター</th>
+<th>種類</th>
+<th>必須か</th>
+<th>説明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>email</td>
-<td>string</td>
+<td>文字列</td>
 <td>YES</td>
-<td>The email address of the user</td>
+<td>ユーザのメールアドレス</td>
 </tr>
 <tr>
 <td>password</td>
-<td>string</td>
+<td>文字列</td>
 <td>YES</td>
-<td>The password of the user</td>
+<td>ユーザのパスワード</td>
 </tr>
 <tr>
 <td>otp</td>
-<td>string</td>
+<td>文字列</td>
 <td>YES</td>
-<td>The 2-factor-authentication token (Authy token).</td>
+<td>2要素認証トークン(Authyトークン)。</td>
 </tr>
 <tr>
 <td>extensible</td>
-<td>boolean</td>
+<td>ブーリアン</td>
 <td>NO</td>
-<td>True if the session is supposed to be extensible beyond a one-hour duration.</td>
+<td>セッションが１時間よりも延長可能である場合に真</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Example Response</p>
+<p>応答の例</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3fe0bf671c943af5ee3b739d2b17ffced7fdde62"</span><span class="p">,</span><span class="w">
@@ -521,35 +521,35 @@ Note: The rest of the shell examples the share variable assume the shell variabl
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="response">Response</h3>
+<h3 id="response">Response 応答</h3>
 
-<p>Returns a token for use with the API.</p>
+<p>APIで使用するトークンを返す。</p>
 
-<p>The token must be added as a HTTP header to all API calls in the HTTP &ldquo;Authorization&rdquo; header:</p>
+<p>トークンはHTTP&quot;Authorization&quot;ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。</p>
 
-<p><code class="prettyprint">Authorization: Bearer &lt;your token goes here&gt;</code></p>
+<p><code class="prettyprint">Authorization: Bearer &lt;あなたのトークンはここ&gt;</code></p>
 
-<h3 id="errors">Errors</h3>
+<h3 id="errors">Errors　エラー</h3>
 
 <table><thead>
 <tr>
-<th>Response</th>
-<th>Description</th>
+<th>応答</th>
+<th>説明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400 Bad Request</td>
-<td>The request parameters were missing or incorrect.</td>
+<td>要求パラメーターが見つからないか正しくない</td>
 </tr>
 <tr>
 <td>401 Unauthorized</td>
-<td>The authentication parameters did not match.</td>
+<td>認証パラメーターが一致しない</td>
 </tr>
 </tbody></table>
 
-<h2 id="logout">Logout</h2>
+<h2 id="logout">Logout ログアウト</h2>
 
-<p>Logout of the BitGo service.</p>
+<p>BitGoサービスからのログアウト。</p>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/logout
 </code></pre>
@@ -561,21 +561,21 @@ https://test.bitgo.com/api/v1/user/logout
 <span class="p">});</span>
 </code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/logout</code></p>
 
-<h3 id="body-parameters">BODY Parameters</h3>
+<h3 id="body-parameters-body">BODY Parameters BODYパラメーター</h3>
 
-<p>None</p>
+<p>なし</p>
 
-<h3 id="response">Response</h3>
+<h3 id="response">Response 応答</h3>
 
-<p>None</p>
+<p>なし</p>
 
-<h2 id="session-information">Session Information</h2>
+<h2 id="session-information">Session Information セッション情報</h2>
 
-<p>Get information about the current session access token</p>
+<p>現在のセッションのアクセストークンに関する情報を取得する</p>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -590,7 +590,7 @@ https://test.bitgo.com/api/v1/user/session
 </code></pre>
 
 <blockquote>
-<p>Example response</p>
+<p>応答の例</p>
 </blockquote>
 
 <p>{ &ldquo;client&rdquo;: &ldquo;bitgo&rdquo;,
@@ -615,47 +615,47 @@ https://test.bitgo.com/api/v1/user/session
           }
     }</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/session</code></p>
 
-<h3 id="response">Response</h3>
+<h3 id="response">Response 応答</h3>
 
 <table><thead>
 <tr>
-<th>Field</th>
-<th>Description</th>
+<th>フィールド</th>
+<th>説明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>client</td>
-<td>OAuth client ID where the user token was obtained</td>
+<td>ユーザートークンが取得された所のOAuthクライアントID</td>
 </tr>
 <tr>
 <td>user</td>
-<td>BitGo user ID</td>
+<td>BitGo ユーザー ID</td>
 </tr>
 <tr>
 <td>expires</td>
-<td>Timestamp which the login session is good until</td>
+<td>ログインセッションがその時間まで有効なタイムスタンプ</td>
 </tr>
 <tr>
 <td>scope</td>
-<td>List of allowed privileges for this session token</td>
+<td>このセッショントークンについて許可されている権限のリスト</td>
 </tr>
 <tr>
 <td>origin</td>
-<td>Origin hostname where token was created, if the session was initiated in the browser</td>
+<td>ブラウザでセッションが開始された場合、トークンが作成されたオリジンホスト名</td>
 </tr>
 <tr>
 <td>unlock</td>
-<td>Available if session is unlocked. Shows number of transactions and expiry time of the unlock</td>
+<td>セッションがアンロックされた時に利用可能。トランザクションの回数とアンロックの有効期限を示す</td>
 </tr>
 </tbody></table>
 
-<h2 id="send-otp">Send OTP</h2>
+<h2 id="send-otp">Send OTP ワンタイムパスワードを送信</h2>
 
-<p>Sends the one time password (2nd Factor Auth) token to the user, which can be used for login / unlock.</p>
+<p>ワンタイムパスワード(第二因子認証) トークンをユーザーに送信します。ログイン/アンロックに使用することができます。</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -669,11 +669,11 @@ https://test.bitgo.com/api/v1/user/sendotp
 <span class="p">});</span>
 </code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/sendotp</code></p>
 
-<h3 id="body-parameters">BODY Parameters</h3>
+<h3 id="body-parameters-body">BODY Parameters BODYパラメーター</h3>
 
 <table><thead>
 <tr>
