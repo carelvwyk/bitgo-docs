@@ -479,7 +479,7 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 
 ### BODY Parameters BODYパラメーター
 
-| Name     | Type    | Required | Description                                                         |
+| 名        | Type    | Required | Description                                                         |
 | -------- | ------- | -------- | ------------------------------------------------------------------- |
 | forceSMS | boolean | NO       | Use SMS to send the OTP to the user, even if they have Authy set up |
 
