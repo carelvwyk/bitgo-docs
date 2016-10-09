@@ -487,9 +487,9 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 
 なし
 
-## Unlock
+## Unlock アンロック
 
-Unlock the current session, which is required for certain other sensitive API calls.
+現在のセッションをアンロックします。特定の他のセンシティブなAPIコールに必要です。
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -507,31 +507,31 @@ bitgo.unlock({otp: otp}, function callback(err) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/user/unlock`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter | Type   | Required | Description                                                       |
-| --------- | ------ | -------- | ----------------------------------------------------------------- |
-| otp       | string | YES      | An Authy OTP code for the account                                 |
-| duration  | number | NO       | Desired duration of the unlock in seconds (default=600, max=3600) |
+| パラメーター   | 種類  | 必須か | 説明                                 |
+| -------- | --- | --- | ---------------------------------- |
+| otp      | 文字列 | YES | アカウントの Authy OTP コード               |
+| duration | 数字  | NO  | 所望のアンロックの秒数(default=600, max=3600) |
 
-### Response
+### Response 応答
 
-None
+なし
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                            |
-| ---------------- | ---------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect                       |
-| 401 Unauthorized | The authentication parameters did not match, or OTP code was incorrect |
+| Response 応答      | 説明                                 |
+| ---------------- | ---------------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない              |
+| 401 Unauthorized | 認証パラメーターが一致しない、または OTP コードが正しくなかった |
 
-## Lock
+## ロック
 
-Re-lock the current session.
+現在のセッションを再ロックします
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
