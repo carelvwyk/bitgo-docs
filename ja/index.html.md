@@ -544,21 +544,21 @@ bitgo.lock({}, function callback(err) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/user/lock`
 
-### Response
+### Response 応答
 
-None
+なし
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                 |
-| ---------------- | ------------------------------------------- |
-| 401 Unauthorized | The authentication parameters did not match |
+| Response 応答      | 説明             |
+| ---------------- | -------------- |
+| 401 Unauthorized | 認証パラメーターが一致しない |
 
-## Partner Authentication
+## Partner Authentication パートナー認証
 
 3rd party applications using the BitGo API use OAuth to authenticate through BitGo. Please contact BitGo for a partner ID and more information.
 
