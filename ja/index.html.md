@@ -564,19 +564,19 @@ BitGO APIを利用するサードパーティアプリケーションはBitGoを
 
 # Keychains キーチェーン
 
-全てのBitGoウォレットはキーチェーンを使用して作成されます。 キーチェーンとは標準の <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> 拡張HDキーです。 これまでの単一の<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a>キーペアを代表するビットコインキーと違い、一つのキーチェーンは共通秘密鍵から派生する多数のキーペアを代表する事ができます。 This allows the user to retain a single private key, but generate an infinite number of public keys. BitGo uses these extended keys to keep your bitcoin more private and secure.
+全てのBitGoウォレットはキーチェーンを使用して作成されます。 キーチェーンとは標準の <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> 拡張HDキーです。 これまでの単一の<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a>キーペアを代表するビットコインキーと違い、一つのキーチェーンは共通秘密鍵から派生する多数のキーペアを代表する事ができます。 これにより、ユーザーは単一の秘密鍵を保持しながら、無数の公開鍵を生成することが可能になります。 BitGoはこれらの拡張された鍵を用いて、あなたのビットコインをよりプライベートでセキュアにします。
 
-To make wallet creation simple, BitGo maintains a list of Keychains for each user. Each keychain may be used in any number of BitGo Wallets.
+ウォレットの生成をシンプルにするため、BitGoは各ユーザーごとのキーチェーンのリストを維持します。各キーチェーンは任意の数のBitGoウォレットで使用することができます。
 
-There are two types of keychains:
+2つの種類のキーチェーンがあります：
 
-* Public Keychains
+* パブリックキーチェーン
     
-    These are comprised of a single BIP32 extended public key (xpub).
+    これらは単一のBIP32拡張公開鍵（xpub）で構成されます。
 
-* Private Keychains
+* プライベートキーチェーン
     
-    These are comprised of a single BIP32 extended private key (xprv), which is always stored in encrypted form.
+    これらは、常に暗号化された形式で格納されている単一のBIP32拡張秘密鍵(xprv) で構成されます。
 
 All keychains are identified by their xpub. For convenience, each keychain may have a label.
 
