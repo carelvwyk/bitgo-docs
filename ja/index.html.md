@@ -630,14 +630,14 @@ keychains.list({}, function callback(err, keychains) {
 }
 ```
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type   | Required | Description                                                             |
-| --------- | ------ | -------- | ----------------------------------------------------------------------- |
-| skip      | number | NO       | The starting index number to list from. Default is 0.                   |
-| limit     | number | NO       | Max number of results to return in a single call (default=100, max=500) |
+| パラメーター | 種類 | 必須か | 説明                                      |
+| ------ | -- | --- | --------------------------------------- |
+| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。                |
+| limit  | 数字 | NO  | 単一コール(default=100, max=500) で返す結果の最大の件数 |
 
-### Response
+### Response 応答
 
 Returns an array of Keychain Model objects.
 
