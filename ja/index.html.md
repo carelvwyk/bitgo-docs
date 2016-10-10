@@ -564,7 +564,7 @@ BitGO APIを利用するサードパーティアプリケーションはBitGoを
 
 # Keychains キーチェーン
 
-All BitGo wallets are created using keychains. A keychain is a standard <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> extended HD key. Unlike traditional bitcoin keys, which represent a single <a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair, a keychain can represent many key pairs, all derived from a common private key. This allows the user to retain a single private key, but generate an infinite number of public keys. BitGo uses these extended keys to keep your bitcoin more private and secure.
+全てのBitGoウォレットはキーチェーンを使用して作成されます。 A keychain is a standard <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> extended HD key. Unlike traditional bitcoin keys, which represent a single <a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair, a keychain can represent many key pairs, all derived from a common private key. This allows the user to retain a single private key, but generate an infinite number of public keys. BitGo uses these extended keys to keep your bitcoin more private and secure.
 
 To make wallet creation simple, BitGo maintains a list of Keychains for each user. Each keychain may be used in any number of BitGo Wallets.
 
