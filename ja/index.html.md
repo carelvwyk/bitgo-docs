@@ -677,11 +677,11 @@ console.dir(keychain);
 
 オプションで、キーチェーンを作成するのに決定性シードを用いる単一のパラメーター、'seed'が提供されることができます。 このシードは最低32要素の長さの数字の配列であるべきです。 同じシードでこの関数を呼び出すと、同一のBIP32キーチェーンが生成されます。<aside class="warning"> キーチェーンの作成は、あなたのビットコインを安全に保護するために不可欠のステップです。 新しいキーチェーンを生成する時、このAPIは業界標準に準拠した乱数ジェネレーターをを用います。 自身でシードを提供する場合、作成する際、細心の注意を払わなければいけません。 </aside> 
 
-Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service. To use it with the BitGo service, use the Keychains.Add API.
+新しいキーチェーンのためのxprvとxpubを含むオブジェクトを返します。作成されたキーチェーンはBitGoサービスに知られません。 BitGoサービスで利用するには、Keychains.Add APIを使用します。
 
-For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original xprv immediately to prevent theft.
+セキュリティ上の理由から、[暗号化](#encrypt)の上、盗難を防ぐため元のxprvを即座に破壊することを強く推奨します。
 
-## Add Keychain
+## Add Keychain　キーチェーンを追加する　
 
 ```shell
 curl -X POST \
@@ -705,7 +705,7 @@ bitgo.keychains().add(data, function callback(err, keychain) {
 });
 ```
 
-Registers a new keychain for the user. You must supply at least the public key. An encrypted private key may be uploaded, but it will be treated as opaque to the server.
+ユーザーの新しいキーチェーンを登録します。少なくとも公開鍵を指定する必要があります。暗号化された秘密鍵はアップロードされることができますが、サーバに対して不透明として扱われます。
 
 The purpose in providing an encrypted private key with the address is so users will be able to access their keys securely whenever they are connected to BitGo without the burden of storing it. It is highly recommended that you encrypt any private keys stored at the server with a strong password from the user. Encryption must be performed on the client. For convenience, you can use BitGo's [encrypt/decrypt functions](#encrypt), but you can use any encryption you wish.<aside class="warning"> If you provide the encrypted xprv, the security of this keychain is only as good as your encryption. Encryption is your responsibility. </aside> 
 
