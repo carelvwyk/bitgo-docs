@@ -707,20 +707,20 @@ bitgo.keychains().add(data, function callback(err, keychain) {
 
 ユーザーの新しいキーチェーンを登録します。少なくとも公開鍵を指定する必要があります。暗号化された秘密鍵はアップロードされることができますが、サーバに対して不透明として扱われます。
 
-アドレスとともに暗号化された秘密鍵を提供する目的は、 BitGoに接続している時ユーザーが、自ら格納する負担なしに彼らの鍵に安全にアクセスできるためです。 ユーザーからの強いパスワードで、サーバに格納された全ての秘密鍵を暗号化することを強くお勧めします。 暗号化はクライアントで実行する必要があります。 便宜のため、BitGoの's[暗号化/復号化関数](#encrypt)を使用できますが、あなたの望む任意の暗号化を使用することができます。<aside class="warning"> If you provide the encrypted xprv, the security of this keychain is only as good as your encryption. Encryption is your responsibility. </aside> 
+アドレスとともに暗号化された秘密鍵を提供する目的は、 BitGoに接続している時ユーザーが、自ら格納する負担なしに彼らの鍵に安全にアクセスできるためです。 ユーザーからの強いパスワードで、サーバに格納された全ての秘密鍵を暗号化することを強くお勧めします。 暗号化はクライアントで実行する必要があります。 便宜のため、BitGoの's[暗号化/復号化関数](#encrypt)を使用できますが、あなたの望む任意の暗号化を使用することができます。<aside class="warning"> あながた暗号化されたxprvを提供する場合、このキーチェーンのセキュリティはあなたの暗号化と同程度です。暗号化はあなたの責任です。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/keychain`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter     | Type   | Required | Description                                 |
-| ------------- | ------ | -------- | ------------------------------------------- |
-| xpub          | string | YES      | The BIP32 xpub for this keychain            |
-| encryptedXprv | string | NO       | The encrypted, BIP32 xprv for this keychain |
+| パラメーター        | 種類  | 必須か | 説明                         |
+| ------------- | --- | --- | -------------------------- |
+| xpub          | 文字列 | YES | このキーチェーンのBIP32 xpub        |
+| encryptedXprv | 文字列 | NO  | 暗号化された、このキーチェーンのBIP32 xpub |
 
-> Example Keychain Model response
+> キーチェーンモデルの応答の例
 
 ```json
 {
@@ -731,18 +731,18 @@ bitgo.keychains().add(data, function callback(err, keychain) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Keychain Model object.
+キーチェーンモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-## Create BitGo Keychain
+## Create BitGo Keychain BitGo キーチェーンを作成する
 
 ```shell
 curl -X POST \
@@ -759,17 +759,17 @@ bitgo.keychains().createBitGo({}, function callback(err, keychain) {
 });
 ```
 
-Creates a new keychain on BitGo's servers and returns the public keychain to the caller.
+BitGoのサーバに新しいキーチェーンを作成し、呼び出し元にパブリックキーチェーンを返します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/keychain/bitgo`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-None.
+なし。
 
-> Example Keychain Model response
+> キーチェーンモデルの応答の例
 
 ```json
 {
@@ -780,16 +780,16 @@ None.
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Keychain Model object.
+キーチェーンモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
 ## Create Backup Keychain
 
