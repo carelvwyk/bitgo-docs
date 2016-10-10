@@ -639,19 +639,19 @@ keychains.list({}, function callback(err, keychains) {
 
 ### Response 応答
 
-Returns an array of Keychain Model objects.
+キーチェーンモデルオブジェクトの配列を返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Create Keychain
+## Create Keychain キーチェーンを作成する
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカルメソッドとしてのみ利用可能 (BitGo Express)
 
 curl -X POST http://$BITGO_EXPRESS_HOST:3080/api/v1/keychain/local
 ```
@@ -663,7 +663,7 @@ var keychain = keychains.create();
 console.dir(keychain);
 ```
 
-> Example response
+> 応答の例
 
 ```json
   {
@@ -673,7 +673,7 @@ console.dir(keychain);
   }
 ```
 
-Local client-side function to create a new keychain.
+新しいキーチェーン作成のためのローカルクライアントサイド関数。
 
 Optionally, a single parameter, 'seed', may be provided which uses a deterministic seed to create your keychain. The seed should be an array of numbers at least 32 elements long. Calling this function with the same seed will generate the same BIP32 keychain.<aside class="warning"> Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it. </aside> 
 
