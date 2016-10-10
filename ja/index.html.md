@@ -578,11 +578,11 @@ BitGO APIを利用するサードパーティアプリケーションはBitGoを
     
     これらは、常に暗号化された形式で格納されている単一のBIP32拡張秘密鍵(xprv) で構成されます。
 
-All keychains are identified by their xpub. For convenience, each keychain may have a label.
+全てのキーチェーンはそれらのxpubによって識別されます。便宜のため、各キーチェーンはラベルを持つことがあります。
 
-Before creating your first wallet, you must create keychains to use with that wallet.<aside class="success"> Note that accessing the private keychain (even in encrypted form) always requires 2-factor-authentication. </aside> 
+最初のウォレットを作成する前に、そのウォレットとともに使用するキーチェーンを作成する必要があります。<aside class="success"> プライベートキーチェーン（暗号化され形式であっても) へのアクセスにおいて、必ず2要素認証が必須であることに注意してください。 </aside> 
 
-## List Keychains
+## List Keychains キーチェーンの一覧を取得する
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -599,13 +599,13 @@ keychains.list({}, function callback(err, keychains) {
 });
 ```
 
-Get the list of public keychains for the user<aside class="success"> This API only provides the public keys and never the private data for a keychain. </aside> 
+そのユーザーのパブリックキーチェーンの一覧を取得します<aside class="success"> このAPIは公開鍵だけを提供し、キーチェーンのプライベートデータを決して提供しません。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/keychain`
 
-> Example Keychain Model response
+> キーチェーンモデルの応答の例
 
 ```json
 {
