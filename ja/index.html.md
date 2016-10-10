@@ -675,7 +675,7 @@ console.dir(keychain);
 
 新しいキーチェーン作成のためのローカルクライアントサイド関数。
 
-Optionally, a single parameter, 'seed', may be provided which uses a deterministic seed to create your keychain. The seed should be an array of numbers at least 32 elements long. Calling this function with the same seed will generate the same BIP32 keychain.<aside class="warning"> Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it. </aside> 
+オプションで、キーチェーンを作成するのに決定性シードを用いる単一のパラメーター、'seed'が提供されることができます。 このシードは最低32要素の長さの数字の配列であるべきです。 同じシードでこの関数を呼び出すと、同一のBIP32キーチェーンが生成されます。<aside class="warning"> Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it. </aside> 
 
 Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service. To use it with the BitGo service, use the Keychains.Add API.
 
