@@ -849,19 +849,19 @@ bitgo.keychains().get({xpub: xpub}, function callback(err, keychain) {
 });
 ```
 
-xpubでキーチェーンを検索する<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
+xpubでキーチェーンをルックアップする<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/keychain/:xpub`
 
-### URL Parameters
+### URL Parameters URLパラメーター
 
-| Parameter | Type   | Required | Description              |
-| --------- | ------ | -------- | ------------------------ |
-| xpub      | string | YES      | The BIP32 xpub to lookup |
+| パラメーター | 種類  | 必須か | 説明                 |
+| ------ | --- | --- | ------------------ |
+| xpub   | 文字列 | YES | ルックアップするBIP32 xpub |
 
-> Example Keychain Model response
+> キーチェーンモデルの応答の例
 
 ```json
 {
@@ -872,19 +872,19 @@ xpubでキーチェーンを検索する<aside class="info"> この操作では�
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Keychain Model object.
+キーチェーンモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
-| 404 Bad Request  | The xpub was not found                                              |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| 404 Bad Request  | Xpub が見つからなかった             |
 
-## Update Keychain
+## Update Keychain キーチェーンを更新する
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
