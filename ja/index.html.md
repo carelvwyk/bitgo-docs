@@ -791,7 +791,7 @@ BitGoのサーバに新しいキーチェーンを作成し、呼び出し元に
 | 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
 | 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-## Create Backup Keychain
+## Create Backup Keychain バックアップキーチェーンを作成する
 
 ```shell
 curl -X POST \
@@ -807,19 +807,19 @@ bitgo.keychains().createBackup({ provider: 'lastkeysolutions' }, function callba
 });
 ```
 
-Creates a new backup keychain on a third party specializing in key recovery services. This keychain will be stored on the third party service and usable for recovery purposes only.
+鍵のリカバリーのサービスに特化したサードパーティに、新しいバックアップキーチェーンを作成します。 このキーチェーンはサードパーティサービスに保存され、リカバリーの目的だけで使用されます。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/keychain/backup`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter | Type   | Required | Description                                   |
-| --------- | ------ | -------- | --------------------------------------------- |
-| provider  | string | YES      | name of the KRS or backup key provider to use |
+| パラメーター   | 種類  | 必須か | 説明                                        |
+| -------- | --- | --- | ----------------------------------------- |
+| provider | 文字列 | YES | 暗号鍵リカバリーシステム（KRS）の名前または使用するバックアップキープロバイダー |
 
-> Example Keychain Model response
+> キーチェーンモデルの応答の例
 
 ```json
 {
@@ -829,11 +829,11 @@ Creates a new backup keychain on a third party specializing in key recovery serv
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Keychain Model object.
+キーチェーンモデルオブジェクトを返します。
 
-## Get Keychain
+## Get Keychain　キーチェーンを取得する
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
@@ -849,7 +849,7 @@ bitgo.keychains().get({xpub: xpub}, function callback(err, keychain) {
 });
 ```
 
-Lookup a keychain by xpub<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> 
+xpubでキーチェーンを検索する<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
 
 ### HTTP Request
 
