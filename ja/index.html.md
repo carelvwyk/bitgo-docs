@@ -1075,7 +1075,7 @@ bitgo.wallets().add(data, function callback(err, wallet) {
 
 BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 1つめのキーチェーンは慣例的にユーザーキーで、その**暗号化された**xprivはBitGoに保管されます。
 
-BitGo wallets currently are hard-coded with their root at **m/0/0** across all 3 keychains (however, older legacy wallets may use different key paths). Below the root, the wallet supports two chains of addresses, 0 and 1. The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
+BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 Below the root, the wallet supports two chains of addresses, 0 and 1. The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
 
 The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which is also the ID used to refer to a wallet in BitGo's system. The first change address of a wallet is at **m/0/0/1/0**. </aside>
 
