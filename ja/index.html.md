@@ -944,7 +944,7 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 
 # Wallets ウォレット
 
-全てのBitGoウォレットはマルチシグ、階層的、かつ決定性のウォレットです。 Multi-signature wallets are comprised of *N* keys, and require *M* keys to sign a transaction before the transaction is valid. This is called an *M-of-N* wallet.
+全てのBitGoウォレットはマルチシグ、階層的、かつ決定性のウォレットです。 マルチシグウォレットは*N*個のキーから成り、トランザクションが有効となる前のトランザクションの署名に*M*個のキーを必要とします。 *M-of-N* ウォレットと呼ばれるものです。
 
 BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
 
