@@ -1268,8 +1268,8 @@ wallets.get(data, function callback(err, wallet) {
 | フィールド            | 説明                                                                                                                      |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | id               | ウォレットのid(同時に最初の受信アドレス)                                                                                                  |
-| label            | the wallet label, as shown in the UI                                                                                    |
-| index            | the index of the address within the chain (0, 1, 2, ...)                                                                |
+| label            | UIに表示されている通りのウォレットのラベル                                                                                                  |
+| index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                                                                                        |
 | private          | contains summarised version of keychains                                                                                |
 | permissions      | user's permissions on this wallet                                                                                       |
 | admin            | policy information on the wallet's administrators                                                                       |
