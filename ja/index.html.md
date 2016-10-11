@@ -1027,14 +1027,14 @@ for (id in wallets) {
 
 ウォレットモデルオブジェクトの配列を返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
+## Add Wallet ウォレットを追加する<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
 
 [Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
 
