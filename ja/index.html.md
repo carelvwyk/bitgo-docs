@@ -946,9 +946,9 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 
 全てのBitGoウォレットはマルチシグ、階層的、かつ決定性のウォレットです。 マルチシグウォレットは*N*個のキーから成り、トランザクションが有効となる前のトランザクションの署名に*M*個のキーを必要とします。 *M-of-N* ウォレットと呼ばれるものです。
 
-BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
+BitGoは現在、2-of-3ウォレットのみサポートしています。ポリシー層を用いてm-of-nのアクセス許可モデルをサポートします。
 
-To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last must be a BitGo keychain. While BitGo can see the public portion of the first two keys, BitGo never has access to the private portion of these keys and therefore cannot conduct transactions without the user. BitGo's single key is not sufficient to sign transactions, and BitGo will only use this key in accordance with the policies set by the user.
+ウォレットを作成するには、3つのキーチェーンが提供されなければなりません。 最初の2つのキーチェーンはユーザーによって提供されます、最後のは、BitGoキーチェーンである必要があります。 BitGoは最初の2つのキーの公開部分を見ることができる一方で、決してこれらのキーのプライベートな部分にアクセスできず、よってユーザー抜きに取引を行うことはできません。 BitGo's single key is not sufficient to sign transactions, and BitGo will only use this key in accordance with the policies set by the user.
 
 ## List Wallets
 
