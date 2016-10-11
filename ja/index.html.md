@@ -1077,7 +1077,7 @@ BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポー�
 
 BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
 
-The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which is also the ID used to refer to a wallet in BitGo's system. The first change address of a wallet is at **m/0/0/1/0**. </aside>
+最初のウォレットの受取アドレスはBIP32のパス **m/0/0/0/0**にあり、同時にBitGoのシステム内のウォレットを参照するためのIDです。 The first change address of a wallet is at **m/0/0/1/0**. </aside>
 
 ### HTTP Request
 
