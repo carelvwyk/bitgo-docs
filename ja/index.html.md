@@ -1034,9 +1034,9 @@ for (id in wallets) {
 | 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
 | 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップのキーxPubを可能にします。 For most scenarios in the SDK, 
+## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップのキーxPubを可能にします。 SDKのほとんどの場合、
 
-[Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
+[ウォレットをキーチェーンと作成](#create-wallet-with-keychains) がウォレットからビットコインを送るためのよりシンプルで推奨のSDKのメソッドになります。 </aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
