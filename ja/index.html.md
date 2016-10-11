@@ -1085,16 +1085,16 @@ BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をro
 
 ### BODY Parameters BODYパラメーター
 
-| パラメーター                          | 種類      | 必須か | 説明                                                                                 |
-| ------------------------------- | ------- | --- | ---------------------------------------------------------------------------------- |
-| label                           | 文字列     | YES | このウォレットのラベル                                                                        |
-| m                               | 数字      | YES | The number of signatures required to redeem (must be 2)                            |
-| n                               | number  | YES | The number of keys in the wallet (must be 3)                                       |
-| keychains                       | array   | YES | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key |
-| enterprise                      | string  | NO  | Enterprise ID to create this wallet under.                                         |
-| disableTransactionNotifications | boolean | NO  | Set to true to prevent wallet transaction notifications.                           |
+| パラメーター                          | 種類    | 必須か | 説明                                                   |
+| ------------------------------- | ----- | --- | ---------------------------------------------------- |
+| label                           | 文字列   | YES | このウォレットのラベル                                          |
+| m                               | 数字    | YES | 取得に必要な署名の数（2でなければならない）                               |
+| n                               | 数字    | YES | ウォレットにあるキーの数（3でなければならない）                             |
+| keychains                       | 配列    | YES | このウォレットで使用する**n**個のキーチェーンxpubsの配列; BitGoキーでなければならない。 |
+| enterprise                      | 文字列   | NO  | このウォレットを作成するエンタープライズID。                              |
+| disableTransactionNotifications | ブーリアン | NO  | ウォレットトランザクション通知を止めるにはtrueに設定                         |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1126,19 +1126,19 @@ BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をro
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Wallet Model object.
+ウォレットモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response           | Description                                       |
-| ------------------ | ------------------------------------------------- |
-| 400 Bad Request    | The request parameters were missing or incorrect. |
-| 401 Unauthorized   | The authentication parameters did not match.      |
-| 406 Not acceptable | One of the keychains provided was not acceptable. |
+| 応答                 | 説明                    |
+| ------------------ | --------------------- |
+| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized   | 認証パラメーターが一致しない        |
+| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
 
-## Get Wallet
+## Get Wallet ウォレットを取得する
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
