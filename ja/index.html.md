@@ -907,17 +907,17 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 });
 ```
 
-Update a keychain. This is used if you wish to store a new version of the xprv (for example, if you changed the password used to encrypt the xprv).<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> <aside class="warning"> If you change the encryptedXprv, the existing value is overwritten. If the new value is incorrect, or you forget the password to the new value, your ability to sign with this keychain will be lost forever. </aside> 
+キーチェーンを更新します。xprvの新しいバージョンを保存したい場合（例えばxprvを暗号化するのに使用したパスワードを変更した場合）に使用されます。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> <aside class="warning"> encryptedXprvを変更すると、既存の値が上書きされます。 新しい値が正しくない、あるいは新しい値へのパスワードを忘れた場合、このキーチェーンで署名するあなたの能力は永遠に失われます。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `PUT /api/v1/keychain/:xpub`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter     | Type   | Required | Description                                   |
-| ------------- | ------ | -------- | --------------------------------------------- |
-| encryptedXprv | string | NO       | A new encrypted, BIP32 xprv for this keychain |
+| パラメーター        | 種類  | 必須か | 説明                                            |
+| ------------- | --- | --- | --------------------------------------------- |
+| encryptedXprv | 文字列 | NO  | A new encrypted, BIP32 xprv for this keychain |
 
 > Example Keychain Model response
 
