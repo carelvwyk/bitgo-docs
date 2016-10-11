@@ -948,9 +948,9 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 
 BitGoは現在、2-of-3ウォレットのみサポートしています。ポリシー層を用いてm-of-nのアクセス許可モデルをサポートします。
 
-ウォレットを作成するには、3つのキーチェーンが提供されなければなりません。 最初の2つのキーチェーンはユーザーによって提供されます、最後のは、BitGoキーチェーンである必要があります。 BitGoは最初の2つのキーの公開部分を見ることができる一方で、決してこれらのキーのプライベートな部分にアクセスできず、よってユーザー抜きに取引を行うことはできません。 BitGo's single key is not sufficient to sign transactions, and BitGo will only use this key in accordance with the policies set by the user.
+ウォレットを作成するには、3つのキーチェーンが提供されなければなりません。 最初の2つのキーチェーンはユーザーによって提供されます、最後のは、BitGoキーチェーンである必要があります。 BitGoは最初の2つのキーの公開部分を見ることができる一方で、決してこれらのキーのプライベートな部分にアクセスできず、よってユーザー抜きに取引を行うことはできません。 BitGoの単一のキーはトランザクションに署名するのに十分でなく、またBitGoはユーザーが設定したポリシーに従ってのみ、このキーを用います。
 
-## List Wallets
+## ウォレットの一覧を取得する
 
 ```shell
 curl -X GET \
@@ -969,13 +969,13 @@ for (id in wallets) {
 });
 ```
 
-Get the list of wallets for the user
+そのユーザーのウォレットの一覧を取得します
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1016,16 +1016,16 @@ Get the list of wallets for the user
 }
 ```
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type   | Required | Description                                                            |
-| --------- | ------ | -------- | ---------------------------------------------------------------------- |
-| skip      | number | NO       | The starting index number to list from. Default is 0.                  |
-| limit     | number | NO       | Max number of results to return in a single call (default=25, max=250) |
+| パラメーター | 種類 | 必須か | 説明                                     |
+| ------ | -- | --- | -------------------------------------- |
+| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
+| limit  | 数字 | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
 
-### Response
+### Response 応答
 
-Returns an array of Wallet Model objects.
+ウォレットモデルオブジェクトの配列を返します。
 
 ### Errors
 
