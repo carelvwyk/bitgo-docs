@@ -1085,14 +1085,14 @@ BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をro
 
 ### BODY Parameters BODYパラメーター
 
-| Parameter                       | Type    | Required | Description                                                                        |
-| ------------------------------- | ------- | -------- | ---------------------------------------------------------------------------------- |
-| label                           | string  | YES      | A label for this wallet                                                            |
-| m                               | number  | YES      | The number of signatures required to redeem (must be 2)                            |
-| n                               | number  | YES      | The number of keys in the wallet (must be 3)                                       |
-| keychains                       | array   | YES      | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key |
-| enterprise                      | string  | NO       | Enterprise ID to create this wallet under.                                         |
-| disableTransactionNotifications | boolean | NO       | Set to true to prevent wallet transaction notifications.                           |
+| パラメーター                          | 種類      | 必須か | 説明                                                                                 |
+| ------------------------------- | ------- | --- | ---------------------------------------------------------------------------------- |
+| label                           | 文字列     | YES | このウォレットのラベル                                                                        |
+| m                               | 数字      | YES | The number of signatures required to redeem (must be 2)                            |
+| n                               | number  | YES | The number of keys in the wallet (must be 3)                                       |
+| keychains                       | array   | YES | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key |
+| enterprise                      | string  | NO  | Enterprise ID to create this wallet under.                                         |
+| disableTransactionNotifications | boolean | NO  | Set to true to prevent wallet transaction notifications.                           |
 
 > Example response
 
