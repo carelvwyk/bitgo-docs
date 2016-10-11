@@ -1073,7 +1073,7 @@ bitgo.wallets().add(data, function callback(err, wallet) {
 
 このAPIはユーザーの新しいウォレットを作成します。新しいウォレットとともに利用するキーチェーンは、このAPIを利用するのに先立ってBitGoに登録する必要があります。
 
-BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 The first keychain is by convention the user key, with it's **encrypted** xpriv is stored on BitGo.
+BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 1つめのキーチェーンは慣例的にユーザーキーで、その**暗号化された**xprivはBitGoに保管されます。
 
 BitGo wallets currently are hard-coded with their root at **m/0/0** across all 3 keychains (however, older legacy wallets may use different key paths). Below the root, the wallet supports two chains of addresses, 0 and 1. The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
 
