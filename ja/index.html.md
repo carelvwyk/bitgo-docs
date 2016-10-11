@@ -1267,7 +1267,7 @@ wallets.get(data, function callback(err, wallet) {
 
 | フィールド            | 説明                                                                                                                      |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| id               | id of the wallet (also the first receiving address)                                                                     |
+| id               | ウォレットのid(同時に最初の受信アドレス)                                                                                                  |
 | label            | the wallet label, as shown in the UI                                                                                    |
 | index            | the index of the address within the chain (0, 1, 2, ...)                                                                |
 | private          | contains summarised version of keychains                                                                                |
