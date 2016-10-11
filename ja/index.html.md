@@ -1177,13 +1177,13 @@ wallets.get(data, function callback(err, wallet) {
 
 ```
 
-Lookup wallet information, returning the wallet model including balances, permissions etc. The ID of a wallet is its first receiving address (/0/0)
+ウォレット情報をルックアップし、残高、アクセス許可等を含むウォレットモデルを返します。ウォレットのIDはその最初の受信アドレスです(/0/0)。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:id`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1261,11 +1261,11 @@ Lookup wallet information, returning the wallet model including balances, permis
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Wallet Model object.
+ウォレットモデルオブジェクトを返します。
 
-| Field            | Description                                                                                                             |
+| フィールド            | 説明                                                                                                                      |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | id               | id of the wallet (also the first receiving address)                                                                     |
 | label            | the wallet label, as shown in the UI                                                                                    |
