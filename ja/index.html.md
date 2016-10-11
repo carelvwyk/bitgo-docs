@@ -1075,15 +1075,15 @@ bitgo.wallets().add(data, function callback(err, wallet) {
 
 BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 1つめのキーチェーンは慣例的にユーザーキーで、その**暗号化された**xprivはBitGoに保管されます。
 
-BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
+BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 **0-chain** は外部の受信アドレスは向けで、一方**1-chain** は内部の(変化する) アドレスです。
 
-最初のウォレットの受取アドレスはBIP32のパス **m/0/0/0/0**にあり、同時にBitGoのシステム内のウォレットを参照するためのIDです。 The first change address of a wallet is at **m/0/0/1/0**. </aside>
+最初のウォレットの受取アドレスはBIP32のパス **m/0/0/0/0**にあり、同時にBitGoのシステム内のウォレットを参照するためのIDです。 最初の変化するアドレスは**m/0/0/1/0**にあります。 </aside>
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/wallet`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
 | Parameter                       | Type    | Required | Description                                                                        |
 | ------------------------------- | ------- | -------- | ---------------------------------------------------------------------------------- |
