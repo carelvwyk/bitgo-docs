@@ -915,11 +915,11 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 
 ### BODY Parameters BODYパラメーター
 
-| パラメーター        | 種類  | 必須か | 説明                                            |
-| ------------- | --- | --- | --------------------------------------------- |
-| encryptedXprv | 文字列 | NO  | A new encrypted, BIP32 xprv for this keychain |
+| パラメーター        | 種類  | 必須か | 説明                            |
+| ------------- | --- | --- | ----------------------------- |
+| encryptedXprv | 文字列 | NO  | 新たに暗号化された、このキーチェーンのBIP32 xpub |
 
-> Example Keychain Model response
+> キーチェーンモデルの応答例
 
 ```json
 {
@@ -930,21 +930,21 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Keychain Model object.
+キーチェーンモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
-| 404 Not Found    | The xpub was not found                                              |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| 404 Not Found    | Xpub が見つからなかった             |
 
-# Wallets
+# Wallets ウォレット
 
-All BitGo Wallets are multi-signature, hierarchical, deterministic wallets. Multi-signature wallets are comprised of *N* keys, and require *M* keys to sign a transaction before the transaction is valid. This is called an *M-of-N* wallet.
+全てのBitGoウォレットはマルチシグ、階層的、かつ決定性のウォレットです。 Multi-signature wallets are comprised of *N* keys, and require *M* keys to sign a transaction before the transaction is valid. This is called an *M-of-N* wallet.
 
 BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
 
