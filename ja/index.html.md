@@ -1379,11 +1379,11 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 
 # Wallet Operations - Basic ウォレットの操作 ー基礎
 
-Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin. The Wallet API provides helpful interfaces for interacting with a user's wallets.
+各ウォレットは多くのアドレスから成り、それぞれのアドレスをビットコインの受取りに使用できます。 Wallet APIはユーザーがウォレットと対話するための役に立つインターフェースを提供します。
 
-## Create Address
+## Create Address アドレスを作成する
 
-Creates a new address for an existing wallet. BitGo wallets consist of two independent chains of addresses, designated 0 and 1. The 0-chain is typically used for receiving funds, while the 1-chain is used internally for creating change when spending from a wallet. It is considered best practice to generate a new receiving address for each new incoming transaction, in order to help maximize privacy.
+既存のウォレットのための新たなアドレスを作成する。 BitGoウォレットは、0、1と呼ばれる2つの独立したアドレスのチェーンで構成されています。 The 0-chain is typically used for receiving funds, while the 1-chain is used internally for creating change when spending from a wallet. It is considered best practice to generate a new receiving address for each new incoming transaction, in order to help maximize privacy.
 
 ```shell
 CHAIN=0
