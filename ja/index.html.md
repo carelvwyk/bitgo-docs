@@ -1328,7 +1328,7 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 
 ### BitGo Instant Wallets BitGo インスタントウォレット
 
-By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
+デフォルトで、このメソッドはバックアップのキーチェーンをローカルで作成します。 To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
 
 ### Method Parameters
 
