@@ -1265,29 +1265,29 @@ wallets.get(data, function callback(err, wallet) {
 
 ウォレットモデルオブジェクトを返します。
 
-| フィールド            | 説明                                                                                                                      |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| id               | ウォレットのid(同時に最初の受信アドレス)                                                                                                  |
-| label            | UIに表示されている通りのウォレットのラベル                                                                                                  |
-| index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                                                                                        |
-| private          | キーチェーンの要約版が含まれている                                                                                                       |
-| permissions      | このウォレットへのユーザーのアクセス許可                                                                                                    |
-| admin            | ウォレットの管理者に関するポリシー情報                                                                                                     |
-| pendingApprovals | pending transaction approvals on the wallet                                                                             |
-| confirmedBalance | the confirmed balance                                                                                                   |
-| balance          | the balance, including transactions with 0 confirmations                                                                |
-| canSendInstant   | boolean indicating if wallet is eligible to send instant transactions backed by BitGo's guarantee against double spends |
+| フィールド            | 説明                                                  |
+| ---------------- | --------------------------------------------------- |
+| id               | ウォレットのid(同時に最初の受信アドレス)                              |
+| label            | UIに表示されている通りのウォレットのラベル                              |
+| index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                    |
+| private          | キーチェーンの要約版が含まれている                                   |
+| permissions      | このウォレットへのユーザーのアクセス許可                                |
+| admin            | ウォレットの管理者に関するポリシー情報                                 |
+| pendingApprovals | ウォレットの保留中のトランザクション承認                                |
+| confirmedBalance | 確認された残高                                             |
+| balance          | 確認が0回のトランザクションを含む残高                                 |
+| canSendInstant   | ウォレットが、二重支払いに対するBitGoの保証が付いた即座取引を送信する資格を持つかを示すブーリアン |
 
-### Errors
+### Errors　エラー
 
-| Response           | Description                                        |
-| ------------------ | -------------------------------------------------- |
-| 400 Bad Request    | The request parameters were missing or incorrect.  |
-| 401 Unauthorized   | The authentication parameters did not match.       |
-| 404 Not Found      | The wallet was not found                           |
-| 406 Not acceptable | One of the keychains provided were not acceptable. |
+| 応答                 | 説明                    |
+| ------------------ | --------------------- |
+| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized   | 認証パラメーターが一致しない        |
+| 404 Not Found      | ウォレットが見つからなかった        |
+| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
 
-## Create Wallet With Keychains
+## Create Wallet With Keychains キーチェーンと使用するウォレットを作成
 
 ```shell
 Available only as a local method (BitGo Express)
