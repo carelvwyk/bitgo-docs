@@ -1270,7 +1270,7 @@ wallets.get(data, function callback(err, wallet) {
 | id               | ウォレットのid(同時に最初の受信アドレス)                                                                                                  |
 | label            | UIに表示されている通りのウォレットのラベル                                                                                                  |
 | index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                                                                                        |
-| private          | contains summarised version of keychains                                                                                |
+| private          | キーチェーンの要約版が含まれている                                                                                                       |
 | permissions      | user's permissions on this wallet                                                                                       |
 | admin            | policy information on the wallet's administrators                                                                       |
 | pendingApprovals | pending transaction approvals on the wallet                                                                             |
