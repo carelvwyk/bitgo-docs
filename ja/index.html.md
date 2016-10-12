@@ -1320,13 +1320,13 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 
 このメソッドはウォレットを作成する簡単な方法として、クライアントSDKで利用可能です。メソッドは次のことを行います。
 
-  1. Creates the user keychain and the backup keychain
-  2. Encrypts the user keychain
-  3. Uploads the encrypted user and backup keychains to BitGo
-  4. Creates the BitGo key on the service
-  5. Creates the wallet on BitGo with the 3 public keys above<aside class="warning"> It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> 
+  1. ユーザー キーチェーンとバックアップのキーチェーンを作成する
+  2. ユーザー キーチェーンを暗号化する
+  3. 暗号化されたユーザーキーチェーンとバックアップキーチェーンをBitGoにアップロードする
+  4. サービス上で BitGo キーを作成する
+  5. 上の公開鍵でBitGoでウォレットを作成する<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷/バックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
 
-### BitGo Instant Wallets
+### BitGo Instant Wallets BitGo インスタントウォレット
 
 By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
 
