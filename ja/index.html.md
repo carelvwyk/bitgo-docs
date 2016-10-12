@@ -1339,9 +1339,9 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 | backupXpub                      | 文字列   | NO  | 決して2つの秘密鍵が同じマシンに存在しないよう、もう一つのデバイスで作成されたバックアップキーチェーンの公開鍵。あなたのキーをリモートでホスティングするオプションとしてbackupXpubProviderも参照下さい。 |
 | backupXpubProvider              | 文字列   | NO  | お望みの暗号鍵リカバリーシステム(KRS)でバックアップxPubを作成する（例：keyternal）。そうすると、そのウォレットはBitGo Instantと互換性を持ちます。                      |
 | enterprise                      | 文字列   | NO  | このウォレットを作成するエンタープライズID。                                                                                       |
-| disableTransactionNotifications | ブーリアン | NO  | Set to true to prevent wallet transaction notifications..                                                     |
+| disableTransactionNotifications | ブーリアン | NO  | ウォレットトランザクション通知を止めるにはtrueに設定。                                                                                 |
 
-> Example response
+> 応答の例
 
 ```json
 { "id": "2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf",
@@ -1361,23 +1361,23 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
     Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
     
 
-### Response
+### Response 応答
 
-| Response       | Description                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------- |
-| wallet         | the wallet model object                                                                     |
-| userKeychain   | the newly created user keychain, which has an encrypted xprv stored on BitGo - back this up |
-| backupKeychain | the newly created backup keychain - back this up                                            |
+| 応答             | 説明                                                     |
+| -------------- | ------------------------------------------------------ |
+| wallet         | ウォレットモデル オブジェクト                                        |
+| userKeychain   | 暗号化されたxprvがBitGoに格納された、新たに作成されたユーザーキーチェーン　ーバックアップを取ること |
+| backupKeychain | 新たに作成されたバックアップキーチェーン ーバックアップを取ること                      |
 
-### Errors
+### Errors　エラー
 
-| Response           | Description                                        |
-| ------------------ | -------------------------------------------------- |
-| 400 Bad Request    | The request parameters were missing or incorrect.  |
-| 401 Unauthorized   | The authentication parameters did not match.       |
-| 406 Not acceptable | One of the keychains provided were not acceptable. |
+| 応答                 | 説明                    |
+| ------------------ | --------------------- |
+| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized   | 認証パラメーターが一致しない        |
+| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
 
-# Wallet Operations - Basic
+# Wallet Operations - Basic ウォレットの操作 ー基礎
 
 Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin. The Wallet API provides helpful interfaces for interacting with a user's wallets.
 
