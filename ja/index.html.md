@@ -1290,8 +1290,8 @@ wallets.get(data, function callback(err, wallet) {
 ## Create Wallet With Keychains キーチェーンと使用するウォレットを作成
 
 ```shell
-Available only as a local method (BitGo Express)
-Advanced users should consider the Create Wallet API.
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
+上級ユーザーはCreate Wallet API を検討してください。
 
 WALLETPASSPHRASE='newverylongishsecretivepassword'
 LABEL='nicenewpurse'
@@ -1318,7 +1318,7 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 });
 ```
 
-This method is available on the client SDK as an easy way to create a wallet. It performs the following:
+このメソッドはウォレットを作成する簡単な方法として、クライアントSDKで利用可能です。メソッドは次のことを行います。
 
   1. Creates the user keychain and the backup keychain
   2. Encrypts the user keychain
