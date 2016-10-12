@@ -1431,25 +1431,25 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 
 ウォレットと紐付けられる新しいビットコインアドレスを返す。
 
-| フィールド        | 説明                                                        |
-| ------------ | --------------------------------------------------------- |
-| address      | 連鎖アドレス                                                    |
-| chain        | the chain (0 or 1)                                        |
-| index        | チェーン内(0, 1, 2, ...) のアドレスのインデックス                          |
-| path         | the BIP32 path of the address relative to the wallet root |
-| redeemScript | the redeemScript for the address                          |
+| フィールド        | 説明                               |
+| ------------ | -------------------------------- |
+| address      | 連鎖アドレス                           |
+| chain        | the chain (0 or 1)               |
+| index        | チェーン内(0, 1, 2, ...) のアドレスのインデックス |
+| path         | ウォレットのrootに対するアドレスのBIP32パス       |
+| redeemScript | アドレスの redeemScript               |
 
-### Errors
+### Errors　エラー
 
-| Response           | Description                                         |
-| ------------------ | --------------------------------------------------- |
-| 400 Bad Request    | The request parameters were missing or incorrect.   |
-| 401 Unauthorized   | The authentication parameters did not match.        |
-| 403 Forbidden      | The wallet is not a multi-sig BIP32 (SafeHD) wallet |
-| 404 Not Found      | The wallet was not found                            |
-| 406 Not acceptable | One of the keychains provided were not acceptable.  |
+| 応答                 | 説明                                 |
+| ------------------ | ---------------------------------- |
+| 400 Bad Request    | 要求パラメーターが見つからないか正しくない              |
+| 401 Unauthorized   | 認証パラメーターが一致しない                     |
+| 403 Forbidden      | ウォレットがマルチシグBIP32(SafeHD) ウォレットではない |
+| 404 Not Found      | ウォレットが見つからなかった                     |
+| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可              |
 
-## Send Coins to Address
+## Send Coins to Address アドレスにコインを送信する
 
 ```javascript
 var destinationAddress = '2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD';
@@ -1469,8 +1469,8 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
-Advanced users should consider the Send Transaction API.
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
+上級ユーザーはSend Transaction API を検討してください。
 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 DESTINATIONADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
@@ -1484,12 +1484,12 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 ```
 
-Easiest way to send coins from your BitGo wallet to a destination Bitcoin address.<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> 
+コインをBitGoウォレットから指定のビットコインアドレスへ送る最も簡単な方法。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
 
-This method will perform the following on the client:
+このメソッドはクライアント側で次を行います：
 
-* Get the user keychain by polling the wallet on the server for a stored keychain (with encrypted private key)
-* Decrypt the user key
+* 格納されているキーチェーンについてサーバで（暗号化された秘密鍵で）ウォレットをポーリングすることにより、ユーザーキーチェーンを取得する
+* ユーザー キーを復号化します
 * Create the transaction to the destination address, with change sent to a newly created chain address on the wallet (path of /1)
 * Sign the transaction with the decrypted user key
 
