@@ -1328,18 +1328,18 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 
 ### BitGo Instant Wallets BitGo インスタントウォレット
 
-デフォルトで、このメソッドはバックアップのキーチェーンをローカルで作成します。 To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
+デフォルトで、このメソッドはバックアップのキーチェーンをローカルで作成します。 BitGo Instantを送信するのに使用できるウォレットを作成するには、**backupXpubProvider**パラメーターを使用して、暗号鍵リカバリーシステム(KRS)を指定します（例：keyternal）。
 
-### Method Parameters
+### Method Parameters メソッドのパラメーター
 
-| Name                            | Type    | Required | Description                                                                                                                                                                                      |
-| ------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| passphrase                      | string  | YES      | The passphrase that will be used to encrypt the user keys of the wallet before sending it to BitGo                                                                                               |
-| label                           | string  | YES      | A label for this wallet                                                                                                                                                                          |
-| backupXpub                      | string  | NO       | Public key of a backup keychain, created on another device, such that no 2 private keys are ever on the same machine. See also backupXpubProvider as an option to have your key hosted remotely. |
-| backupXpubProvider              | string  | NO       | Create a backup xPub on your KRS of choice, e.g. "keyternal". This will make the wallet BitGo Instant compatible.                                                                                |
-| enterprise                      | string  | NO       | Enterprise ID to create this wallet under.                                                                                                                                                       |
-| disableTransactionNotifications | boolean | NO       | Set to true to prevent wallet transaction notifications..                                                                                                                                        |
+| 名                               | 種類    | 必須か | 説明                                                                                                            |
+| ------------------------------- | ----- | --- | ------------------------------------------------------------------------------------------------------------- |
+| passphrase                      | 文字列   | YES | BitGoへの送信前に、ウォレットのユーザーキーを暗号化するのに使用されるパスフレーズ                                                                   |
+| label                           | 文字列   | YES | このウォレットのラベル                                                                                                   |
+| backupXpub                      | 文字列   | NO  | 決して2つの秘密鍵が同じマシンに存在しないよう、もう一つのデバイスで作成されたバックアップキーチェーンの公開鍵。あなたのキーをリモートでホスティングするオプションとしてbackupXpubProviderも参照下さい。 |
+| backupXpubProvider              | 文字列   | NO  | お望みの暗号鍵リカバリーシステム(KRS)でバックアップxPubを作成する（例：keyternal）。そうすると、そのウォレットはBitGo Instantと互換性を持ちます。                      |
+| enterprise                      | 文字列   | NO  | このウォレットを作成するエンタープライズID。                                                                                       |
+| disableTransactionNotifications | ブーリアン | NO  | Set to true to prevent wallet transaction notifications..                                                     |
 
 > Example response
 
