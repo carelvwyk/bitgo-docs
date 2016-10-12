@@ -1075,7 +1075,7 @@ bitgo.wallets().add(data, function callback(err, wallet) {
 
 BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 1つめのキーチェーンは慣例的にユーザーキーで、その**暗号化された**xprivはBitGoに保管されます。
 
-BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 **0-chain** は外部の受信アドレスは向けで、一方**1-chain** は内部の(変化する) アドレスです。
+BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 **0-chain** は外部の受信アドレスは向けで、一方**1-chain** は内部の(お釣りの) アドレスです。
 
 最初のウォレットの受取アドレスはBIP32のパス **m/0/0/0/0**にあり、同時にBitGoのシステム内のウォレットを参照するためのIDです。 最初の変化するアドレスは**m/0/0/1/0**にあります。 </aside>
 
@@ -1383,7 +1383,7 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 
 ## Create Address アドレスを作成する
 
-既存のウォレットのための新たなアドレスを作成する。 BitGoウォレットは、0、1と呼ばれる2つの独立したアドレスのチェーンで構成されています。 The 0-chain is typically used for receiving funds, while the 1-chain is used internally for creating change when spending from a wallet. It is considered best practice to generate a new receiving address for each new incoming transaction, in order to help maximize privacy.
+既存のウォレットのための新たなアドレスを作成する。 BitGoウォレットは、0、1と呼ばれる2つの独立したアドレスのチェーンで構成されています。 0-チェーンは通常資金の受取に使用され、一方1-チェーンはウォレットから出費する際、お釣りの作成に内部的に使用されます。 プライバシーを最大化する助けとするには、着信した各トランザクションごとに新しいアドレスを生成するのがベストプラクティスと見なされます。
 
 ```shell
 CHAIN=0
@@ -1404,18 +1404,18 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/wallet/:walletId/address/:chain`
 
-### URL Parameters
+### URL Parameters URLパラメーター
 
-| Parameter | Type                     | Required | Description          |
-| --------- | ------------------------ | -------- | -------------------- |
-| walletid  | bitcoin address (string) | YES      | The ID of the wallet |
-| chain     | number                   | YES      | 0 or 1               |
+| パラメーター   | 種類              | 必須か | 説明       |
+| -------- | --------------- | --- | -------- |
+| walletid | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| チェーン     | 数字              | YES | 0 または 1  |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1427,15 +1427,15 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a new bitcoin address which is associated with the wallet.
+ウォレットと紐付けられる新しいビットコインアドレスを返す。
 
-| Field        | Description                                               |
+| フィールド        | 説明                                                        |
 | ------------ | --------------------------------------------------------- |
-| address      | The chained address                                       |
+| address      | 連鎖アドレス                                                    |
 | chain        | the chain (0 or 1)                                        |
-| index        | the index of the address within the chain (0, 1, 2, ...)  |
+| index        | チェーン内(0, 1, 2, ...) のアドレスのインデックス                          |
 | path         | the BIP32 path of the address relative to the wallet root |
 | redeemScript | the redeemScript for the address                          |
 
