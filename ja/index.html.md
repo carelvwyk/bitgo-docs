@@ -2247,9 +2247,9 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 | tx_hash       | 未使用のインプットのハッシュ値                                                                                                                           |
 | tx_output_n | *tx_hash*からの未使用のインプットのインデックス                                                                                                              |
 | value         | 未使用のインプットの値、単位はsatoshi                                                                                                                    |
-| script        | Output script hash (in hex format)                                                                                                        |
-| redeemScript  | The redeem script                                                                                                                         |
-| chainPath     | The BIP32 path of the unspent output relative to the wallet                                                                               |
+| script        | (16 進数形式で) スクリプト ハッシュを出力                                                                                                                  |
+| redeemScript  | 交換スクリプト                                                                                                                                   |
+| chainPath     | ウォレットに関連する未使用のアウトプットのBIP32 パス                                                                                                             |
 | confirmations | Number of blocks seen on and after the unspent transaction was included in a block                                                        |
 | isChange      | Boolean indicating this is an output from a previous spend originating on this wallet, and may be safe to spend even with 0 confirmations |
 | instant       | Boolean indicating if this unspent can be used to create a BitGo Instant transaction guaranteed against double spends                     |
