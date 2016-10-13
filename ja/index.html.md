@@ -1630,7 +1630,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 | triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
 | status          | トランザクションのステータス                     |
 
-## List Wallet Transactions
+## List Wallet Transactions ウォレットのトランザクションの一覧を表示
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1652,7 +1652,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1754,9 +1754,9 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get transactions for a given wallet, ordered by reverse block height (unconfirmed transactions first).
+該当するウォレットのトランザクションを、ブロックの高さ順（逆から）で取得する（未確認のトランザクションを最初に）。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/tx`
 
