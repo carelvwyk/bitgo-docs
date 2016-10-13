@@ -2137,7 +2137,7 @@ BitGoによってまだ共同署名されていない保留中のトランザク
 | walletId   | ビットコインアドレス(文字列) | YES | ウォレットのID                     |
 | sequenceId | カスタムのユーザー提供の文字列 | YES | 以前に発信トランザクションとともに送信された一意のid。 |
 
-### Response
+### Response 応答
 
 Returns a WalletTx object, containing the history and state of the transaction on the Bitcoin network.
 
