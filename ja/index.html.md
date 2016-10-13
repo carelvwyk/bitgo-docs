@@ -2189,13 +2189,13 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 
 ### QUERY Parameters クエリ パラメーター
 
-| パラメーター | 種類     | 必須か | 説明                                                                                                  |
-| ------ | ------ | --- | --------------------------------------------------------------------------------------------------- |
-| target | 数字     | NO  | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis). |
-| skip   | number | NO  | The starting index number to list from. Default is 0.                                               |
-| limit  | number | NO  | Max number of results to return in a single call (default=100, max=250)                             |
+| パラメーター | 種類 | 必須か | 説明                                            |
+| ------ | -- | --- | --------------------------------------------- |
+| target | 数字 | NO  | APIは最低でもこの金額に達する十分な未使用分（単位はsatoshi）を返そうと試みます。 |
+| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。                      |
+| limit  | 数字 | NO  | 単一コール(default=100, max=250) で返す結果の最大の件数       |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -2238,15 +2238,15 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of Unspent Input objects.
+未使用分のインプットのオブジェクトの配列を返します。
 
-| Field         | Description                                                                                                                               |
+| フィールド         | 説明                                                                                                                                        |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| tx_hash       | The hash of the unspent input                                                                                                             |
-| tx_output_n | The index of the unspent input from *tx_hash*                                                                                             |
-| value         | The value, in satoshis of the unspent input                                                                                               |
+| tx_hash       | 未使用のインプットのハッシュ値                                                                                                                           |
+| tx_output_n | *tx_hash*からの未使用のインプットのインデックス                                                                                                              |
+| value         | 未使用のインプットの値、単位はsatoshi                                                                                                                    |
 | script        | Output script hash (in hex format)                                                                                                        |
 | redeemScript  | The redeem script                                                                                                                         |
 | chainPath     | The BIP32 path of the unspent output relative to the wallet                                                                               |
