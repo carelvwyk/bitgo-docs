@@ -1511,7 +1511,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 | feeTxConfirmTarget           | 数字      | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                                                      |
 | minConfirms                  | 数字      | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                                                                    |
 | enforceMinConfirms ForChange | ブーリアン   | NO  | デフォルトはfalse。 ウォレットのお釣りアドレスからの、まだ消費されていないそれのminConfirms （上で説明）数の確認を要求するには、trueに設定する。 Falseに設定された場合、minConfirmsはユーザーのウォレットとは異なるウォレットからの、まだ消費されていないそれにのみ適用されます(お釣りでないアドレス)。 |
-| sequenceId                   | String  | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing                                               |
+| sequenceId                   | 文字列     | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing                                               |
 | instant                      | boolean | NO  | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).                                               |
 | otp                          | String  | NO  | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details                                               |
 
