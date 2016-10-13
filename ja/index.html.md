@@ -1538,24 +1538,24 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 }
 ```
 
-### 成功レスポンス
+### Success Response 成功レスポンス
 
-| フィールド   | 説明                                                                                     |
-| ------- | -------------------------------------------------------------------------------------- |
-| tx      | 署名されたトランザクションの16進数でエンコードされた形式                                                          |
-| hash    | the transaction id                                                                     |
-| fee     | amount in satoshis sent to the Bitcoin miners as part of this transaction              |
-| feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction |
+| フィールド   | 説明                                                  |
+| ------- | --------------------------------------------------- |
+| tx      | 署名されたトランザクションの16進数でエンコードされた形式                       |
+| hash    | トランザクション id                                         |
+| fee     | このトランザクションの一部としてビットコインマイナーに送信されたsatoshi単位の金額        |
+| feeRate | このトランザクションの一部としてビットコインマイナーに送信された1KBあたりのsatoshi単位の金額 |
 
-### Policy/Failure Response
+### ポリシー/エラー応答
 
-| Field           | Description                                                             |
-| --------------- | ----------------------------------------------------------------------- |
-| error           | the message from the policy that triggered this pending approval        |
-| pendingApproval | the pending approval id, which will need to be approved by another user |
-| otp             | set to true if the policy that fired was a "getOTP" type                |
-| triggeredPolicy | id of the policy that triggered this pending approval                   |
-| status          | the transaction status                                                  |
+| フィールド           | 説明                                 |
+| --------------- | ---------------------------------- |
+| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
+| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
+| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
+| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
+| status          | トランザクションのステータス                     |
 
 ## Send Coins to Multiple Addresses
 
