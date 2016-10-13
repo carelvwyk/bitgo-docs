@@ -2139,17 +2139,17 @@ BitGoによってまだ共同署名されていない保留中のトランザク
 
 ### Response 応答
 
-Returns a WalletTx object, containing the history and state of the transaction on the Bitcoin network.
+履歴、そしてビットコインネットワーク上のトランザクションの状態を含むWalletTxオブジェクトを返す。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
-| 404 Not Found    | The transaction was not found on the wallet                         |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| 404 Not Found    | ウォレットでトランザクションが見つからなかった    |
 
-## List Wallet Unspents
+## List Wallet Unspents ウォレットの消費されなかった分の一覧を取得する
 
 ```shell
 WALLET=2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr
@@ -2173,7 +2173,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
   });
 ```
 
-Gets a list of unspent input transactions for a wallet.
+ウォレットについて、未使用の入力トランザクションのリストを取得します。
 
 In order to create a bitcoin transaction, the creator of the transaction will need to accumulate a set of bitcoin 'inputs' for use in creation of that transaction.
 
