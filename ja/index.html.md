@@ -1874,22 +1874,22 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 トランザクション オブジェクトを返します。
 
-| パラメーター        | 種類       | 説明                                                                                                                                                           |
-| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| id            | 文字列      | トランザクションのハッシュ                                                                                                                                                |
-| hex           | 文字列      | Raw hex of the transaction                                                                                                                                   |
-| date          | DateTime | Date this transaction was first seen                                                                                                                         |
-| blockhash     | String   | Hash of the block, if this transaction has been confirmed                                                                                                    |
-| height        | Number   | Height of the block this transaction was seen in                                                                                                             |
-| confirmations | Number   | Number of blocks this transaction has been part of the blockchain                                                                                            |
-| entries       | Array    | Consolidated entries of the transaction, taking into account net inputs/outputs                                                                              |
-| outputs       | Array    | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss) |
-| fee           | Number   | Amount in Satoshis paid to the miners for this transaction                                                                                                   |
-| pending       | Boolean  | Set to true if the transaction has not yet been confirmed on the blockchain                                                                                  |
-| instant       | Boolean  | Set to true if this transaction was sent using BitGo instant                                                                                                 |
-| instantId     | String   | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo                                                         |
-| sequenceId    | String   | The sequenceId (unique custom data provided when the transaction was sent)                                                                                   |
-| comment       | String   | The comment as set on the transaction                                                                                                                        |
+| パラメーター        | 種類      | 説明                                                                                                                                                           |
+| ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id            | 文字列     | トランザクションのハッシュ                                                                                                                                                |
+| hex           | 文字列     | トランザクションの未処理の16進数                                                                                                                                            |
+| date          | 日時      | このトランザクションが最初に見られた日付                                                                                                                                         |
+| blockhash     | 文字列     | ブロックのハッシュ値、このトランザクションが既に確認されている場合                                                                                                                            |
+| height        | 数字      | このトランザクションが最初に見られたブロックの高さ                                                                                                                                    |
+| confirmations | 数字      | このトランザクションがブロックチェーンの一部であった期間のブロックの数                                                                                                                          |
+| entries       | 配列      | 連結されたトランザクションのエントリ、ネット(正味) のインプット/アウトプットを考慮して                                                                                                                |
+| outputs       | Array   | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss) |
+| fee           | Number  | Amount in Satoshis paid to the miners for this transaction                                                                                                   |
+| pending       | Boolean | Set to true if the transaction has not yet been confirmed on the blockchain                                                                                  |
+| instant       | Boolean | Set to true if this transaction was sent using BitGo instant                                                                                                 |
+| instantId     | String  | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo                                                         |
+| sequenceId    | String  | The sequenceId (unique custom data provided when the transaction was sent)                                                                                   |
+| comment       | String  | The comment as set on the transaction                                                                                                                        |
 
 ### Errors
 
