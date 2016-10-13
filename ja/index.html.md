@@ -258,7 +258,7 @@ bitgo.me({}, function callback(err, user) {
 });
 ```
 
-現在認証されているユーザーについて情報を得る。
+現在認証されているユーザーについて情報を得ます。
 
 ### HTTP Request HTTPリクエスト
 
