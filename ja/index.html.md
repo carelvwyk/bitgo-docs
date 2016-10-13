@@ -2061,7 +2061,7 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 
 これらの機能は上級レベルの開発者向けに利用可能、推奨となっています。 これらのAPIを使用することで、拡張された（ただし潜在的に複雑な）機能と強化されたトランザクション生成プロセスのコントロールが提供されます。
 
-## Get Transaction By Sequence Id
+## Get Transaction By Sequence Id シーケンスidでトランザクションを取得する
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2085,7 +2085,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -2122,7 +2122,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get the transaction on a wallet sequence ID that was passed in when sending an outgoing transaction (via sendCoins or sendTransaction). This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.
+送信トランザクションを送信する時に渡されたウォレットシーケンスIDのトランザクションを取得する（sendCoinsまたはsendTransaction経由で） This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.
 
 A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.
 
