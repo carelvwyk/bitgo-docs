@@ -1874,34 +1874,34 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 トランザクション オブジェクトを返します。
 
-| パラメーター        | 種類      | 説明                                                                                                   |
-| ------------- | ------- | ---------------------------------------------------------------------------------------------------- |
-| id            | 文字列     | トランザクションのハッシュ                                                                                        |
-| hex           | 文字列     | トランザクションの未処理の16進数                                                                                    |
-| date          | 日時      | このトランザクションが最初に見られた日付                                                                                 |
-| blockhash     | 文字列     | ブロックのハッシュ値、このトランザクションが既に確認されている場合                                                                    |
-| height        | 数字      | このトランザクションが最初に見られたブロックの高さ                                                                            |
-| confirmations | 数字      | このトランザクションがブロックチェーンの一部であった期間のブロックの数                                                                  |
-| entries       | 配列      | 連結されたトランザクションのエントリ、ネット(正味) のインプット/アウトプットを考慮して                                                        |
-| outputs       | 配列      | ウォレットのaccount、value、vout、voutインデックス、isMine、chain (普通のアドレスは0、お釣りのアドレスは1）を含む、トランザクションのアウトプットに関する情報     |
-| fee           | 数字      | このトランザクションについてマイナーに支払われたSatoshi単位の金額                                                                 |
-| pending       | ブーリアン   | Set to true if the transaction has not yet been confirmed on the blockchain                          |
-| instant       | Boolean | Set to true if this transaction was sent using BitGo instant                                         |
-| instantId     | String  | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo |
-| sequenceId    | String  | The sequenceId (unique custom data provided when the transaction was sent)                           |
-| comment       | String  | The comment as set on the transaction                                                                |
+| パラメーター        | 種類    | 説明                                                                                               |
+| ------------- | ----- | ------------------------------------------------------------------------------------------------ |
+| id            | 文字列   | トランザクションのハッシュ                                                                                    |
+| hex           | 文字列   | トランザクションの未処理の16進数                                                                                |
+| date          | 日時    | このトランザクションが最初に見られた日付                                                                             |
+| blockhash     | 文字列   | ブロックのハッシュ値、このトランザクションが既に確認されている場合                                                                |
+| height        | 数字    | このトランザクションが最初に見られたブロックの高さ                                                                        |
+| confirmations | 数字    | このトランザクションがブロックチェーンの一部であった期間のブロックの数                                                              |
+| entries       | 配列    | 連結されたトランザクションのエントリ、ネット(正味) のインプット/アウトプットを考慮して                                                    |
+| outputs       | 配列    | ウォレットのaccount、value、vout、voutインデックス、isMine、chain (普通のアドレスは0、お釣りのアドレスは1）を含む、トランザクションのアウトプットに関する情報 |
+| fee           | 数字    | このトランザクションについてマイナーに支払われたSatoshi単位の金額                                                             |
+| pending       | ブーリアン | トランザクションがブロックチェーン上でまだ確認されていない場合、trueに設定する                                                        |
+| instant       | ブーリアン | このトランザクションがBitGo instantを使用して送信された場合、trueに設定する                                                   |
+| instantId     | 文字列   | BitGoからの保証を参照または取得するのに使用されるインスタントトランザクションの識別子                                                    |
+| sequenceId    | 文字列   | シーケンスid (トランザクションが送信された時に提供される一意のカスタムデータ)                                                        |
+| comment       | 文字列   | トランザクションに設定されたコメント                                                                               |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
-| 404 Not Found    | The transaction was not found on the wallet                         |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| 404 Not Found    | ウォレットでトランザクションが見つからなかった    |
 
-## List Wallet Addresses
+## ウォレットのアドレスの一覧を表示する
 
-Gets a list of addresses which have been instantiated for a wallet using the New Address API.
+ウォレットについて、New Address APIを使用してインスタンス化されたアドレスのリストを取得します。
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -1922,15 +1922,15 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/addresses`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description          |
-| --------- | ------------------------ | -------- | -------------------- |
-| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
+| パラメーター   | 種類                       | 必須か | Description          |
+| -------- | ------------------------ | --- | -------------------- |
+| walletId | bitcoin address (string) | YES | The ID of the wallet |
 
 ### QUERY Parameters
 
