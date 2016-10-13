@@ -2175,25 +2175,25 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 
 ウォレットについて、未使用の入力トランザクションのリストを取得します。
 
-In order to create a bitcoin transaction, the creator of the transaction will need to accumulate a set of bitcoin 'inputs' for use in creation of that transaction.
+ビットコイントランザクションを作成するには、トランザクションの作成者は、そのトランザクションの作成に使用する一連のビットコイン「インプット」を蓄積することが必要になります。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/unspents`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description          |
-| --------- | ------------------------ | -------- | -------------------- |
-| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
+| パラメーター   | 種類              | 必須か | 説明       |
+| -------- | --------------- | --- | -------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type   | Required | Description                                                                                         |
-| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------- |
-| target    | number | NO       | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis). |
-| skip      | number | NO       | The starting index number to list from. Default is 0.                                               |
-| limit     | number | NO       | Max number of results to return in a single call (default=100, max=250)                             |
+| パラメーター | 種類     | 必須か | 説明                                                                                                  |
+| ------ | ------ | --- | --------------------------------------------------------------------------------------------------- |
+| target | 数字     | NO  | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis). |
+| skip   | number | NO  | The starting index number to list from. Default is 0.                                               |
+| limit  | number | NO  | Max number of results to return in a single call (default=100, max=250)                             |
 
 > Example response
 
