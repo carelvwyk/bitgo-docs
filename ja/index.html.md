@@ -1760,19 +1760,19 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 `GET /api/v1/wallet/:walletId/tx`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description          |
-| --------- | ------------------------ | -------- | -------------------- |
-| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
+| パラメーター   | 種類              | 必須か | 説明       |
+| -------- | --------------- | --- | -------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type    | Required | Description                                                            |
-| --------- | ------- | -------- | ---------------------------------------------------------------------- |
-| skip      | number  | NO       | The starting index number to list from. Default is 0.                  |
-| limit     | number  | NO       | Max number of results to return in a single call (default=25, max=250) |
-| compact   | boolean | NO       | Omit inputs and outputs in the transaction results                     |
+| パラメーター | 種類    | 必須か | 説明                                                 |
+| ------ | ----- | --- | -------------------------------------------------- |
+| skip   | 数字    | NO  | 一覧取得を開始するインデックス番号。既定値は0。                           |
+| limit  | 数字    | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数             |
+| コンパクト  | ブーリアン | NO  | Omit inputs and outputs in the transaction results |
 
 ### Response
 
