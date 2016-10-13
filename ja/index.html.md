@@ -1928,19 +1928,19 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 
 ### URL Parameters URL パラメーター
 
-| パラメーター   | 種類                       | 必須か | Description          |
-| -------- | ------------------------ | --- | -------------------- |
-| walletId | bitcoin address (string) | YES | The ID of the wallet |
+| パラメーター   | 種類              | 必須か | 説明       |
+| -------- | --------------- | --- | -------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type   | Required | Description                                                  |
-| --------- | ------ | -------- | ------------------------------------------------------------ |
-| chain     | number | NO       | Optionally restrict to chain 0 or chain 1                    |
-| skip      | number | NO       | Skip this number of results                                  |
-| limit     | number | NO       | Limit number of results to this number (default=25, max=500) |
+| パラメーター | 種類 | 必須か | 説明                                 |
+| ------ | -- | --- | ---------------------------------- |
+| chain  | 数字 | NO  | オプションとしてチェーン0またはチェーン1に制限する         |
+| skip   | 数字 | NO  | この数の結果をスキップする                      |
+| limit  | 数字 | NO  | 結果の数をこの数に制限する(default=25, max=500) |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -1971,27 +1971,27 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of Wallet Address objects.
+ウォレットアドレスオブジェクトの配列を返します。
 
-| Field   | Description                                       |
-| ------- | ------------------------------------------------- |
-| chain   | Which chain is the address on (0 or 1, currently) |
-| index   | BIP32 index on the chain                          |
-| path    | BIP32 path from wallet                            |
-| address | the bitcoin address                               |
+| フィールド   | 説明                        |
+| ------- | ------------------------- |
+| chain   | アドレスがどのチェーンにあるか(現在、0または1) |
+| index   | チェーンの BIP32 インデックス        |
+| path    | 財布からのBIP32パス              |
+| address | ビットコインアドレス                |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| Response 応答      | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Get Single Wallet Address
+## Get Single Wallet Address 単一のウォレットアドレスを取得する
 
-Gets information about an address on a wallet. Can also be used to check if an address exists on a wallet.
+ウォレット内のアドレスに関する情報を取得します。アドレスがウォレット内に存在しているかどうかチェックするのにも使用できます。
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2014,18 +2014,18 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/addresses/:address`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description                                     |
-| --------- | ------------------------ | -------- | ----------------------------------------------- |
-| walletId  | bitcoin address (string) | YES      | The ID of the wallet                            |
-| address   | bitcoin address (string) | YES      | The address on the wallet to get information of |
+| パラメーター   | 種類              | 必須か | 説明                |
+| -------- | --------------- | --- | ----------------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID          |
+| address  | ビットコインアドレス(文字列) | YES | 情報を取得するウォレットのアドレス |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -2041,14 +2041,14 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a wallet address object
+ウォレットアドレスオブジェクトを返します。
 
-| Field        | Description                                                                     |
+| フィールド        | 説明                                                                              |
 | ------------ | ------------------------------------------------------------------------------- |
-| address      | The bitcoin address being looked up                                             |
-| balance      | Current balance (satoshis) in this address                                      |
+| address      | ルックアップされているビットコインアドレス                                                           |
+| balance      | このアドレスの現在の残高 (単位はsatoshi)                                                       |
 | chain        | The HD chain used to generate this address (0 for user-generated, 1 for change) |
 | index        | The index in the HD chain used to generate this address                         |
 | path         | The HD path of the address on the wallet                                        |
