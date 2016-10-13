@@ -1592,18 +1592,18 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 
 ### Parameters パラメーター
 
-| 名                            | 種類     | 必須か | 説明                                                                                                                         |
-| ---------------------------- | ------ | --- | -------------------------------------------------------------------------------------------------------------------------- |
-| recipients                   | 文字列    | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]                             |
-| message                      | 文字列    | NO  | そのトランザクションに関するメモ                                                                                                           |
-| fee                          | 数字     | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                  |
-| feeTxConfirmTarget           | 数字     | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                        |
-| minConfirms                  | 数字     | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                      |
-| enforceMinConfirms ForChange | ブーリアン  | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                                                    |
-| sequenceId                   | 文字列    | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing |
-| otp                          | String | NO  | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details |
+| 名                            | 種類    | 必須か | 説明                                                                                             |
+| ---------------------------- | ----- | --- | ---------------------------------------------------------------------------------------------- |
+| recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
+| message                      | 文字列   | NO  | そのトランザクションに関するメモ                                                                               |
+| fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                      |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
+| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
+| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
+| sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                         |
+| otp                          | 文字列   | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。          |
 
-> Example Response
+> 応答の例
 
 ```json
 { "tx": "0100000001c69d05d3897a25c611324a935d0c688669dc416cb8d8e9ebb36e364fa79547c8000..",
@@ -1611,24 +1611,24 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
   "fee": 10000 }
 ```
 
-### Response
+### Response 応答
 
-| Field   | Description                                                                            |
-| ------- | -------------------------------------------------------------------------------------- |
-| tx      | hex-encoded form of the signed transaction                                             |
-| hash    | the transaction id                                                                     |
-| fee     | amount in satoshis sent to the Bitcoin miners as part of this transaction              |
-| feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction |
+| フィールド   | 説明                                                  |
+| ------- | --------------------------------------------------- |
+| tx      | 署名されたトランザクションの16進数でエンコードされた形式                       |
+| hash    | トランザクション id                                         |
+| fee     | このトランザクションの一部としてビットコインマイナーに送信されたsatoshi単位の金額        |
+| feeRate | このトランザクションの一部としてビットコインマイナーに送信された1KBあたりのsatoshi単位の金額 |
 
-### Policy/Failure Response
+### Policy/Failure Response ポリシー/エラー応答
 
-| Field           | Description                                                             |
-| --------------- | ----------------------------------------------------------------------- |
-| error           | the message from the policy that triggered this pending approval        |
-| pendingApproval | the pending approval id, which will need to be approved by another user |
-| otp             | set to true if the policy that fired was a "getOTP" type                |
-| triggeredPolicy | id of the policy that triggered this pending approval                   |
-| status          | the transaction status                                                  |
+| フィールド           | 説明                                 |
+| --------------- | ---------------------------------- |
+| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
+| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
+| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
+| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
+| status          | トランザクションのステータス                     |
 
 ## List Wallet Transactions
 
