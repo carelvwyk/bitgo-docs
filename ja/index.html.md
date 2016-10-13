@@ -1768,24 +1768,24 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 ### QUERY Parameters クエリ パラメーター
 
-| パラメーター | 種類    | 必須か | 説明                                                 |
-| ------ | ----- | --- | -------------------------------------------------- |
-| skip   | 数字    | NO  | 一覧取得を開始するインデックス番号。既定値は0。                           |
-| limit  | 数字    | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数             |
-| コンパクト  | ブーリアン | NO  | Omit inputs and outputs in the transaction results |
+| パラメーター | 種類    | 必須か | 説明                                     |
+| ------ | ----- | --- | -------------------------------------- |
+| skip   | 数字    | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
+| limit  | 数字    | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
+| コンパクト  | ブーリアン | NO  | トランザクション結果でインプットとアウトプットを省略する           |
 
-### Response
+### Response 応答
 
-Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected any wallet or bitcoin address involved in the transaction.
+トランザクションオブジェクトの配列を返す。そのトランザクションが関わったあらゆるウォレットやビットコインアドレスにどのように影響を与えたかに関する概要情報を、各トランザクションは含みます。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| Response 応答      | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-## Get Wallet Transaction
+## Get Wallet Transactions ウォレットのトランザクションを取得する
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1809,7 +1809,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 応答の例
 
 ```json
 {
