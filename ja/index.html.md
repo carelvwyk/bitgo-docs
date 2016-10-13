@@ -1377,7 +1377,7 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 | 401 Unauthorized   | 認証パラメーターが一致しない        |
 | 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
 
-# Wallet Operations - Basic ウォレットの操作 ー基礎
+# Wallet Operations - Basic ウォレットの操作 ー基礎編
 
 各ウォレットは多くのアドレスから成り、それぞれのアドレスをビットコインの受取りに使用できます。 Wallet APIはユーザーがウォレットと対話するための役に立つインターフェースを提供します。
 
@@ -2045,21 +2045,21 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 
 ウォレットアドレスオブジェクトを返します。
 
-| フィールド        | 説明                                                                              |
-| ------------ | ------------------------------------------------------------------------------- |
-| address      | ルックアップされているビットコインアドレス                                                           |
-| balance      | このアドレスの現在の残高 (単位はsatoshi)                                                       |
-| chain        | The HD chain used to generate this address (0 for user-generated, 1 for change) |
-| index        | The index in the HD chain used to generate this address                         |
-| path         | The HD path of the address on the wallet                                        |
-| received     | Total amount (satoshis) received on this address                                |
-| sent         | Total amount (satoshis) sent on this address                                    |
-| txCount      | Total number of transactions on this address                                    |
-| redeemScript | The redeemScript that may be used to spend funds from this P2SH address         |
+| フィールド        | 説明                                                  |
+| ------------ | --------------------------------------------------- |
+| address      | ルックアップされているビットコインアドレス                               |
+| balance      | このアドレスの現在の残高 (単位はsatoshi)                           |
+| chain        | このアドレスを生成するのに使用されたHDチェーン(ユーザーが生成したアドレスは0、お釣りアドレスは1) |
+| index        | アドレスを生成するのに使用されたHDチェーン内のインデックス                      |
+| path         | ウォレット内のアドレスのHDパス                                    |
+| received     | このアドレスで受信した合計金額 (単位はsatoshi)                        |
+| sent         | このアドレスで送信した合計金額 (単位はsatoshi)                        |
+| txCount      | このアドレスでのトランザクションの合計数                                |
+| redeemScript | このP2SHアドレスからの資金の消費に使用される可能性があるredeemScript          |
 
-# Wallet Operations - Advanced
+# Wallet Operations - Basic ウォレットの操作 ー上級編
 
-These features are available and recommended for advanced developers. Using these APIs will provide expanded (but potentially complex) functionality and greater control of the transaction creation process.
+これらの機能は上級レベルの開発者向けに利用可能、推奨となっています。 これらのAPIを使用することで、拡張された（ただし潜在的に複雑な）機能と強化されたトランザクション生成プロセスのコントロールが提供されます。
 
 ## Get Transaction By Sequence Id
 
