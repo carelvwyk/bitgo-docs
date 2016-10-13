@@ -1592,16 +1592,16 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 
 ### Parameters パラメーター
 
-| 名                            | 種類     | 必須か | 説明                                                                                                                                  |
-| ---------------------------- | ------ | --- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| recipients                   | 文字列    | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]                                      |
-| message                      | 文字列    | NO  | そのトランザクションに関するメモ                                                                                                                    |
-| fee                          | 数字     | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                           |
-| feeTxConfirmTarget           | 数字     | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                 |
-| minConfirms                  | 数字     | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                               |
-| enforceMinConfirms ForChange | ブーリアン  | NO  | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet. |
-| sequenceId                   | String | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing          |
-| otp                          | String | NO  | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details          |
+| 名                            | 種類     | 必須か | 説明                                                                                                                         |
+| ---------------------------- | ------ | --- | -------------------------------------------------------------------------------------------------------------------------- |
+| recipients                   | 文字列    | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]                             |
+| message                      | 文字列    | NO  | そのトランザクションに関するメモ                                                                                                           |
+| fee                          | 数字     | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                  |
+| feeTxConfirmTarget           | 数字     | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                        |
+| minConfirms                  | 数字     | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                      |
+| enforceMinConfirms ForChange | ブーリアン  | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                                                    |
+| sequenceId                   | 文字列    | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing |
+| otp                          | String | NO  | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details |
 
 > Example Response
 
