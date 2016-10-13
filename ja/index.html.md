@@ -1857,27 +1857,27 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get information about a transaction on a wallet.
+ウォレットのトランザクションに関する情報を取得します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/tx/:txId`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                      | Required | Description                          |
-| --------- | ------------------------- | -------- | ------------------------------------ |
-| walletId  | bitcoin address (string)  | YES      | The ID of the wallet                 |
-| txId      | transaction hash (string) | YES      | The hash of the transaction to fetch |
+| パラメーター   | 種類                  | 必須か | 説明                |
+| -------- | ------------------- | --- | ----------------- |
+| walletId | ビットコインアドレス(文字列)     | YES | ウォレットのID          |
+| txId     | トランザクション ハッシュ (文字列) | YES | 取得するトランザクションのハッシュ |
 
-### Response
+### Response 応答
 
-Returns a Transaction object
+トランザクション オブジェクトを返します。
 
-| Parameter     | Type     | Description                                                                                                                                                  |
+| パラメーター        | 種類       | 説明                                                                                                                                                           |
 | ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| id            | String   | Hash of the transaction                                                                                                                                      |
-| hex           | String   | Raw hex of the transaction                                                                                                                                   |
+| id            | 文字列      | トランザクションのハッシュ                                                                                                                                                |
+| hex           | 文字列      | Raw hex of the transaction                                                                                                                                   |
 | date          | DateTime | Date this transaction was first seen                                                                                                                         |
 | blockhash     | String   | Hash of the block, if this transaction has been confirmed                                                                                                    |
 | height        | Number   | Height of the block this transaction was seen in                                                                                                             |
