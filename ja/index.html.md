@@ -2122,20 +2122,20 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-送信トランザクションを送信する時に渡されたウォレットシーケンスIDのトランザクションを取得する（sendCoinsまたはsendTransaction経由で） This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.
+送信トランザクションを送信する時に渡されたウォレットシーケンスIDのトランザクションを取得します（sendCoinsまたはsendTransaction経由で） これは、自分の一意のIDを通じて、署名されていない/確認されていないトランザクションをトラッキングするのに役立ちます。ビットコイントランザクションIDは共同署名の前に定義されず、確認前改変されうるため。
 
-A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.
+BitGoによってまだ共同署名されていない保留中のトランザクションは、依然としてシーケンスidを持ちます。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/tx/sequence/:sequenceId`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter  | Type                        | Required | Description                                                 |
-| ---------- | --------------------------- | -------- | ----------------------------------------------------------- |
-| walletId   | bitcoin address (string)    | YES      | The ID of the wallet                                        |
-| sequenceId | custom user-provided string | YES      | The unique id previously sent with an outgoing transaction. |
+| パラメーター     | 種類              | 必須か | 説明                           |
+| ---------- | --------------- | --- | ---------------------------- |
+| walletId   | ビットコインアドレス(文字列) | YES | ウォレットのID                     |
+| sequenceId | カスタムのユーザー提供の文字列 | YES | 以前に発信トランザクションとともに送信された一意のid。 |
 
 ### Response
 
