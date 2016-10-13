@@ -1501,21 +1501,21 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 
 ### Parameters パラメーター
 
-| 名                            | 種類      | 必須か | 説明                                                                                                                                                                       |
-| ---------------------------- | ------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| address                      | 文字列     | YES | 宛先ビットコインアドレス                                                                                                                                                             |
-| amount                       | 数字      | YES | 送信される額（単位はSatoshi）、例 1BTCの1/10 は100.1*1e8                                                                                                                                |
-| walletPassphrase             | 文字列     | YES | ウォレットのパスフレーズ、暗号化されたユーザーキーを（クライアント側で）復号するのに使用される                                                                                                                          |
-| fee                          | 数字      | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                                                                |
-| message                      | 文字列     | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                                                                                                         |
-| feeTxConfirmTarget           | 数字      | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                                                      |
-| minConfirms                  | 数字      | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                                                                    |
-| enforceMinConfirms ForChange | ブーリアン   | NO  | デフォルトはfalse。 ウォレットのお釣りアドレスからの、まだ消費されていないそれのminConfirms （上で説明）数の確認を要求するには、trueに設定する。 Falseに設定された場合、minConfirmsはユーザーのウォレットとは異なるウォレットからの、まだ消費されていないそれにのみ適用されます(お釣りでないアドレス)。 |
-| sequenceId                   | 文字列     | NO  | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing                                               |
-| instant                      | boolean | NO  | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).                                               |
-| otp                          | String  | NO  | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details                                               |
+| 名                            | 種類    | 必須か | 説明                                                                                                                                                                       |
+| ---------------------------- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| address                      | 文字列   | YES | 宛先ビットコインアドレス                                                                                                                                                             |
+| amount                       | 数字    | YES | 送信される額（単位はSatoshi）、例 1BTCの1/10 は100.1*1e8                                                                                                                                |
+| walletPassphrase             | 文字列   | YES | ウォレットのパスフレーズ、暗号化されたユーザーキーを（クライアント側で）復号するのに使用される                                                                                                                          |
+| fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                                                                |
+| message                      | 文字列   | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                                                                                                         |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                                                      |
+| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                                                                    |
+| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトはfalse。 ウォレットのお釣りアドレスからの、まだ消費されていないそれのminConfirms （上で説明）数の確認を要求するには、trueに設定する。 Falseに設定された場合、minConfirmsはユーザーのウォレットとは異なるウォレットからの、まだ消費されていないそれにのみ適用されます(お釣りでないアドレス)。 |
+| sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                                                                                                   |
+| instant                      | ブーリアン | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                                                                                                                  |
+| otp                          | 文字列   | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。                                                                                    |
 
-> Example Response
+> 応答の例
 
 ```json
 { "tx": "0100000001a366332472cebceabdd541beb582d5dbaaecccdbec639b0a2d2b...",
@@ -1527,7 +1527,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 }
 ```
 
-> Example Response (pending approval required because of wallet policy)
+> 応答の例(ウォレットポリシーのため保留中の承認が必要)
 
 ```json
 {
@@ -1538,11 +1538,11 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 }
 ```
 
-### Success Response
+### 成功レスポンス
 
-| Field   | Description                                                                            |
+| フィールド   | 説明                                                                                     |
 | ------- | -------------------------------------------------------------------------------------- |
-| tx      | hex-encoded form of the signed transaction                                             |
+| tx      | 署名されたトランザクションの16進数でエンコードされた形式                                                          |
 | hash    | the transaction id                                                                     |
 | fee     | amount in satoshis sent to the Bitcoin miners as part of this transaction              |
 | feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction |
