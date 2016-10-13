@@ -2242,26 +2242,26 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 
 未使用分のインプットのオブジェクトの配列を返します。
 
-| フィールド         | 説明                                                                                                                    |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| tx_hash       | 未使用のインプットのハッシュ値                                                                                                       |
-| tx_output_n | *tx_hash*からの未使用のインプットのインデックス                                                                                          |
-| value         | 未使用のインプットの値、単位はsatoshi                                                                                                |
-| script        | (16 進数形式で) スクリプト ハッシュを出力                                                                                              |
-| redeemScript  | 交換スクリプト                                                                                                               |
-| chainPath     | ウォレットに関連する未使用のアウトプットのBIP32 パス                                                                                         |
-| confirmations | 未使用分のトランザクションがブロックに含まれた時とその後見られたブロックの数                                                                                |
-| isChange      | これがこのウォレットからの以前の使用からの出力であることを示すブーリアンで、おそらく確認数が0だったとしても安全に使用可能                                                         |
-| instant       | Boolean indicating if this unspent can be used to create a BitGo Instant transaction guaranteed against double spends |
+| フィールド         | 説明                                                               |
+| ------------- | ---------------------------------------------------------------- |
+| tx_hash       | 未使用のインプットのハッシュ値                                                  |
+| tx_output_n | *tx_hash*からの未使用のインプットのインデックス                                     |
+| value         | 未使用のインプットの値、単位はsatoshi                                           |
+| script        | (16 進数形式で) スクリプト ハッシュを出力                                         |
+| redeemScript  | 交換スクリプト                                                          |
+| chainPath     | ウォレットに関連する未使用のアウトプットのBIP32 パス                                    |
+| confirmations | 未使用分のトランザクションがブロックに含まれた時とその後見られたブロックの数                           |
+| isChange      | これがこのウォレットからの以前の使用からの出力であることを示すブーリアンで、おそらく確認数が0だったとしても安全に使用可能    |
+| instant       | 二重支払いに関する保証が付いたBitGo Instantトランザクションの作成にこの未使用分が使用できるかどうかを示すブーリアン |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Consolidate Unspents
+## Consolidate Unspents 未使用分を統合する
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2282,7 +2282,7 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
 WALLETPASSPHRASE="mypassword"
 
@@ -2293,17 +2293,17 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 ```
 
-Coalesce the unspents currently held in a wallet to a smaller number. This is an iterative process, largely due to transaction size limits and signing speed. Each iteration requires its own transaction fees.
+現在ウォレットに保持されている未使用分を、より小さい数へ合体（統合）します。 これは反復的（イタレーション）プロセスで、主にトランザクションサイズの制限と署名の速さによるものです。 各イタレーションごとにトランザクション手数料が必要です。
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter                     | Type     | Required | Description                                                                            |
-| ----------------------------- | -------- | -------- | -------------------------------------------------------------------------------------- |
-| target                        | number   | NO       | desired number of unspents after running the function                                  |
-| maxInputCountPerConsolidation | number   | NO       | maximum number of unspents to be used for each iteration. Defaults to 85.              |
-| minConfirms                   | number   | NO       | only choose unspent inputs with a certain number of confirmations                      |
-| walletPassphrase              | string   | NO       | Passphrase of the wallet                                                               |
-| progressCallback              | function | NO       | Closure to be called after each iteration. It can be used for monitoring the progress. |
+| パラメーター                        | 種類       | 必須か | 説明                                                                                     |
+| ----------------------------- | -------- | --- | -------------------------------------------------------------------------------------- |
+| target                        | 数字       | NO  | desired number of unspents after running the function                                  |
+| maxInputCountPerConsolidation | number   | NO  | maximum number of unspents to be used for each iteration. Defaults to 85.              |
+| minConfirms                   | number   | NO  | only choose unspent inputs with a certain number of confirmations                      |
+| walletPassphrase              | string   | NO  | Passphrase of the wallet                                                               |
+| progressCallback              | function | NO  | Closure to be called after each iteration. It can be used for monitoring the progress. |
 
 ## Fan Out Unspents
 
