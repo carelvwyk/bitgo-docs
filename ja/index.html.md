@@ -2376,9 +2376,9 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"recipients\": [{ \"address\": \"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD\", \"amount\": 1500000}, { \"address\": \"2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu\", \"amount\": 2500000 }] }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
-```<aside class="warning"> This method is for advanced API users. For most scenarios, \[sendCoins\](#send-coins-to-address) is the recommended method to send bitcoins from a wallet. </aside> 
+```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
-Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only in the SDK.
+そのウォレットの各アドレスからの未使用分をを使用して、ウォレットから複数の受信者を持つトランザクションを作成します。これはSDKでのみのクライアント側の機能です。
 
 Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address (path of /1) on the wallet.
 
