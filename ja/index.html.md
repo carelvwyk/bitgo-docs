@@ -2368,7 +2368,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 curl -X POST \
