@@ -2299,8 +2299,8 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 
 | パラメーター                        | 種類       | 必須か | 説明                                                                                     |
 | ----------------------------- | -------- | --- | -------------------------------------------------------------------------------------- |
-| target                        | 数字       | NO  | desired number of unspents after running the function                                  |
-| maxInputCountPerConsolidation | number   | NO  | maximum number of unspents to be used for each iteration. Defaults to 85.              |
+| target                        | 数字       | NO  | 関数を実行した後の、希望の未使用分の数                                                                    |
+| maxInputCountPerConsolidation | 数字       | NO  | maximum number of unspents to be used for each iteration. Defaults to 85.              |
 | minConfirms                   | number   | NO  | only choose unspent inputs with a certain number of confirmations                      |
 | walletPassphrase              | string   | NO  | Passphrase of the wallet                                                               |
 | progressCallback              | function | NO  | Closure to be called after each iteration. It can be used for monitoring the progress. |
