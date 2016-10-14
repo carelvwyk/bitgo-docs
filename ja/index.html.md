@@ -2610,23 +2610,23 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 
 ### Errors　エラー
 
-| 応答                   | 説明                                                 |
-| -------------------- | -------------------------------------------------- |
-| 400 Bad Request      | 要求パラメーターが見つからないか正しくない                              |
-| 401 Unauthorized     | 認証パラメーターが一致しない、またはアンロックが必要                         |
-| 402 Payment Required | The transaction fee in this request seems too low. |
+| 応答                   | 説明                             |
+| -------------------- | ------------------------------ |
+| 400 Bad Request      | 要求パラメーターが見つからないか正しくない          |
+| 401 Unauthorized     | 認証パラメーターが一致しない、またはアンロックが必要     |
+| 402 Payment Required | このリクエストでのトランザクション手数料が低すぎるようです。 |
 
-### Policy/Failure Response
+### Policy/Failure Response ポリシー/エラー応答
 
-| Field           | Description                                                             |
-| --------------- | ----------------------------------------------------------------------- |
-| error           | the message from the policy that triggered this pending approval        |
-| pendingApproval | the pending approval id, which will need to be approved by another user |
-| otp             | set to true if the policy that fired was a "getOTP" type                |
-| triggeredPolicy | id of the policy that triggered this pending approval                   |
-| status          | the transaction status                                                  |
+| フィールド           | 説明                                 |
+| --------------- | ---------------------------------- |
+| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
+| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
+| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
+| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
+| status          | トランザクションのステータス                     |
 
-## Get Instant Guarantee
+## Get Instant Guarantee インスタント保証を得る
 
 ```shell
 INSTANTID=564ea1fa95f4344c6db00773d1277160
@@ -2648,13 +2648,13 @@ bitgo.instantGuarantee({ id: '56562ee923ab7f3a28d638085ba6955a' }, function(err,
 });
 ```
 
-BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo against double spends. As a co-signer on a multi-sig wallet, BitGo will never double-spend an output. We back our promise with a cryptographically signed guarantee on each transaction, enabling receivers to accept funds without the need for any block confirmations.<aside class="info"> Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet. </aside> 
+BitGo Instantは、私達による二重支払いに対する保証として、ウォレットプラットフォームの上に構築されています。 マルチシグウォレットの共同署名者として、BitGoがアウトプットを二重支払いすることは決してありません。 私達の約束は各トランザクションごとに暗号署名された保証によって裏付けられており、受信者がブロック確認の必要なしに資金を受け入れるのを可能にします。<aside class="info"> 誰でも即座のトランザクションを受け取ることができます。インスタントトランザクションの送信にはinstantと互換性がある / 暗号鍵リカバリーシステム（KRS）のBitGoウォレットが必要です。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/instant/<id>`
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -2669,20 +2669,20 @@ BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo ag
 }
 ```
 
-### Response
+### Response 応答
 
-Returns the instant guarantee message, including the amount and Transaction ID.
+金額とトランザクションIDを含む、instant保証のメッセージを返します。
 
-| Parameter      | Type     | Description                                                                                   |
-| -------------- | -------- | --------------------------------------------------------------------------------------------- |
-| amount         | Number   | Amount in Satoshis of the instant guarantee                                                   |
-| createTime     | DateTime | The time at which the transaction was created                                                 |
-| guarantee      | String   | The message by BitGo to guarantee the instant transaction                                     |
-| id             | String   | The instant guarantee ID on BitGo                                                             |
-| transactionId  | String   | The hash of the guaranteed transaction                                                        |
-| normalizedHash | String   | The hash of the guaranteed transaction without signatures                                     |
-| signature      | String   | Cryptographically signed guarantee, to provide an audit record in cases of a dispute          |
-| state          | String   | The state of a transaction as monitored by BitGo (you do not need to take any action on this) |
+| パラメーター         | 種類     | 説明                                                                                            |
+| -------------- | ------ | --------------------------------------------------------------------------------------------- |
+| amount         | 数字     | Instant保証の金額、単位はSatoshi                                                                       |
+| createTime     | 日時     | トランザクションが作成された時間                                                                              |
+| guarantee      | String | The message by BitGo to guarantee the instant transaction                                     |
+| id             | String | The instant guarantee ID on BitGo                                                             |
+| transactionId  | String | The hash of the guaranteed transaction                                                        |
+| normalizedHash | String | The hash of the guaranteed transaction without signatures                                     |
+| signature      | String | Cryptographically signed guarantee, to provide an audit record in cases of a dispute          |
+| state          | String | The state of a transaction as monitored by BitGo (you do not need to take any action on this) |
 
 ### Verifying BitGo's Guarantee
 
