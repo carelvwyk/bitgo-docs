@@ -2297,15 +2297,15 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 
 ### Parameters パラメーター
 
-| パラメーター                        | 種類  | 必須か | 説明                                                                                     |
-| ----------------------------- | --- | --- | -------------------------------------------------------------------------------------- |
-| target                        | 数字  | NO  | 関数を実行した後の、希望の未使用分の数                                                                    |
-| maxInputCountPerConsolidation | 数字  | NO  | 各イタレーションで使用される未使用分の最大の数。デフォルトで85。                                                      |
-| minConfirms                   | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ                                                              |
-| walletPassphrase              | 文字列 | NO  | ウォレットのパスフレーズ                                                                           |
-| progressCallback              | 関数  | NO  | Closure to be called after each iteration. It can be used for monitoring the progress. |
+| パラメーター                        | 種類  | 必須か | 説明                                          |
+| ----------------------------- | --- | --- | ------------------------------------------- |
+| target                        | 数字  | NO  | 関数を実行した後の、希望の未使用分の数                         |
+| maxInputCountPerConsolidation | 数字  | NO  | 各イタレーションで使用される未使用分の最大の数。デフォルトで85。           |
+| minConfirms                   | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ                   |
+| walletPassphrase              | 文字列 | NO  | ウォレットのパスフレーズ                                |
+| progressCallback              | 関数  | NO  | 各イテレーション後に呼び出されるクロージャ。進行状況をモニタリングするのに使用できる。 |
 
-## Fan Out Unspents
+## Fan Out Unspents 未使用分のファンアウト
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2326,7 +2326,7 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
 WALLETPASSPHRASE="mypassword"
 
@@ -2337,17 +2337,17 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/fanoutunspents
 ```
 
-Take all the wallet's unspents (that match the selection criteria, such as minimum confirm count) and spread them into a higher number of unspents.
+（最小確認カウント等の選択基準と一致する）ウォレットの未使用分を取って、より大きい数の未使用分に広げます。
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter        | Type   | Required | Description                                                       |
-| ---------------- | ------ | -------- | ----------------------------------------------------------------- |
-| target           | number | YES      | desired number of unspents after running the function             |
-| minConfirms      | number | NO       | only choose unspent inputs with a certain number of confirmations |
-| walletPassphrase | string | NO       | Passphrase of the wallet                                          |
+| パラメーター           | 種類  | 必須か | 説明                        |
+| ---------------- | --- | --- | ------------------------- |
+| target           | 数字  | YES | 関数を実行した後の、希望の未使用分の数       |
+| minConfirms      | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ |
+| walletPassphrase | 文字列 | NO  | ウォレットのパスフレーズ              |
 
-## Create Transaction
+## Create Transaction　トランザクションの作成
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
