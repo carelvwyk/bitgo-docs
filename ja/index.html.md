@@ -2489,27 +2489,27 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
 ```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
-Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.
+作成されたトランザクションの16進数、キーチェーンそして未使用分の情報を使用してマルチシグトランザクションに署名します(導出パスと交換スクリプト)。通常createTransactionからの出力と使用します。
 
-Can be performed offline.
+オフラインで実行することができます。
 
-This is client-side functionality only in the SDK.
+これは、SDKでのみのクライアント側の機能です。
 
-> Example Response
+> 応答の例
 
 ```json
 {"tx":"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."}
 ```
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter      | Type            | Required | Description                                                              |
-| -------------- | --------------- | -------- | ------------------------------------------------------------------------ |
-| transactionHex | string          | YES      | The unsigned transaction, in hex string form                             |
-| unspents       | array           | YES      | Array of unspents objects, which contain the chainpath and redeemScript. |
-| keychain       | keychain object | YES      | The decrypted keychain (object), with available xprv property.           |
+| パラメーター         | 種類            | 必須か | 説明                                           |
+| -------------- | ------------- | --- | -------------------------------------------- |
+| transactionHex | 文字列           | YES | The unsigned transaction, in hex string form |
+| unspents       | 配列            | YES | unspentsオブジェクトの配列で、chainpathとredeemScriptを含む |
+| keychain       | キーチェーン オブジェクト | YES | 利用できるxprvのプロパティを持つ復号化されたキーチェーン（オブジェクト）。      |
 
-## Send Transaction
+## Send Transaction トランザクションを送信する
 
 ```shell
 TX={raw hex transaction}
@@ -2574,9 +2574,9 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
     );
   });
 });
-```<aside class="warning"> This method is for advanced API users. For most scenarios, \[sendCoins\](#send-coins-to-address) is the recommended method to send bitcoins from a wallet. </aside> 
+```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
-Send a partially-signed transaction. The server will do one of the following: * reject the transaction * gather additional approvals from other wallet admins * apply the final signature, and submit to the Bitcoin P2P network<aside class="info"> This API requires the session to be unlocked using the Unlock API A single call to the Unlock API allows any single transaction, or multiple transactions up to an internally-set BitGo quota (currently set at 50 BTC). </aside> 
+部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する<aside class="info"> This API requires the session to be unlocked using the Unlock API A single call to the Unlock API allows any single transaction, or multiple transactions up to an internally-set BitGo quota (currently set at 50 BTC). </aside> 
 
 ### HTTP Request
 
