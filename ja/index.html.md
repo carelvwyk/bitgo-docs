@@ -2673,35 +2673,35 @@ BitGo Instantは、私達による二重支払いに対する保証として、�
 
 金額とトランザクションIDを含む、instant保証のメッセージを返します。
 
-| パラメーター         | 種類     | 説明                                                                                            |
-| -------------- | ------ | --------------------------------------------------------------------------------------------- |
-| amount         | 数字     | Instant保証の金額、単位はSatoshi                                                                       |
-| createTime     | 日時     | トランザクションが作成された時間                                                                              |
-| guarantee      | String | The message by BitGo to guarantee the instant transaction                                     |
-| id             | String | The instant guarantee ID on BitGo                                                             |
-| transactionId  | String | The hash of the guaranteed transaction                                                        |
-| normalizedHash | String | The hash of the guaranteed transaction without signatures                                     |
-| signature      | String | Cryptographically signed guarantee, to provide an audit record in cases of a dispute          |
-| state          | String | The state of a transaction as monitored by BitGo (you do not need to take any action on this) |
+| パラメーター         | 種類  | 説明                                                  |
+| -------------- | --- | --------------------------------------------------- |
+| amount         | 数字  | Instant保証の金額、単位はSatoshi                             |
+| createTime     | 日時  | トランザクションが作成された時間                                    |
+| guarantee      | 文字列 | 即座トランザクションを保証する BitGo によるメッセージ                      |
+| id             | 文字列 | BitGo のインスタント保証 ID                                  |
+| transactionId  | 文字列 | 保証されたトランザクションのハッシュ                                  |
+| normalizedHash | 文字列 | 署名のない保証されたトランザクションのハッシュ                             |
+| signature      | 文字列 | 紛争があった場合に備え監査記録を提供するための、暗号署名された保証                   |
+| state          | 文字列 | BitGoによってモニタリングされるトランザクションの状態（あなたの方で措置を講じる必要はありません） |
 
-### Verifying BitGo's Guarantee
+### Verifying BitGo's Guarantee BitGoの保証を認証する
 
-BitGo’s guarantee is signed using our corporate signing key, which corresponds to the public Bitcoin address 1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja.
+BitGoの保証は、パブリックビットコインアドレス（1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja）に対応する私達の会社の署名キーを使用して署名されます。
 
-To confirm, verify the guarantee with our signature. Example:
+確認するには、私達の署名で保証を認証します。例：
 
 `assert(bitcoin.Message.verify('1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja', signature, guarantee, process.config.bitcoin.network));`
 
-If the signature is valid, you may accept the transaction instantly without the need for any block information. You can save the guarantee & signature locally to provide an audit record in case of a dispute.
+署名が有効な場合、ブロック情報を全く必要としないでトランザクションを即座に受け取ることができます。 保証の署名を節約して& ローカルで署名して紛争があった場合に監査記録を提供することができます。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-## Get Wallet by Address
+## Get Wallet by Address アドレスでウォレットを取得する
 
 Given an address, returns the address information (including balances) and wallet the address is associated with. Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.
 
