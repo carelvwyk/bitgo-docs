@@ -2818,12 +2818,12 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 
 ### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-# Wallet Sharing
+# Wallet Sharing ウォレットの共有
 
 A BitGo wallet may be shared between multiple users. All users on a wallet share the same private key (although each individual user may encrypt it separately).
 
