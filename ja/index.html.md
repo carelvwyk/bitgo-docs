@@ -2703,7 +2703,7 @@ BitGoの保証は、パブリックビットコインアドレス（1BitGo3gxRZ6
 
 ## Get Wallet by Address アドレスでウォレットを取得する
 
-Given an address, returns the address information (including balances) and wallet the address is associated with. Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.
+アドレスを与えられ、そのアドレスの情報(残高も含む) とそのアドレスが関連するウォレットを返します。 １人で多数のアドレス/ウォレットを持っているが、アドレスが属するウォレットが不明な時に役に立ちます。
 
 ```shell
 ADDRESS=2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
@@ -2722,17 +2722,17 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/walletaddress/:address`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description                           |
-| --------- | ------------------------ | -------- | ------------------------------------- |
-| address   | bitcoin address (string) | YES      | The address to look up information on |
+| パラメーター  | 種類              | 必須か | 説明              |
+| ------- | --------------- | --- | --------------- |
+| address | ビットコインアドレス(文字列) | YES | 情報をルックアップするアドレス |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -2749,24 +2749,24 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a wallet address object
+ウォレットアドレスオブジェクトを返します。
 
-| Field        | Description                                                                     |
-| ------------ | ------------------------------------------------------------------------------- |
-| address      | The bitcoin address being looked up                                             |
-| balance      | Current balance (satoshis) in this address                                      |
-| chain        | The HD chain used to generate this address (0 for user-generated, 1 for change) |
-| index        | The index in the HD chain used to generate this address                         |
-| path         | The HD path of the address on the wallet                                        |
-| received     | Total amount (satoshis) received on this address                                |
-| sent         | Total amount (satoshis) sent on this address                                    |
-| txCount      | Total number of transactions on this address                                    |
-| redeemScript | The redeemScript that may be used to spend funds from this P2SH address         |
-| wallet       | The base address (wallet ID) of the wallet this address is on                   |
+| フィールド        | 説明                                                  |
+| ------------ | --------------------------------------------------- |
+| address      | ルックアップされているビットコインアドレス                               |
+| balance      | このアドレスの現在の残高 (単位はsatoshi)                           |
+| chain        | このアドレスを生成するのに使用されたHDチェーン(ユーザーが生成したアドレスは0、お釣りアドレスは1) |
+| index        | アドレスを生成するのに使用されたHDチェーン内のインデックス                      |
+| path         | ウォレット内のアドレスのHDパス                                    |
+| received     | このアドレスで受信した合計金額 (単位はsatoshi)                        |
+| sent         | このアドレスで送信した合計金額 (単位はsatoshi)                        |
+| txCount      | このアドレスでのトランザクションの合計数                                |
+| redeemScript | このP2SHアドレスからの資金の消費に使用される可能性があるredeemScript          |
+| wallet       | このアドレスがあるウォレットのベースアドレス（ウォレットID）　                    |
 
-## Freeze Wallet
+## Freeze Wallet 財布を凍結する
 
 ```shell
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
@@ -2792,7 +2792,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -2801,22 +2801,22 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Prevent all spend activity on a wallet. This call is designed to be used in cases of emergency, and prevent spends for a default of 1 hour.
+ウォレットでの全ての使用活動を防止します。このコールは緊急時に使用されるように設計されており、デフォルトで一時間使用を防止します。
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter | Type   | Required | Description                                                             |
-| --------- | ------ | -------- | ----------------------------------------------------------------------- |
-| duration  | number | NO       | length of time in seconds to freeze spend activity. Defaults to 1 hour. |
+| パラメーター   | 種類 | 必須か | 説明                        |
+| -------- | -- | --- | ------------------------- |
+| duration | 数字 | NO  | 使用活動の凍結の期間、秒数で。デフォルトで1時間。 |
 
-### Response
+### Response 応答
 
-| Field   | Description                                         |
-| ------- | --------------------------------------------------- |
-| time    | The date the freeze command was called              |
-| expires | The date after which spend activity will be allowed |
+| フィールド   | 説明                |
+| ------- | ----------------- |
+| time    | 凍結のコマンドが呼び出された日付  |
+| expires | 使用活動が認められるようになる日付 |
 
-### Errors
+### Errors　エラー
 
 | Response         | Description                                                         |
 | ---------------- | ------------------------------------------------------------------- |
