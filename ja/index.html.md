@@ -2380,13 +2380,13 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 
 そのウォレットの各アドレスからの未使用分をを使用して、ウォレットから複数の受信者を持つトランザクションを作成します。これはSDKでのみのクライアント側の機能です。
 
-Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address (path of /1) on the wallet.
+通常、signTransactionの前に使用され、signTransactionは作成されたトランザクションに署名します。お釣りはウォレット上で新たに作成されたお釣りアドレス（/1のパス）に送信されます。
 
-This is an advanced method that allows you to manually specify the miner fee (could be 0) and decrypted keychain.
+これは上級のメソッドで、マイナー手数料と復号化されたキーチェーンを手動で指定（マイナー手数料は0も可能）ことを可能にします。
 
-**WARNING**: If you provide an insufficient fee, your transaction may not get confirmed and your unspents may be unusable for some time.
+**注意**: 不十分な手数料を提供した場合、あなたのトランザクションは確認を得られず、未使用分がしばらく使用できないことがあります。
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -2414,20 +2414,20 @@ This is an advanced method that allows you to manually specify the miner fee (co
 }
 ```
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter                    | Type    | Required | Description                                                                                                                              |
-| ---------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| recipients                   | string  | YES      | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]       |
-| fee                          | number  | NO       | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.                                         |
-| feeRate                      | number  | NO       | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.                       |
-| feeTxConfirmTarget           | number  | NO       | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.           |
-| minConfirms                  | number  | NO       | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange. |
-| enforceMinConfirms ForChange | boolean | NO       | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.      |
-| minUnspentSize               | number  | NO       | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).                            |
-| instant                      | boolean | NO       | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).               |
+| パラメーター                       | 種類    | 必須か | 説明                                                                                             |
+| ---------------------------- | ----- | --- | ---------------------------------------------------------------------------------------------- |
+| recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
+| fee                          | 数字    | NO  | 単位をSatoshiとする、ビットコインマイナーに支払われる絶対的な手数料。自動の場合「undefined」に設定。                                     |
+| feeRate                      | 数字    | NO  | ビットコインマイナーに支払われるトランザクションサイズのKBあたりの手数料。自動の場合「undefined」に設定。                                     |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
+| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
+| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
+| minUnspentSize               | 数字    | NO  | 使用可能と考えられる未使用分の単位をsatoshiとする最低額。デフォルトで5460 (トランザクションダストスパムへの対抗として)                             |
+| instant                      | ブーリアン | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                                        |
 
-## Sign Transaction
+## Sign Transaction トランザクションへ署名する
 
 ```javascript
 bitgo.wallets().get({id: walletId}, function(err, wallet) {
@@ -2457,7 +2457,7 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 UNSPENTS='[
@@ -2487,7 +2487,7 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"transactionHex\": \"$TRANSACTIONHEX\", \"unspents\": $UNSPENTS, \"keychain\": $KEYCHAIN }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
-```<aside class="warning"> This method is for advanced API users. For most scenarios, \[sendCoins\](#send-coins-to-address) is the recommended method to send bitcoins from a wallet. </aside> 
+```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
 Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.
 
