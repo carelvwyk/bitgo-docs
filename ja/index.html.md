@@ -2297,13 +2297,13 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 
 ### Parameters パラメーター
 
-| パラメーター                        | 種類       | 必須か | 説明                                                                                     |
-| ----------------------------- | -------- | --- | -------------------------------------------------------------------------------------- |
-| target                        | 数字       | NO  | 関数を実行した後の、希望の未使用分の数                                                                    |
-| maxInputCountPerConsolidation | 数字       | NO  | maximum number of unspents to be used for each iteration. Defaults to 85.              |
-| minConfirms                   | number   | NO  | only choose unspent inputs with a certain number of confirmations                      |
-| walletPassphrase              | string   | NO  | Passphrase of the wallet                                                               |
-| progressCallback              | function | NO  | Closure to be called after each iteration. It can be used for monitoring the progress. |
+| パラメーター                        | 種類  | 必須か | 説明                                                                                     |
+| ----------------------------- | --- | --- | -------------------------------------------------------------------------------------- |
+| target                        | 数字  | NO  | 関数を実行した後の、希望の未使用分の数                                                                    |
+| maxInputCountPerConsolidation | 数字  | NO  | 各イタレーションで使用される未使用分の最大の数。デフォルトで85。                                                      |
+| minConfirms                   | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ                                                              |
+| walletPassphrase              | 文字列 | NO  | ウォレットのパスフレーズ                                                                           |
+| progressCallback              | 関数  | NO  | Closure to be called after each iteration. It can be used for monitoring the progress. |
 
 ## Fan Out Unspents
 
