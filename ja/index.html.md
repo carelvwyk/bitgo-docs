@@ -2576,13 +2576,13 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 });
 ```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
-部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する<aside class="info"> This API requires the session to be unlocked using the Unlock API A single call to the Unlock API allows any single transaction, or multiple transactions up to an internally-set BitGo quota (currently set at 50 BTC). </aside> 
+部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する<aside class="info"> このAPIはUnlock APIを使用してセッションがアンロックされることを必要とします。 Unlock APIへの単一コールは、内部的に設定されたBitGoのクォータ（現在50BTCに設定）までの、全ての単一トランザクションまたは複数トランザクションを可能にします。 </aside> 
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/tx/send`
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -2594,27 +2594,27 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 }
 ```
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter  | Type               | Required | Description                                                                                                                |
-| ---------- | ------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| tx         | Transaction Object | YES      | The transaction, in hex string form                                                                                        |
-| sequenceId | String             | NO       | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing |
-| message    | String             | NO       | User-provided string (this does not hit the blockchain)                                                                    |
-| instant    | boolean            | NO       | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply). |
-| otp        | String             | NO       | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details |
+| パラメーター     | 種類              | 必須か | 説明                                                                                    |
+| ---------- | --------------- | --- | ------------------------------------------------------------------------------------- |
+| tx         | トランザクション オブジェクト | YES | 16進数文字列形式でのトランザクション                                                                   |
+| sequenceId | 文字列             | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                |
+| message    | 文字列             | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                      |
+| instant    | ブーリアン           | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                               |
+| otp        | 文字列             | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。 |
 
-### Response
+### Response 応答
 
-Returns the sent transaction and its hash in hex-encoded form.
+16 進数エンコード形式で、送信されたトランザクションとそのハッシュ値を返します。
 
-### Errors
+### Errors　エラー
 
-| Response             | Description                                                         |
-| -------------------- | ------------------------------------------------------------------- |
-| 400 Bad Request      | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized     | The authentication parameters did not match, or unlock is required. |
-| 402 Payment Required | The transaction fee in this request seems too low.                  |
+| 応答                   | 説明                                                 |
+| -------------------- | -------------------------------------------------- |
+| 400 Bad Request      | 要求パラメーターが見つからないか正しくない                              |
+| 401 Unauthorized     | 認証パラメーターが一致しない、またはアンロックが必要                         |
+| 402 Payment Required | The transaction fee in this request seems too low. |
 
 ### Policy/Failure Response
 
