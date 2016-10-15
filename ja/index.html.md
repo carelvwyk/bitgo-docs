@@ -2895,25 +2895,25 @@ BitGo SDKはクライアント側で以下を行って、新たなウォレッ�
 
 ### Parameters パラメーター
 
-| パラメーター           | 種類    | 必須か | 説明                                                                 |
-| ---------------- | ----- | --- | ------------------------------------------------------------------ |
-| email            | 文字列   | YES | ウォレットを共有するユーザーのメールアドレス                                             |
-| permissions      | 文字列   | YES | コンマで区切った許可のリスト（例：view、spend、admin）                                 |
-| walletPassphrase | 文字列   | NO  | 共有されているウォレットのパスフレーズ                                                |
-| skipKeychain     | ブーリアン | NO  | 帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定                          |
-| disableEmail     | ブーリアン | NO  | Set to true to prevent a notification email sent to the user added |
+| パラメーター           | 種類    | 必須か | 説明                                        |
+| ---------------- | ----- | --- | ----------------------------------------- |
+| email            | 文字列   | YES | ウォレットを共有するユーザーのメールアドレス                    |
+| permissions      | 文字列   | YES | コンマで区切った許可のリスト（例：view、spend、admin）        |
+| walletPassphrase | 文字列   | NO  | 共有されているウォレットのパスフレーズ                       |
+| skipKeychain     | ブーリアン | NO  | 帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定 |
+| disableEmail     | ブーリアン | NO  | 追加されたユーザーに送信される通知メールを止めるには、trueに設定        |
 
-### Response
+### Response 応答
 
-| Field       | Description                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------- |
-| id          | The id of the walletShare, used to accept it                                              |
-| walletId    | The id of the wallet being shared                                                         |
-| walletLabel | Label of the wallet to present to the user                                                |
-| fromUser    | BitGo ID of the user sharing the wallet                                                   |
-| toUser      | BitGo ID of the user receiving the wallet                                                 |
-| permissions | Comma-separated list of permissions that the wallet share will give to the receiving user |
-| keychain    | The encrypted keychain for the receiver to decrypt (to obtain the private key)            |
+| フィールド       | 説明                                                                             |
+| ----------- | ------------------------------------------------------------------------------ |
+| id          | ウォレット共有のid、受け入れるために使用                                                          |
+| walletId    | 共有されているウォレットのid                                                                |
+| walletLabel | ユーザーに提示するウォレットのラベル                                                             |
+| fromUser    | ウォレットを共有しているユーザーのBitGo ID                                                      |
+| toUser      | ウォレットを受け取るユーザーのBitGo ID                                                        |
+| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト                                          |
+| keychain    | The encrypted keychain for the receiver to decrypt (to obtain the private key) |
 
 ## List Wallet Shares
 
