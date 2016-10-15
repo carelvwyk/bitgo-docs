@@ -3012,19 +3012,19 @@ bitgo.wallets().acceptShare(
 
 ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：
 
-* Get the incoming wallet share, including the encrypted private keychain.
-* Using the user's sharing private key and the wallet share xPub, derive the key to decrypt the private keychain.
-* Re-encrypt the wallet with the user's chosen passphrase for future use.
-* Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.
+* 暗号化された秘密のキーチェーンを含む、着信したウォレットの共有を取得する
+* ユーザーが共有する秘密鍵とウォレット共有xPubを使用してプライベートのキーチェーンを復号化する鍵を派生させる。
+* 将来の利用のため、ユーザーが選んだパスフレーズでウォレットを再暗号化する。
+* 暗号化された鍵をBitGoのサービスにアップロードし、共有を「accepted」(受け入れられた) にセットする。そうするとユーザーに、BigGoにあるウォレットへのアクセスが与えられる。
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter             | Type                     | Required | Description                                                                                    |
-| --------------------- | ------------------------ | -------- | ---------------------------------------------------------------------------------------------- |
-| walletShareId         | bitcoin address (string) | YES      | The incoming wallet share ID to accept                                                         |
-| newWalletPassphrase   | string                   | NO       | the passphrase to set on the wallet, for use during future spends                              |
-| userPassword          | string                   | NO       | the user's password to decrypt the shared private key                                          |
-| overrideEncryptedXprv | string                   | NO       | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band |
+| パラメーター                | 種類              | 必須か | 説明                                                                                             |
+| --------------------- | --------------- | --- | ---------------------------------------------------------------------------------------------- |
+| walletShareId         | ビットコインアドレス(文字列) | YES | 受け入れる、着信したウォレット共有ID                                                                            |
+| newWalletPassphrase   | 文字列             | NO  | the passphrase to set on the wallet, for use during future spends                              |
+| userPassword          | string          | NO  | the user's password to decrypt the shared private key                                          |
+| overrideEncryptedXprv | string          | NO  | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band |
 
 ### Response
 
