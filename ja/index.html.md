@@ -3019,21 +3019,21 @@ bitgo.wallets().acceptShare(
 
 ### Parameters パラメーター
 
-| パラメーター                | 種類              | 必須か | 説明                                                                                             |
-| --------------------- | --------------- | --- | ---------------------------------------------------------------------------------------------- |
-| walletShareId         | ビットコインアドレス(文字列) | YES | 受け入れる、着信したウォレット共有ID                                                                            |
-| newWalletPassphrase   | 文字列             | NO  | the passphrase to set on the wallet, for use during future spends                              |
-| userPassword          | string          | NO  | the user's password to decrypt the shared private key                                          |
-| overrideEncryptedXprv | string          | NO  | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band |
+| パラメーター                | 種類              | 必須か | 説明                                             |
+| --------------------- | --------------- | --- | ---------------------------------------------- |
+| walletShareId         | ビットコインアドレス(文字列) | YES | 受け入れる、着信したウォレット共有ID                            |
+| newWalletPassphrase   | 文字列             | NO  | 将来の使用の際用いるための、ウォレットで設定するパスフレーズ                 |
+| userPassword          | 文字列             | NO  | 共有された秘密鍵を復号化する、ユーザーのパスワード                      |
+| overrideEncryptedXprv | 文字列             | NO  | 帯域外で受け取った暗号化されたxprvの保存を望む場合、代替の暗号化されたxprvに設定する |
 
-### Response
+### Response 応答
 
-| Field   | Description                                     |
-| ------- | ----------------------------------------------- |
-| state   | end state of walletShare (should be 'accepted') |
-| changed | true if successful                              |
+| フィールド   | 説明                            |
+| ------- | ----------------------------- |
+| state   | ウォレット共有の最終状態（'accepted'であるべき） |
+| changed | 成功した場合、 true                  |
 
-## Cancel Wallet Share
+## Cancel Wallet Share ウォレット共有をキャンセルする
 
 ```shell
 SHAREID='54c594802ebe8510790092958f526f47'
@@ -3051,15 +3051,15 @@ bitgo.wallets().cancelShare({ walletShareId: cancelledWalletShareId }, function(
 )
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 { "state": "canceled", "changed": "true" }
 ```
 
-Can be used to cancel a pending outgoing wallet share, or reject an incoming share. The share should not have been accepted yet.
+保留中の発信したウォレット共有をキャンセルする、または着信した共有を拒否するのに使用できる。共有はまだ受け入れられているべきでない。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `DELETE/api/v1/walletshare/:SHAREID`
 
