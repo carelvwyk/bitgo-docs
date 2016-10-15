@@ -2888,12 +2888,12 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 
 BitGo SDKはクライアント側で以下を行って、新たなウォレットの共有を作成します:
 
-* Get the receiving user's sharing key (a derived path of the receiver's public key)
-* Decrypt the wallet to be shared locally.
-* Re-encrypt the wallet against the public key above, so that only the receiver may decrypt it.
-* Upload the encrypted keys to the BitGo service, which informs the receiver they have a pending share.
+* 受け取るユーザーの共有する鍵を取得する（受取り手の公開鍵の派生パス）
+* ローカルで共有されるウォレットを復号化する
+* 上の公開鍵に対しウォレットを再暗号化し、受取り手だけが復号化できるようにする。
+* 暗号化された鍵をBitGoサービスにアップロードし、BitGoサービスは受取り手に保留中の共有があることを知らせる。
 
-### Parameters
+### Parameters パラメーター
 
 | Parameter        | Type    | Required | Description                                                                                |
 | ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------ |
