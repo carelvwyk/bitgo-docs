@@ -2882,11 +2882,11 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
-Sharing a wallet involves giving another user permission to use the wallet through BitGo.
+ウォレットの共有は、もう一人のユーザーにウォレットを使用する許可をBitGoを通じ与えることを伴います。
 
-In order for the receiver to use the wallet, we also need to share the private key with them. Each user on BitGo creates a public-private keypair for this purpose during their signup process.
+受取り手がウォレットを使用するには、私達は彼らと秘密鍵を共有する必要があります。 BitGoの各ユーザーは登録プロセスの際、この目的のために公開と秘密のキーペアを作成します。
 
-The BitGo SDK does the following client-side to create a new wallet share:
+BitGo SDKはクライアント側で以下を行って、新たなウォレットの共有を作成します:
 
 * Get the receiving user's sharing key (a derived path of the receiver's public key)
 * Decrypt the wallet to be shared locally.
