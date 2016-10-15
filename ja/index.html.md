@@ -3063,20 +3063,20 @@ bitgo.wallets().cancelShare({ walletShareId: cancelledWalletShareId }, function(
 
 `DELETE/api/v1/walletshare/:SHAREID`
 
-### Response
+### Response 応答
 
-| Field   | Description              |
-| ------- | ------------------------ |
-| state   | new state of walletShare |
-| changed | true if successful       |
+| フィールド   | 説明            |
+| ------- | ------------- |
+| state   | ウォレット共有の新たな状態 |
+| changed | 成功した場合、 true  |
 
-## Remove Wallet User
+## Remove Wallet User ウォレットのユーザーを削除する
 
-After a user has accepted a wallet share, they become a party on a wallet and the wallet share is considered "complete".
+ユーザーがウォレットの共有を受け入れた後、彼らはウォレットの当事者になり、ウォレットの共有は「完了」とみなされます。
 
-In order to revoke the share after they have accepted, you can remove the user from the wallet.
+受け入れられた後に共有を解除するためには、ウォレットからユーザーを削除することができます。
 
-This may require approval by another wallet administrator if there is more than a single administrator on a wallet.
+ウォレットの管理者が複数名いる場合、別のウォレット管理者による承認を要する場合があります。
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
@@ -3102,29 +3102,29 @@ curl -X DELETE \
 https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `DELETE /api/v1/wallet/:wallet/user/:userId`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Required | Description                                                           |
-| --------- | -------- | --------------------------------------------------------------------- |
-| wallet    | YES      | The ID of the wallet                                                  |
-| userId    | YES      | The user id of the user to remove (can be found on the wallet object) |
+| パラメーター | 必須か | 説明                                      |
+| ------ | --- | --------------------------------------- |
+| wallet | YES | ウォレットのID                                |
+| userId | YES | 削除するユーザーのユーザーid(ウォレットオブジェクトで見つけることができる) |
 
-### Response
+### Response 応答
 
-Returns the updated Wallet Model for this wallet, or a Pending Approval object (if approval is required).
+このウォレットの更新されたウォレットモデル、または保留中の承認オブジェクトを返します(承認が必要な場合)
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect.                   |
-| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 応答               | 説明                         |
+| ---------------- | -------------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
+| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
 
-# Wallet Policy
+# ウォレットのポリシー
 
 BitGo wallets feature advanced security features such as multi-user or 2FA approval of transactions and spending limits. To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will triggered an associated action (set by the user). The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
 
