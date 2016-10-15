@@ -2825,17 +2825,17 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 
 # Wallet Sharing ウォレットの共有
 
-A BitGo wallet may be shared between multiple users. All users on a wallet share the same private key (although each individual user may encrypt it separately).
+BitGoウォレットは複数のユーザー間で共有することが出来ます。 ウォレットのすべてのユーザーは同じ秘密鍵を共有します（各ユーザーはそれを個別に暗号化することできますが）。
 
-Security on a shared wallet is enforced by BitGo, which requires that users log in and authenticate before co-signing. Wallet permission levels define what an individual user is able to do on a wallet.
+BitGoによって共有されるウォレットのセキュリティが施行され、ユーザーはログイン後、認証を行うことを求められます。 ウォレットのアクセス許可レベルは、ウォレットで各ユーザーが行えることを定義します。
 
-### Wallet Permissions
+### ウォレットのアクセス許可
 
-| Permission | Description                                                             |
-| ---------- | ----------------------------------------------------------------------- |
-| View       | View transactions on the wallet                                         |
-| Spend      | Initiate transactions on the wallet, which are subject to wallet policy |
-| Admin      | Change policy and manage users and settings on the wallet               |
+| アクセス許可 | 説明                                                                      |
+| ------ | ----------------------------------------------------------------------- |
+| View   | View transactions on the wallet                                         |
+| Spend  | Initiate transactions on the wallet, which are subject to wallet policy |
+| Admin  | Change policy and manage users and settings on the wallet               |
 
 ## Sharing a wallet
 
