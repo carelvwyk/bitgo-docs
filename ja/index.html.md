@@ -2829,18 +2829,18 @@ BitGoウォレットは複数のユーザー間で共有することが出来ま
 
 BitGoによって共有されるウォレットのセキュリティが施行され、ユーザーはログイン後、認証を行うことを求められます。 ウォレットのアクセス許可レベルは、ウォレットで各ユーザーが行えることを定義します。
 
-### ウォレットのアクセス許可
+### Wallet Permissions ウォレットのアクセス許可
 
-| アクセス許可 | 説明                                                                      |
-| ------ | ----------------------------------------------------------------------- |
-| View   | View transactions on the wallet                                         |
-| Spend  | Initiate transactions on the wallet, which are subject to wallet policy |
-| Admin  | Change policy and manage users and settings on the wallet               |
+| アクセス許可 | 説明                                  |
+| ------ | ----------------------------------- |
+| View   | ウォレットでのトランザクションを表示                  |
+| Spend  | ウォレットポリシーの対象となるトランザクションを、ウォレットで開始する |
+| Admin  | ポリシーを変更し、ウォレットでユーザーと設定を管理           |
 
-## Sharing a wallet
+## Sharing a wallet ウォレットを共有する
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
 PASSPHRASE='walletpassphrase'
@@ -2861,7 +2861,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -2880,7 +2880,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
      "path": "m/999999/26697279/124485569"
    }
 }
-```<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> 
+```<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
 Sharing a wallet involves giving another user permission to use the wallet through BitGo.
 
