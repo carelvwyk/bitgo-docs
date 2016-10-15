@@ -2905,17 +2905,17 @@ BitGo SDKはクライアント側で以下を行って、新たなウォレッ�
 
 ### Response 応答
 
-| フィールド       | 説明                                                                             |
-| ----------- | ------------------------------------------------------------------------------ |
-| id          | ウォレット共有のid、受け入れるために使用                                                          |
-| walletId    | 共有されているウォレットのid                                                                |
-| walletLabel | ユーザーに提示するウォレットのラベル                                                             |
-| fromUser    | ウォレットを共有しているユーザーのBitGo ID                                                      |
-| toUser      | ウォレットを受け取るユーザーのBitGo ID                                                        |
-| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト                                          |
-| keychain    | The encrypted keychain for the receiver to decrypt (to obtain the private key) |
+| フィールド       | 説明                                     |
+| ----------- | -------------------------------------- |
+| id          | ウォレット共有のid、受け入れるために使用                  |
+| walletId    | 共有されているウォレットのid                        |
+| walletLabel | ユーザーに提示するウォレットのラベル                     |
+| fromUser    | ウォレットを共有しているユーザーのBitGo ID              |
+| toUser      | ウォレットを受け取るユーザーのBitGo ID                |
+| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト  |
+| keychain    | （秘密鍵を取得する目的で）受取り手が復号化するための暗号化されたキーチェーン |
 
-## List Wallet Shares
+## List Wallet Shares ウォレット共有の一覧を表示する
 
 ```shell
 curl -X GET \
@@ -2933,13 +2933,13 @@ https://test.bitgo.com/api/v1/walletShare
   });
 ```
 
-Gets lists of incoming and outgoing wallet shares for the logged-on account.
+ログオン中のアカウントについて着信及び発信したウォレット共有の一覧を取得します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/walletShare`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -2964,23 +2964,23 @@ Gets lists of incoming and outgoing wallet shares for the logged-on account.
 }
 ```
 
-### Response
+### Response 応答
 
-Each wallet share object returned contains the following fields:
+各ウォレット共有オブジェクトは、次のフィールドを含みます：
 
-| Field       | Description                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------- |
-| id          | The id of the walletShare, used to accept it                                              |
-| walletId    | The id of the wallet being shared                                                         |
-| walletLabel | Label of the wallet to present to the user                                                |
-| fromUser    | BitGo ID of the user sharing the wallet                                                   |
-| toUser      | BitGo ID of the user receiving the wallet                                                 |
-| permissions | Comma-separated list of permissions that the wallet share will give to the receiving user |
+| フィールド       | 説明                                    |
+| ----------- | ------------------------------------- |
+| id          | ウォレット共有のid、受け入れるために使用                 |
+| walletId    | 共有されているウォレットのid                       |
+| walletLabel | ユーザーに提示するウォレットのラベル                    |
+| fromUser    | ウォレットを共有しているユーザーのBitGo ID             |
+| toUser      | ウォレットを受け取るユーザーのBitGo ID               |
+| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト |
 
-## Accept Wallet Share
+## Accept Wallet Share ウォレット共有を受け入れる
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 
 SHAREID='54c594802ebe8510790092958f526f47'
 NEWPASSPHRASE='receiverpassphrase'
@@ -3004,13 +3004,13 @@ bitgo.wallets().acceptShare(
 )
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 { "state": "accepted", "changed": "true" }
-```<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> 
+```<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
-Client-side operation to accept a wallet share. Performs the following steps:
+ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：
 
 * Get the incoming wallet share, including the encrypted private keychain.
 * Using the user's sharing private key and the wallet share xPub, derive the key to decrypt the private keychain.
