@@ -2829,13 +2829,13 @@ BitGoウォレットは複数のユーザー間で共有することが出来ま
 
 BitGoによって共有されるウォレットのセキュリティが施行され、ユーザーはログイン後、認証を行うことを求められます。 ウォレットのアクセス許可レベルは、ウォレットで各ユーザーが行えることを定義します。
 
-### Wallet Permissions ウォレットのアクセス許可
+### Wallet Permissions ウォレットの許可
 
-| アクセス許可 | 説明                                  |
-| ------ | ----------------------------------- |
-| View   | ウォレットでのトランザクションを表示                  |
-| Spend  | ウォレットポリシーの対象となるトランザクションを、ウォレットで開始する |
-| Admin  | ポリシーを変更し、ウォレットでユーザーと設定を管理           |
+| 許可    | 説明                                  |
+| ----- | ----------------------------------- |
+| View  | ウォレットでのトランザクションを表示                  |
+| Spend | ウォレットポリシーの対象となるトランザクションを、ウォレットで開始する |
+| Admin | ポリシーを変更し、ウォレットでユーザーと設定を管理           |
 
 ## Sharing a wallet ウォレットを共有する
 
@@ -2895,13 +2895,13 @@ BitGo SDKはクライアント側で以下を行って、新たなウォレッ�
 
 ### Parameters パラメーター
 
-| Parameter        | Type    | Required | Description                                                                                |
-| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------ |
-| email            | string  | YES      | Email of the user to share the wallet with                                                 |
-| permissions      | string  | YES      | Comma-separated list of permissions, e.g. view,spend,admin                                 |
-| walletPassphrase | string  | NO       | Passphrase on the wallet being shared                                                      |
-| skipKeychain     | boolean | NO       | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band |
-| disableEmail     | boolean | NO       | Set to true to prevent a notification email sent to the user added                         |
+| パラメーター           | 種類    | 必須か | 説明                                                                 |
+| ---------------- | ----- | --- | ------------------------------------------------------------------ |
+| email            | 文字列   | YES | ウォレットを共有するユーザーのメールアドレス                                             |
+| permissions      | 文字列   | YES | コンマで区切った許可のリスト（例：view、spend、admin）                                 |
+| walletPassphrase | 文字列   | NO  | 共有されているウォレットのパスフレーズ                                                |
+| skipKeychain     | ブーリアン | NO  | 帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定                          |
+| disableEmail     | ブーリアン | NO  | Set to true to prevent a notification email sent to the user added |
 
 ### Response
 
