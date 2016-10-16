@@ -3370,20 +3370,20 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 統合されたウォレットポリシーはポリシールールオブジェクトの配列です。ポリシールールオブジェクトは種類、条件、そしてアクションを持ちます。
 
-| フィールド     | 説明                                             | Possible Values                                                        |
-| --------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
-| id        | the id of the policy                           | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                     |
-| type      | The type of policy                             | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook" |
-| condition | The condition for this policy                  | *Depends on policy rule type used*                                     |
-| action    | The action to take when the condition is false | *See policy action object*                                             |
+| フィールド     | 説明                      | 可能な値                                                                   |
+| --------- | ----------------------- | ---------------------------------------------------------------------- |
+| id        | ポリシーの id                | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                     |
+| type      | ポリシーの種類                 | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook" |
+| condition | このポリシーの条件               | *使用されるポリシー ルールの種類によって異なる*                                              |
+| action    | 条件が false の場合に実行するアクション | *ポリシー アクション オブジェクトを参照*                                                 |
 
-### Policy Type - dailyLimit
+### ポリシータイプ - dailyLimit
 
-A dailyLimit policy rule will trigger when the amount of Bitcoin within the last rolling 24 hours exceeds the specified amount.
+直近の24時間の間にビットコインの額が一定額を超過すると、dailyLimit (一日の限度) ポリシールールがトリガーされます。
 
-Conditions for this include:
+そのための条件には次があります:
 
-| Field  | Description                                           | Possible Values    |
+| フィールド  | 説明                                                    | 可能な値               |
 | ------ | ----------------------------------------------------- | ------------------ |
 | amount | The maximum allowed value of all transactions per day | Number of satoshis |
 
