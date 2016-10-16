@@ -3459,15 +3459,15 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 アクションとは、トランザクションによって条件が満たされない場合に実行するアクションです。
 
-| フィールド        | 説明                                                                           | 可能な値                            |
-| ------------ | ---------------------------------------------------------------------------- | ------------------------------- |
-| type         | アクションの種類                                                                     | "deny", "getApproval", "getOTP" |
-| actionParams | Phone/otpType/durationを含むJSONオブジェクト                                          | *以下を参照*                         |
-| otpType      | Determines how the code should be sent (must set type === "getOTP")          | "sms"                           |
-| phone        | The phone number that will receive the code (must set type === "getOTP")     | "541-754-3010", "+498963648018" |
-| duration     | The time in seconds the OTP should be valid for (must set type === "getOTP") | 3600                            |
+| フィールド        | 説明                                                  | 可能な値                            |
+| ------------ | --------------------------------------------------- | ------------------------------- |
+| type         | アクションの種類                                            | "deny", "getApproval", "getOTP" |
+| actionParams | Phone/otpType/durationを含むJSONオブジェクト                 | *以下を参照*                         |
+| otpType      | コードがどのように送られるべきかを決定する( type === "getOTP"に設定する必要がある) | "sms"                           |
+| phone        | コードを受信する電話番号(type === "getOTP"に設定する必要がある)           | "541-754-3010", "+498963648018" |
+| duration     | OTPが有効であるべき時間（秒数）（type === "getOTP"に設定する必要がある）      | 3600                            |
 
-## Remove Policy Rule
+## Remove Policy Rule ポリシールールを削除する
 
 ```shell
 RULEID='test1'
