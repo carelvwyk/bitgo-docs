@@ -3864,21 +3864,21 @@ wallets.get(data, function callback(err, wallet) {
 
 ラベルモデルオブジェクトを返します。
 
-| Field    | Description                                         |
-| -------- | --------------------------------------------------- |
-| walletId | id of the wallet (also the first receiving address) |
-| address  | the bitcoin address being labeled                   |
-| label    | the address label                                   |
+| フィールド    | 説明                     |
+| -------- | ---------------------- |
+| walletId | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ラベルされているビットコインアドレス     |
+| label    | アドレスラベル                |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
-| 404 Not Found    | The wallet could not be found.                    |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
+| 404 Not Found    | ウォレットが見つけられなかった       |
 
-## Delete Label
+## Delete Label ラベルを削除する
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3897,13 +3897,13 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 });
 ```
 
-Delete a label from a specific address and wallet.
+特定のアドレスやウォレットからラベルを削除します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `DELETE /api/v1/labels/:walletId/:address`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -3913,65 +3913,65 @@ Delete a label from a specific address and wallet.
 }
 ```
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Name     | Type                     | Required | Description                                         |
-| -------- | ------------------------ | -------- | --------------------------------------------------- |
-| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address) |
-| address  | bitcoin address (string) | YES      | the bitcoin address being labeled                   |
+| 名        | 種類              | 必須か | 説明                     |
+| -------- | --------------- | --- | ---------------------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ビットコインアドレス(文字列) | YES | ラベルされているビットコインアドレス     |
 
-### Response
+### Response 応答
 
-Returns a Label Model object of the label that was deleted.
+削除されたラベルのラベルモデルオブジェクトを返します。
 
-| Field    | Description                                         |
-| -------- | --------------------------------------------------- |
-| walletId | id of the wallet (also the first receiving address) |
-| address  | the bitcoin address being labeled                   |
-| label    | the address label                                   |
+| フィールド    | 説明                     |
+| -------- | ---------------------- |
+| walletId | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ラベルされているビットコインアドレス     |
+| label    | アドレスラベル                |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
-| 404 Not Found    | The wallet or label could not be found.           |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
+| 404 Not Found    | ウォレットまたはラベルが見つけられなかった |
 
-# Tags
+# Tag タグ
 
-Tags are an advanced policy feature for enterprise clients.
+タグは、法人顧客向けの高度なポリシー機能です。
 
-## Create a tag
+## Create a tag タグを作成します
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/tag`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-The tag must have a name and exactly one of either a user, wallet, or enterprise.
+タグは名前を持つ必要があり、単一のユーザー、ウォレット、またはエンタープライズを持たなければなりません。
 
 <table>
   <tr>
     <th>
-      Parameter
+      パラメーター
     </th>
     
     <th>
-      Type
+      種類
     </th>
     
     <th>
-      Required
+      必須か
     </th>
     
     <th>
-      Description
+      説明
     </th>
     
     <th>
-      Possible Values
+      可能な値
     </th>
   </tr>
   
@@ -3981,7 +3981,7 @@ The tag must have a name and exactly one of either a user, wallet, or enterprise
     </td>
     
     <td>
-      string
+      文字列
     </td>
     
     <td>
@@ -3989,7 +3989,7 @@ The tag must have a name and exactly one of either a user, wallet, or enterprise
     </td>
     
     <td>
-      The name of the tag.
+      タグの名前
     </td>
     
     <td>
