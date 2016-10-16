@@ -3831,13 +3831,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-特定のアドレスにラベルを設定し、特定のウォレットに関連付けます。 Labels are limited to 250 characters in length. Labels cannot be set on a wallet's first receiving address because it reserved for the wallet's label.
+特定のアドレスにラベルを設定し、特定のウォレットに関連付けます。 ラベルの長さは最大で250文字に制限されています。 ウォレットのラベルとして予約されているため、ウォレットの最初の受取アドレスにラベルは設定できません。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `PUT /api/v1/labels/:walletId/:address`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -3847,22 +3847,22 @@ wallets.get(data, function callback(err, wallet) {
 }
 ```
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Name     | Type                     | Required | Description                                         |
-| -------- | ------------------------ | -------- | --------------------------------------------------- |
-| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address) |
-| address  | bitcoin address (string) | YES      | the bitcoin address being labeled                   |
+| 名        | 種類              | 必須か | 説明                     |
+| -------- | --------------- | --- | ---------------------- |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ビットコインアドレス(文字列) | YES | ラベルされているビットコインアドレス     |
 
-### PUT Parameters
+### PUT Parameters PUT パラメーター
 
-| Name  | Type   | Required | Description       |
-| ----- | ------ | -------- | ----------------- |
-| label | string | YES      | the address label |
+| 名     | 種類  | 必須か | 説明      |
+| ----- | --- | --- | ------- |
+| label | 文字列 | YES | アドレスラベル |
 
-### Response
+### Response 応答
 
-Returns a Label Model object.
+ラベルモデルオブジェクトを返します。
 
 | Field    | Description                                         |
 | -------- | --------------------------------------------------- |
