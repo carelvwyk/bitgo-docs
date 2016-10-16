@@ -4086,28 +4086,28 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 
 ### BODY Parameters BODYパラメーター
 
-You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
+ウォレットに追加しているタグのidを指定するする必要があります。他のパラメーターは不要です。
 
 <table>
   <tr>
     <th>
-      Parameter
+      パラメーター
     </th>
     
     <th>
-      Type
+      種類
     </th>
     
     <th>
-      Required
+      必須か
     </th>
     
     <th>
-      Description
+      説明
     </th>
     
     <th>
-      Possible Values
+      可能な値
     </th>
   </tr>
   
@@ -4125,7 +4125,7 @@ You must specify the id of the tag you are adding to the wallet, and no other pa
     </td>
     
     <td>
-      The id of the tag.
+      タグのid。
     </td>
     
     <td>
@@ -4133,9 +4133,9 @@ You must specify the id of the tag you are adding to the wallet, and no other pa
   </tr>
 </table>
 
-### Response
+### Response 応答
 
-Returns the wallet, tag, and number of wallettxs affected.
+ウォレット、タグ、そして影響を受けるwallettxsの数を返します。
 
 ```json
 {
@@ -4145,13 +4145,13 @@ Returns the wallet, tag, and number of wallettxs affected.
 }
 ```
 
-### Errors
+### Errors　エラー
 
-| Response      | Description           |
-| ------------- | --------------------- |
-| 404 Not Found | The tag was not found |
+| 応答            | 説明          |
+| ------------- | ----------- |
+| 404 Not Found | タグが見つからなかった |
 
-# Webhook Notifications
+# Webhook Notifications Webhook 通知
 
 > Example transaction Webhook callback
 
