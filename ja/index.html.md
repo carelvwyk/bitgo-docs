@@ -3312,16 +3312,16 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 ### BODY Parameters BODYパラメーター
 
-Policy rule objects have a type, a condition, and an action. The type of policy often dictates the condition values.
+ポリシールールオブジェクトは種類、条件、そしてアクションを持ちます。この種類のポリシーはしばしば条件の値を決定します。
 
-| Parameter | Type                                           | Required                                           | Example |
-| --------- | ---------------------------------------------- | -------------------------------------------------- | ------- |
-| id        | the id of the policy                           | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId" |         |
-| type      | The type of policy                             | *See Policy Types*                                 |         |
-| condition | The condition for this policy                  | *See Policy Types*                                 |         |
-| action    | The action to take when the condition is false | *See Policy Action Object*                         |         |
+| パラメーター    | 種類                      | 必須か                                                | 例 |
+| --------- | ----------------------- | -------------------------------------------------- | - |
+| id        | ポリシーの id                | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId" |   |
+| type      | ポリシーの種類                 | *ポリシーの種類を参照*                                       |   |
+| condition | このポリシーの条件               | *ポリシーの種類を参照*                                       |   |
+| action    | 条件が false の場合に実行するアクション | *ポリシー アクション オブジェクトを参照*                             |   |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -3355,22 +3355,22 @@ Policy rule objects have a type, a condition, and an action. The type of policy 
 }
 ```
 
-### Response
+### Response 応答
 
-Returns the updated Wallet Model object.
+更新されたウォレットモデルオブジェクトを返します。
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-### Policy Object
+### Policy Object ポリシー オブジェクト
 
-The aggregate Wallet Policy is an array of Policy Rule Objects. Policy rule objects have a type, a condition, and an action.
+統合されたウォレットポリシーはポリシールールオブジェクトの配列です。ポリシールールオブジェクトは種類、条件、そしてアクションを持ちます。
 
-| Field     | Description                                    | Possible Values                                                        |
+| フィールド     | 説明                                             | Possible Values                                                        |
 | --------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
 | id        | the id of the policy                           | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                     |
 | type      | The type of policy                             | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook" |
