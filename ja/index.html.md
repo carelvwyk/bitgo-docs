@@ -3126,9 +3126,9 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 
 # ウォレットのポリシー
 
-BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定された）関連付けられたアクションをトリガーします。 The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
+BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定された）関連付けられたアクションをトリガーします。 ポリシーエンジンは全てのトリガーされたルール結果を集め、deny、 get approval (別のユーザーから), get OTP (別のユーザーによってSMSを通じ送信)、 allow (デフォルト) の順で任意のトリガーされたアクションを実行します。
 
-If a wallet carries a balance and there are more than two "admin" users associated with a Wallet, any policy change will require approval by another administrator before it will take effect (if there are no additional "admin" users, this will not be necessary). It is thus highly recommended to create wallets with at least 2 administrators by [performing a wallet share](#wallet-sharing). This way, policy can be effective even if a single user is compromised.
+ウォレットに残高があり、2人以上のウォレットに関連付けられた"admin"ユーザーがいる場合、全てのポリシー変更には、有効になる前に別の管理者による承認を必要とします（追加の"admin"ユーザーがいない場合、不要です）。 よって、[ウォレットの共有を実行する](#wallet-sharing)ことにより最低2人の管理者でウォレットを作成すること強く推奨します。 そうすれば、ポリシーは、1人のユーザーが不正アクセスを受けたとしても有効になります。
 
 For policies with the "getOTP" action type, successfully sending a transaction will require a 7 digit OTP code before the transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself. The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the "otp" parameter at [Sends Coins to Address](#send-coins-to-address) for further details.
 
