@@ -3383,30 +3383,30 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 そのための条件には次があります:
 
-| フィールド  | 説明                                                    | 可能な値               |
-| ------ | ----------------------------------------------------- | ------------------ |
-| amount | The maximum allowed value of all transactions per day | Number of satoshis |
+| フィールド  | 説明                       | 可能な値          |
+| ------ | ------------------------ | ------------- |
+| amount | 一日あたりの全てのトランザクションの可能な最大額 | Satoshis 単位の額 |
 
-### Policy Type - transactionLimit
+### ポリシータイプ - transactionLimit
 
-A transactionLimit policy rule will trigger when a single transaction exceeds the specified amount.
+単一のトランザクションが指定された金額を超過した場合、transactionLimitポリシールールがトリガーされます。
 
-Conditions for this include:
+そのための条件には次があります:
 
-| Field  | Description                                                 | Possible Values    |
-| ------ | ----------------------------------------------------------- | ------------------ |
-| amount | The maximum allowed value of each transaction on the wallet | Number of satoshis |
+| フィールド  | 説明                       | 可能な値          |
+| ------ | ------------------------ | ------------- |
+| amount | ウォレットの全てのトランザクションの可能な最大額 | Satoshis 単位の額 |
 
-### Policy Type - bitcoinAddressWhitelist
+### ポリシーの種類 - bitcoinAddressWhitelist
 
-When active, a Bitcoin address whitelist rule will be triggered whenever any destination Bitcoin address (non-change) of an outgoing transaction is not in the white list.
+有効な時、送信トランザクションの宛先ビットコインアドレス（お釣りでない）がホワイトリストにない場合、いつでもビットコインアドレスホワイトリストルールがトリガーされます。
 
-Conditions for this include:
+そのための条件には次があります:
 
-| Field  | Description                                      | Possible Values |
-| ------ | ------------------------------------------------ | --------------- |
-| add    | The bitcoin address to add to the whitelist      | Bitcoin address |
-| remove | The bitcoin address to remove from the whitelist | Bitcoin address |
+| フィールド  | 説明                      | 可能な値       |
+| ------ | ----------------------- | ---------- |
+| add    | ホワイトリストに追加するビットコインアドレス  | ビットコインアドレス |
+| remove | ホワイトリストから削除するビットコインアドレス | ビットコインアドレス |
 
 > Example webhook callback (sent to your server, any non-200 response will trigger the policy rule action)
 
