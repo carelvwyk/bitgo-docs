@@ -3522,7 +3522,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 ## 保留中の承認の一覧を表示する
 
-List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.
+ウォレットidまたは提供することによりウォレットまたはエンタープライズの保留中の承認の一覧を表示します。
 
 ```shell
 curl -X GET \
@@ -3541,7 +3541,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -3574,24 +3574,24 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/pendingapprovals`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter  | Type             | Required | Description                     |
-| ---------- | ---------------- | -------- | ------------------------------- |
-| walletId   | address (string) | NO       | The base address of the wallet  |
-| enterprise | string           | NO       | The public ID of the enterprise |
+| パラメーター     | 種類         | 必須か | 説明               |
+| ---------- | ---------- | --- | ---------------- |
+| walletId   | アドレス (文字列) | NO  | ウォレットのベースアドレス    |
+| enterprise | 文字列        | NO  | エンタープライズのパブリックID |
 
-### Response
+### Response 応答
 
-Returns a list of pending approvals.
+保留中の承認のリストを返します。
 
-## Update Pending Approval
+## Update Pending Approval 保留中の承認を更新する
 
-Update the state of a pending approval to either 'approved' or 'rejected'.
+保留中の承認の状態を'approved'または'rejected'に更新します。
 
 ```shell
 curl -X PUT \
