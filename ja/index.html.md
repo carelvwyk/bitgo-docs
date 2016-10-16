@@ -4153,7 +4153,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 
 # Webhook Notifications Webhook 通知
 
-> Example transaction Webhook callback
+> Webhookコールバックのトランザクションの例
 
     POST http://your.server.com/webhook
     {
