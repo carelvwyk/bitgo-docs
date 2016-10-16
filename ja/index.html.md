@@ -3130,7 +3130,7 @@ BitGoウォレットはマルチユーザーまたはトランザクションと
 
 ウォレットに残高があり、2人以上のウォレットに関連付けられた"admin"ユーザーがいる場合、全てのポリシー変更には、有効になる前に別の管理者による承認を必要とします（追加の"admin"ユーザーがいない場合、不要です）。 よって、[ウォレットの共有を実行する](#wallet-sharing)ことにより最低2人の管理者でウォレットを作成すること強く推奨します。 そうすれば、ポリシーは、1人のユーザーが不正アクセスを受けたとしても有効になります。
 
-For policies with the "getOTP" action type, successfully sending a transaction will require a 7 digit OTP code before the transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself. The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the "otp" parameter at [Sends Coins to Address](#send-coins-to-address) for further details.
+"getOTP"アクションタイプのポリシーについては、トランザクションを正常に送信するには、署名され送信される前に7桁のワンタイムパスワードが必要になります。 このポリシーは事実上、デバイスに、あなた自身で実装する必要なしに二要素認証を提供するものです。 トランザクション送信の一回目の試みは失敗し、コードをポリシーで指定されている電話に送信します。 Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the "otp" parameter at [Sends Coins to Address](#send-coins-to-address) for further details.
 
 This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet. Further custom policy may be implemented using the [webhook policy type](#set-policy-rule), which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.
 
