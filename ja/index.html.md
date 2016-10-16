@@ -3408,7 +3408,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 | add    | ホワイトリストに追加するビットコインアドレス  | ビットコインアドレス |
 | remove | ホワイトリストから削除するビットコインアドレス | ビットコインアドレス |
 
-> Example webhook callback (sent to your server, any non-200 response will trigger the policy rule action)
+> Webhookコールバックの例(サーバに送信され、全ての非200応答はポリシールールアクションをトリガーします)
 
 ```json
 {
@@ -3433,7 +3433,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 }
 ```
 
-### Policy Type - webhook
+### ポリシータイプ - webhook
 
 When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition. The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.
 
