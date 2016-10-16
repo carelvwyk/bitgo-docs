@@ -4010,7 +4010,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     </td>
     
     <td>
-      The user id of the user who owns the tag, which can only be the id of the user adding the tag.
+      タグを所有するユーザーのユーザーIDで、必ずタグを追加するユーザーのIDでなければならない
     </td>
     
     <td>
@@ -4031,7 +4031,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     </td>
     
     <td>
-      The id, not bitcoin address, of the wallet to own the tag.
+      タグを所有するウォレットのビットコインアドレスでなくid
     </td>
     
     <td>
@@ -4052,7 +4052,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     </td>
     
     <td>
-      The id of the enterprise to own the tag.
+      タグを所有するエンタープライズのid
     </td>
     
     <td>
@@ -4060,9 +4060,9 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
   </tr>
 </table>
 
-### Response
+### Response 応答
 
-Returns the tag.
+タグを返します。
 
 ```json
 {
@@ -4072,19 +4072,19 @@ Returns the tag.
 }
 ```
 
-### Errors
+### Errors　エラー
 
-| Response        | Description                                       |
-| --------------- | ------------------------------------------------- |
-| 400 Bad Request | The request parameters were missing or incorrect. |
+| 応答              | 説明                    |
+| --------------- | --------------------- |
+| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
 
-## Add a tag to a wallet
+## Add a tag to a wallet ウォレットにタグを追加する
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/wallet/:wallet/tag`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
 You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
 
