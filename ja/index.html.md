@@ -3397,7 +3397,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 | ------ | ------------------------ | ------------- |
 | amount | ウォレットの全てのトランザクションの可能な最大額 | Satoshis 単位の額 |
 
-### ポリシーの種類 - bitcoinAddressWhitelist
+### ポリシータイプ - bitcoinAddressWhitelist
 
 有効な時、送信トランザクションの宛先ビットコインアドレス（お釣りでない）がホワイトリストにない場合、いつでもビットコインアドレスホワイトリストルールがトリガーされます。
 
@@ -3433,7 +3433,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 }
 ```
 
-### ポリシータイプ - webhook
+### Policy Type - webhook ポリシータイプ - webhook
 
 有効な時、webhookルールは条件で指定されたHTTPSエンドポイントへコールバックを発行します。 HTTPエンドポイントが非200(ステータス) 応答を返す場合、ルールはアクションをトリガーします。
 
@@ -3445,24 +3445,24 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 コールバックで送信されたBodyパラメーター：
 
-| フィールド         | 説明                                                                        | 可能な値                                                                         |
-| ------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletId      | トランザクションの起点となっているウォレットのID                                                 | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
-| ruleId        | トランザクションの起点となっているウォレットのID                                                 | "webhookPolicy1"                                                             |
-| outputs       | OutputAddressとvalueを含むoutputオブジェクトの配列                                     | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
-| spendAmount   | The net spend amount from the wallet, less change (includes fees)         | 10009060                                                                     |
-| approvalCount | The number of user approvals on the wallet thus far                       |                                                                              |
-| unsignedRawTx | The hex string of the half-signed raw transaction                         | "0100000001... 0794c5382a38700000000"                                        |
-| sequenceId    | The custom sequence ID provided by the sender when creating a transaction | "custom1"                                                                    |
+| フィールド         | 説明                                    | 可能な値                                                                         |
+| ------------- | ------------------------------------- | ---------------------------------------------------------------------------- |
+| walletId      | トランザクションの起点となっているウォレットのID             | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
+| ruleId        | トランザクションの起点となっているウォレットのID             | "webhookPolicy1"                                                             |
+| outputs       | OutputAddressとvalueを含むoutputオブジェクトの配列 | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
+| spendAmount   | 正味(net) のウォレットからの使用額、お釣りを差し引いて(手数料含む) | 10009060                                                                     |
+| approvalCount | これまでのウォレットでのユーザーによる承認の数               |                                                                              |
+| unsignedRawTx | 半分署名の未処理トランザクションの 16 進数の文字列           | "0100000001... 0794c5382a38700000000"                                        |
+| sequenceId    | トランザクション作成の際、送信者によって提供されるカスタムシーケンスID  | "custom1"                                                                    |
 
-### Policy Action Object
+### Policy Action Object ポリシーアクションオブジェクト
 
-An action is the action to take when the condition is not met by a transaction.
+アクションとは、トランザクションによって条件が満たされない場合に実行するアクションです。
 
-| Field        | Description                                                                  | Possible Values                 |
+| フィールド        | 説明                                                                           | 可能な値                            |
 | ------------ | ---------------------------------------------------------------------------- | ------------------------------- |
-| type         | The type of action                                                           | "deny", "getApproval", "getOTP" |
-| actionParams | JSON object containing phone/otpType/duration                                | *See below*                     |
+| type         | アクションの種類                                                                     | "deny", "getApproval", "getOTP" |
+| actionParams | Phone/otpType/durationを含むJSONオブジェクト                                          | *以下を参照*                         |
 | otpType      | Determines how the code should be sent (must set type === "getOTP")          | "sms"                           |
 | phone        | The phone number that will receive the code (must set type === "getOTP")     | "541-754-3010", "+498963648018" |
 | duration     | The time in seconds the OTP should be valid for (must set type === "getOTP") | 3600                            |
