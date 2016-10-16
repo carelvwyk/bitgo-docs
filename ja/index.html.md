@@ -3668,9 +3668,9 @@ bitgo.pendingapprovals().list({
 
 # Address Labels アドレスのラベル
 
-ラベルで、人間が読むことが出来るアドレスの記録（ノート）をつけることが可能です。 全ての有効なアドレスにラベルを追加することが出来ます。アドレスはウォレットがコントロールしているものである必要はありません。 Address labels are distinct from wallet labels, but they are tied to a wallet so that when you share the wallet with other users they will be also able to view the labels.
+ラベルで、人間が読むことが出来るアドレスの記録（ノート）をつけることが可能です。 全ての有効なアドレスにラベルを追加することが出来ます。アドレスはウォレットがコントロールしているものである必要はありません。 アドレスラベルはウォレットラベルと異なりますが、ウォレットに紐づいているので、他のユーザーとウォレットを共有すると、彼らもラベルを見ることができます。
 
-## List Labels For All Wallets
+## List Labels For All Wallets 全てのウォレットのラベルの一覧を表示する
 
 ```shell
 curl -X GET \
@@ -3688,13 +3688,13 @@ bitgo.labels({}, function callback(err, labels) {
 });
 ```
 
-Get the list of labels for the user
+そのユーザーのウォレットの一覧を取得します
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/labels`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -3713,19 +3713,19 @@ Get the list of labels for the user
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of Label Model objects.
+ラベルモデルオブジェクトの配列を返します。
 
-| Field    | Description                                         |
-| -------- | --------------------------------------------------- |
-| walletId | id of the wallet (also the first receiving address) |
-| address  | the bitcoin address being labeled                   |
-| label    | the address label                                   |
+| フィールド    | 説明                     |
+| -------- | ---------------------- |
+| walletId | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ラベルされているビットコインアドレス     |
+| label    | アドレスラベル                |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
+| Response 応答      | 説明                                                |
 | ---------------- | ------------------------------------------------- |
 | 400 Bad Request  | The request parameters were missing or incorrect. |
 | 401 Unauthorized | The authentication parameters did not match.      |
