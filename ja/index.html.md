@@ -3617,7 +3617,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -3652,23 +3652,23 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `PUT /api/v1/pendingapprovals/:pendingApprovalId`
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter | Type   | Required | Description                                                   |
-| --------- | ------ | -------- | ------------------------------------------------------------- |
-| state     | string | YES      | the new state of the pending approval: 'approved', 'rejected' |
+| パラメーター | 種類  | 必須か | 説明                                   |
+| ------ | --- | --- | ------------------------------------ |
+| state  | 文字列 | YES | 保留中の承認の新たな状態： 'approved'、 'rejected' |
 
-### Response
+### Response 応答
 
-Returns the updated pending approvals with the new state.
+新しい状態を持った更新された保留中の承認を返します。
 
-# Address Labels
+# Address Labels アドレスのラベル
 
-Labels allow you to keep track of addresses with human readable notes. You can add a label to any valid address; the address does not need to be one controlled by the wallet. Address labels are distinct from wallet labels, but they are tied to a wallet so that when you share the wallet with other users they will be also able to view the labels.
+ラベルで、人間が読むことが出来るアドレスの記録（ノート）をつけることが可能です。 全ての有効なアドレスにラベルを追加することが出来ます。アドレスはウォレットがコントロールしているものである必要はありません。 Address labels are distinct from wallet labels, but they are tied to a wallet so that when you share the wallet with other users they will be also able to view the labels.
 
 ## List Labels For All Wallets
 
