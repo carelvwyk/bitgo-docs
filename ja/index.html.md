@@ -3435,21 +3435,21 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 
 ### ポリシータイプ - webhook
 
-When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition. The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.
+有効な時、webhookルールは条件で指定されたHTTPSエンドポイントへコールバックを発行します。 HTTPエンドポイントが非200(ステータス) 応答を返す場合、ルールはアクションをトリガーします。
 
-Conditions for this rule:
+このルールの条件は：
 
-| Field | Description                      | Possible Values |
-| ----- | -------------------------------- | --------------- |
-| url   | The URL to issue the callback to | HTTPs endpoint  |
+| フィールド | 説明                   | 可能な値    |
+| ----- | -------------------- | ------- |
+| url   | HTTPsエンドポイントにコールバックを | 発行するURL |
 
-Body parameters sent in the callback:
+コールバックで送信されたBodyパラメーター：
 
-| Field         | Description                                                               | Possible Values                                                              |
+| フィールド         | 説明                                                                        | 可能な値                                                                         |
 | ------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| walletId      | The ID of the wallet from which the transaction is originating            | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
-| ruleId        | The ID of the wallet from which the transaction is originating            | "webhookPolicy1"                                                             |
-| outputs       | Array of output objects containing outputAddress and value                | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
+| walletId      | トランザクションの起点となっているウォレットのID                                                 | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
+| ruleId        | トランザクションの起点となっているウォレットのID                                                 | "webhookPolicy1"                                                             |
+| outputs       | OutputAddressとvalueを含むoutputオブジェクトの配列                                     | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
 | spendAmount   | The net spend amount from the wallet, less change (includes fees)         | 10009060                                                                     |
 | approvalCount | The number of user approvals on the wallet thus far                       |                                                                              |
 | unsignedRawTx | The hex string of the half-signed raw transaction                         | "0100000001... 0794c5382a38700000000"                                        |
