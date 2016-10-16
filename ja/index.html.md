@@ -3126,7 +3126,7 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 
 # ウォレットのポリシー
 
-BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定される）関連付けられたアクションをトリガーします。 The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
+BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定された）関連付けられたアクションをトリガーします。 The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
 
 If a wallet carries a balance and there are more than two "admin" users associated with a Wallet, any policy change will require approval by another administrator before it will take effect (if there are no additional "admin" users, this will not be necessary). It is thus highly recommended to create wallets with at least 2 administrators by [performing a wallet share](#wallet-sharing). This way, policy can be effective even if a single user is compromised.
 
