@@ -3130,9 +3130,9 @@ BitGoウォレットはマルチユーザーまたはトランザクションと
 
 ウォレットに残高があり、2人以上のウォレットに関連付けられた"admin"ユーザーがいる場合、全てのポリシー変更には、有効になる前に別の管理者による承認を必要とします（追加の"admin"ユーザーがいない場合、不要です）。 よって、[ウォレットの共有を実行する](#wallet-sharing)ことにより最低2人の管理者でウォレットを作成すること強く推奨します。 そうすれば、ポリシーは、1人のユーザーが不正アクセスを受けたとしても有効になります。
 
-"getOTP"アクションタイプのポリシーについては、トランザクションを正常に送信するには、署名され送信される前に7桁のワンタイムパスワードが必要になります。 このポリシーは事実上、デバイスに、あなた自身で実装する必要なしに二要素認証を提供するものです。 トランザクション送信の一回目の試みは失敗し、コードをポリシーで指定されている電話に送信します。 Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the "otp" parameter at [Sends Coins to Address](#send-coins-to-address) for further details.
+"getOTP"アクションタイプのポリシーについては、トランザクションを正常に送信するには、署名され送信される前に7桁のワンタイムパスワードが必要になります。 このポリシーは事実上、デバイスに、あなた自身で実装する必要なしに二要素認証を提供するものです。 トランザクション送信の一回目の試みは失敗し、コードをポリシーで指定されている電話に送信します。 ユーザーからコードを取得したら、もう一度APIコールのパラメーターとしてotpコードが含まれた送信トランザクションを行い、トランザクションは正常に送信されます。 詳細は[アドレスにコインを送信する](#send-coins-to-address)にある"otp"パラメーターを参照下さい。
 
-This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet. Further custom policy may be implemented using the [webhook policy type](#set-policy-rule), which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.
+このドキュメンテーションでは、単一ウォレットに関わる基本的なBitGoポリシーのAPIとSDKをカバーします。 Further custom policy may be implemented using the [webhook policy type](#set-policy-rule), which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.
 
 Advanced policy involving multiple wallets may be implemented by contacting BitGo directly.
 
