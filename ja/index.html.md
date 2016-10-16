@@ -4175,9 +4175,9 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     }
     
 
-BitGoからプログラマティックにコールバックを受け取るために、Webhookを設定することができます。 These may be attached to wallets (in the case of transactions), or to a user (for block notifications). Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
+BitGoからプログラマティックにコールバックを受け取るために、Webhookを設定することができます。 ウォレット(トランザクションの場合) またはユーザー（ブロック通知で）に添付することができます。 受信トランザクション等指定されたイベントが発生した時、Webhook通知がトリガーされます。
 
-BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a `HTTP 200 OK`. If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.
+BitGoサーバはJSONペイロードと定義された、POST httpリクエストを行い、`HTTP 200 OK`を期待します。 正常な応答が受信されない場合、BitGo は各再試行間隔を増やし webhook を再試行しようとします。
 
 Developers should take care to ensure that their application succeeds even in the cases of transient network error, or if receive the same webhook twice due to an improper acknowledgement.
 
