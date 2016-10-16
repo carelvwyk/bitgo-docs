@@ -3725,12 +3725,12 @@ bitgo.labels({}, function callback(err, labels) {
 
 ### Errors　エラー
 
-| Response 応答      | 説明                                                |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| Response 応答      | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## List Labels For Specific Wallet
+## List Labels For Specific Wallet 特定のウォレットのラベルの一覧を表示する
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3760,13 +3760,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-Get the list of labels for the wallet
+そのウォレットのラベルの一覧を取得します
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/labels/:walletId`
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -3780,25 +3780,25 @@ Get the list of labels for the wallet
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of Label Model objects.
+ラベルモデルオブジェクトの配列を返します。
 
-| Field    | Description                                         |
-| -------- | --------------------------------------------------- |
-| walletId | id of the wallet (also the first receiving address) |
-| address  | the bitcoin address being labeled                   |
-| label    | the address label                                   |
+| フィールド    | 説明                     |
+| -------- | ---------------------- |
+| walletId | ウォレットのid(同時に最初の受信アドレス) |
+| address  | ラベルされているビットコインアドレス     |
+| label    | アドレスラベル                |
 
-### Errors
+### Errors　エラー
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
-| 404 Not Found    | The wallet could not be found.                    |
+| 応答               | 説明                    |
+| ---------------- | --------------------- |
+| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
+| 401 Unauthorized | 認証パラメーターが一致しない        |
+| 404 Not Found    | ウォレットが見つけられなかった       |
 
-## Set Label
+## Set Label ラベルを設定する
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3831,7 +3831,7 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-Set a label on a specific address and associate it with a specific wallet. Labels are limited to 250 characters in length. Labels cannot be set on a wallet's first receiving address because it reserved for the wallet's label.
+特定のアドレスにラベルを設定し、特定のウォレットに関連付けます。 Labels are limited to 250 characters in length. Labels cannot be set on a wallet's first receiving address because it reserved for the wallet's label.
 
 ### HTTP Request
 
