@@ -4156,6 +4156,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 > Webhookコールバックのトランザクションの例
 
     POST http://your.server.com/webhook
+    
     {
       "type": "transaction",
       "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
@@ -4163,7 +4164,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     }
     
 
-> Example pending approval Webhook callback
+> Webhook コールバック 保留中の承認 例
 
     POST http://your.server.com/webhook
     {
@@ -4174,7 +4175,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     }
     
 
-Webhooks may be setup up to programmatically receive callbacks from BitGo. These may be attached to wallets (in the case of transactions), or to a user (for block notifications). Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
+BitGoからプログラマティックにコールバックを受け取るために、Webhookを設定することができます。 These may be attached to wallets (in the case of transactions), or to a user (for block notifications). Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
 
 BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a `HTTP 200 OK`. If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.
 
