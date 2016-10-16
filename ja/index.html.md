@@ -3491,7 +3491,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -3502,25 +3502,25 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Removes a policy rule with the id specified. This may require a secondary approval if there is more than 1 administrator on the wallet.
+指定されたidを持つポリシールールを削除する。ウォレットに複数の管理者がいる場合は、セカンダリー承認を必要とする場合があります。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
-`DELETE /api/v1/wallet/:WALLETID/policy/rule`<aside class="info"> This operation requires the session to be unlocked using the Unlock API. </aside> 
+`DELETE /api/v1/wallet/:WALLETID/policy/rule`<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
-### BODY Parameters
+### BODY Parameters BODYパラメーター
 
-| Parameter | Type   | Required | Description                         |
-| --------- | ------ | -------- | ----------------------------------- |
-| id        | string | YES      | the id of the policy rule to remove |
+| パラメーター | 種類  | 必須か | 説明               |
+| ------ | --- | --- | ---------------- |
+| id     | 文字列 | YES | 削除するポリシー ルールの id |
 
-### Response
+### Response 応答
 
-Returns the updated Wallet Model object.
+更新されたウォレットモデルオブジェクトを返します。
 
-# Pending Approvals
+# Pending Approvals　保留中の承認
 
-## List Pending Approvals
+## 保留中の承認の一覧を表示する
 
 List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.
 
