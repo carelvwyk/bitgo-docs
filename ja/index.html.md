@@ -4287,21 +4287,21 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Adds a Webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. There is a limit of 10 Webhooks of each type per wallet.
+イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 ウォレット毎に各種類ごとに10 webhook上限があります。
 
-There are 2 types of wallet webhooks available: 1. Transaction webhooks will fire on any transaction on the wallet. 2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.
+2種類のウォレットwebhookが利用可能となっています： 1. ウォレット上の任意のトランザクションについて、トランザクションwebhookが発射します。 2。 送信トランザクションがウォレットのポリシーをトリガーした時、保留中の承認 webhookが発射します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/wallet/:walletId/webhooks`
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter        | Type    | Required | Description                                                                                                                                                                                                        |
-| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type             | string  | YES      | type of Webhook, e.g. transaction or pendingapproval                                                                                                                                                               |
-| url              | string  | YES      | valid http/https url for callback requests                                                                                                                                                                         |
-| numConfirmations | integer | NO       | number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed. |
+| パラメーター           | 種類      | 必須か | 説明                                                                                                                                                                                  |
+| ---------------- | ------- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type             | 文字列     | YES | Webhookの種類、例えば transaction や pendingapproval                                                                                                                                        |
+| url              | 文字列     | YES | コールバック要求の有効なhttp/https URL                                                                                                                                                          |
+| numConfirmations | integer | NO  | transaction webhookをトリガーする前の前の確認の数。 If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed. |
 
 ### Response
 
