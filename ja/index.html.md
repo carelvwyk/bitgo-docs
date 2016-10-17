@@ -5152,12 +5152,12 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
   1. OAuthゲートウェイ`https://www.bitgo.com/oauth/authorize` 経由、でBitGoにログインするようユーザーをリダイレクトします。このリクエストの各パラメーターで、client id、redirect uri、そしてscopeを指定します。
   2. ユーザーはOAuthゲートウェイにアクセスします。私達は彼に、リクエストされたスコープへのアクセスを取得するのはOKですかとたずねます。彼は確認の為、自身のパスワードと二要素認証でログインします。　
   3. 私達はユーザーを、コードのパラメータとともにあなたのリダイレクトUriへと再びリダイレクトします。この認証コードはあなたのクライアントIDによる使用のみに有効です。
-  4. You send the authorization code back to your servers and create a request to BitGo servers with the code, client id and secret. We exchange this for an access token.
-  5. You use the access token in the Authorization header to make API calls on behalf of the BitGo user.
+  4. あなたは再び認証コードをあなたのサーバに送信し、その認証コード、クライアントid、そしてsecretで、BitGoサーバへのリクエストを作成します。それらを私達は、アクセストークンと交換します。
+  5. 認証ヘッダーでアクセストークンを用いて、BitGoユーザーに代わってAPIコールを行います。
 
-### OAuth Variables
+### OAuth Variables OAuth変数
 
-| Name          | Description                                                                                                                                                          |
+| 名             | 説明                                                                                                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Client Id     | A string (name) of the OAuth application seeking access to 3rd party accounts. This will be public.                                                                  |
 | Client Secret | A secret string, stored on the server of the OAuth consumer, used to convert authorization codes for the client id to access tokens.                                 |
