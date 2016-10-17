@@ -4205,7 +4205,7 @@ BitGoでは、現在積極的にwebhookに取り組んでいます。もっと�
 | pendingapproval    | ユーザーのウォレットに関係する保留中の承認が、作成、承認、拒否された時に有効になる     |
 | block              | ビットコインネットワークで新しいブロックが見られた時に有効になる              |
 
-## List Wallet Webhooks
+## List Wallet Webhooks ウォレットwebhookの一覧を取得する 
 
 ```shell
 curl -X GET \
@@ -4222,7 +4222,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 [
@@ -4240,23 +4240,23 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 ]
 ```
 
-Gets list of webhooks set up on the wallet. Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.
+ウォレットで設定されているwehookの一覧を取得します。 現在、ウォレットに添付できるwebhookの種類はtransactionとpendingapprovalの通知のみです。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/wallet/:walletId/webhooks`
 
-### Response
+### Response 応答
 
-An array of Webhook objects
+Webhookオブジェクトの配列
 
-| Field    | Description                          |
-| -------- | ------------------------------------ |
-| walletId | id of the wallet                     |
-| type     | type of Webhook, e.g. transaction    |
-| url      | http/https url for callback requests |
+| フィールド    | 説明                         |
+| -------- | -------------------------- |
+| walletId | ウォレットのID                   |
+| type     | Webhookの種類、例えば transaction |
+| url      | コールバック要求のhttp/https url    |
 
-## Add Wallet Webhooks
+## Add Wallet Webhooks ウォレット Webhookを追加する
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4277,7 +4277,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
