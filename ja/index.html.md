@@ -5129,11 +5129,11 @@ BitGo Instantは、BitGoによる二重支払いに対する金融保証によ�
 
 ## Receiving　受信
 
-In order to credit BitGo Instant transactions instantly, you will need to respect the **instant: true** property on the transaction objects returned from the [List Wallet Transactions](#list-wallet-transactions) and [Get Wallet Transaction](#get-wallet-transaction) APIs. Instant transactions will also have a field **instantId** which can be used to [Get the Instant Guarantee](#get-instant-guarantee) on a transaction.
+BitGo Instant トランザクションをが即座に着金するためには、[List Wallet Transactions](#list-wallet-transactions) と [Get Wallet Transaction](#get-wallet-transaction) のAPIから返されたトランザクションオブジェクトの **instant: true**のプロパティに注意を払う必要があります。 インスタントトランザクションはまた、トランザクションで[インスタント保証の取得](#get-instant-guarantee)に使用できる**instantld**のフィールドを持ちます。
 
-## Sending
+## Sending 送信
 
-You will first need a BitGo Instant-compatible wallet. This can be done by creating a KRS-enabled wallet in the web interface, or using the [Create Wallet API](#create-wallet-with-keychains) with a **backupXpubProvider** specified. If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a collateral agreement with BitGo.
+まず、BitGoのインスタントと互換のウォレットが必要です。 ウェブインターフェースのKRSが有効なウォレットの作成、または**backupXpubProvider**を指定の上[Create Wallet API](#create-wallet-with-keychains) を利用することにより行えます。 If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a collateral agreement with BitGo.
 
 In order to send a BitGo Instant transaction, use the **instant: true** flag on any of the transaction APIs, such as [Send Coins to Address](#send-coins-to-address) or [Create Transaction](#create-transaction). BitGoD also has the capability to send BitGo Instant transactions through its JSON interface.
 
