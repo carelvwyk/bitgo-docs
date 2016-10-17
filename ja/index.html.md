@@ -4694,7 +4694,7 @@ curl -k https://test.bitgo.com/api/v1/market/latest
 curl https://www.bitgo.com/api/v1/malware/bitcoin
 ```
 
-BitGo maintains a list of addresses known to be used by address-swapping malware. BitGo will refuse to co-sign transactions to these addresses. This API provides the list of addresses which are currently blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your customers is infected and requests a withdrawal.
+BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 Otherwise you may accidentally submit bad transactions to BitGo, if one of your customers is infected and requests a withdrawal.
 
 ### HTTP Request
 
