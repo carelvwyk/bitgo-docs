@@ -4554,9 +4554,9 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/encrypt
 { "encrypted" : "{\"iv\":\"U4uRz85ytmlCeTe2P3iOmg==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"/tRnUh9LUyI7L5e5LPqpvnPR7RD1CdUi\"}" }
 ```
 
-Client-side function to encrypt a string. All data stored with BitGo is encrypted using this API.
+文字列を暗号化するクライアント側関数です。BitGoで保管される全てのデータは、このAPIを用いて暗号化されます。
 
-## Estimate Transaction Fees
+## Estimate Transaction Fees トランザクションフィーを見積もる
 
 ```javascript
 bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
@@ -4568,13 +4568,13 @@ bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
 curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks=6
 ```
 
-Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions. Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.
+目標となるブロックの数内でトランザクションを確認するための、キロバイトあたりの推奨手数料のレートを返します。 トランザクションの作成に使用できます。 注意：見積もりアルゴリズムは最低2ブロック先まで正確なものです。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/tx/fee?numBlocks=6`
 
-> Example response
+> 応答の例
 
 ```json
 { "feePerKb": 21949,
@@ -4596,16 +4596,16 @@ Returns the recommended fee rate per kilobyte to confirm a transaction within a 
 }
 ```
 
-### Response
+### Response 応答
 
-| Field      | Description                                                                                         |
-| ---------- | --------------------------------------------------------------------------------------------------- |
-| confidence | confidence of the estimation as used by BitGo. do not use estimation if this value is less than 85. |
-| feePerKb   | fee (in satoshis) per kilobyte to use                                                               |
-| multiplier | multiplier amount used by BitGo to compute the feePerKb. informational only - do not use.           |
-| numBlocks  | the target number of blocks requested for the estimate                                              |
+| フィールド      | 説明                                                 |
+| ---------- | -------------------------------------------------- |
+| confidence | BitGoによって使用される見積もり額の信頼値。この値が85より小さい場合見積もりを使用しないこと。 |
+| feePerKb   | 使用するキロバイト当たりの（Satoshiを単位とする）手数料                    |
+| multiplier | BitGoによって、feePerKbを計算するために使用される乗数。情報目的のみ、使用しないこと   |
+| numBlocks  | 見積もりにおいてリクエストされたターゲットのブロック数                        |
 
-## Market Price Data
+## Market Price Data 市場価格データ
 
 ```javascript
 bitgo.markets().latest({}, function callback(err, market) {
