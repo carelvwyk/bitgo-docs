@@ -5149,7 +5149,7 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 まずはじめに、パートナーは私達に連絡して、OAuthのアプリケーションパラメーターを取得して下さい。OAuthの流れは通常次のようになります:
 
-  1. You redirect users to log into BitGo via our OAuth gateway at `https://www.bitgo.com/oauth/authorize`. In the parameters of this request, you specify the client id, redirect uri and scope.
+  1. OAuthゲートウェイ`https://www.bitgo.com/oauth/authorize` 経由、でBitGoにログインするようユーザーをリダイレクトします。このリクエストの各パラメーターで、client id、redirect uri、そしてscopeを指定します。
   2. The user reaches the BitGo OAuth gateway. We ask them if it's ok for you to gain access to the requested scope. They log in with their password and 2FA to confirm.
   3. We redirect the user back to your redirect Uri, with a code parameter. This authorization code is valid for use by your client ID only.
   4. You send the authorization code back to your servers and create a request to BitGo servers with the code, client id and secret. We exchange this for an access token.
