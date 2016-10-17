@@ -4909,7 +4909,7 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 
 ## Get Address Unspent Outputs アドレスの未使用分のアウトプットを取得する
 
-Get unspent outputs going into a given address. Ordered by descending block height (unconfirmed transactions first).
+特定のアドレスへ行く未使用分のアウトプットを取得します。ブロックの高さの降順に並びます(確認されていないトランザクションの順)。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4924,17 +4924,17 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/address/:address/unspents`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description         |
-| --------- | ------------------------ | -------- | ------------------- |
-| address   | bitcoin address (string) | YES      | The bitcoin address |
+| パラメーター  | 種類              | 必須か | 説明         |
+| ------- | --------------- | --- | ---------- |
+| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -4964,28 +4964,28 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of unspent Transaction objects. Each transaction contains the following information
+未使用分のトランザクションオブジェクトの配列を返します。各トランザクションには次の情報が含まれています：
 
-| Name          | Type   | Description                                          |
-| ------------- | ------ | ---------------------------------------------------- |
-| address       | string | The address with the unspent output                  |
-| tx_hash       | number | Amount in satoshis of the output unspent             |
-| tx_output_n | number | Amount in satoshis of the output unspent             |
-| value         | number | Amount in satoshis of the output unspent             |
-| blockheight   | number | The height in which the transaction was seen         |
-| confirmations | number | The number of confirmations for this transaction     |
-| date          | date   | The datetime the transaction was seen on the network |
-| script        | string | The output bitcoin script in hex format              |
+| 名             | 種類   | 説明                       |
+| ------------- | ---- | ------------------------ |
+| address       | 文字列  | 未使用のアウトプットを持つアドレス        |
+| tx_hash       | 数字   | 未使用のアウトプットの額、satoshi単位   |
+| tx_output_n | 数字   | 未使用のアウトプットの額、satoshi単位   |
+| value         | 数字   | 未使用のアウトプットの額、satoshi単位   |
+| blockheight   | 数字   | トランザクションが見られた（ブロックの）高さ   |
+| confirmations | 数字   | このトランザクションの確認数           |
+| date          | date | ネットワークでトランザクションが見られた日時   |
+| script        | 文字列  | 16進数形式のアウトプットビットコインスクリプト |
 
-### Errors
+### Errors　エラー
 
-| Response        | Description                                       |
-| --------------- | ------------------------------------------------- |
-| 400 Bad Request | The request parameters were missing or incorrect. |
+| 応答              | 説明                    |
+| --------------- | --------------------- |
+| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
 
-## Get Transaction Details
+## Get Transaction Details トランザクションの詳細を取得する
 
 ```shell
 TX=af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
