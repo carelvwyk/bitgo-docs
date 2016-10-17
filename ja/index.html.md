@@ -4694,17 +4694,17 @@ curl -k https://test.bitgo.com/api/v1/market/latest
 curl https://www.bitgo.com/api/v1/malware/bitcoin
 ```
 
-BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 Otherwise you may accidentally submit bad transactions to BitGo, if one of your customers is infected and requests a withdrawal.
+BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 さもなくばあなたの顧客が感染していて引出しをリクエストした場合、間違って「悪い」トランザクションを提出してしまう可能性があります。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/malware/bitcoin`
 
-> Example response
+> 応答の例
 
 ```json
 {
-  "readme": "This is a list of addresses known by BitGo to be tied to bitcoin-stealing malware. BitGo will not co-sign transactions going to these addresses. It is recommended to periodically query this API to update your own internal list of bad addresses, in order to prevent transaction failures.",
+  "readme": "これはBitGoが知る、ビットコインを盗むマルウェアに紐付いたアドレスのリストです。 BitGoがそれらのアドレスを宛先とするトランザクションに共同署名することはありません。 自身の「悪い」アドレスのリストを更新するため、定期的にこのAPIを照会することを推奨します", [
   "addresses": [
     {
       "address": "19ZM2pjq6U4jVb283GZkCPNukjeyb2YZ2u"
@@ -4716,21 +4716,21 @@ BitGoはアドレススワッピングマルウェアによって使用されて
 }
 ```
 
-### Response
+### Response 応答
 
-| Field     | Description                             |
-| --------- | --------------------------------------- |
-| readme    | Human-readable explanation of this list |
-| addresses | List of { address: xxx } objects        |
+| フィールド   | 説明                         |
+| ------- | -------------------------- |
+| readme  | 人間が読めるこのリストの説明             |
+| address | { address: xxx } オブジェクトの一覧 |
 
-## Verify Bitcoin Address
+## Verify Bitcoin Address ビットコインアドレスを確認する
 
 ```javascript
 var isValid = bitgo.verifyAddress({ address: "1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F" });
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 
 curl -X POST \
 -H "Content-Type: application/json" \
@@ -4738,21 +4738,21 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/verifyaddress
 ```
 
-Client-side function to verify that a given string is a valid Bitcoin Address. Supports both v1 addresses (e.g. "1...") and P2SH addresses (e.g. "3...").
+与えられた文字列が有効なビットコインアドレスであることを確認するクライアント側関数 v1 アドレス (例: "1...") とP2SH アドレス (例: "3...")の両方がサポートされています。
 
-Returns true if the address is valid.
+アドレスが有効な場合は true を返します。
 
-## BitGo Client Version
+## BitGo Client Version BitGoクライアントバージョン
 
 ```javascript
 var version = bitgo.version();
 ```
 
-Client-side function to get the version of this BitGo SDK.
+このBitGo SDKのバージョンを取得するクライアント側関数です。
 
-Returns a string.
+文字列を返します。
 
-# Blockchain Data
+# Blockchain Data ブロックチェーンデータ
 
 BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets. The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).
 
