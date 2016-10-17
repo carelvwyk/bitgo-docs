@@ -4438,28 +4438,28 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 }
 ```
 
-Adds a webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. The webhook record is attached to the user account.
+イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 Webhookの記録はユーザーアカウントに添付されます。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `POST /api/v1/webhooks`
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter | Type   | Required | Description                                                     |
-| --------- | ------ | -------- | --------------------------------------------------------------- |
-| type      | string | YES      | type of Webhook, e.g. block                                     |
-| coin      | string | NO       | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin) |
-| url       | string | YES      | valid http/https url for callback requests                      |
+| パラメーター | 種類  | 必須か | 説明                                          |
+| ------ | --- | --- | ------------------------------------------- |
+| type   | 文字列 | YES | Webhookの種類、例えばブロック                          |
+| coin   | 文字列 | NO  | ネットワーク トークン、例えば「ビットコイン」や「eth」(デフォルトでビットコイン) |
+| url    | 文字列 | YES | コールバック要求の有効なhttp/https URL                  |
 
-### Response
+### Response 応答
 
-| Field | Description                          |
-| ----- | ------------------------------------ |
-| type  | type of Webhook, e.g. block          |
-| url   | http/https url for callback requests |
+| フィールド | 説明                      |
+| ----- | ----------------------- |
+| type  | Webhookの種類、例えばブロック      |
+| url   | コールバック要求のhttp/https url |
 
-## Remove User Webhooks
+## ユーザー webhook を削除する
 
 ```shell
 URL='http://www.yoursite.com/partner/webhooks'
@@ -4477,7 +4477,7 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -4485,25 +4485,25 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 }
 ```
 
-Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
+Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト 
 
 `DELETE /api/v1/webhooks`
 
-### Parameters
+### Parameters パラメーター
 
-| Parameter | Type   | Required | Description                                              |
-| --------- | ------ | -------- | -------------------------------------------------------- |
-| type      | string | YES      | type of Webhook, e.g. transaction                        |
-| url       | string | YES      | valid http/https url for callback requests to be made at |
+| パラメーター | 種類  | 必須か | 説明                              |
+| ------ | --- | --- | ------------------------------- |
+| type   | 文字列 | YES | webhookの種類、例えば transaction      |
+| url    | 文字列 | YES | コールバック要求を行う先の、有効なhttp/https URL |
 
-### Response
+### Response 応答
 
-| Field | Description                          |
-| ----- | ------------------------------------ |
-| type  | type of Webhook, e.g. transaction    |
-| url   | http/https url for callback requests |
+| フィールド | 説明                         |
+| ----- | -------------------------- |
+| type  | webhookの種類、例えば transaction |
+| url   | コールバック要求のhttp/https url    |
 
 # Utilities
 
