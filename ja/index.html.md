@@ -4505,11 +4505,11 @@ Webhookを削除した場合、新規の特定のタイプのイベントがHTTP
 | type  | webhookの種類、例えば transaction |
 | url   | コールバック要求のhttp/https url    |
 
-# Utilities
+# Utilities 各ユーティリティ
 
-This section describes utility services provided as part of the BitGo API.
+このセクションでは、BitGo APIの一部として提供されている有用なユーティリティサービスについて説明します。
 
-## Decrypt
+## Decrypt 復号化
 
 ```javascript
 var encryptedString = '{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}';
@@ -4518,7 +4518,7 @@ var decryptedString = bitgo.decrypt({ password: "password", input: encryptedStri
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express)
 
 PASSWORD='password'
 INPUT='{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}'
@@ -4531,9 +4531,9 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/decrypt
 { "decrypted" : "this is a secret" }
 ```
 
-Client-side function to decrypt an encrypted blob from the BitGo API.
+BitGo APIから暗号化されたblobを復号化するクライアント側関数
 
-## Encrypt
+## Encrypt 暗号化
 
 ```javascript
 var encryptedString = bitgo.encrypt({ password: "password", input: "this is a secret" });
@@ -4541,7 +4541,7 @@ var encryptedString = bitgo.encrypt({ password: "password", input: "this is a se
 ```
 
 ```shell
-Available only as a local method (BitGo Express)
+ローカル メソッドとしてのみ使用できます (BitGo Express) 
 
 PASSWORD='password'
 INPUT='this is a secret'
