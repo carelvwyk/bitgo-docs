@@ -5159,8 +5159,8 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 | 名             | 説明                                                                                                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Client Id     | A string (name) of the OAuth application seeking access to 3rd party accounts. This will be public.                                                                  |
-| Client Secret | A secret string, stored on the server of the OAuth consumer, used to convert authorization codes for the client id to access tokens.                                 |
+| Client Id     | サードパーティアカウントへのアクセスを求めているOAuthアプリケーションの文字列（名前）。これは公開されます。                                                                                                             |
+| Client Secret | OAuthコンシューマーのサーバに格納された秘密の文字列、client idがトークンにアクセスするための認証コードを変換するのに使用される。                                                                                              |
 | Redirect Uris | A list of acceptable redirect URIs. When you send users to our OAuth gateway for authorization, we send them back to a Uri on your site with the authorization code. |
 | Scope         | A list of OAuth scopes. These are the scopes that your application will be allowed to request for from the user.                                                     |
 
