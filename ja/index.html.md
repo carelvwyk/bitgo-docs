@@ -5133,11 +5133,11 @@ BitGo Instant トランザクションをが即座に着金するためには、
 
 ## Sending 送信
 
-まず、BitGoのインスタントと互換のウォレットが必要です。 ウェブインターフェースのKRSが有効なウォレットの作成、または**backupXpubProvider**を指定の上[Create Wallet API](#create-wallet-with-keychains) を利用することにより行えます。 If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a collateral agreement with BitGo.
+まず、BitGoのインスタントと互換のウォレットが必要です。 ウェブインターフェースのKRSが有効なウォレットの作成、または**backupXpubProvider**を指定の上[Create Wallet API](#create-wallet-with-keychains) を利用することにより行えます。 非KRSのウォレットを持っている場合、BitGoとの担保契約を手配することによってBitGo Instantの機能を持つようアップグレードすることができます。
 
-In order to send a BitGo Instant transaction, use the **instant: true** flag on any of the transaction APIs, such as [Send Coins to Address](#send-coins-to-address) or [Create Transaction](#create-transaction). BitGoD also has the capability to send BitGo Instant transactions through its JSON interface.
+BitGo Instantトランザクションを送信するには、[Send Coins to Address](#send-coins-to-address) または [Create Transaction](#create-transaction)等のトランザクションAPIのいずれかで**instant: true** のフラグを使用します。 またBitGoは、JSONインターフェースを通じBitGo Instantトランザクションを送信する機能も持っています。
 
-BitGo Instant transactions have stricter requirements about the depths of the inputs being spent. This means that the balance of a wallet available for sending a BitGo Instant transaction may be less than the total balance of the wallet. The **instantBalance** property on the wallet object returned by the [Get Wallet API](#get-wallet) will tell you the available balance for sending a BitGo Instant transaction.
+BitGo Instantトランザクションは消費されているインプットの深さについてより厳格な要件を持ちます。 これはBitGo Instantトランザクションの送信に利用可能なウォレットの残高がウォレットの合計残高より少ない場合があることを意味します。 The **instantBalance** property on the wallet object returned by the [Get Wallet API](#get-wallet) will tell you the available balance for sending a BitGo Instant transaction.
 
 When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures when sending a BitGo Instant transaction, and possibly retry as a standard transaction.
 
