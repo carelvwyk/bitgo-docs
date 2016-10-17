@@ -5090,12 +5090,12 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 
 ### URL Parameters URL パラメーター
 
-| パラメーター   | 種類      | 必須か | 説明                                                                        |
-| -------- | ------- | --- | ------------------------------------------------------------------------- |
-| id       | 変数      | YES | The block hash (string), height (number) or 'latest' for the latest block |
-| extended | boolean | NO  | Set to true to return details on each transaction within the block        |
+| パラメーター   | 種類    | 必須か | 説明                                        |
+| -------- | ----- | --- | ----------------------------------------- |
+| id       | 変数    | YES | ブロックのハッシュ値(文字列)、高さ（数字）または最新ブロック（'latest'） |
+| extended | ブーリアン | NO  | trueにセットすると、ブロック内の各トランザクションの詳細を返す         |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -5114,14 +5114,14 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 }
 ```
 
-### Response
+### Response 応答
 
-| Name         | Type     | Description                                                 |
-| ------------ | -------- | ----------------------------------------------------------- |
-| date         | datetime | The timestamp the block was seen on the network             |
-| id           | string   | Hash of the block                                           |
-| previous     | string   | Hash of the previous block in the chain                     |
-| transactions | array    | Array of transaction hashes (strings) that are in the block |
+| 名            | 種類  | 説明                          |
+| ------------ | --- | --------------------------- |
+| date         | 日時  | ネットワークでブロックが見られた時点のタイムスタンプ  |
+| id           | 文字列 | ブロックのハッシュ                   |
+| previous     | 文字列 | チェーンの前のブロックのハッシュ            |
+| transactions | 配列  | ブロックにあるトランザクションハッシュ（文字列）の配列 |
 
 # BitGo Instant
 
