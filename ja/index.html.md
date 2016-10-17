@@ -5145,7 +5145,7 @@ BitGo Instantトランザクションは、ボリュームディスカウント�
 
 # Partner OAuth パートナー OAuth
 
-BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts. BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.
+BitGoのパートナーは、許可されたアクセスを得て3rdパーティBitGoアカウントに代わってアクションを実行するために、私達のOAuthエンドポイントを利用できます。 BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.
 
 To begin, partners should obtain OAuth application parameters by getting in touch with us. The OAuth flow typically goes as follows:
 
