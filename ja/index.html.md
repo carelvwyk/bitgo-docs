@@ -4179,9 +4179,9 @@ BitGoからプログラマティックにコールバックを受け取るため
 
 BitGoサーバはJSONペイロードと定義された、POST httpリクエストを行い、`HTTP 200 OK`を期待します。 正常な応答が受信されない場合、BitGo は各再試行間隔を増やし webhook を再試行しようとします。
 
-Developers should take care to ensure that their application succeeds even in the cases of transient network error, or if receive the same webhook twice due to an improper acknowledgement.
+開発者は一時的なネットワークエラーの場合でも、あるいは不適切な確認のため同じwebhookを二度受信した場合でもアプリケーションが正常に動くことを確保するべきです。
 
-### Request Schema
+### Request Schema スキーマをリクエストする
 
 The Webhook URL will be called with the following JSON-encoded fields in the HTTP body.
 
