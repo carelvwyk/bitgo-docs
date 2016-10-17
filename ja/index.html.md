@@ -5000,19 +5000,19 @@ bitgo.blockchain().getTransaction({id: txId}, function(err, response) {
 });
 ```
 
-Gets details for a transaction hash
+トランザクション・ハッシュの詳細を取得します。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/tx/:txid`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type   | Required | Description               |
-| --------- | ------ | -------- | ------------------------- |
-| txid      | string | YES      | The transaction ID (hash) |
+| パラメーター | 種類  | 必須か | 説明                 |
+| ------ | --- | --- | ------------------ |
+| txId   | 文字列 | YES | トランザクション ID (ハッシュ) |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -5059,11 +5059,11 @@ Gets details for a transaction hash
 }
 ```
 
-### Response
+### Response 応答
 
-Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.
+トランザクションに関連する全てのビットコインアドレスへの実質的影響を含む、トランザクションの詳細な情報を返します。
 
-## Get Block
+## Get Block 　ブロックを取得する
 
 ```shell
 BLOCK=00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
@@ -5078,9 +5078,9 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 });
 ```
 
-Gets a Bitcoin block and the transactions within it. You can use 'latest' to get the latest block on the bitcoin network.
+ビットコインブロックとその中の各トランザクションを取得します。'latest'を利用することで、ビットコインネットワークの最新ブロックを取得できます。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/block/latest`
 
@@ -5088,12 +5088,12 @@ Gets a Bitcoin block and the transactions within it. You can use 'latest' to get
 
 `GET /api/v1/block/:blockHash`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type     | Required | Description                                                               |
-| --------- | -------- | -------- | ------------------------------------------------------------------------- |
-| id        | variable | YES      | The block hash (string), height (number) or 'latest' for the latest block |
-| extended  | boolean  | NO       | Set to true to return details on each transaction within the block        |
+| パラメーター   | 種類      | 必須か | 説明                                                                        |
+| -------- | ------- | --- | ------------------------------------------------------------------------- |
+| id       | 変数      | YES | The block hash (string), height (number) or 'latest' for the latest block |
+| extended | boolean | NO  | Set to true to return details on each transaction within the block        |
 
 > Example response
 
