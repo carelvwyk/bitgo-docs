@@ -4185,25 +4185,25 @@ BitGoサーバはJSONペイロードと定義された、POST httpリクエス�
 
 Webhook URLは、次のHTTPのボディ内のJSONエンコードされたフィールドで呼び出されます。
 
-| フィールド             | 説明                                                                                                        |
-| ----------------- | --------------------------------------------------------------------------------------------------------- |
-| type              | webhookの種類： 'transaction', 'transactionExpire', 'transactionRemoved', 'block', そして 'pendingapproval'      |
-| walletId          | Webhookイベントに関連付けられたウォレットのID、ウォレットのwebhookであっても                                                            |
-| hash              | トランザクションwebhookの場合、トランザクションID                                                                             |
-| pendingApprovalId | 保留中の承認webhookの場合、保留中の承認ID                                                                                 |
-| state             | the state of the pending approval (pending, approved, or rejected), if this is a pending approval webhook |
+| フィールド             | 説明                                                                                                   |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| type              | webhookの種類： 'transaction', 'transactionExpire', 'transactionRemoved', 'block', そして 'pendingapproval' |
+| walletId          | Webhookイベントに関連付けられたウォレットのID、ウォレットのwebhookであっても                                                       |
+| hash              | トランザクションwebhookの場合、トランザクションID                                                                        |
+| pendingApprovalId | 保留中の承認webhookの場合、保留中の承認ID                                                                            |
+| state             | 保留中の承認のwebhookの場合、保留中の承認の状態(pending, approved, またはrejected)                                          |
 
-### Webhook Types
+### Webhook Types Webhookの種類
 
-BitGo is currently actively working on webhooks. Please get in touch with us to request more webhook types.
+BitGoでは、現在積極的にwebhookに取り組んでいます。もっと多くの種類をリクエストされたい場合は、弊社までご連絡ください。
 
-| Type               | Description                                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| transaction        | Activates when a transaction is seen/confirmed on any receive address of a wallet                 |
-| transactionRemoved | Activates when a transaction is removed from a user's wallet                                      |
-| transactionExpire  | Activates when a transaction is about to expire                                                   |
-| pendingapproval    | Activates when a pending approval pertaining to a user's wallet is created, approved, or rejected |
-| block              | Activates when a new block is seen on the Bitcoin network                                         |
+| 種類                 | 説明                                            |
+| ------------------ | --------------------------------------------- |
+| transaction        | トランザクションが、ウォレットの任意の受信アドレスで既読になった/確認された時に有効になる |
+| transactionRemoved | トランザクションがユーザーのウォレットから削除された時に有効になる             |
+| transactionExpire  | トランザクションの有効期限が切れる時に有効になる                      |
+| pendingapproval    | ユーザーのウォレットに関係する保留中の承認が、作成、承認、拒否された時に有効になる     |
+| block              | ビットコインネットワークで新しいブロックが見られた時に有効になる              |
 
 ## List Wallet Webhooks
 
