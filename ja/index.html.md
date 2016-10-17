@@ -5139,7 +5139,7 @@ BitGo Instantトランザクションを送信するには、[Send Coins to Addr
 
 BitGo Instantトランザクションは消費されているインプットの深さについてより厳格な要件を持ちます。 これはBitGo Instantトランザクションの送信に利用可能なウォレットの残高がウォレットの合計残高より少ない場合があることを意味します。 [Get Wallet API](#get-wallet)が返すウォレットオブジェクトの **instantBalance**プロパティでBitGo Instantトランザクションの送信前に、利用可能な残高がわかります。
 
-When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures when sending a BitGo Instant transaction, and possibly retry as a standard transaction.
+BitGo Instantトランザクションの送信時、ウォレット内に十分な確認済みの未使用分がない場合、あるいはトランザクションがウォレットがサポートしているリスクの上限を超えた場合、トランザクションが失敗する場合があります。 リスクの上限は、入金された担保の額、あるいは特定のKRSによる提供の全ウォレットに対しBitGoが適用するリスクの上限によって決まります。 BitGo Instantトランザクションの送信時、潜在的な障害を処理する必要があります。場合によっては標準的なトランザクションとしての再試行が必要です。
 
 BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional pricing plans, including volume discount plans.
 
