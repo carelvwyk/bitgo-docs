@@ -4297,21 +4297,21 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 
 ### Parameters パラメーター
 
-| パラメーター           | 種類      | 必須か | 説明                                                                                                                                                                                  |
-| ---------------- | ------- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type             | 文字列     | YES | Webhookの種類、例えば transaction や pendingapproval                                                                                                                                        |
-| url              | 文字列     | YES | コールバック要求の有効なhttp/https URL                                                                                                                                                          |
-| numConfirmations | integer | NO  | transaction webhookをトリガーする前の前の確認の数。 If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed. |
+| パラメーター           | 種類      | 必須か | 説明                                                                                                        |
+| ---------------- | ------- | --- | --------------------------------------------------------------------------------------------------------- |
+| type             | 文字列     | YES | Webhookの種類、例えば transaction や pendingapproval                                                              |
+| url              | 文字列     | YES | コールバック要求の有効なhttp/https URL                                                                                |
+| numConfirmations | integer | NO  | transaction webhookをトリガーする前の前の確認の数。 0または示されていない場合、要求はコールバックエンドポイントに送られ、トランザクションがまず見られた時、そして確認された時呼び出されます。 |
 
-### Response
+### Response 応答
 
-| Field    | Description                          |
-| -------- | ------------------------------------ |
-| walletId | id of the wallet                     |
-| type     | type of Webhook, e.g. transaction    |
-| url      | http/https url for callback requests |
+| フィールド    | 説明                         |
+| -------- | -------------------------- |
+| walletId | ウォレットのID                   |
+| type     | Webhookの種類、例えば transaction |
+| url      | コールバック要求のhttp/https url    |
 
-## Remove Wallet Webhooks
+## Remove Wallet Webhooks ウォレット webhookを削除する
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4332,7 +4332,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
@@ -4340,28 +4340,28 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
+Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `DELETE /api/v1/wallet/:walletId/webhooks`
 
-### Parameters
+### パラメーター
 
-| Parameter | Type   | Required | Description                                              |
-| --------- | ------ | -------- | -------------------------------------------------------- |
-| type      | string | YES      | type of Webhook, e.g. transaction                        |
-| url       | string | YES      | valid http/https url for callback requests to be made at |
+| パラメーター | 種類  | Required | 説明                              |
+| ------ | --- | -------- | ------------------------------- |
+| type   | 文字列 | YES      | Webhookの種類、例えば transaction      |
+| url    | 文字列 | YES      | コールバック要求を行う先の、有効なhttp/https URL |
 
-### Response
+### Response 応答
 
-| Field    | Description                          |
-| -------- | ------------------------------------ |
-| walletId | id of the wallet                     |
-| type     | type of Webhook, e.g. transaction    |
-| url      | http/https url for callback requests |
+| フィールド    | 説明                         |
+| -------- | -------------------------- |
+| walletId | ウォレットのID                   |
+| type     | Webhookの種類、例えば transaction |
+| url      | コールバック要求のhttp/https url    |
 
-## List User Webhooks
+## List User Webhooks ユーザー Webhookの一覧を取得する
 
 ```shell
 curl -X GET \
@@ -4376,7 +4376,7 @@ bitgo.listWebhooks({}, function callback(err, result) {
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 [
