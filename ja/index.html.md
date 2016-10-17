@@ -5166,7 +5166,7 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 ### Scope Values スコープ値
 
-The scope values define the allowed operations within an OAuth session. These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.
+スコープの値はOAuthセッション内で許可される操作を定義します。 These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.
 
 Please specify scopes separated using spaces, e.g. "openid profile wallet_view_enterprise wallet_spend_enterprise".
 
