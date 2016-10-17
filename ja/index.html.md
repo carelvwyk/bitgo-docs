@@ -5137,7 +5137,7 @@ BitGo Instant トランザクションをが即座に着金するためには、
 
 BitGo Instantトランザクションを送信するには、[Send Coins to Address](#send-coins-to-address) または [Create Transaction](#create-transaction)等のトランザクションAPIのいずれかで**instant: true** のフラグを使用します。 またBitGoは、JSONインターフェースを通じBitGo Instantトランザクションを送信する機能も持っています。
 
-BitGo Instantトランザクションは消費されているインプットの深さについてより厳格な要件を持ちます。 これはBitGo Instantトランザクションの送信に利用可能なウォレットの残高がウォレットの合計残高より少ない場合があることを意味します。 The **instantBalance** property on the wallet object returned by the [Get Wallet API](#get-wallet) will tell you the available balance for sending a BitGo Instant transaction.
+BitGo Instantトランザクションは消費されているインプットの深さについてより厳格な要件を持ちます。 これはBitGo Instantトランザクションの送信に利用可能なウォレットの残高がウォレットの合計残高より少ない場合があることを意味します。 [Get Wallet API](#get-wallet)が返すウォレットオブジェクトの **instantBalance**プロパティでBitGo Instantトランザクションの送信前に、利用可能な残高がわかります。
 
 When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures when sending a BitGo Instant transaction, and possibly retry as a standard transaction.
 
