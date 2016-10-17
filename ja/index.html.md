@@ -4393,23 +4393,23 @@ bitgo.listWebhooks({}, function callback(err, result) {
 ]
 ```
 
-Gets list of webhooks attached to the user. Currently, the only type of webhook that can be attached to a user is a block notification.
+ユーザーに添付されるwebhookの一覧を取得します。現在、ユーザーに添付できるwebhookの種類はブロック通知だけです。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/webhooks`
 
-### Response
+### Response 応答
 
-An array of Webhook objects
+Webhookオブジェクトの配列
 
-| Field | Description                                                                   |
-| ----- | ----------------------------------------------------------------------------- |
-| type  | type of Webhook, e.g. block                                                   |
-| coin  | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin) |
-| url   | http/https url for callback requests                                          |
+| フィールド | 説明                                                    |
+| ----- | ----------------------------------------------------- |
+| type  | Webhookの種類、例えばブロック                                    |
+| coin  | 文字列 | No |ネットワーク トークン、例えば「ビットコイン」や「eth」(デフォルトでビットコイン) |
+| url   | コールバック要求のhttp/https url                               |
 
-## Add User Webhooks
+## Add User Webhooks ユーザー Webhook を追加する
 
 ```shell
 URL='https://303fe960.ngrok.com'
@@ -4428,7 +4428,7 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 });
 ```
 
-> Example Response
+> 応答の例
 
 ```json
 {
