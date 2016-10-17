@@ -4183,15 +4183,15 @@ BitGoサーバはJSONペイロードと定義された、POST httpリクエス�
 
 ### Request Schema スキーマをリクエストする
 
-The Webhook URL will be called with the following JSON-encoded fields in the HTTP body.
+Webhook URLは、次のHTTPのボディ内のJSONエンコードされたフィールドで呼び出されます。
 
-| Field             | Description                                                                                                |
-| ----------------- | ---------------------------------------------------------------------------------------------------------- |
-| type              | type of Webhook: 'transaction', 'transactionExpire', 'transactionRemoved', 'block', and 'pendingapproval'. |
-| walletId          | ID of the wallet associated with the webhook event, if this is a wallet webhook.                           |
-| hash              | transaction ID, if this is a transaction webhook                                                           |
-| pendingApprovalId | pending approval ID, if this is a pending approval webhook                                                 |
-| state             | the state of the pending approval (pending, approved, or rejected), if this is a pending approval webhook  |
+| フィールド             | 説明                                                                                                        |
+| ----------------- | --------------------------------------------------------------------------------------------------------- |
+| type              | webhookの種類： 'transaction', 'transactionExpire', 'transactionRemoved', 'block', そして 'pendingapproval'      |
+| walletId          | Webhookイベントに関連付けられたウォレットのID、ウォレットのwebhookであっても                                                            |
+| hash              | トランザクションwebhookの場合、トランザクションID                                                                             |
+| pendingApprovalId | 保留中の承認webhookの場合、保留中の承認ID                                                                                 |
+| state             | the state of the pending approval (pending, approved, or rejected), if this is a pending approval webhook |
 
 ### Webhook Types
 
