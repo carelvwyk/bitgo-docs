@@ -4754,13 +4754,13 @@ var version = bitgo.version();
 
 # Blockchain Data ブロックチェーンデータ
 
-BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets. The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).
+BitGoは、アドレスやトランザクションについてブロックチェーンデータを取得するパブリックAPIを提供しています。 これらのAPIはBitGoユーザーやウォレットの概念と関連しません。 このAPIのエンドポイントの目的は、APIの消費者(利用者) が非BitGoのアドレスとトランザクションのデータを取得することを可能にすることです（Satoshiクライアントのtxiindexとwatchonlyの概念と類似）。
 
-For most wallet use cases, developers will want to use the Wallet and Keychain APIs. They support many more operations, such as checking the combined balances of HD wallets, creating addresses, sending transactions, etc.<aside class="success"> The Blockchain Data API does not require authentication, since it returns only public blockchain data. It is still recommended to send the access token in the header to achieve a higher rate limit allowance from our service. </aside> 
+ほとんどのウォレットの利用ケースで、開発者はこのウォレットとキーチェーンAPIを利用したいでしょう。 それらはHDウォレットの合計残高や、アドレスの作成、トランザクションの送信等のような、より多くの操作をサポートします。<aside class="success"> パブリックブロックチェーンデータだけを返すため、ブロックチェーンデータAPIは認証を必要としません。 ただし、私達のサービスからの高いレートの限度を達成するため、ヘッダーにあるアクセストークンを送信することを推奨します。 </aside> 
 
-## Get Address
+## Get Address アドレスを取得する
 
-Lookup an address with balance info.
+残高情報を持つアドレスをルックアップします。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4775,17 +4775,17 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/address/:address`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description         |
-| --------- | ------------------------ | -------- | ------------------- |
-| address   | bitcoin address (string) | YES      | The bitcoin address |
+| パラメーター  | 種類              | 必須か | 説明         |
+| ------- | --------------- | --- | ---------- |
+| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -4795,7 +4795,7 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 }
 ```
 
-### Response
+### Response 応答
 
 Returns address summary information.
 
