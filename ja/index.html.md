@@ -5157,14 +5157,14 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 ### OAuth Variables OAuth変数
 
-| 名             | 説明                                                                                                                                                                   |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Client Id     | サードパーティアカウントへのアクセスを求めているOAuthアプリケーションの文字列（名前）。これは公開されます。                                                                                                             |
-| Client Secret | OAuthコンシューマーのサーバに格納された秘密の文字列、client idがトークンにアクセスするための認証コードを変換するのに使用される。                                                                                              |
-| Redirect Uris | A list of acceptable redirect URIs. When you send users to our OAuth gateway for authorization, we send them back to a Uri on your site with the authorization code. |
-| Scope         | A list of OAuth scopes. These are the scopes that your application will be allowed to request for from the user.                                                     |
+| 名             | 説明                                                                                       |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| Client Id     | サードパーティアカウントへのアクセスを求めているOAuthアプリケーションの文字列（名前）。これは公開されます。                                 |
+| Client Secret | OAuthコンシューマーのサーバに格納された秘密の文字列、client idがトークンにアクセスするための認証コードを変換するのに使用される。                  |
+| Redirect Uris | 受け入れ可能なリダイレクトURIのリスト。あなたが認証のため私達のOAuthゲートウェイへユーザーを送る時、私達は再び彼らを認証コードとともにあなたのサイトのUriへ送ります。 |
+| Scope         | OAuthスコープのリスト。これらはあなたのアプリケーションがユーザーに要求することが認められるスコープです。                                  |
 
-### Scope Values
+### Scope Values スコープ値
 
 The scope values define the allowed operations within an OAuth session. These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.
 
