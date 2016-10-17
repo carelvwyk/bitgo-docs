@@ -4620,13 +4620,13 @@ bitgo.markets().latest({}, function callback(err, market) {
 curl -k https://test.bitgo.com/api/v1/market/latest
 ```
 
-Get information about the current market
+現在の市場についての情報を得ます。
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/market/latest`
 
-> Example Market Model response
+> マーケットモデルの応答の例
 
 ```json
 {
@@ -4670,25 +4670,25 @@ Get information about the current market
 }
 ```
 
-### Response
+### Response 応答
 
-Returns a Market Model object. All prices are denominated in the user's set currency.
+マーケットモデルオブジェクトを返します。全ての価格はユーザーが設定した通貨の単位建てです。
 
-| Field       | Description                                                                   |
-| ----------- | ----------------------------------------------------------------------------- |
-| last        | Latest market price                                                           |
-| bid         | Highest current bid price                                                     |
-| ask         | Lowest current ask price                                                      |
-| volume      | 24 hour volume of bitcoins exchanged                                          |
-| high        | Highest market price today                                                    |
-| low         | Lowest market price today                                                     |
-| monthlyHigh | Highest market price this month                                               |
-| monthlyLow  | Lowest market price this month                                                |
-| marketcap   | Bitcoin market cap                                                            |
-| updateTime  | Datetime of when this data was updated                                        |
-| yesterday   | An object containing the prior listed fields, but for yesterday's market data |
+| フィールド       | 説明                                    |
+| ----------- | ------------------------------------- |
+| last        | 最新の市場価格                               |
+| bid         | 最も高い現在の入札価格                           |
+| ask         | 最も低い現在の売り呼び値                          |
+| volume      | 取引されたビットコインの24時間の出来高                  |
+| high        | 今日の市場価格の最高額                           |
+| low         | 今日の市場価格の最低額                           |
+| monthlyHigh | 今月の市場価格の最高額                           |
+| monthlyLow  | 今月の市場価格の最低額                           |
+| marketcap   | ビットコインの時価総額                           |
+| updateTime  | このデータが更新された日時                         |
+| yesterday   | 以前表示されたフィールドを含むオブジェクト、ただし昨日の市場データについて |
 
-## Malware Address List
+## マルウェアアドレスのリスト Malware Address List
 
 ```shell
 curl https://www.bitgo.com/api/v1/malware/bitcoin
