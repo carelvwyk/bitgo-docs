@@ -5141,9 +5141,9 @@ BitGo Instantトランザクションは消費されているインプットの�
 
 BitGo Instantトランザクションの送信時、ウォレット内に十分な確認済みの未使用分がない場合、あるいはトランザクションがウォレットがサポートしているリスクの上限を超えた場合、トランザクションが失敗する場合があります。 リスクの上限は、入金された担保の額、あるいは特定のKRSによる提供の全ウォレットに対しBitGoが適用するリスクの上限によって決まります。 BitGo Instantトランザクションの送信時、潜在的な障害を処理する必要があります。場合によっては標準的なトランザクションとしての再試行が必要です。
 
-BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional pricing plans, including volume discount plans.
+BitGo Instantトランザクションは、ボリュームディスカウントプランを含む全ての標準トランザクション価格プランの顧客に、追加費用なしで提供されています。
 
-# Partner OAuth
+# Partner OAuth パートナー OAuth
 
 BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts. BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.
 
