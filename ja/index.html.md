@@ -5125,9 +5125,9 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 
 # BitGo Instant
 
-BitGo Instant allows sending on-chain transactions which can be credited instantly by recipients, due to a financial guarantee by BitGo against double-spending. Anyone can receive BitGo Instant transactions. In order to send BitGo Instant transactions, you will need either a BitGo KRS wallet, or will need to arrange a collateral agreement with BitGo.
+BitGo Instantは、BitGoによる二重支払いに対する金融保証により金融保証受信者のアカウントへ即座に着金する、オンチェーンのトランザクションの送信を可能にします。 誰でもBitGo Instant トランザクションを受け取ることができます。 BitGo Instantトランザクションを送信するには、BitGo KRSウォレットまたはBitGoとの担保契約を手配することが必要です。
 
-## Receiving
+## Receiving　受信
 
 In order to credit BitGo Instant transactions instantly, you will need to respect the **instant: true** property on the transaction objects returned from the [List Wallet Transactions](#list-wallet-transactions) and [Get Wallet Transaction](#get-wallet-transaction) APIs. Instant transactions will also have a field **instantId** which can be used to [Get the Instant Guarantee](#get-instant-guarantee) on a transaction.
 
