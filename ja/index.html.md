@@ -4797,24 +4797,24 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 
 ### Response 応答
 
-Returns address summary information.
+アドレスの概要情報を返します。
 
-| Field            | Description                                              |
-| ---------------- | -------------------------------------------------------- |
-| address          | The address                                              |
-| balance          | the balance, including transactions with 0 confirmations |
-| confirmedBalance | the confirmed balance                                    |
+| フィールド            | 説明                  |
+| ---------------- | ------------------- |
+| address          | アドレス                |
+| balance          | 確認が0回のトランザクションを含む残高 |
+| confirmedBalance | 確認された残高             |
 
-### Errors
+### Errors　エラー
 
-| Response        | Description                                       |
-| --------------- | ------------------------------------------------- |
-| 400 Bad Request | The request parameters were missing or incorrect. |
-| 404 Not Found   | The address was not found                         |
+| 応答              | 説明                    |
+| --------------- | --------------------- |
+| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
+| 404 Not Found   | ウォレットが見つからなかった        |
 
-## Get Address Transactions
+## Get Address Transactions アドレス トランザクションを取得する
 
-Get transactions for a given address, ordered by reverse block height.
+指定されたアドレスについて、逆のブロックの高さの順でトランザクションを取得します。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4829,24 +4829,24 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 });
 ```
 
-### HTTP Request
+### HTTP Request HTTPリクエスト
 
 `GET /api/v1/address/:address/tx`
 
-### URL Parameters
+### URL Parameters URL パラメーター
 
-| Parameter | Type                     | Required | Description         |
-| --------- | ------------------------ | -------- | ------------------- |
-| address   | bitcoin address (string) | YES      | The bitcoin address |
+| パラメーター  | 種類              | 必須か | 説明         |
+| ------- | --------------- | --- | ---------- |
+| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
 
-### QUERY Parameters
+### QUERY Parameters クエリ パラメーター
 
-| Parameter | Type   | Required | Description                                                            |
-| --------- | ------ | -------- | ---------------------------------------------------------------------- |
-| skip      | number | NO       | The starting index number to list from. Default is 0.                  |
-| limit     | number | NO       | Max number of results to return in a single call (default=25, max=250) |
+| パラメーター | 種類 | 必須か | 説明                                     |
+| ------ | -- | --- | -------------------------------------- |
+| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
+| limit  | 数字 | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -4897,17 +4897,17 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 }
 ```
 
-### Response
+### Response 応答
 
-Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected the net balance of any bitcoin address involved in the transaction.
+トランザクションオブジェクトの配列を返す。そのトランザクションがそのトランザクションが関わった任意のビットコインアドレスの正味残高にどのように影響したかの概要情報を、各トランザクションは含みます。
 
-### Errors
+### Errors　エラー
 
-| Response        | Description                                       |
-| --------------- | ------------------------------------------------- |
-| 400 Bad Request | The request parameters were missing or incorrect. |
+| 応答              | 説明                    |
+| --------------- | --------------------- |
+| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
 
-## Get Address Unspent Outputs
+## Get Address Unspent Outputs アドレスの未使用分のアウトプットを取得する
 
 Get unspent outputs going into a given address. Ordered by descending block height (unconfirmed transactions first).
 
