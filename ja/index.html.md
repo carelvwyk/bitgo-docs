@@ -5208,15 +5208,15 @@ OAuthのフローの最初のステップは、あなたのユーザーをClient
     https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
     
 
-| パラメーター       | 必須か | 説明                                                                                                                        |
-| ------------ | --- | ------------------------------------------------------------------------------------------------------------------------- |
-| client_id    | YES | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの名前                                                                                  |
-| redirect_uri | YES | BitGoで認証された後、再びユーザーをあなたのサイトに送るBitGoのリダイレクトUri                                                                             |
-| scope        | YES | スペースで区切られた要求されたOAuthスコープのリスト。ユーザーの情報へのあなたのアクセスはこれらのスコープに依存します                                                             |
-| state        | NO  | opaque string that you contain any custom information you wish to provide. Send back as a parameter in the redirect Uri   |
-| signup       | NO  | boolean value to be used to control if the user defaults to login or sign up when they land on the OAuth gateway at BitGo |
-| email        | NO  | string value of the email username, used to pre-populate the value                                                        |
-| force_email  | NO  | if set to true, the email field (set above) will be readonly on the user's client                                         |
+| パラメーター       | 必須か | 説明                                                                                |
+| ------------ | --- | --------------------------------------------------------------------------------- |
+| client_id    | YES | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの名前                                          |
+| redirect_uri | YES | BitGoで認証された後、再びユーザーをあなたのサイトに送るBitGoのリダイレクトUri                                     |
+| scope        | YES | スペースで区切られた要求されたOAuthスコープのリスト。ユーザーの情報へのあなたのアクセスはこれらのスコープに依存します                     |
+| state        | NO  | あなたが提供したいと望むカスタム情報を含める不透明な文字列。リダイレクトUriにあるパラメータとして送り返します                          |
+| signup       | NO  | BitGoでのOAuthゲートウェイに着いた時、ユーザーがデフォルトでログインまたはサインアップする場合コントロールに使用するブール値               |
+| email        | NO  | 値を予め用意するのに使用されるメールユーザ名の文字列の値                                                      |
+| force_email  | NO  | if set to true, the email field (set above) will be readonly on the user's client |
 
 ### Our server will redirect
 
