@@ -5776,18 +5776,18 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
 
 ### パラメーター Parameters
 
-| 名                  | 種類                       | 必須か | 説明                                                                  |
-| ------------------ | ------------------------ | --- | ------------------------------------------------------------------- |
-| user               | 文字列                      | YES | ユーザー名 (テスト環境でのメールアドレス)                                              |
-| pass               | 文字列                      | YES | bitGo でのパスワード                                                       |
-| otp                | 数字                       | YES | the one-time-password (you can use 0000000 in the test environment) |
-| walletId           | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI                            |
-| url                | http endpoint (string)   | YES | the URL to set up the policy with                                   |
-| walletPassphrase   | string                   | YES | the passphrase used to encrypt the user's private key               |
-| destinationAddress | bitcoin address (string) | YES | the destination address of the wallet                               |
-| amountSatoshis     | string                   | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
+| 名                  | 種類                 | 必須か | 説明                                       |
+| ------------------ | ------------------ | --- | ---------------------------------------- |
+| user               | 文字列                | YES | ユーザー名 (テスト環境でのメールアドレス)                   |
+| pass               | 文字列                | YES | bitGo でのパスワード                            |
+| otp                | 数字                 | YES | ワンタイムパスワード（テスト環境では0000000を使用できます）        |
+| walletId           | ビットコインアドレス(文字列)    | YES | BitGo UIで表示されているウォレット名                   |
+| url                | http エンドポイント (文字列) | YES | ポリシーを設定するURL                             |
+| walletPassphrase   | 文字列                | YES | ユーザーの秘密鍵を暗号化するのに使用するパスフレーズ               |
+| destinationAddress | ビットコインアドレス(文字列)    | YES | ウォレットの宛先アドレス                             |
+| amountSatoshis     | 文字列                | YES | 送信するsatoshiの数字 (例: 0.1ビットコインについて0.1*1e8) |
 
-## Recover Wallet
+## Recover Wallet ウォレットを回復する
 
 RecoverWallet is a tool that can recover funds from a BitGo wallet without using the BitGo service. It is provided for demonstration purposes and to prove that BitGo wallets are 100% recoverable even if the BitGo Service is unavailable. It is not expected that this tool would be used for production environments.
 
