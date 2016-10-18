@@ -5791,7 +5791,7 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
 
 RecoverWalletは BitGoのサービスを利用することなしに、BitGoウォレットから資金を回復できるツールです。 デモンストレーションの目的で、またBitGoのサービスが利用不可の時であってもBitGoウォレットが100%回復可能であることを証明するためにも提供されています。 運用環境向けにツールが使用されることは想定されません。
 
-Given only the information on a wallet's keycard, the tool constructs a transaction which moves all of the funds within that wallet to a new account of the user's choice. This is done without using any BitGo Service APIs.
+ウォレット'のキーカードについての情報のみから、このツールは、ユーザー'が選ぶ新しいアカウントへウォレット内のすべての資金を移動するトランザクションを構築します。 これはBitGoのサービスのAPIを使用することなく行われます。
 
 The RecoverWallet tool is interactive or command line driven.
 
