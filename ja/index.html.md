@@ -5645,27 +5645,27 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
   1. BitGo で認証する。
   2. コインの消費が可能になるようアカウントをアンロックする。
   3. 提供されたwalletldでサーバからウォレットを取得します。
-  4. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
+  4. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
 
-### Usage
+### Usage 使い方
 
 `node sendBitcoin <user> <pass> <otp> <walletId> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-### Parameters
+### パラメーター
 
-| Name               | Type                     | Required | Description                                                         |
-| ------------------ | ------------------------ | -------- | ------------------------------------------------------------------- |
-| user               | string                   | YES      | username (your email on the test environment)                       |
-| pass               | string                   | YES      | password on BitGo                                                   |
-| otp                | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
-| walletId           | bitcoin address (string) | YES      | the wallet name as shown in the BitGo UI                            |
-| walletPassphrase   | string                   | YES      | the passphrase used to encrypt the user's private key               |
-| destinationAddress | bitcoin address (string) | YES      | the destination address of the wallet                               |
-| amountSatoshis     | string                   | YES      | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
+| 名                  | 種類              | 必須か | 説明                                       |
+| ------------------ | --------------- | --- | ---------------------------------------- |
+| user               | 文字列             | YES | ユーザー名 (テスト環境でのメールアドレス)                   |
+| pass               | 文字列             | YES | BitGo でのパスワード                            |
+| otp                | 数字              | YES | ワンタイムパスワード（テスト環境では0000000を使用できます）        |
+| walletId           | ビットコインアドレス(文字列) | YES | BitGo UIで表示されているウォレット名                   |
+| walletPassphrase   | 文字列             | YES | ユーザーの秘密鍵を暗号化するため使用されるパスフレーズ              |
+| destinationAddress | ビットコインアドレス(文字列) | YES | ウォレットの宛先アドレス                             |
+| amountSatoshis     | 文字列             | YES | 送信するsatoshiの数字 (例: 0.1ビットコインについて0.1*1e8) |
 
-## Webhook Oracle Policy
+## Webhook Oracle Policy Webhookオラクルポリシー
 
-> Code Snippet
+> コード スニペット
 
 ```javascript
 var setUpPolicyAndSendBitcoin = function() {
@@ -5711,7 +5711,7 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
 $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 0000000 2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2 https://486d7844.ngrok.com/ walletpasw0rd 2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe 1380000
 ```
 
-> Example output
+> アウトプット例
 
     Getting wallet..
     Balance is: 1.2582
