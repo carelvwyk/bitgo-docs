@@ -5208,25 +5208,25 @@ OAuthのフローの最初のステップは、あなたのユーザーをClient
     https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
     
 
-| パラメーター       | 必須か | 説明                                                                                |
-| ------------ | --- | --------------------------------------------------------------------------------- |
-| client_id    | YES | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの名前                                          |
-| redirect_uri | YES | BitGoで認証された後、再びユーザーをあなたのサイトに送るBitGoのリダイレクトUri                                     |
-| scope        | YES | スペースで区切られた要求されたOAuthスコープのリスト。ユーザーの情報へのあなたのアクセスはこれらのスコープに依存します                     |
-| state        | NO  | あなたが提供したいと望むカスタム情報を含める不透明な文字列。リダイレクトUriにあるパラメータとして送り返します                          |
-| signup       | NO  | BitGoでのOAuthゲートウェイに着いた時、ユーザーがデフォルトでログインまたはサインアップする場合コントロールに使用するブール値               |
-| email        | NO  | 値を予め用意するのに使用されるメールユーザ名の文字列の値                                                      |
-| force_email  | NO  | if set to true, the email field (set above) will be readonly on the user's client |
+| パラメーター       | 必須か | 説明                                                                  |
+| ------------ | --- | ------------------------------------------------------------------- |
+| client_id    | YES | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの名前                            |
+| redirect_uri | YES | BitGoで認証された後、再びユーザーをあなたのサイトに送るBitGoのリダイレクトUri                       |
+| scope        | YES | スペースで区切られた要求されたOAuthスコープのリスト。ユーザーの情報へのあなたのアクセスはこれらのスコープに依存します       |
+| state        | NO  | あなたが提供したいと望むカスタム情報を含める不透明な文字列。リダイレクトUriにあるパラメータとして送り返します            |
+| signup       | NO  | BitGoでのOAuthゲートウェイに着いた時、ユーザーがデフォルトでログインまたはサインアップする場合コントロールに使用するブール値 |
+| email        | NO  | 値を予め用意するのに使用されるメールユーザ名の文字列の値                                        |
+| force_email  | NO  | trueに設定された場合、ユーザーのクライアント側でメールフィールド（上で設定）は読み取り専用になる                  |
 
-### Our server will redirect
+### Our server will redirect 私達のサーバーはリダイレクトします
 
-After the user has authorized your application, we will redirect back them to your URL. The redirect will contain the URL parameters:
+ユーザーがあなたのアプリケーションを認証した後、私達は再び彼らをあなたのURLにリダイレクトします。リダイレクトはURLパラメータを含みます：
 
-| Parameter | Description                                                                                           |
-| --------- | ----------------------------------------------------------------------------------------------------- |
-| code      | Authorizing code string which you can use (together with your secret) to exchange for an access token |
+| パラメーター | 説明                                              |
+| ------ | ----------------------------------------------- |
+| code   | アクセストークンと交換するため（secretとともにあなたが）使用できるコード文字列を承認する |
 
-## Obtaining Access Tokens
+## Obtaining Access Tokens アクセス トークンの取得
 
 ```javascript
 var bitgo = new BitGoJS.BitGo({clientId:clientId, clientSecret:clientSecret});
