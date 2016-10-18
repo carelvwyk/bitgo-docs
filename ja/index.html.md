@@ -5172,20 +5172,20 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 より強力なスコープが基本的なスコープを包含しない事にご注意下さい。つまり、wallet_spendはwallet_view包含せず、よってあなたは両方をリクエストすべきということです。
 
-| OAuth スコープの値               | 許可されるアクションの説明                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------- |
-| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する                                                       |
-| profile                    | Get the user's profile, including email and phone number                                 |
-| wallet_create              | Create wallets on behalf of the user                                                     |
-| wallet_view_enterprise   | View wallets created under their enterprise                                              |
-| wallet_spend_enterprise  | Spend Bitcoin from wallets created under their enterprise                                |
-| wallet_manage_enterprise | Manage and modify settings from wallets created under their enterprise                   |
-| wallet_view:#WALLETID      | View a wallet's transactions and addresses                                               |
-| wallet_spend:#WALLETID     | Spend Bitcoin from the specific wallet                                                   |
-| wallet_manage:#WALLETID    | Manage and modify settings on the specific wallet                                        |
-| wallet_view_all          | View all the transactions and addresses for all wallets the user has access to           |
-| wallet_freeze_#WALLETID  | Freeze all spend activity on a specific wallet for a given duration (defaults to 1 hour) |
-| wallet_freeze_all        | Freeze all spend activity on all of the user's wallets                                   |
+| OAuth スコープの値               | 許可されるアクションの説明                                          |
+| -------------------------- | ------------------------------------------------------ |
+| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する                     |
+| profile                    | メールアドレスと電話番号を含むユーザーのプロファイルを取得する                        |
+| wallet_create              | ユーザーに代わってウォレットを作成する                                    |
+| wallet_view_enterprise   | ユーザーのエンタープライズのもと作成されたウォレットを見る                          |
+| wallet_spend_enterprise  | ユーザーのエンタープライズのもと作成されたウォレットからビットコインを消費する                |
+| wallet_manage_enterprise | ユーザーのエンタープライズのもと作成されたウォレットからの設定を管理、修正する                |
+| wallet_view: #WALLETID     | ウォレットのトランザクションとアドレスを見る                                 |
+| wallet_spend:#WALLETID     | 特定のウォレットからビットコインを消費する                                  |
+| wallet_manage:#WALLETID    | 特定のウォレットの設定を管理、修正する                                    |
+| wallet_view_all          | ユーザーがアクセスを持つ全てのウォレットについて全てのトランザクションとアドレスを見る            |
+| wallet_freeze_#WALLETID  | 所定の期間特定のウォレットでの全ての消費活動を凍結する（デフォルトで1時間）                 |
+| wallet_freeze_all        | Freeze all spend activity on all of the user's wallets |
 
 ## 3rd Party BitGo Login
 
