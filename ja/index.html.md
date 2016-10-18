@@ -5407,15 +5407,15 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 BitGOの方で、SDKを使用した、いくつかの一般的なウォレットの操作方法の例を提供いたしました。比較的重要なものをここで扱います。<aside class="info"> 私達のSDKと例は、ビットコインのテストネットと接続されたBitGoテスト環境がデフォルトとなっています。 さらなる詳細については、\[テスト環境\](#bitgo-api-endpoints) のセクションをご参照下さい。 </aside> 
 
-The examples below (and more!) can be found in the `BitGoJS/examples` directory in our SDK repository. Please report problems with the examples via email or Git issues.
+以下の各例(ともっと！) は私達のSDKレポジトリの`BitGoJS/examples` のディレクトリに見つけることができます。 各例に関する問題はメールかGitのイシュー経由でご報告下さい。
 
-### Obtaining the Wallet ID
+### Obtaining the Wallet ID ウォレット ID を取得する
 
-When you create your wallet on the BitGo test website, the wallet id is the first receiving address. It is also in the URI when you click on it from the main menu.
+BitGoテストウェブサイトでウォレットを作成する時、ウォレットidが最初の受信アドレスです。またメインメニューからクリックする時のURIでもあります。
 
-## Get Wallet Balance
+## Get Wallet Balance ウォレットの残高を取得する
 
-> Code Snippet
+> コード スニペット
 
 ```javascript
 var bitgo = new BitGoJS.BitGo();
@@ -5434,26 +5434,26 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     
 
-> Example output
+> アウトプット例
 
     Logged in!
     Balance is: 0.6274
     
 
-This simple example shows how to authenticate and get the wallet. The balance in bitcoins can be found on the wallet model.
+このシンプルな例は認証とウォレットを取得する方法を示しています。 ビットコインでの残高はウォレットモデルに見つけることができます。
 
-### Usage
+### Usage 使い方
 
 `node getWalletBalance.js <user> <pass> <otp> <walletId>`
 
-### Parameters
+### Parameters パラメーター
 
-| Name     | Type   | Required | Description                                                         |
-| -------- | ------ | -------- | ------------------------------------------------------------------- |
-| user     | string | YES      | username (your email on the test environment)                       |
-| pass     | string | YES      | password on BitGo                                                   |
-| otp      | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
-| walletId | string | YES      | id of the wallet (also the first receiving address)                 |
+| 名        | 種類     | 必須か | 説明                                                                  |
+| -------- | ------ | --- | ------------------------------------------------------------------- |
+| user     | 文字列    | YES | ユーザー名 (テスト環境でのメールアドレス)                                              |
+| pass     | 文字列    | YES | password on BitGo                                                   |
+| otp      | number | YES | the one-time-password (you can use 0000000 in the test environment) |
+| walletId | string | YES | id of the wallet (also the first receiving address)                 |
 
 ## List Wallet Transactions
 
