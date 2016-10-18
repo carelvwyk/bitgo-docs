@@ -5396,16 +5396,16 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 ### OAuth Token Request Parameters OAuth トークン要求パラメータ
 
-| パラメーター        | 説明                                                                                        |
-| ------------- | ----------------------------------------------------------------------------------------- |
-| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前)                                             |
-| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列                                             |
-| grant_type    | 'refresh_token'であるべき                                                                      |
-| refresh_token | The refresh token received when you exchanged the authorization code for the access token |
+| パラメーター        | 説明                                            |
+| ------------- | --------------------------------------------- |
+| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前) |
+| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列 |
+| grant_type    | 'refresh_token'であるべき                          |
+| refresh_token | 認証コードをアクセストークンと交換した時受信したリフレッシュトークン            |
 
-# Examples
+# Examples 例
 
-BitGo has provided examples of how to perform several common wallet operations using our SDK. The more important ones are covered here.<aside class="info"> Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Do refer to the \[Test Environments\](#bitgo-api-endpoints) section for further details. </aside> 
+BitGOの方で、SDKを使用した、いくつかの一般的なウォレットの操作方法の例を提供いたしました。比較的重要なものをここで扱います。<aside class="info"> 私達のSDKと例は、ビットコインのテストネットと接続されたBitGoテスト環境がデフォルトとなっています。 さらなる詳細については、\[テスト環境\](#bitgo-api-endpoints) のセクションをご参照下さい。 </aside> 
 
 The examples below (and more!) can be found in the `BitGoJS/examples` directory in our SDK repository. Please report problems with the examples via email or Git issues.
 
