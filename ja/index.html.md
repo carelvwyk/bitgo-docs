@@ -5448,16 +5448,16 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
 
 ### Parameters パラメーター
 
-| 名        | 種類     | 必須か | 説明                                                                  |
-| -------- | ------ | --- | ------------------------------------------------------------------- |
-| user     | 文字列    | YES | ユーザー名 (テスト環境でのメールアドレス)                                              |
-| pass     | 文字列    | YES | password on BitGo                                                   |
-| otp      | number | YES | the one-time-password (you can use 0000000 in the test environment) |
-| walletId | string | YES | id of the wallet (also the first receiving address)                 |
+| 名        | 種類  | 必須か | 説明                                |
+| -------- | --- | --- | --------------------------------- |
+| user     | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
+| pass     | 文字列 | YES | BitGo でのパスワード                     |
+| otp      | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
+| walletId | 文字列 | YES | ウォレットのid(同時に最初の受信アドレス)            |
 
-## List Wallet Transactions
+## List Wallet Transactions ウォレットでのトランザクションの一覧を取得する
 
-> Code Snippet
+> コード スニペット
 
 ```javascript
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
@@ -5488,7 +5488,7 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     
 
-> Example output
+> アウトプット例
 
     Logged in!
     Balance is: 0.6274
@@ -5498,27 +5498,27 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
     
 
-This example shows how to get the list of transactions on a wallet. This may be useful for verifying received transaction IDs.
+この例はウォレットでのトランザクションのリストを取得する方法を示しています。受信されたトランザクションIDの確認に有用かもしれません。
 
-### Usage
+### Usage 使い方
 
 `node listWalletTransactions.js <user> <pass> <otp> <walletId>`
 
-### Parameters
+### Parameters パラメーター
 
-| Name     | Type                     | Required | Description                                                         |
-| -------- | ------------------------ | -------- | ------------------------------------------------------------------- |
-| user     | string                   | YES      | username (your email on the test environment)                       |
-| pass     | string                   | YES      | password on BitGo                                                   |
-| otp      | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
-| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address)                 |
+| 名        | 種類              | 必須か | 説明                                |
+| -------- | --------------- | --- | --------------------------------- |
+| user     | 文字列             | YES | ユーザー名 (テスト環境でのメールアドレス)            |
+| pass     | 文字列             | YES | BitGo でのパスワード                     |
+| otp      | 数字              | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
+| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス)            |
 
-## Address Labels
+## Address Labels アドレスのラベル
 
     $ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
     
 
-> Example output
+> アウトプット例
 
     Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     Which label action do you wish to perform? [list, set, delete]: list
