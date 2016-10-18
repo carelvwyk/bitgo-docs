@@ -5768,24 +5768,24 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
   5. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
   6. ポリシーを削除し、結果を返します。
 
-When testing locally, one can create a URL by first setting up a local server (express or any http server will work), and then running a tool such as ngrok to get a public facing url.
+ローカル環境でテストの際、公開向けのURLを取得するために、まずローカルサーバーをセットアップし(expressまたは任意のhttpサーバで大丈夫です) ngrokのようなツールを実行することによりURLを作成できます。
 
-### Usage
+### Usage 使い方
 
 `node addPolicyWebhookAndSendCoins <user> <pass> <otp> <walletId> <url> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-### Parameters
+### パラメーター Parameters
 
-| Name               | Type                     | Required | Description                                                         |
-| ------------------ | ------------------------ | -------- | ------------------------------------------------------------------- |
-| user               | string                   | YES      | username (your email on the test environment)                       |
-| pass               | string                   | YES      | password on BitGo                                                   |
-| otp                | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
-| walletId           | bitcoin address (string) | YES      | the wallet name as shown in the BitGo UI                            |
-| url                | http endpoint (string)   | YES      | the URL to set up the policy with                                   |
-| walletPassphrase   | string                   | YES      | the passphrase used to encrypt the user's private key               |
-| destinationAddress | bitcoin address (string) | YES      | the destination address of the wallet                               |
-| amountSatoshis     | string                   | YES      | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
+| 名                  | 種類                       | 必須か | 説明                                                                  |
+| ------------------ | ------------------------ | --- | ------------------------------------------------------------------- |
+| user               | 文字列                      | YES | ユーザー名 (テスト環境でのメールアドレス)                                              |
+| pass               | 文字列                      | YES | bitGo でのパスワード                                                       |
+| otp                | 数字                       | YES | the one-time-password (you can use 0000000 in the test environment) |
+| walletId           | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI                            |
+| url                | http endpoint (string)   | YES | the URL to set up the policy with                                   |
+| walletPassphrase   | string                   | YES | the passphrase used to encrypt the user's private key               |
+| destinationAddress | bitcoin address (string) | YES | the destination address of the wallet                               |
+| amountSatoshis     | string                   | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
 
 ## Recover Wallet
 
