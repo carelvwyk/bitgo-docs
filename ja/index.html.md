@@ -5332,24 +5332,24 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 ### ID Token Claims IDトークンの要求
 
-| パラメーター                  | 形式         | 説明                                                                         |
-| ----------------------- | ---------- | -------------------------------------------------------------------------- |
-| iat                     | utc からの秒数  | このトークンが作成された時間、1970年からの秒数                                                  |
-| exp                     | utc からの秒数  | expiry time of the token (when to accept it until), in seconds since 1970. |
-| aud                     | string     | the client id                                                              |
-| iss                     | uri string | the issue identifier                                                       |
-| sub                     | string     | BitGo unique user id                                                       |
-| access_token            | string     | access token you received from this request, for verification purposes     |
-| email                   | string     | user email                                                                 |
-| email_verified          | boolean    | if the user email has been verified                                        |
-| phone_number            | string     | user phone number                                                          |
-| phone_number_verified | boolean    | if the phone number has been verified                                      |
-| zoneinfo                | TZ         | time zone information, e.g. US/pacific                                     |
+| パラメーター                  | 形式        | 説明                                   |
+| ----------------------- | --------- | ------------------------------------ |
+| iat                     | utc からの秒数 | このトークンが作成された時間、1970年からの秒数            |
+| exp                     | utc からの秒数 | トークンの有効期限 (いつまで受け入れるか)、1970 年からの秒数で。 |
+| aud                     | 文字列       | クライアント id                            |
+| iss                     | uri 文字列   | 発行識別子                                |
+| sub                     | 文字列       | BitGoの一意のユーザーid                      |
+| access_token            | 文字列       | 認証目的でこのリクエストからあなたが受け取ったアクセストークン      |
+| email                   | 文字列       | ユーザーの電子メール                           |
+| email_verified          | ブーリアン     | ユーザーの電子メールが認証されている場合                 |
+| phone_number            | 文字列       | ユーザーの電話番号                            |
+| phone_number_verified | ブーリアン     | 電話番号がが認証された場合                        |
+| zoneinfo                | タイムゾーン    | タイムゾーン情報 (例 米国/太平洋)                  |
 
-## Refreshing Access Tokens
+## Refreshing Access Tokens アクセストークンをリフレッシュする
 
 ```javascript
-// var refreshToken = 'undefined'; // if unset, uses the refresh token saved from a previous authentication request.
+// var refreshToken = 'undefined' //設定されていない場合、前回の認証要求から保存されたリフレッシュトークンを使用します。
 var refreshToken = '3f8aa90479b4e3f0ea4544ed302e3bfe91968581' // from above auth request
 bitgo.refreshToken({ refreshToken: refreshToken }, function(err, result) {
   if (err) {
