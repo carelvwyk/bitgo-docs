@@ -5308,11 +5308,11 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 ## OpenID JSON Web Token OpenID JSON Web トークン
 
-パートナー認証リクエストがopenidプロファイルスコープを持つ場合、上のアクセストークン要求への応答でJSON Web Token (JWT) base64エンコード形式のid_tokenが返されます。 You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).
+パートナー認証リクエストがopenidプロファイルスコープを持つ場合、上のアクセストークン要求への応答でJSON Web Token (JWT) base64エンコード形式のid_tokenが返されます。 あなたは、（BitGoからのものであることを証明するため）JSON Webトークンがあなたのクライアントsecxretを使用してHS256アルゴリズムで署名されたことを検証すべきです。
 
-This token will contain user profile information. You should take care to store this information securely so as not to expose your users to scammers or phishing.
+このトークンはユーザープロファイル情報を含みます。ユーザーを詐欺師やフィッシングにさらさないよう、注意して安全にこの情報を格納して下さい。
 
-> Example decrypted id_token (from the above access token response)
+> 復号化されたid_tokenの例(上のアクセストークン応答から)
 
 ```json
 {
@@ -5330,21 +5330,21 @@ This token will contain user profile information. You should take care to store 
 }
 ```
 
-### ID Token Claims
+### ID Token Claims IDトークンの要求
 
-| Parameter               | Format            | Description                                                                |
-| ----------------------- | ----------------- | -------------------------------------------------------------------------- |
-| iat                     | seconds since utc | time this token was created, in seconds since 1970.                        |
-| exp                     | seconds since utc | expiry time of the token (when to accept it until), in seconds since 1970. |
-| aud                     | string            | the client id                                                              |
-| iss                     | uri string        | the issue identifier                                                       |
-| sub                     | string            | BitGo unique user id                                                       |
-| access_token            | string            | access token you received from this request, for verification purposes     |
-| email                   | string            | user email                                                                 |
-| email_verified          | boolean           | if the user email has been verified                                        |
-| phone_number            | string            | user phone number                                                          |
-| phone_number_verified | boolean           | if the phone number has been verified                                      |
-| zoneinfo                | TZ                | time zone information, e.g. US/pacific                                     |
+| パラメーター                  | 形式         | 説明                                                                         |
+| ----------------------- | ---------- | -------------------------------------------------------------------------- |
+| iat                     | utc からの秒数  | このトークンが作成された時間、1970年からの秒数                                                  |
+| exp                     | utc からの秒数  | expiry time of the token (when to accept it until), in seconds since 1970. |
+| aud                     | string     | the client id                                                              |
+| iss                     | uri string | the issue identifier                                                       |
+| sub                     | string     | BitGo unique user id                                                       |
+| access_token            | string     | access token you received from this request, for verification purposes     |
+| email                   | string     | user email                                                                 |
+| email_verified          | boolean    | if the user email has been verified                                        |
+| phone_number            | string     | user phone number                                                          |
+| phone_number_verified | boolean    | if the phone number has been verified                                      |
+| zoneinfo                | TZ         | time zone information, e.g. US/pacific                                     |
 
 ## Refreshing Access Tokens
 
