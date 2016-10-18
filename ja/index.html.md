@@ -5289,7 +5289,7 @@ curl -X POST https://test.bitgo.com/oauth/token \
 }
 ```
 
-### OAuth 応答
+### OAuth Response OAuth 応答
 
 私達のサーバがAPIと使用するためのアクセストークンを返します。
 
@@ -5297,18 +5297,18 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 `Authorization: Bearer <あなたのトークンはここ>`
 
-| パラメーター        | Description                                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------------------- |
-| token_type    | The type of token e.g. 'bearer'                                                                               |
-| access_token  | The token to be used in the Authorization header for subsequent authorized API requests on behalf of the user |
-| expires_in    | Number of seconds the token is valid                                                                          |
-| expires_at    | Time which the token will expire, in seconds since 1970.                                                      |
-| refresh_token | Can be used to obtain another access token, if your session is due to expire                                  |
-| id_token      | openid jwt token containing user profile information, if requested as a scope                                 |
+| パラメーター        | 説明                                                             |
+| ------------- | -------------------------------------------------------------- |
+| token_type    | トークンの種類（例：'bearer'）                                            |
+| access_token  | 以降の認証されたAPIリクエストでユーザーに代わって認証ヘッダで使用されるトークン                      |
+| expires_in    | トークンが有効な秒数                                                     |
+| expires_at    | トークンが失効するまでの有効期限、1970年からの秒数                                    |
+| refresh_token | あなたのセッションが期限切れの場合、もう一つのアクセストークンを取得するのに使用できる                    |
+| id_token      | スコープとして要求された場合、ユーザープロファイル情報を含むopenid jwt (JSON Web Token) トークン |
 
-## OpenID JSON Web Token
+## OpenID JSON Web Token OpenID JSON Web トークン
 
-If the partner authentication request had an openid profile scope, a id_token in JSON Web Token (JWT) base64-encoded format will be returned in the response to the OAuth access token request above. You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).
+パートナー認証リクエストがopenidプロファイルスコープを持つ場合、上のアクセストークン要求への応答でJSON Web Token (JWT) base64エンコード形式のid_tokenが返されます。 You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).
 
 This token will contain user profile information. You should take care to store this information securely so as not to expose your users to scammers or phishing.
 
