@@ -5170,11 +5170,11 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 スペースで区切られたスコープを指定して下さい。（例："openid profile wallet_view_enterprise wallet_spend_enterprise"）
 
-Note that more powerful scopes do not encompass basic ones, ie. wallet_spend does not encompass wallet_view, so you should request for both.
+より強力なスコープが基本的なスコープを包含しない事にご注意下さい。つまり、wallet_spendはwallet_view包含せず、よってあなたは両方をリクエストすべきということです。
 
-| OAuth Scope Value          | Description of Allowed Actions                                                           |
+| OAuth スコープの値               | 許可されるアクションの説明                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------- |
-| openid                     | Verify the user is logged in and get their User ID                                       |
+| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する                                                       |
 | profile                    | Get the user's profile, including email and phone number                                 |
 | wallet_create              | Create wallets on behalf of the user                                                     |
 | wallet_view_enterprise   | View wallets created under their enterprise                                              |
