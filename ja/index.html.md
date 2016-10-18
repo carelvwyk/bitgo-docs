@@ -5528,23 +5528,23 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
      n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address
     
 
-This example shows how to list, set, and delete labels on addresses.
+この例は、各アドレスでのラベルの一覧取得、設定、削除の方法を示しています。
 
-### Usage
+### Usage 使い方
 
 `node addressLabels.js <user> <pass> <otp>`
 
-### Parameters
+### Parameters パラメーター
 
-| Name | Type   | Required | Description                                                         |
-| ---- | ------ | -------- | ------------------------------------------------------------------- |
-| user | string | YES      | username (your email on the test environment)                       |
-| pass | string | YES      | password on BitGo                                                   |
-| otp  | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| 名    | 種類  | 必須か | 説明                                |
+| ---- | --- | --- | --------------------------------- |
+| user | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
+| pass | 文字列 | YES | BitGo でのパスワード                     |
+| otp  | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
 
-## Create Wallet
+## Create Wallet ウォレットを作成する
 
-> Code Snippet
+> コード スニペット
 
 ```javascript
   bitgo.wallets().createWalletWithKeychains({"passphrase": password, "label": label, "backupXpubProvider": "keyternal"}, function(err, result) {
@@ -5561,7 +5561,7 @@ This example shows how to list, set, and delete labels on addresses.
     $ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
     
 
-> Example output
+> アウトプット例
 
     New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
     
@@ -5585,31 +5585,31 @@ This example shows how to list, set, and delete labels on addresses.
     Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
     
 
-Creates a wallet on BitGo. The example performs the following steps:
+BitGo でウォレットを作成します。例は、次の手順を実行します：
 
-  1. Authenticates with BitGo
-  2. Unlocks the account
-  3. Creates the user keychain on the client, encrypts it with the password and sends it to the server.
-  4. Creates the backup keychain on the client.
-  5. Creates the BitGo keychain on the BitGo server.
-  6. Creates the wallet with the corresponding public keys to the keychains above.<aside class="warning"> It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> 
+  1. BitGo で認証します。
+  2. アカウントをアンロックします
+  3. クライアントでユーザーキーチェーンを作成、パスワードで暗号化し、サーバに送信します。
+  4. クライアントでバックアップキーチェーンを作成します。
+  5. BitGoサーバでBitGoキーチェーンを作成します。
+  6. 上のキーチェーンに対応するパブリックキーでウォレットを作成します。<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷/バックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
 
-### Usage
+### Usage 使い方
 
 `node createWallet.js <user> <pass> <otp> <label>`
 
-### Parameters
+### パラメーター
 
-| Name  | Type   | Required | Description                                                         |
-| ----- | ------ | -------- | ------------------------------------------------------------------- |
-| user  | string | YES      | username (your email on the test environment)                       |
-| pass  | string | YES      | password on BitGo                                                   |
-| otp   | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
-| label | string | YES      | the wallet name as shown in the BitGo UI                            |
+| 名     | 種類  | 必須か | 説明                                |
+| ----- | --- | --- | --------------------------------- |
+| user  | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
+| pass  | 文字列 | YES | BitGo でのパスワード                     |
+| otp   | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
+| label | 文字列 | YES | BitGo UIで表示されているウォレット名            |
 
-## Send Bitcoins to an Address
+## Send Bitcoins to an Address アドレスにビットコインを送信する
 
-> Code Snippet
+> コード スニペット
 
 ```javascript
 var sendBitcoin = function() {
@@ -5633,18 +5633,18 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
     
 
-> Example output
+> アウトプット例
 
     { "tx": "01000000017bc6aca03146d8d10b875781...",
       "hash": "101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7",
       "fee": 10000 }
     
 
-Sends Bitcoin to another bitcoin address. The example uses the following steps:
+もう一つのビットコインアドレスにビットコインを送信する。例は、次の手順を使用します：
 
-  1. Authenticates with BitGo
-  2. Unlocks the account to make it possible to spend coins
-  3. Gets the wallet from the server by the provided walletId.
+  1. BitGo で認証する。
+  2. コインの消費が可能になるようアカウントをアンロックする。
+  3. 提供されたwalletldでサーバからウォレットを取得します。
   4. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
 
 ### Usage
