@@ -5172,36 +5172,36 @@ BitGoのパートナーは、許可されたアクセスを得て3rdパーティ
 
 より強力なスコープが基本的なスコープを包含しない事にご注意下さい。つまり、wallet_spendはwallet_view包含せず、よってあなたは両方をリクエストすべきということです。
 
-| OAuth スコープの値               | 許可されるアクションの説明                                          |
-| -------------------------- | ------------------------------------------------------ |
-| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する                     |
-| profile                    | メールアドレスと電話番号を含むユーザーのプロファイルを取得する                        |
-| wallet_create              | ユーザーに代わってウォレットを作成する                                    |
-| wallet_view_enterprise   | ユーザーのエンタープライズのもと作成されたウォレットを見る                          |
-| wallet_spend_enterprise  | ユーザーのエンタープライズのもと作成されたウォレットからビットコインを消費する                |
-| wallet_manage_enterprise | ユーザーのエンタープライズのもと作成されたウォレットからの設定を管理、修正する                |
-| wallet_view: #WALLETID     | ウォレットのトランザクションとアドレスを見る                                 |
-| wallet_spend:#WALLETID     | 特定のウォレットからビットコインを消費する                                  |
-| wallet_manage:#WALLETID    | 特定のウォレットの設定を管理、修正する                                    |
-| wallet_view_all          | ユーザーがアクセスを持つ全てのウォレットについて全てのトランザクションとアドレスを見る            |
-| wallet_freeze_#WALLETID  | 所定の期間特定のウォレットでの全ての消費活動を凍結する（デフォルトで1時間）                 |
-| wallet_freeze_all        | Freeze all spend activity on all of the user's wallets |
+| OAuth スコープの値               | 許可されるアクションの説明                               |
+| -------------------------- | ------------------------------------------- |
+| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する          |
+| profile                    | メールアドレスと電話番号を含むユーザーのプロファイルを取得する             |
+| wallet_create              | ユーザーに代わってウォレットを作成する                         |
+| wallet_view_enterprise   | ユーザーのエンタープライズのもと作成されたウォレットを見る               |
+| wallet_spend_enterprise  | ユーザーのエンタープライズのもと作成されたウォレットからビットコインを消費する     |
+| wallet_manage_enterprise | ユーザーのエンタープライズのもと作成されたウォレットからの設定を管理、修正する     |
+| wallet_view: #WALLETID     | ウォレットのトランザクションとアドレスを見る                      |
+| wallet_spend:#WALLETID     | 特定のウォレットからビットコインを消費する                       |
+| wallet_manage:#WALLETID    | 特定のウォレットの設定を管理、修正する                         |
+| wallet_view_all          | ユーザーがアクセスを持つ全てのウォレットについて全てのトランザクションとアドレスを見る |
+| wallet_freeze_#WALLETID  | 所定の期間特定のウォレットでの全ての消費活動を凍結する（デフォルトで1時間）      |
+| wallet_freeze_all        | そのユーザーの全てのウォレットで全ての消費活動を凍結する                |
 
-## 3rd Party BitGo Login
+## 3rd Party BitGo Login サードパーティ BitGo ログイン
 
-> Example OAuth gateway redirect to send your users to BitGo OAuth
+> あなたのユーザーをBitGo OAuthに送るOAuthゲートウェイリダイレクトの例
 
     https://test.bitgo.com/oauth/authorize?client_id=FBExchange&redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&scope=openid%20profile%20wallet_view_enterprise&email=test@bitgo.com&signup=false
     
 
-The first step in the OAuth flow is to redirect your users to the BitGo OAuth gateway with the Client ID, Scope and Redirect Uri parameters.
+OAuthのフローの最初のステップは、あなたのユーザーをClient ID、Scope、そしてリダイレクトUriパラメータとともにBitGo OAuthにリダイレクトすることです。
 
-* Test Endpoint: https://test.bitgo.com/oauth/authorize
-* Production Endpoint: https://www.bitgo.com/oauth/authorize
+* テストエンドポイント： https://test.bitgo.com/oauth/authorize
+* プロダクションエンドポイント：https://www.bitgo.com/oauth/authorize
 
-Parameters may be sent via GET or POST.
+パラメータはGETまたはPOST経由で送ることができます。
 
-### OAuth Request Parameters
+### OAuth Request Parameters OAuth 要求パラメータ
 
 > Example redirect URL from BitGo sending users back to your site
 
