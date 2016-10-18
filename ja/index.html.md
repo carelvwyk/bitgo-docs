@@ -5766,7 +5766,7 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
   3. 提供されたwalletldでサーバからウォレットを取得する
   4. 提供されたURLがヒットされる原因となるポリシーを設定する
   5. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
-  6. Removes the policy and returns the result.
+  6. ポリシーを削除し、結果を返します。
 
 When testing locally, one can create a URL by first setting up a local server (express or any http server will work), and then running a tool such as ngrok to get a public facing url.
 
