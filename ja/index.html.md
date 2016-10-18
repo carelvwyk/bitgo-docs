@@ -5260,23 +5260,23 @@ curl -X POST https://test.bitgo.com/oauth/token \
     }"
 ```
 
-When your user receives the authorization code, send it to the service backend you wish to use to perform actions on behalf of the user.
+ユーザーが認証コードを受け取った時、ユーザーに代わりアクションを実行するため使用したいサービスのバックエンドに送って下さい。
 
-You then need to exchange the authentication code for an access token that you can use as you would the rest of the api.
+次に認証コードを、apiの残りにおいて使用できるアクセストークンと交換する必要があります。
 
-* Test Endpoint: https://test.bitgo.com/oauth/token
-* Production Endpoint: https://www.bitgo.com/oauth/token
+* テストエンドポイント： https://test.bitgo.com/oauth/token
+* プロダクションエンドポイント：https://www.bitgo.com/oauth/token
 
-### OAuth Token Request Parameters
+### OAuth Token Request Parameters OAuth トークン要求パラメータ
 
-| Parameter     | Description                                                                            |
-| ------------- | -------------------------------------------------------------------------------------- |
-| client_id     | A string (name) of the OAuth application seeking access to 3rd party accounts          |
-| client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo |
-| grant_type    | should be 'authorization_code'                                                         |
-| code          | The authentication code you received in the redirect from the above user login step    |
+| パラメーター        | 説明                                            |
+| ------------- | --------------------------------------------- |
+| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前) |
+| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列 |
+| grant_type    | 'authorization_code' であるべき                    |
+| code          | 上のユーザーログインステップからのリダイレクトで受け取った認証コード            |
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -5289,15 +5289,15 @@ You then need to exchange the authentication code for an access token that you c
 }
 ```
 
-### OAuth Response
+### OAuth 応答
 
-Our server will return an access token for use with the API.
+私達のサーバがAPIと使用するためのアクセストークンを返します。
 
-The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
+トークンはHTTP"Authorization"ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。
 
-`Authorization: Bearer <your token goes here>`
+`Authorization: Bearer <あなたのトークンはここ>`
 
-| Parameter     | Description                                                                                                   |
+| パラメーター        | Description                                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------------------- |
 | token_type    | The type of token e.g. 'bearer'                                                                               |
 | access_token  | The token to be used in the Authorization header for subsequent authorized API requests on behalf of the user |
