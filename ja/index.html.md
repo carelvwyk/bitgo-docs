@@ -239,7 +239,7 @@ bitgo.session({}, function callback(err, session) {
 | Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                        |
 | Duration       | トークンが有効であり続ける秒数                                                              |
 | Spending Limit | トークンは、BTC建ての支出制限の額までのアンロックされた状態で来ます。制限がリセットされるので、API経由でトークンをアンロックしようとしないで下さい |
-| IP Addresses   | BitGoが特定のIPアドレスからのみ受け付けるよう、トークンをロックダウンします                                    |
+| IP アドレス        | BitGoが特定のIPアドレスからのみ受け付けるよう、トークンをロックダウンします                                    |
 | Permissions    | トークンが生成される際の認証の範囲                                                            |
 
 ## Current User Profile 現在のユーザープロファイル
@@ -4348,10 +4348,10 @@ Webhookを削除した場合、新規の特定のタイプのイベントがHTTP
 
 ### パラメーター
 
-| パラメーター | 種類  | Required | 説明                              |
-| ------ | --- | -------- | ------------------------------- |
-| type   | 文字列 | YES      | Webhookの種類、例えば transaction      |
-| url    | 文字列 | YES      | コールバック要求を行う先の、有効なhttp/https URL |
+| パラメーター | 種類  | 必須か | 説明                              |
+| ------ | --- | --- | ------------------------------- |
+| type   | 文字列 | YES | Webhookの種類、例えば transaction      |
+| url    | 文字列 | YES | コールバック要求を行う先の、有効なhttp/https URL |
 
 ### Response 応答
 
@@ -5801,12 +5801,12 @@ node recoverwallet.js --userKey <userkey from keycard> -backupKey <backupkey fro
 
 ### パラメーター Parameters
 
-| 名           | 意味                                                                |
-| ----------- | ----------------------------------------------------------------- |
-| userKey     | ユーザーによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox A)                       |
-| backupKey   | バックアップによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox B)                     |
-| bitgoKey    | BitGoによって拡張されたウォレットの公開鍵 (ウォレットキーカードからのBox C)                      |
-| testnet     | Flag to use testnet instead of the production bitcoin network     |
-| nosend      | Flag to create the transaction but not send it                    |
-| password    | The password to use to decrypt the userKey and backupKey          |
-| destination | The bitcoin address to which you want to send the recovered funds |
+| 名           | 意味                                            |
+| ----------- | --------------------------------------------- |
+| userKey     | ユーザーによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox A)   |
+| backupKey   | バックアップによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox B) |
+| bitgoKey    | BitGoによって拡張されたウォレットの公開鍵 (ウォレットキーカードからのBox C)  |
+| testnet     | プロダクションビットコインネットワークの代わりにテストネットを使用のフラグ         |
+| nosend      | トランザクションを作成するがそれを送信しないフラグ                     |
+| password    | UserKeyとbackupKeyの復号化に使用するパスワード               |
+| destination | あなたが回復した資金を送信したいビットコインアドレス                    |
