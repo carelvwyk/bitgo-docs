@@ -5732,7 +5732,7 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
     Removed policy rule
     
 
-> Example webhook callback (sent to the URL provided, any non-200 response will trigger the policy denial)
+> Webhookコールバックの例(提供されたURLに送信され、全ての非200応答はポリシー拒否をトリガーします)
 
 ```json
 {
@@ -5757,15 +5757,15 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
 }
 ```
 
-This example demonstrates how to set up a webhook policy on a wallet capable of executing any custom external logic via a URL endpoint (potentially a script or other program) on the Internet. This allows external state to be mapped into a contract where various users share a single wallet (the URL acts as the "oracle").
+この例は、インターネット上のURLエンドポイント(スクリプトまたは他のプログラムの可能性も)を通じあらゆるカスタム外部ロジックを実行する能力を持つウォレットでwebhookポリシーを設定する方法を示します。 これにより、外部の状態をさまざまなユーザーが単一のウォレットを共有するをコントラクトにマップすることが可能になります（URLは「オラクル」として機能します）。
 
-When a transaction is made, the URL provided is hit. If it returns a 200 status, then the transaction will be allowed. If not, then the policy rule is fired and the transaction denied.
+トランザクションが発生すると、提供されたURLがヒットされます。それが200ステータスを返す場合、トランザクションは許可されます。そうでなければ、ポリシールールが発生し、トランザクションは拒否されます。
 
-  1. Authenticates with BitGo
-  2. Unlocks the account to make it possible to spend coins and set policy
-  3. Gets the wallet from the server by the provided walletId
-  4. Sets up the policy which will cause the URL provided to be hit.
-  5. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
+  1. BitGo で認証する。
+  2. コインの消費とポリシーの設定が可能になるようアカウントをアンロックする
+  3. 提供されたwalletldでサーバからウォレットを取得する
+  4. 提供されたURLがヒットされる原因となるポリシーを設定する
+  5. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
   6. Removes the policy and returns the result.
 
 When testing locally, one can create a URL by first setting up a local server (express or any http server will work), and then running a tool such as ngrok to get a public facing url.
