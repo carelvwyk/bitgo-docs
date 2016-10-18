@@ -5793,20 +5793,20 @@ RecoverWalletは BitGoのサービスを利用することなしに、BitGoウ�
 
 ウォレット'のキーカードについての情報のみから、このツールは、ユーザー'が選ぶ新しいアカウントへウォレット内のすべての資金を移動するトランザクションを構築します。 これはBitGoのサービスのAPIを使用することなく行われます。
 
-The RecoverWallet tool is interactive or command line driven.
+RecoverWalletツールはインタラクティブで、コマンドラインで駆動します。
 
-### Usage
+### Usage 使い方
 
-node recoverwallet.js --userKey <userkey from keycard> --backupKey <backupkey from keycard> --bitgoKey <bitgo public key from keycard>
+node recoverwallet.js --userKey <userkey from keycard> -backupKey <backupkey from keycard> -bitgoKey <bitgo public key from keycard>
 
-### Parameters
+### パラメーター Parameters
 
-| Name        | Meaning                                                                         |
-| ----------- | ------------------------------------------------------------------------------- |
-| userKey     | The user extended private key for the wallet. (Box A from the Wallet KeyCard)   |
-| backupKey   | The backup extended private key for the wallet. (Box B from the Wallet KeyCard) |
-| bitgoKey    | The bitgo extended public key for the wallet. (Box C from the Wallet KeyCard)   |
-| testnet     | Flag to use testnet instead of the production bitcoin network                   |
-| nosend      | Flag to create the transaction but not send it                                  |
-| password    | The password to use to decrypt the userKey and backupKey                        |
-| destination | The bitcoin address to which you want to send the recovered funds               |
+| 名           | 意味                                                                |
+| ----------- | ----------------------------------------------------------------- |
+| userKey     | ユーザーによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox A)                       |
+| backupKey   | バックアップによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox B)                     |
+| bitgoKey    | BitGoによって拡張されたウォレットの公開鍵 (ウォレットキーカードからのBox C)                      |
+| testnet     | Flag to use testnet instead of the production bitcoin network     |
+| nosend      | Flag to create the transaction but not send it                    |
+| password    | The password to use to decrypt the userKey and backupKey          |
+| destination | The bitcoin address to which you want to send the recovered funds |
