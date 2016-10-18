@@ -5373,11 +5373,11 @@ curl -X POST https://test.bitgo.com/oauth/token \
     }"
 ```
 
-The access token obtained in the previous step is typically good for an hour.
+前のステップで取得されたアクセストークンは通常一時間利用可能です。
 
-To extend a user session, you can request another access token using the request token also sent in the previous step.
+ユーザーセッションを延長するには、これも前のステップで送信したリクエストトークンを使用して、もう一つのアクセストークンを要求することができます。
 
-> Example response
+> 応答の例
 
 ```json
 {
@@ -5389,18 +5389,18 @@ To extend a user session, you can request another access token using the request
 }
 ```
 
-* Test Endpoint: https://test.bitgo.com/oauth/token
-* Production Endpoint: https://www.bitgo.com/oauth/token
+* テストエンドポイント： https://test.bitgo.com/oauth/token
+* プロダクションエンドポイント：https://www.bitgo.com/oauth/token
 
-Refresh tokens have a lifetime of 2 weeks from creation and are valid for a *single use only*. A new refresh token is assigned to you each time one is used.
+リフレッシュトークンの寿命は作成から二週間で、*一回の使用のみ*において有効です。毎回一つ使用されるたびに、新たなリフレッシュトークンがあなたに割り当てられます。
 
-### OAuth Token Request Parameters
+### OAuth Token Request Parameters OAuth トークン要求パラメータ
 
-| Parameter     | Description                                                                               |
+| パラメーター        | 説明                                                                                        |
 | ------------- | ----------------------------------------------------------------------------------------- |
-| client_id     | A string (name) of the OAuth application seeking access to 3rd party accounts             |
-| client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo    |
-| grant_type    | should be 'refresh_token'                                                                 |
+| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前)                                             |
+| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列                                             |
+| grant_type    | 'refresh_token'であるべき                                                                      |
 | refresh_token | The refresh token received when you exchanged the authorization code for the access token |
 
 # Examples
