@@ -1,16 +1,27 @@
-* * *
+---
 
-タイトル： BitGo APIレファレンス
+title: BitGo APIレファレンス
 
-language_tabs: - javascript - shell
+language_tabs:
+- javascript
+- shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
+toc_footers:
+- <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a>
+- <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a>
+- <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a>
+- <a>言語</a>
+- <a href="../index.html">- English　英語</a>
+- <a href="index.html">- Japanese 日本語</a>
+- <a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
 
-* * *
+---
 
-# Getting Started はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# Getting Started はじめに
 
-[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
+<aside class="info">
+私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには<a href="https://www.bitgo.com/platform">BitGoプラットフォームポータル</a>にお越しください。
+</aside> 
 
 ### Overview 概要
 
@@ -1034,9 +1045,9 @@ for (id in wallets) {
 | 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
 | 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップのキーxPubを可能にします。 SDKのほとんどの場合、
-
-[ウォレットをキーチェーンと作成](#create-wallet-with-keychains) がウォレットからビットコインを送るためのよりシンプルで推奨のSDKのメソッドになります。 </aside> 
+## Add Wallet ウォレットを追加する
+<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップのキーxPubを可能にします。 SDKのほとんどの場合、<a href="#create-wallet-with-keychains">ウォレットをキーチェーンと作成</a>がウォレットからビットコインを送るためのよりシンプルで推奨のSDKのメソッドになります。 
+</aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -2376,7 +2387,10 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"recipients\": [{ \"address\": \"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD\", \"amount\": 1500000}, { \"address\": \"2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu\", \"amount\": 2500000 }] }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
+<aside class="warning">
+このメソッドは上級APIユーザー向けです。ほとんどの場合、 <a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 
+</aside> 
 
 そのウォレットの各アドレスからの未使用分をを使用して、ウォレットから複数の受信者を持つトランザクションを作成します。これはSDKでのみのクライアント側の機能です。
 
@@ -2487,7 +2501,8 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"transactionHex\": \"$TRANSACTIONHEX\", \"unspents\": $UNSPENTS, \"keychain\": $KEYCHAIN }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
+<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 <a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
 作成されたトランザクションの16進数、キーチェーンそして未使用分の情報を使用してマルチシグトランザクションに署名します(導出パスと交換スクリプト)。通常createTransactionからの出力と使用します。
 
@@ -2574,9 +2589,13 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
     );
   });
 });
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
+<aside class="warning">
+このメソッドは上級APIユーザー向けです。ほとんどの場合、<a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 
+</aside> 
 
-部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する<aside class="info"> このAPIはUnlock APIを使用してセッションがアンロックされることを必要とします。 Unlock APIへの単一コールは、内部的に設定されたBitGoのクォータ（現在50BTCに設定）までの、全ての単一トランザクションまたは複数トランザクションを可能にします。 </aside> 
+部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する
+<aside class="info"> このAPIはUnlock APIを使用してセッションがアンロックされることを必要とします。 Unlock APIへの単一コールは、内部的に設定されたBitGoのクォータ（現在50BTCに設定）までの、全ての単一トランザクションまたは複数トランザクションを可能にします。 </aside> 
 
 ### HTTP Request HTTPリクエスト
 
@@ -5405,7 +5424,10 @@ curl -X POST https://test.bitgo.com/oauth/token \
 
 # Examples 例
 
-BitGOの方で、SDKを使用した、いくつかの一般的なウォレットの操作方法の例を提供いたしました。比較的重要なものをここで扱います。<aside class="info"> 私達のSDKと例は、ビットコインのテストネットと接続されたBitGoテスト環境がデフォルトとなっています。 さらなる詳細については、\[テスト環境\](#bitgo-api-endpoints) のセクションをご参照下さい。 </aside> 
+BitGOの方で、SDKを使用した、いくつかの一般的なウォレットの操作方法の例を提供いたしました。比較的重要なものをここで扱います。
+<aside class="info">
+私達のSDKと例は、ビットコインのテストネットと接続されたBitGoテスト環境がデフォルトとなっています。 さらなる詳細については、<a href="#bitgo-api-endpoints">テスト環境</a>のセクションをご参照下さい。 
+</aside> 
 
 以下の各例(ともっと！) は私達のSDKレポジトリの`BitGoJS/examples` のディレクトリに見つけることができます。 各例に関する問題はメールかGitのイシュー経由でご報告下さい。
 
