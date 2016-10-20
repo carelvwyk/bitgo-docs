@@ -431,7 +431,7 @@ https://test.bitgo.com/api/v1/user/me
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id=">応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <p>現在認証されているユーザーのユーザモデルのオブジェクトを返す。</p>
 
@@ -761,11 +761,11 @@ https://test.bitgo.com/api/v1/user/unlock
 </tr>
 </tbody></table>
 
-<h2 id=">ロック</h2>
+<h2 id="lock">ロック Lock</h2>
 
 <p>現在のセッションを再ロックします</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
+https://test.bitgo.com/api/v1/user/lock
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">lock</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
@@ -1273,7 +1273,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 
 <p>ウォレットを作成するには、3つのキーチェーンが提供されなければなりません。 最初の2つのキーチェーンはユーザーによって提供されます、最後のは、BitGoキーチェーンである必要があります。 BitGoは最初の2つのキーの公開部分を見ることができる一方で、決してこれらのキーのプライベートな部分にアクセスできず、よってユーザー抜きに取引を行うことはできません。 BitGoの単一のキーはトランザクションに署名するのに十分でなく、またBitGoはユーザーが設定したポリシーに従ってのみ、このキーを用います。</p>
 
-<h2 id=">ウォレットの一覧を取得する</h2>
+<h2 id="list-wallets">List Wallets ウォレットの一覧を取得する</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet
@@ -1290,7 +1290,7 @@ https://test.bitgo.com/api/v1/wallet
 
 <p>そのユーザーのウォレットの一覧を取得します</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-request-http">HTTP Request, HTTPリクエスト</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet</code></p>
 
@@ -2749,7 +2749,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </tr>
 </tbody></table>
 
-<h2 id=">ウォレットのアドレスの一覧を表示する</h2>
+<h2 id="list-wallet-addresses">List Wallet Addresses ウォレットのアドレスの一覧を表示する</h2>
 
 <p>ウォレットについて、New Address APIを使用してインスタンス化されたアドレスのリストを取得します。</p>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -4185,49 +4185,109 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m/999999/26697279/124485569"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">```&lt;aside</span><span class="w"> </span><span class="err">class=</span><span class="s2">"info"</span><span class="err">&gt;</span><span class="w"> </span><span class="err">この操作では、Unlock</span><span class="w"> </span><span class="err">APIを使ってセッションをアンロックすることが必要です。</span><span class="w"> </span><span class="err">&lt;/aside&gt;</span><span class="w"> 
-
-</span><span class="err">ウォレットの共有は、もう一人のユーザーにウォレットを使用する許可をBitGoを通じ与えることを伴います。</span><span class="w">
-
-</span><span class="err">受取り手がウォレットを使用するには、私達は彼らと秘密鍵を共有する必要があります。</span><span class="w"> </span><span class="err">BitGoの各ユーザーは登録プロセスの際、この目的のために公開と秘密のキーペアを作成します。</span><span class="w">
-
-</span><span class="err">BitGo</span><span class="w"> </span><span class="err">SDKはクライアント側で以下を行って、新たなウォレットの共有を作成します:</span><span class="w">
-
-</span><span class="err">*</span><span class="w"> </span><span class="err">受け取るユーザーの共有する鍵を取得する（受取り手の公開鍵の派生パス）</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">ローカルで共有されるウォレットを復号化する</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">上の公開鍵に対しウォレットを再暗号化し、受取り手だけが復号化できるようにする。</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">暗号化された鍵をBitGoサービスにアップロードし、BitGoサービスは受取り手に保留中の共有があることを知らせる。</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Parameters</span><span class="w"> </span><span class="err">パラメーター</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">パラメーター</span><span class="w">           </span><span class="err">|</span><span class="w"> </span><span class="err">種類</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">必須か</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">説明</span><span class="w">                                        </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">----------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">---</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">email</span><span class="w">            </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレットを共有するユーザーのメールアドレス</span><span class="w">                    </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">permissions</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">コンマで区切った許可のリスト（例：view、spend、admin）</span><span class="w">        </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletPassphrase</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">共有されているウォレットのパスフレーズ</span><span class="w">                       </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">skipKeychain</span><span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">ブーリアン</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">disableEmail</span><span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">ブーリアン</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">追加されたユーザーに送信される通知メールを止めるには、trueに設定</span><span class="w">        </span><span class="err">|</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="err">応答</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">フィールド</span><span class="w">       </span><span class="err">|</span><span class="w"> </span><span class="err">説明</span><span class="w">                                     </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">-----------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">--------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">id</span><span class="w">          </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレット共有のid、受け入れるために使用</span><span class="w">                  </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletId</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">共有されているウォレットのid</span><span class="w">                        </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletLabel</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">ユーザーに提示するウォレットのラベル</span><span class="w">                     </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">fromUser</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレットを共有しているユーザーのBitGo</span><span class="w"> </span><span class="err">ID</span><span class="w">              </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">toUser</span><span class="w">      </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレットを受け取るユーザーのBitGo</span><span class="w"> </span><span class="err">ID</span><span class="w">                </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">permissions</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト</span><span class="w">  </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">keychain</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="err">（秘密鍵を取得する目的で）受取り手が復号化するための暗号化されたキーチェーン</span><span class="w"> </span><span class="err">|</span><span class="w">
-
-</span><span class="err">##</span><span class="w"> </span><span class="err">List</span><span class="w"> </span><span class="err">Wallet</span><span class="w"> </span><span class="err">Shares</span><span class="w"> </span><span class="err">ウォレット共有の一覧を表示する</span><span class="w">
-
-</span><span class="err">```shell</span><span class="w">
-</span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Authorization: Bearer $ACCESS_TOKEN"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">https://test.bitgo.com/api/v</span><span class="mi">1</span><span class="err">/walletShare</span><span class="w">
 </span></code></pre>
+
+<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+
+<p>ウォレットの共有は、もう一人のユーザーにウォレットを使用する許可をBitGoを通じ与えることを伴います。</p>
+
+<p>受取り手がウォレットを使用するには、私達は彼らと秘密鍵を共有する必要があります。 BitGoの各ユーザーは登録プロセスの際、この目的のために公開と秘密のキーペアを作成します。</p>
+
+<p>BitGo SDKはクライアント側で以下を行って、新たなウォレットの共有を作成します:</p>
+
+<ul>
+<li>受け取るユーザーの共有する鍵を取得する（受取り手の公開鍵の派生パス）</li>
+<li>ローカルで共有されるウォレットを復号化する</li>
+<li>上の公開鍵に対しウォレットを再暗号化し、受取り手だけが復号化できるようにする。</li>
+<li>暗号化された鍵をBitGoサービスにアップロードし、BitGoサービスは受取り手に保留中の共有があることを知らせる。</li>
+</ul>
+
+<h3 id="parameters">Parameters パラメーター</h3>
+
+<table><thead>
+<tr>
+<th>パラメーター</th>
+<th>種類</th>
+<th>必須か</th>
+<th>説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>文字列</td>
+<td>YES</td>
+<td>ウォレットを共有するユーザーのメールアドレス</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>文字列</td>
+<td>YES</td>
+<td>コンマで区切った許可のリスト（例：view、spend、admin）</td>
+</tr>
+<tr>
+<td>walletPassphrase</td>
+<td>文字列</td>
+<td>NO</td>
+<td>共有されているウォレットのパスフレーズ</td>
+</tr>
+<tr>
+<td>skipKeychain</td>
+<td>ブーリアン</td>
+<td>NO</td>
+<td>帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定</td>
+</tr>
+<tr>
+<td>disableEmail</td>
+<td>ブーリアン</td>
+<td>NO</td>
+<td>追加されたユーザーに送信される通知メールを止めるには、trueに設定</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response 応答</h3>
+
+<table><thead>
+<tr>
+<th>フィールド</th>
+<th>説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ウォレット共有のid、受け入れるために使用</td>
+</tr>
+<tr>
+<td>walletId</td>
+<td>共有されているウォレットのid</td>
+</tr>
+<tr>
+<td>walletLabel</td>
+<td>ユーザーに提示するウォレットのラベル</td>
+</tr>
+<tr>
+<td>fromUser</td>
+<td>ウォレットを共有しているユーザーのBitGo ID</td>
+</tr>
+<tr>
+<td>toUser</td>
+<td>ウォレットを受け取るユーザーのBitGo ID</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト</td>
+</tr>
+<tr>
+<td>keychain</td>
+<td>（秘密鍵を取得する目的で）受取り手が復号化するための暗号化されたキーチェーン</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-wallet-shares">List Wallet Shares ウォレット共有の一覧を表示する</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+https://test.bitgo.com/api/v1/walletShare
+</code></pre>
 <pre class="highlight javascript"><code>  <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">listShares</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
@@ -4330,41 +4390,81 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
 <p>応答の例</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w"> </span><span class="nt">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="err">```&lt;aside</span><span class="w"> </span><span class="err">class=</span><span class="s2">"info"</span><span class="err">&gt;</span><span class="w"> </span><span class="err">この操作では、Unlock</span><span class="w"> </span><span class="err">APIを使ってセッションをアンロックすることが必要です。</span><span class="w"> </span><span class="err">&lt;/aside&gt;</span><span class="w"> 
-
-</span><span class="err">ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：</span><span class="w">
-
-</span><span class="err">*</span><span class="w"> </span><span class="err">暗号化された秘密のキーチェーンを含む、着信したウォレットの共有を取得する</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">ユーザーが共有する秘密鍵とウォレット共有xPubを使用してプライベートのキーチェーンを復号化する鍵を派生させる。</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">将来の利用のため、ユーザーが選んだパスフレーズでウォレットを再暗号化する。</span><span class="w">
-</span><span class="err">*</span><span class="w"> </span><span class="err">暗号化された鍵をBitGoのサービスにアップロードし、共有を「accepted」(受け入れられた)</span><span class="w"> </span><span class="err">にセットする。そうするとユーザーに、BigGoにあるウォレットへのアクセスが与えられる。</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Parameters</span><span class="w"> </span><span class="err">パラメーター</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">パラメーター</span><span class="w">                </span><span class="err">|</span><span class="w"> </span><span class="err">種類</span><span class="w">              </span><span class="err">|</span><span class="w"> </span><span class="err">必須か</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">説明</span><span class="w">                                             </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">---------------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">---------------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">---</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">----------------------------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">walletShareId</span><span class="w">         </span><span class="err">|</span><span class="w"> </span><span class="err">ビットコインアドレス(文字列)</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">YES</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">受け入れる、着信したウォレット共有ID</span><span class="w">                            </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">newWalletPassphrase</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">             </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">将来の使用の際用いるための、ウォレットで設定するパスフレーズ</span><span class="w">                 </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">userPassword</span><span class="w">          </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">             </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">共有された秘密鍵を復号化する、ユーザーのパスワード</span><span class="w">                      </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">overrideEncryptedXprv</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">文字列</span><span class="w">             </span><span class="err">|</span><span class="w"> </span><span class="err">NO</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">帯域外で受け取った暗号化されたxprvの保存を望む場合、代替の暗号化されたxprvに設定する</span><span class="w"> </span><span class="err">|</span><span class="w">
-
-</span><span class="err">###</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="err">応答</span><span class="w">
-
-</span><span class="err">|</span><span class="w"> </span><span class="err">フィールド</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">説明</span><span class="w">                            </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">-------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------------------------</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">state</span><span class="w">   </span><span class="err">|</span><span class="w"> </span><span class="err">ウォレット共有の最終状態（'accepted'であるべき）</span><span class="w"> </span><span class="err">|</span><span class="w">
-</span><span class="err">|</span><span class="w"> </span><span class="err">changed</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">成功した場合、</span><span class="w"> </span><span class="kc">true</span><span class="w">                  </span><span class="err">|</span><span class="w">
-
-</span><span class="err">##</span><span class="w"> </span><span class="err">Cancel</span><span class="w"> </span><span class="err">Wallet</span><span class="w"> </span><span class="err">Share</span><span class="w"> </span><span class="err">ウォレット共有をキャンセルする</span><span class="w">
-
-</span><span class="err">```shell</span><span class="w">
-</span><span class="err">SHAREID='</span><span class="mi">54</span><span class="err">c</span><span class="mi">594802</span><span class="err">ebe</span><span class="mi">8510790092958</span><span class="err">f</span><span class="mi">526</span><span class="err">f</span><span class="mi">47</span><span class="err">'</span><span class="w">
-
-</span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">DELETE</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="s2">"Authorization: Bearer $ACCESS_TOKEN"</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">https://test.bitgo.com/api/v</span><span class="mi">1</span><span class="err">/walletshare/$SHAREID</span><span class="w">
 </span></code></pre>
+
+<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+
+<p>ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：</p>
+
+<ul>
+<li>暗号化された秘密のキーチェーンを含む、着信したウォレットの共有を取得する</li>
+<li>ユーザーが共有する秘密鍵とウォレット共有xPubを使用してプライベートのキーチェーンを復号化する鍵を派生させる。</li>
+<li>将来の利用のため、ユーザーが選んだパスフレーズでウォレットを再暗号化する。</li>
+<li>暗号化された鍵をBitGoのサービスにアップロードし、共有を「accepted」(受け入れられた) にセットする。そうするとユーザーに、BigGoにあるウォレットへのアクセスが与えられる。</li>
+</ul>
+
+<h3 id="parameters">Parameters パラメーター</h3>
+
+<table><thead>
+<tr>
+<th>パラメーター</th>
+<th>種類</th>
+<th>必須か</th>
+<th>説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletShareId</td>
+<td>ビットコインアドレス(文字列)</td>
+<td>YES</td>
+<td>受け入れる、着信したウォレット共有ID</td>
+</tr>
+<tr>
+<td>newWalletPassphrase</td>
+<td>文字列</td>
+<td>NO</td>
+<td>将来の使用の際用いるための、ウォレットで設定するパスフレーズ</td>
+</tr>
+<tr>
+<td>userPassword</td>
+<td>文字列</td>
+<td>NO</td>
+<td>共有された秘密鍵を復号化する、ユーザーのパスワード</td>
+</tr>
+<tr>
+<td>overrideEncryptedXprv</td>
+<td>文字列</td>
+<td>NO</td>
+<td>帯域外で受け取った暗号化されたxprvの保存を望む場合、代替の暗号化されたxprvに設定する</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response 応答</h3>
+
+<table><thead>
+<tr>
+<th>フィールド</th>
+<th>説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>state</td>
+<td>ウォレット共有の最終状態（&#39;accepted&#39;であるべき）</td>
+</tr>
+<tr>
+<td>changed</td>
+<td>成功した場合、 true</td>
+</tr>
+</tbody></table>
+
+<h2 id="cancel-wallet-share">Cancel Wallet Share ウォレット共有をキャンセルする</h2>
+<pre class="highlight shell"><code><span class="nv">SHAREID</span><span class="o">=</span><span class="s1">'54c594802ebe8510790092958f526f47'</span>
+
+curl -X DELETE <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
+</code></pre>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">cancelShare</span><span class="p">({</span> <span class="na">walletShareId</span><span class="p">:</span> <span class="nx">cancelledWalletShareId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
@@ -4476,7 +4576,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 </tr>
 </tbody></table>
 
-<h1 id=">ウォレットのポリシー</h1>
+<h1 id="wallet-policy">Wallet Policy ウォレットのポリシー</h1>
 
 <p>BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定された）関連付けられたアクションをトリガーします。 ポリシーエンジンは全てのトリガーされたルール結果を集め、deny、 get approval (別のユーザーから), get OTP (別のユーザーによってSMSを通じ送信)、 allow (デフォルト) の順で任意のトリガーされたアクションを実行します。</p>
 
@@ -4776,7 +4876,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <h3 id="dailylimit">ポリシータイプ - dailyLimit</h3>
 
-<p>直近の24時間の間にビットコインの額が一定額を超過すると、dailyLimit (一日の限度) ポリシールールがトリガーされます。</p>
+<p>直近の24時間の間にビットコインの額が一定額を超過すると、 (一日の限度) ポリシールールがトリガーされます。</p>
 
 <p>そのための条件には次があります:</p>
 
@@ -5027,9 +5127,9 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 
 <p>更新されたウォレットモデルオブジェクトを返します。</p>
 
-<h1 id="pending-approvals">Pending Approvals　保留中の承認</h1>
+<h1 id="pending-approvals">保留中の承認 Pending Approvals</h1>
 
-<h2 id=">保留中の承認の一覧を表示する</h2>
+<h2 id="list-pending-approvals">保留中の承認の一覧を表示する List Pending Approvals</h2>
 
 <p>ウォレットidまたは提供することによりウォレットまたはエンタープライズの保留中の承認の一覧を表示します。</p>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
@@ -6107,7 +6207,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 
 <p><code class="prettyprint">DELETE /api/v1/wallet/:walletId/webhooks</code></p>
 
-<h3 id=">パラメーター</h3>
+<h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6131,7 +6231,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <table><thead>
 <tr>
@@ -6153,7 +6253,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="list-user-webhooks-webhook">List User Webhooks ユーザー Webhookの一覧を取得する</h2>
+<h2 id="webhook-list-user-webhooks">ユーザー Webhookの一覧を取得する List User Webhooks</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -6183,11 +6283,11 @@ https://test.bitgo.com/api/v1/webhooks
 
 <p>ユーザーに添付されるwebhookの一覧を取得します。現在、ユーザーに添付できるwebhookの種類はブロック通知だけです。</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/webhooks</code></p>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <p>Webhookオブジェクトの配列</p>
 
@@ -6211,7 +6311,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="add-user-webhooks-webhook">Add User Webhooks ユーザー Webhook を追加する</h2>
+<h2 id="webhook-add-user-webhooks">ユーザー Webhook を追加する Add User Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">URL</span><span class="o">=</span><span class="s1">'https://303fe960.ngrok.com'</span>
 
 curl -X POST <span class="se">\</span>
@@ -6238,11 +6338,11 @@ https://test.bitgo.com/api/v1/webhooks
 
 <p>イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 Webhookの記録はユーザーアカウントに添付されます。</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/webhooks</code></p>
 
-<h3 id="parameters">Parameters パラメーター</h3>
+<h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6272,7 +6372,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <table><thead>
 <tr>
@@ -6290,7 +6390,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">ユーザー webhook を削除する</h2>
+<h2 id="webhook-remove-user-webhooks">ユーザー webhook を削除する Remove User Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">URL</span><span class="o">=</span><span class="s1">'http://www.yoursite.com/partner/webhooks'</span>
 
 curl -X DELETE <span class="se">\</span>
@@ -6360,11 +6460,11 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h1 id="utilities">Utilities 各ユーティリティ</h1>
+<h1 id="utilities">各ユーティリティ Utilities</h1>
 
 <p>このセクションでは、BitGo APIの一部として提供されている有用なユーティリティサービスについて説明します。</p>
 
-<h2 id="decrypt">Decrypt 復号化</h2>
+<h2 id="decrypt">復号化 Decrypt</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="s1">'{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">decryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">decrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="nx">encryptedString</span> <span class="p">});</span>
 <span class="c1">// decryptedString = "this is a secret"</span>
@@ -6384,7 +6484,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/decrypt
 
 <p>BitGo APIから暗号化されたblobを復号化するクライアント側関数</p>
 
-<h2 id="encrypt">Encrypt 暗号化</h2>
+<h2 id="encrypt">暗号化 Encrypt</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="s2">"this is a secret"</span> <span class="p">});</span>
 <span class="c1">// encyrptedString = "{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}"</span>
 </code></pre>
@@ -6403,7 +6503,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <p>文字列を暗号化するクライアント側関数です。BitGoで保管される全てのデータは、このAPIを用いて暗号化されます。</p>
 
-<h2 id="estimate-transaction-fees">Estimate Transaction Fees トランザクションフィーを見積もる</h2>
+<h2 id="estimate-transaction-fees">トランザクションフィーを見積もる Estimate Transaction Fees</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">estimateFee</span><span class="p">({</span> <span class="na">numBlocks</span><span class="p">:</span> <span class="mi">6</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
@@ -6413,7 +6513,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <p>目標となるブロックの数内でトランザクションを確認するための、キロバイトあたりの推奨手数料のレートを返します。 トランザクションの作成に使用できます。 注意：見積もりアルゴリズムは最低2ブロック先まで正確なものです。</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/tx/fee?numBlocks=6</code></p>
 
@@ -6439,7 +6539,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <table><thead>
 <tr>
@@ -6465,7 +6565,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </tr>
 </tbody></table>
 
-<h2 id="market-price-data">Market Price Data 市場価格データ</h2>
+<h2 id="market-price-data">市場価格データ Market Price Data</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">markets</span><span class="p">().</span><span class="nx">latest</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">market</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
@@ -6478,7 +6578,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <p>現在の市場についての情報を得ます。</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/market/latest</code></p>
 
@@ -6526,7 +6626,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <p>マーケットモデルオブジェクトを返します。全ての価格はユーザーが設定した通貨の単位建てです。</p>
 
@@ -6588,7 +6688,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <p>BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 さもなくばあなたの顧客が感染していて引出しをリクエストした場合、間違って「悪い」トランザクションを提出してしまう可能性があります。</p>
 
-<h3 id="http-request-http">HTTP Request HTTPリクエスト</h3>
+<h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/malware/bitcoin</code></p>
 
@@ -6608,7 +6708,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="response">Response 応答</h3>
+<h3 id="response">応答 Response</h3>
 
 <table><thead>
 <tr>
@@ -7924,11 +8024,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>上のキーチェーンに対応するパブリックキーでウォレットを作成します。<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷/バックアップを取ることは<strong>非常に重要</strong>です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> </li>
 </ol>
 
-<h3 id="usage">Usage 使い方</h3>
+<h3 id="usage">使い方 Usage</h3>
 
 <p><code class="prettyprint">node createWallet.js &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;label&gt;</code></p>
 
-<h3 id=">パラメーター</h3>
+<h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
 <tr>
@@ -8006,11 +8106,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。</li>
 </ol>
 
-<h3 id="usage">Usage 使い方</h3>
+<h3 id="usage">使い方 Usage</h3>
 
 <p><code class="prettyprint">node sendBitcoin &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;walletId&gt; &lt;walletPassphrase&gt; &lt;destinationAddress&gt; &lt;amountSatoshis&gt;</code></p>
 
-<h3 id=">パラメーター</h3>
+<h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
 <tr>
