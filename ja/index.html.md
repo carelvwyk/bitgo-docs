@@ -882,7 +882,7 @@ xpubでキーチェーンをルックアップする<aside class="info"> この�
 | ---------------- | -------------------------- |
 | 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
 | 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
-| 404 Bad Request  | Xpub が見つからなかった             |
+| 404 Bad Request  | xpub が見つからなかった             |
 
 ## Update Keychain キーチェーンを更新する
 
@@ -1034,7 +1034,7 @@ for (id in wallets) {
 | 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
 | 401 Unauthorized | 認証パラメーターが一致しない        |
 
-## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップのキーxPubを可能にします。 SDKのほとんどの場合、
+## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップの各キーxPubを可能にします。 SDKのほとんどの場合、
 
 [ウォレットをキーチェーンと作成](#create-wallet-with-keychains) がウォレットからビットコインを送るためのよりシンプルで推奨のSDKのメソッドになります。 </aside> 
 
@@ -1270,7 +1270,7 @@ wallets.get(data, function callback(err, wallet) {
 | id               | ウォレットのid(同時に最初の受信アドレス)                              |
 | label            | UIに表示されている通りのウォレットのラベル                              |
 | index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                    |
-| private          | キーチェーンの要約版が含まれている                                   |
+| private          | キーチェーンの要約版を含む                                       |
 | permissions      | このウォレットへのユーザーのアクセス許可                                |
 | admin            | ウォレットの管理者に関するポリシー情報                                 |
 | pendingApprovals | ウォレットの保留中のトランザクション承認                                |
@@ -1324,7 +1324,7 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
   2. ユーザー キーチェーンを暗号化する
   3. 暗号化されたユーザーキーチェーンとバックアップキーチェーンをBitGoにアップロードする
   4. サービス上で BitGo キーを作成する
-  5. 上の公開鍵でBitGoでウォレットを作成する<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷/バックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
+  5. 上の公開鍵でBitGoでウォレットを作成する<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷するあるいはバックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
 
 ### BitGo Instant Wallets BitGo インスタントウォレット
 
