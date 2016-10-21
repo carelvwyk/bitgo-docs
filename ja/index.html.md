@@ -84,13 +84,13 @@ bitgo.ping({}, function(err, res) {
 });
 ```
 
-ライブラリをインポートするには、`src/index.js`ファイルが必要なだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
+ライブラリをインポートするのに必要なのは`src/index.js`ファイルだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
 
-| パラメーター        | 値                          |
-| ------------- | -------------------------- |
-| useproduction | プロダクションに接続するかどうか。デフォルト値は偽。 |
+| パラメーター        | 値                                |
+| ------------- | -------------------------------- |
+| useproduction | プロダクション環境に接続するかどうか。デフォルト値はfasle。 |
 
-Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバックスタールで返します。さもなければpromiseが返されます。
+Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバック形式で返します。さもなければpromiseが返されます。
 
 ### Important notes on test environment テスト環境に関する重要な注意
 
@@ -120,9 +120,9 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGoは開発とプロダクション向けに2つの個別の環境を利用可能にしています。
+BitGoでは、開発とプロダクション向けに2つの個別の環境が利用可能になっています。
 
-すべての応答は、`application/json`コンテンツタイプです
+すべての応答は、`application/json`コンテンツタイプです。
 
 > 応答の例
 
