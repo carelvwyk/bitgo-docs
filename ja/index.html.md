@@ -240,7 +240,7 @@ bitgo.session({}, function callback(err, session) {
 | Duration       | トークンが有効であり続ける秒数                                                               |
 | Spending Limit | トークンは、BTC建ての支出制限の額までのアンロックされた状態で来ます。制限がリセットされるので、API経由でトークンをアンロックしようとしないで下さい。 |
 | IP Addresses   | BitGoが特定のIPアドレスからのみトークンを受け付けるよう、ロックダウンします                                     |
-| Permissions    | トークンが生成される際の認証の範囲                                                             |
+| Permissions    | トークンが生成される際の認証のスコープ                                                           |
 
 ## Current User Profile 現在のユーザープロファイル
 
@@ -350,11 +350,11 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 
 ### Response 応答
 
-APIで使用するトークンを返す。
+APIで使用するトークンを返します。
 
 トークンはHTTP"Authorization"ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。
 
-`Authorization: Bearer <あなたのトークンはここ>`
+`Authorization: Bearer <ここにあなたのトークン>`
 
 ### Errors　エラー
 
@@ -449,7 +449,7 @@ bitgo.session({}, function callback(err, session) {
 | client  | ユーザートークンが取得された所のOAuthクライアントID                  |
 | user    | BitGo ユーザー ID                                  |
 | expires | ログインセッションがその時間まで有効なタイムスタンプ                     |
-| scope   | このセッショントークンについて許可されている権限のリスト                   |
+| scope   | このセッショントークンで許可されている権限のリスト                      |
 | origin  | ブラウザでセッションが開始された場合、トークンが作成されたオリジンホスト名          |
 | unlock  | セッションがアンロックされた時に利用可能。トランザクションの回数とアンロックの有効期限を示す |
 
