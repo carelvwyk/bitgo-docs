@@ -13,7 +13,6 @@ toc_footers:
 - <a>言語</a>
 - <a href="../index.html">- English　英語</a>
 - <a href="index.html">- Japanese 日本語</a>
-- <a href="../zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
 
 ---
 
