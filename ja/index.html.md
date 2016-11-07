@@ -1,102 +1,105 @@
 * * *
 
-タイトル： BitGo APIレファレンス
+title: BitGo API Reference
 
 language_tabs: - javascript - shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGoウェブサイト</a> - <a href="https://www.bitgo.com/terms" target="_new">サービス契約</a> - <a href="https://www.bitgo.com/settings" target="_new">BitGo 設定 (APIアクセストークンを取得)</a> - <a>言語</a> - [- English　英語](index.html) - [- Japanese 日本語](ja/index.html) - [- Chinese (Simplified) 简体中文](zh-CN/index.html)
+toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a> - <a href="http://bitgoinc.com/bitgo-services-agreement/" target="_new">Services Agreement</a> - <a href="/settings" target="_new">BitGo Settings (Get API Access Token)</a> - <a>Languages</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html)
 
 * * *
 
-# Getting Started はじめに<aside class="info"> 私達の開発者プラットフォームが立ち上がりました。インテグレーション支援やアクセストークン、追加情報にサインアップするには
+# Getting Started
 
-[BitGoプラットフォームポータル](https://www.bitgo.com/platform)にお越しください。 </aside> 
+<aside class="info">
+Our developer platform is live. Visit the <a href="https://www.bitgo.com/platform">BitGo Platform Portal</a>  to sign up for integration support, access tokens and more information.
+</aside>
 
-### Overview 概要
+### Overview
 
-BitGoは、マルチシグ技術を現行のあなたのビットコインアプリケーションやサービスに統合するためのシンプルで堅牢なRESTful API及びシンプルなクライアントサイドjavascriptを提供しています。
+BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
 
-BitGo SDKは以下の操作を可能にします：
+The BitGo SDK enables the following operations:
 
-* P2SH(マルチシグネチャ) ウォレットの作成
-* 階層的決定性ウォレット管理(BIP32)
-* トランザクションの作成
-* トランザクション署名
-* 支出制限
-* マルチサイナーウォレットフロー
+* Creation of P2SH (multi-signature) wallets
+* Hierarchical Deterministic Wallet management (BIP32)
+* Transaction creation
+* Transaction signing
+* Spending limits
+* Multi-signer wallet flow
 
-### Multi-Signature Wallets マルチシグネチャウォレット
+### Multi-Signature Wallets
 
-マルチシグウォレットの主要な利点は、複数のマシンや人々が協働し特定のトランザクションを承認する能力です。 トランザクションのマルチシグネチャがなければ、トランザクションを承認するための全ての証明はマシン上の１人の人間に常に常駐しなければなりません。 その人間またはマシンが攻撃者によって侵入された場合、持っている全てのビットコインが失われることがあります。
+The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
-これまで、これらの１人の人間 / シングルマシンのセキュリティを確保するのは非常に困難で、多くのベンダーは単に「コールドストレージ」を用いてビットコインを完全にオフラインに置くことを選んでいました。
+Traditionally, it has been so difficult to secure these single person / single machine systems, that many vendors have opted to simply use "cold storage" and move Bitcoin offline entirely.
 
-マルチシグウォレットは、ビットコインをオフラインに置くことなく、あなたがモダンなビットコインアドレスに求める柔軟性を提供します。 BitGo APIは、自分のアプリケーションでマルチシグネチャ機能を利用し、複数ユーザー、連署者、最先端の不正検出サービスが持つ完全な柔軟性を、損失や盗難から保護するため活用するのを可能にします。
+Multi-signature wallets offer all the flexibility you would expect from a modern Bitcoin address without having to take your bitcoin offline. The BitGo API enables you to use multi-signature features in your own applications so you can harness the full flexibility of multiple users, cosigners and state-of-the-art fraud detection services to protect against loss and theft.
 
-詳細については、<a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGoホワイトペーパー</a>をお読みください。
+For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.
 
-### HD Wallets, HDウォレット
+### HD Wallets
 
-全てのBitGoウォレットは階層的決定性ウォレット（別名HDウォレット）です。 HDウォレットはビットコイン<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32規格</a>を用いて実装されています。 よって、BitGo' HDウォレットは個別の鍵というより「キーチェーン」から構築されており、2つの特徴的なセキュリティとプライバシー強化の機能を提供します。
+All BitGo wallets are hierarchical deterministic wallets - also known as "HD Wallets". HD Wallets are implemented using the bitcoin
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>. As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
 
-* よりセキュアなバックアップ
+* More secure backups
     
-    キーチェーンは単一のシークレットキーでバックアップされているため、ウォレットは単一のバックアップキーで保全される多数のパブリックキーを用いることが出来ます。
+    Because keychains can be backed up with a single secret, a wallet can use many public keys all of which are maintained by a single backup key.
 
-* ブロックチェーンプライバシー
+* Blockchain Privacy
     
-    HDウォレットなら、任意の2つのトランザクションが同一のウォレットから到着したと見えないよう、アプリケーションはトランザクション毎に新たなキーを作成できます。 これにより、ウォレット保持者は、ウォレットの本当の大きさが漏洩することから保護されます。
+    With HD Wallets, applications can create new keys with every transaction such that no two transactions ever appear to come from the same wallet. This protects the wallet holder from revealing the true size of the wallet.
 
-## Software Development Kit ソフトウェア開発キット(SDK)
+## Software Development Kit
 
-BitGo APIは、開発者にマルチシグウォレットの作成、管理、ポリシーの操作、そしてビットコインネットワークとやり取りする方法を提供します。 ただし、ユーザの秘密鍵やトランザクションの署名など、いくつかセンシティブな操作がクライアントサイドで行われる必要があります。
+The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network. However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
 
-そのような理由から、私達は<a href="https://github.com/BitGo/BitGoJS" target="_new">ソフトウェア開発キット(SDK)</a>を提供の上、利用をお勧めします。このSDKは、これらのクライアントサイドのウォレット機能を実装し、私達のAPIとインターフェースするものです。 実際には、BitGo APIの利用を検討している開発者は、おそらくBitGoクライアントサイドSDKもBitGo RESTサービスも利用するでしょう。
+For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs. In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.
 
-現在、私達のSDKはjavascriptで利用可能で、node.jsまたはブラウザで実行されます。 サポートされていないプログラミング言語を利用している場合、BitGo Expressの設定方法について「BitGo Express REST API」のドキュメンテーションのセクションを参照いただくか、私達にお問い合わせください。
+Currently, our SDK is available in Javascript and runs in either node.js or a browser. If you are using a non-supported programming language, see the "BitGo Express REST API" section of the documentation for how to setup BitGo Express, or contact us for further help.
 
-Javascript SDKのインストール (npmを通じ)
+Installing the Javascript SDK (via npm)
 
 `npm install bitgo --save`
 
-Javascript SDKのインストール (Githubを通じ)
+Installing the Javascript SDK (via Github)
 
-* Githubにある<a href="https://github.com/BitGo/BitGoJS" target="_new">オープンソースSDKページ</a>をご覧ください。
-* Gitとnodejs/npmをインストール(例に従うことを推奨)
-* 次のコマンドを実行することにより、ローカルに私達のレポジトリをクローン `git clone git@github.com:BitGo/BitGoJS.git`
-* BitGoJSディレクトリで次によって依存関係をインストール：`npm install`
-* 「例」のディレクトリをチェックして、SDKをどのように利用できるかを参照して、次を実行ください
+* <a href="https://github.com/BitGo/BitGoJS" target="_new">Visit our open-source SDK page</a> on Github.
+* Install git and nodejs/npm (recommended to follow the examples).
+* Clone our repository locally by running the command: `git clone git@github.com:BitGo/BitGoJS.git`
+* In the BitGoJS directory, install dependencies using: `npm install`
+* Check out the examples directory to see how you can use the SDK! In the example directory, run
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library ライブラリのインポートと初期化
+### Importing and initializing the library
 
 ```javascript
-// パーケージからインポートしている場合
+// If importing via package
 var BitGoJS = require('BitGoJS/src/index.js');
 var bitgo = new BitGoJS.BitGo();
 
-// npm install bitgoからインストールしている場合
+// If importing from npm install bitgo
 // var bitgo = require('bitgo');
 
 bitgo.ping({}, function(err, res) {
-    // ここでやりたいことをやる
+    // do stuff here
 });
 ```
 
-ライブラリをインポートするのに必要なのは`src/index.js`ファイルだけです。 そうしたら `BitGoJS.BitGo()` を実行することによりSDKを初期化できます。
+To import the library, you simply require the `src/index.js` file. You can then initialize the SDK by doing `BitGoJS.BitGo()`.
 
-| パラメーター        | 値                                |
-| ------------- | -------------------------------- |
-| useproduction | プロダクション環境に接続するかどうか。デフォルト値はfasle。 |
+| Parameter     | Value                                                       |
+| ------------- | ----------------------------------------------------------- |
+| useproduction | Whether or not to connect to production. Defaults to false. |
 
-Javascript SDKはpromiseとコールバックの両方をサポートしています。コールバックを最後の引数として渡した場合、コールバック形式で返します。さもなければpromiseが返されます。
+The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
 
-### Important notes on test environment テスト環境に関する重要な注意
+### Important notes on test environment
 
-私達のSDKと各例は、ビットコインテストネットと接続されているBitGoテスト環境の初期値になっています。 詳細は[テスト環境](#bitgo-api-endpoints)のセクションを参照してください。
+Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
 
-## BitGo API Endpoints, BitGo API エンドポイント
+## BitGo API Endpoints
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -120,11 +123,11 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGoでは、開発とプロダクション向けに2つの個別の環境が利用可能になっています。
+BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
 
-すべての応答は、`application/json`コンテンツタイプです。
+All responses are of content-type `application/json`
 
-> 応答の例
+> Example Response
 
     {
         "status": "service is ok!",
@@ -132,23 +135,23 @@ BitGoでは、開発とプロダクション向けに2つの個別の環境が�
     }
     
 
-### Production Environment プロダクション環境
+### Production Environment
 
-BitGo プロダクションエンドポイントは立ち上がっており、提携パートナーとwww.bitgo.com にある弊社独自のウェブアプリケーションにより利用されています。
+The BitGo production endpoint is live and used by partners and our own web application on www.bitgo.com.
 
-* プロダクションサイト: https://www.bitgo.com/
-* プロダクションAPI: https://www.bitgo.com/api/v1
+* Production Site: https://www.bitgo.com/
+* Production API: https://www.bitgo.com/api/v1
 
-### Test Environment テスト環境
+### Test Environment
 
-私達の各例とSDKでは、BitGoのテスト環境がデフォルトで利用されています。 BitGoのプロダクション環境とは完全に別個のものであり、データとアカウントにおけるオーバーラップはありません。 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> でアカウントを作成する必要があります。
+The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts. You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
 
-* BitGo テスト サイト: https://test.bitgo.com/
-* テスト環境 API: https://test.bitgo.com/api/v1
+* BitGo Test Site: https://test.bitgo.com/
+* Test Environment API: https://test.bitgo.com/api/v1
 
-テスト環境の場合のみ、（自動テストを目的として）BitGoでの認証においてOTPの代わりに`0000000`が使えます。
+On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
 
-この環境は、ナビゲーションに<a href="http://tbtc.blockr.io/" target="_new">Blockr</a>を利用できるビットコインテストネットに接続されています。 テストコインを取得するには、<a href="http://tpfaucet.appspot.com/" target="_new">フォーセット</a>か、あるいはご連絡ください。
+This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
 
 ## BitGo Express REST API
 
@@ -161,22 +164,22 @@ BITGO_EXPRESS_HOST='localhost'
 curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 ```
 
-BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。
+The BitGo Express REST API is a lightweight service for developers that want to take advantage of BitGo but are developing in a language without a native BitGo SDK.
 
-BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APのプロクシとして振舞うことも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。
+BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo. This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.
 
-BitGo Expressを利用するには:
+To use BitGo Express:
 
-* [BitGoJS](#software-development-kit) をインストールします
-* bin ディレクトリで次のコマンドを実行します:
+* Install [BitGoJS](#software-development-kit)
+* Run the following command in the bin directory:
 
 `./bitgo-express --debug --port 3080 --env test --bind localhost`
 
-* **全ての**BitGo REST APIの呼び出しを、bitgo-expressを実行しているマシンに対し行う
+* Make **ALL** BitGo REST API calls to the machine on which bitgo-express is running
 
-## Error Handling エラー処理
+## Error Handling
 
-> JSON エラーの例
+> Example JSON Error
 
 ```json
 {
@@ -185,26 +188,26 @@ BitGo Expressを利用するには:
 }
 ```
 
-全てのエラーは一般的なRESTの原則に従います。エラー応答の本文(例えば非200ステータスコード)に含まれるのは次の形式のエラーオブジェクトになります：
+All errors follow general REST principles. Included in the body of any error response (e.g. non-200 status code) will be an error object of the form:
 
-| パラメーター | 値                                     |
-| ------ | ------------------------------------- |
-| status | The HTTP error status returned        |
-| error  | The detailed description of the error |
+| Parameter | Value                                 |
+| --------- | ------------------------------------- |
+| status    | The HTTP error status returned        |
+| error     | The detailed description of the error |
 
-# User Authentication ユーザー認証
+# User Authentication
 
-BitGoの認証は"Authorization"のヘッダーを通じて行われ、呼び出し元がアクセストークンを指定するのを可能にします。
+BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
 
-アクセストークンはセッションを維持するのに利用され、パスワードログイン（ワンタイムパスワード（OTP）が必要）によって作成されます。 典型的なアクセストークンは1時間の間有効で、消費された資金をアンロックするのにOTPを必要とします。
+Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths. Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
 
-デフォルトで、トークンは単一のIPアドレスに制限され、60分間有効です。それが過ぎたらユーザーは再認証する必要があります。
+By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.
 
-一部のAPIコールについては、有効なセッショントークンだけでは不十分です。 これらのAPIコールにアクセスするには、セッションはUnlock APIを用いて、追加の2要素コードによって明示的にアンロックされなければなりません。 単一のアンロックコールはユーザーが任意のサイズのトランザクション（ウォレットポリシーの対象）、または内部のBitGoが管理するクォータ以下の、任意の回数のトランザクションを行うことを可能にします。<aside class="info"> アンロックが必要なAPIは、セッションが現在ロックされている場合または現在のアンロックセッションのトランザクションクォータの残りが不十分でない場合、応答にneedsUnlock=trueを含みます。 </aside> 
+For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code. A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
 
-また、API 用に作成されたアクセス トークンは一定の額まで無期限にロックすることができますが、作成時に特定のスコープにバインドされる必要があります。
+Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
 
-## API Access Tokens, APIアクセストークン
+## API Access Tokens
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -224,25 +227,25 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-自動化の目的で、開発者は、1時間で期限が切れない一定額の資金について、アンロックされた長寿命のアクセストークンをリクエストすることができます。
+For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
 
-  1. BitGoダッシュボードへアクセスして、「設定」のページへ行く
-  2. 「開発者」のタブをクリック
-  3. 長寿命のアクセストークンを作成できるようになりました
+  1. Access the BitGo dashboard and head into the "Settings" page.
+  2. Click on the "Developer" tab.
+  3. You can now create a long-lived access token.
 
-トークンは、デフォルトでは、あなたが指定した支出制限に基づきロックされていない状態で来ます。アンロックがリセットされるので、再度API経由でトークンをアンロックしようとしないで下さい。
+The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
 
-### Token Parameters トークンパラメーター
+### Token Parameters
 
-| パラメーター         | 説明                                                                            |
-| -------------- | ----------------------------------------------------------------------------- |
-| Label          | 後で無効にすることを選択できるようトークンを特定するために用いられるラベル                                         |
-| Duration       | トークンが有効であり続ける秒数                                                               |
-| Spending Limit | トークンは、BTC建ての支出制限の額までのアンロックされた状態で来ます。制限がリセットされるので、API経由でトークンをアンロックしようとしないで下さい。 |
-| IP Addresses   | BitGoが特定のIPアドレスからのみトークンを受け付けるよう、ロックダウンします                                     |
-| Permissions    | トークンが生成される際の認証のスコープ                                                           |
+| Parameter      | Description                                                                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Label          | A label used to identify the token so that you can choose to revoke it later.                                                                     |
+| Duration       | Time in seconds which the token will be valid for.                                                                                                |
+| Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
+| IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
+| Permissions    | Auth Scope that the token will be created with                                                                                                    |
 
-## Current User Profile 現在のユーザープロファイル
+## Current User Profile
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -258,13 +261,13 @@ bitgo.me({}, function callback(err, user) {
 });
 ```
 
-現在認証されているユーザーについて情報を得ます。
+Get information about the current authenticated user.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/user/me`
 
-> ユーザモデルの応答の例
+> Example User Model response
 
 ```json
 {
@@ -281,13 +284,13 @@ bitgo.me({}, function callback(err, user) {
 }
 ```
 
-### 応答
+### Response
 
-現在認証されているユーザーのユーザモデルのオブジェクトを返す。
+Returns a User Model object for the currently authenticated user.
 
-## Login　ログイン　
+## Login
 
-BitGo APIへのファーストパーティアクセスのためのトークンを取得します。 ファーストパーティアクセスは、自身のBitGoアカウントへアクセスしているユーザーのみ向けです。 別のユーザーの代わりでのBitGo APIへサードパーティアクセスの場合、**パートナー認証**を参照下さい。
+Get a token for first-party access to the BitGo API. First-party access is only intended for users accessing their own BitGo accounts. For 3rd party access to the BitGo API on behalf of another user, please see **Partner Authentication**.
 
 ```shell
 EMAIL="janedoe@bitgo.com"
@@ -299,7 +302,7 @@ curl -X POST \
 -d "{\"email\": \"$EMAIL\", \"password\": \"$HMAC\", \"otp\": \"0000000\"}" \
 https://test.bitgo.com/api/v1/user/login
 
-注意 : 以降のシェルの例では、シェル変数ACCESS_TOKENがアクセストークンを含んでいることを前提とします。
+Note: The rest of the shell examples the share variable assume the shell variable ACCESS_TOKEN contains the access token.
 ```
 
 ```javascript
@@ -315,20 +318,20 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/user/login`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター     | 種類    | 必須か | 説明                      |
-| ---------- | ----- | --- | ----------------------- |
-| email      | 文字列   | YES | ユーザのメールアドレス             |
-| password   | 文字列   | YES | ユーザのパスワード               |
-| otp        | 文字列   | YES | 2要素認証トークン(Authyトークン)。   |
-| extensible | ブーリアン | NO  | セッションが１時間よりも延長可能である場合に真 |
+| Parameter  | Type    | Required | Description                                                                  |
+| ---------- | ------- | -------- | ---------------------------------------------------------------------------- |
+| email      | string  | YES      | The email address of the user                                                |
+| password   | string  | YES      | The password of the user                                                     |
+| otp        | string  | YES      | The 2-factor-authentication token (Authy token).                             |
+| extensible | boolean | NO       | True if the session is supposed to be extensible beyond a one-hour duration. |
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -348,24 +351,24 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 }
 ```
 
-### Response 応答
+### Response
 
-APIで使用するトークンを返します。
+Returns a token for use with the API.
 
-トークンはHTTP"Authorization"ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。
+The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
 
-`Authorization: Bearer <ここにあなたのトークン>`
+`Authorization: Bearer <your token goes here>`
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## Logout ログアウト
+## Logout
 
-BitGoサービスからのログアウト。
+Logout of the BitGo service.
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -381,21 +384,21 @@ bitgo.logout({}, function callback(err) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/user/logout`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-なし
+None
 
-### Response 応答
+### Response
 
-なし
+None
 
-## Session Information セッション情報
+## Session Information
 
-現在のセッションのアクセストークンに関する情報を取得する
+Get information about the current session access token
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -413,7 +416,7 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-> 応答の例
+> Example response
 
     { "client": "bitgo",
       "user": "5458141599f715232500000530a94fd2",
@@ -438,24 +441,24 @@ bitgo.session({}, function callback(err, session) {
     }
     
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/user/session`
 
-### Response 応答
+### Response
 
-| フィールド   | 説明                                             |
-| ------- | ---------------------------------------------- |
-| client  | ユーザートークンが取得された所のOAuthクライアントID                  |
-| user    | BitGo ユーザー ID                                  |
-| expires | ログインセッションがその時間まで有効なタイムスタンプ                     |
-| scope   | このセッショントークンで許可されている権限のリスト                      |
-| origin  | ブラウザでセッションが開始された場合、トークンが作成されたオリジンホスト名          |
-| unlock  | セッションがアンロックされた時に利用可能。トランザクションの回数とアンロックの有効期限を示す |
+| Field   | Description                                                                                  |
+| ------- | -------------------------------------------------------------------------------------------- |
+| client  | OAuth client ID where the user token was obtained                                            |
+| user    | BitGo user ID                                                                                |
+| expires | Timestamp which the login session is good until                                              |
+| scope   | List of allowed privileges for this session token                                            |
+| origin  | Origin hostname where token was created, if the session was initiated in the browser         |
+| unlock  | Available if session is unlocked. Shows number of transactions and expiry time of the unlock |
 
-## Send OTP ワンタイムパスワードを送信
+## Send OTP
 
-ワンタイムパスワード(第二因子認証) トークンをユーザーに送信します。ログイン/アンロックに使用することができます。
+Sends the one time password (2nd Factor Auth) token to the user, which can be used for login / unlock.
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -473,23 +476,23 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 });
 ```
 
-### HTTP Request HTTPリクエスト 
+### HTTP Request
 
 `POST /api/v1/user/sendotp`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| 名        | 種類    | 必須か | 説明                                            |
-| -------- | ----- | --- | --------------------------------------------- |
-| forceSMS | ブーリアン | NO  | Authyが設定されている場合でも、SMSを使ってワンタイムパスワードをユーザに送信する。 |
+| Name     | Type    | Required | Description                                                         |
+| -------- | ------- | -------- | ------------------------------------------------------------------- |
+| forceSMS | boolean | NO       | Use SMS to send the OTP to the user, even if they have Authy set up |
 
-### Response 応答
+### Response
 
-なし
+None
 
-## Unlock アンロック
+## Unlock
 
-現在のセッションをアンロックします。特定の他のセンシティブなAPIコールに必要です。
+Unlock the current session, which is required for certain other sensitive API calls.
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -507,31 +510,31 @@ bitgo.unlock({otp: otp}, function callback(err) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/user/unlock`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター   | 種類  | 必須か | 説明                                 |
-| -------- | --- | --- | ---------------------------------- |
-| otp      | 文字列 | YES | アカウントの Authy OTP コード               |
-| duration | 数字  | NO  | 所望のアンロックの秒数(default=600, max=3600) |
+| Parameter | Type   | Required | Description                                                       |
+| --------- | ------ | -------- | ----------------------------------------------------------------- |
+| otp       | string | YES      | An Authy OTP code for the account                                 |
+| duration  | number | NO       | Desired duration of the unlock in seconds (default=600, max=3600) |
 
-### Response 応答
+### Response
 
-なし
+None
 
-### Errors　エラー
+### Errors
 
-| Response 応答      | 説明                                 |
-| ---------------- | ---------------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない              |
-| 401 Unauthorized | 認証パラメーターが一致しない、または OTP コードが正しくなかった |
+| Response         | Description                                                            |
+| ---------------- | ---------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect                       |
+| 401 Unauthorized | The authentication parameters did not match, or OTP code was incorrect |
 
-## ロック
+## Lock
 
-現在のセッションを再ロックします
+Re-lock the current session.
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -544,45 +547,48 @@ bitgo.lock({}, function callback(err) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/user/lock`
 
-### Response 応答
+### Response
 
-なし
+None
 
-### Errors　エラー
+### Errors
 
-| Response 応答      | 説明             |
-| ---------------- | -------------- |
-| 401 Unauthorized | 認証パラメーターが一致しない |
+| Response         | Description                                 |
+| ---------------- | ------------------------------------------- |
+| 401 Unauthorized | The authentication parameters did not match |
 
-## Partner Authentication パートナー認証
+## Partner Authentication
 
-BitGO APIを利用するサードパーティアプリケーションはBitGoを通じて認証するのにOAuthを用います。パートナーIDの詳細についてはBitGoまでご連絡ください。
+3rd party applications using the BitGo API use OAuth to authenticate through BitGo. Please contact BitGo for a partner ID and more information.
 
-# Keychains キーチェーン
+# Keychains
 
-全てのBitGoウォレットはキーチェーンを使用して作成されます。 キーチェーンとは標準の <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> 拡張HDキーです。 これまでの単一の<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a>キーペアを代表するビットコインキーと違い、一つのキーチェーンは共通秘密鍵から派生する多数のキーペアを代表する事ができます。 これにより、ユーザーは単一の秘密鍵を保持しながら、無数の公開鍵を生成することが可能になります。 BitGoはこれらの拡張された鍵を用いて、あなたのビットコインをよりプライベートでセキュアにします。
+All BitGo wallets are created using keychains. A keychain is a standard
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a>
+extended HD key. Unlike traditional bitcoin keys, which represent a single
+<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair, a keychain can represent many key pairs, all derived from a common private key. This allows the user to retain a single private key, but generate an infinite number of public keys. BitGo uses these extended keys to keep your bitcoin more private and secure.
 
-ウォレットの生成をシンプルにするため、BitGoは各ユーザーごとのキーチェーンのリストを維持します。各キーチェーンは任意の数のBitGoウォレットで使用することができます。
+To make wallet creation simple, BitGo maintains a list of Keychains for each user. Each keychain may be used in any number of BitGo Wallets.
 
-2つの種類のキーチェーンがあります：
+There are two types of keychains:
 
-* パブリックキーチェーン
+* Public Keychains
     
-    これらは単一のBIP32拡張公開鍵（xpub）で構成されます。
+    These are comprised of a single BIP32 extended public key (xpub).
 
-* プライベートキーチェーン
+* Private Keychains
     
-    これらは、常に暗号化された形式で格納されている単一のBIP32拡張秘密鍵(xprv) で構成されます。
+    These are comprised of a single BIP32 extended private key (xprv), which is always stored in encrypted form.
 
-全てのキーチェーンはそれらのxpubによって識別されます。便宜のため、各キーチェーンはラベルを持つことがあります。
+All keychains are identified by their xpub. For convenience, each keychain may have a label.
 
-最初のウォレットを作成する前に、そのウォレットとともに使用するキーチェーンを作成する必要があります。<aside class="success"> プライベートキーチェーン（暗号化され形式であっても) へのアクセスにおいて、必ず2要素認証が必須であることに注意してください。 </aside> 
+Before creating your first wallet, you must create keychains to use with that wallet.<aside class="success"> Note that accessing the private keychain (even in encrypted form) always requires 2-factor-authentication. </aside> 
 
-## List Keychains キーチェーンの一覧を取得する
+## List Keychains
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -599,13 +605,17 @@ keychains.list({}, function callback(err, keychains) {
 });
 ```
 
-そのユーザーのパブリックキーチェーンの一覧を取得します<aside class="success"> このAPIは公開鍵だけを提供し、決してキーチェーンのプライベートデータを提供しません。 </aside> 
+Get the list of public keychains for the user
 
-### HTTP Request HTTPリクエスト
+<aside class="success">
+This API only provides the public keys and never the private data for a keychain.
+</aside>
+
+### HTTP Request
 
 `GET /api/v1/keychain`
 
-> キーチェーンモデルの応答の例
+> Example Keychain Model response
 
 ```json
 {
@@ -630,28 +640,28 @@ keychains.list({}, function callback(err, keychains) {
 }
 ```
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター | 種類 | 必須か | 説明                                      |
-| ------ | -- | --- | --------------------------------------- |
-| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。                |
-| limit  | 数字 | NO  | 単一コール(default=100, max=500) で返す結果の最大の件数 |
+| Parameter | Type   | Required | Description                                                             |
+| --------- | ------ | -------- | ----------------------------------------------------------------------- |
+| skip      | number | NO       | The starting index number to list from. Default is 0.                   |
+| limit     | number | NO       | Max number of results to return in a single call (default=100, max=500) |
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトの配列を返します。
+Returns an array of Keychain Model objects.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## Create Keychain キーチェーンを作成する
+## Create Keychain
 
 ```shell
-ローカルメソッドとしてのみ利用可能 (BitGo Express)
+Available only as a local method (BitGo Express)
 
 curl -X POST http://$BITGO_EXPRESS_HOST:3080/api/v1/keychain/local
 ```
@@ -663,7 +673,7 @@ var keychain = keychains.create();
 console.dir(keychain);
 ```
 
-> 応答の例
+> Example response
 
 ```json
   {
@@ -673,15 +683,15 @@ console.dir(keychain);
   }
 ```
 
-新しいキーチェーン作成のためのローカルクライアントサイド関数。
+Local client-side function to create a new keychain.
 
-オプションで、キーチェーンを作成するのに決定性シードを用いる単一のパラメーター、'seed'が提供されることができます。 このシードは最低32要素の長さの数字の配列であるべきです。 同じシードでこの関数を呼び出すと、同一のBIP32キーチェーンが生成されます。<aside class="warning"> キーチェーンの作成は、あなたのビットコインを安全に保護するために不可欠のステップです。 新しいキーチェーンを生成する時、このAPIは業界標準に準拠した乱数ジェネレーターをを用います。 自身でシードを提供する場合、作成する際、細心の注意を払わなければいけません。 </aside> 
+Optionally, a single parameter, 'seed', may be provided which uses a deterministic seed to create your keychain. The seed should be an array of numbers at least 32 elements long. Calling this function with the same seed will generate the same BIP32 keychain.<aside class="warning"> Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it. </aside> 
 
-新しいキーチェーンのためのxprvとxpubを含むオブジェクトを返します。作成されたキーチェーンはBitGoサービスに知られません。 BitGoサービスで利用するには、Keychains.Add APIを使用します。
+Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service. To use it with the BitGo service, use the Keychains.Add API.
 
-セキュリティ上の理由から、[暗号化](#encrypt)の上、盗難を防ぐため元のxprvを即座に破壊することを強く推奨します。
+For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original xprv immediately to prevent theft.
 
-## Add Keychain　キーチェーンを追加する　
+## Add Keychain
 
 ```shell
 curl -X POST \
@@ -705,22 +715,26 @@ bitgo.keychains().add(data, function callback(err, keychain) {
 });
 ```
 
-ユーザーの新しいキーチェーンを登録します。少なくとも公開鍵を指定する必要があります。暗号化された秘密鍵はアップロードされることができますが、サーバに対し不透明として扱われます。
+Registers a new keychain for the user. You must supply at least the public key. An encrypted private key may be uploaded, but it will be treated as opaque to the server.
 
-アドレスとともに暗号化された秘密鍵を提供する目的は、 BitGoに接続している時ユーザーが、自ら格納する負担なしに彼らの鍵に安全にアクセスできるためです。 ユーザーからの強いパスワードでサーバに格納された全ての秘密鍵を暗号化することを、強くお勧めします。 暗号化はクライアント側で実行する必要があります。 便宜のため、BitGoの's[暗号化/復号化関数](#encrypt)を使用できますが、あなたの望む任意の暗号化を使用することもできます。<aside class="warning"> あながた暗号化されたxprvを提供する場合、このキーチェーンのセキュリティはあなたの暗号化と同程度です。暗号化はあなたの責任です。 </aside> 
+The purpose in providing an encrypted private key with the address is so users will be able to access their keys securely whenever they are connected to BitGo without the burden of storing it. It is highly recommended that you encrypt any private keys stored at the server with a strong password from the user. Encryption must be performed on the client. For convenience, you can use BitGo's [encrypt/decrypt functions](#encrypt), but you can use any encryption you wish.
 
-### HTTP Request HTTPリクエスト
+<aside class="warning">
+If you provide the encrypted xprv, the security of this keychain is only as good as your encryption.  Encryption is your responsibility.
+</aside>
+
+### HTTP Request
 
 `POST /api/v1/keychain`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター        | 種類  | 必須か | 説明                         |
-| ------------- | --- | --- | -------------------------- |
-| xpub          | 文字列 | YES | このキーチェーンのBIP32 xpub        |
-| encryptedXprv | 文字列 | NO  | 暗号化された、このキーチェーンのBIP32 xpub |
+| Parameter     | Type   | Required | Description                                 |
+| ------------- | ------ | -------- | ------------------------------------------- |
+| xpub          | string | YES      | The BIP32 xpub for this keychain            |
+| encryptedXprv | string | NO       | The encrypted, BIP32 xprv for this keychain |
 
-> キーチェーンモデルの応答の例
+> Example Keychain Model response
 
 ```json
 {
@@ -731,18 +745,18 @@ bitgo.keychains().add(data, function callback(err, keychain) {
 }
 ```
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトを返します。
+Returns a Keychain Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-## Create BitGo Keychain BitGo キーチェーンを作成する
+## Create BitGo Keychain
 
 ```shell
 curl -X POST \
@@ -759,17 +773,17 @@ bitgo.keychains().createBitGo({}, function callback(err, keychain) {
 });
 ```
 
-BitGoのサーバに新しいキーチェーンを作成し、呼び出し元にパブリックキーチェーンを返します。
+Creates a new keychain on BitGo's servers and returns the public keychain to the caller.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/keychain/bitgo`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-なし。
+None.
 
-> キーチェーンモデルの応答の例
+> Example Keychain Model response
 
 ```json
 {
@@ -780,18 +794,18 @@ BitGoのサーバに新しいキーチェーンを作成し、呼び出し元に
 }
 ```
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトを返します。
+Returns a Keychain Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-## Create Backup Keychain バックアップキーチェーンを作成する
+## Create Backup Keychain
 
 ```shell
 curl -X POST \
@@ -807,19 +821,19 @@ bitgo.keychains().createBackup({ provider: 'lastkeysolutions' }, function callba
 });
 ```
 
-鍵のリカバリーのサービスに特化したサードパーティに、新しいバックアップキーチェーンを作成します。 このキーチェーンはサードパーティサービスに保存され、リカバリーの目的だけで使用されます。
+Creates a new backup keychain on a third party specializing in key recovery services. This keychain will be stored on the third party service and usable for recovery purposes only.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/keychain/backup`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター   | 種類  | 必須か | 説明                                        |
-| -------- | --- | --- | ----------------------------------------- |
-| provider | 文字列 | YES | 暗号鍵リカバリーシステム（KRS）の名前または使用するバックアップキープロバイダー |
+| Parameter | Type   | Required | Description                                   |
+| --------- | ------ | -------- | --------------------------------------------- |
+| provider  | string | YES      | name of the KRS or backup key provider to use |
 
-> キーチェーンモデルの応答の例
+> Example Keychain Model response
 
 ```json
 {
@@ -829,11 +843,11 @@ bitgo.keychains().createBackup({ provider: 'lastkeysolutions' }, function callba
 }
 ```
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトを返します。
+Returns a Keychain Model object.
 
-## Get Keychain　キーチェーンを取得する
+## Get Keychain
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
@@ -849,19 +863,23 @@ bitgo.keychains().get({xpub: xpub}, function callback(err, keychain) {
 });
 ```
 
-xpubでキーチェーンをルックアップする<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
+Lookup a keychain by xpub
 
-### HTTP Request HTTPリクエスト
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
+
+### HTTP Request
 
 `POST /api/v1/keychain/:xpub`
 
-### URL Parameters URLパラメーター
+### URL Parameters
 
-| パラメーター | 種類  | 必須か | 説明                 |
-| ------ | --- | --- | ------------------ |
-| xpub   | 文字列 | YES | ルックアップするBIP32 xpub |
+| Parameter | Type   | Required | Description              |
+| --------- | ------ | -------- | ------------------------ |
+| xpub      | string | YES      | The BIP32 xpub to lookup |
 
-> キーチェーンモデルの応答の例
+> Example Keychain Model response
 
 ```json
 {
@@ -872,19 +890,19 @@ xpubでキーチェーンをルックアップする<aside class="info"> この�
 }
 ```
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトを返します。
+Returns a Keychain Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
-| 404 Bad Request  | xpub が見つからなかった             |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 404 Bad Request  | The xpub was not found                                              |
 
-## Update Keychain キーチェーンを更新する
+## Update Keychain
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
@@ -907,19 +925,25 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 });
 ```
 
-キーチェーンを更新します。xprvの新しいバージョンを保存したい場合（例えばxprvを暗号化するのに使用したパスワードを変更した場合）に使用されます。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> <aside class="warning"> encryptedXprvを変更すると、既存の値が上書きされます。 新しい値が正しくない、あるいは新しい値へのパスワードを忘れた場合、このキーチェーンで署名するあなたの能力は永遠に失われます。 </aside> 
+Update a keychain. This is used if you wish to store a new version of the xprv (for example, if you changed the password used to encrypt the xprv).
 
-### HTTP Request HTTPリクエスト
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
+
+<aside class="warning"> If you change the encryptedXprv, the existing value is overwritten. If the new value is incorrect, or you forget the password to the new value, your ability to sign with this keychain will be lost forever. </aside> 
+
+### HTTP Request
 
 `PUT /api/v1/keychain/:xpub`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター        | 種類  | 必須か | 説明                            |
-| ------------- | --- | --- | ----------------------------- |
-| encryptedXprv | 文字列 | NO  | 新たに暗号化された、このキーチェーンのBIP32 xpub |
+| Parameter     | Type   | Required | Description                                   |
+| ------------- | ------ | -------- | --------------------------------------------- |
+| encryptedXprv | string | NO       | A new encrypted, BIP32 xprv for this keychain |
 
-> キーチェーンモデルの応答例
+> Example Keychain Model response
 
 ```json
 {
@@ -930,27 +954,27 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 }
 ```
 
-### Response 応答
+### Response
 
-キーチェーンモデルオブジェクトを返します。
+Returns a Keychain Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
-| 404 Not Found    | Xpub が見つからなかった             |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 404 Not Found    | The xpub was not found                                              |
 
-# Wallets ウォレット
+# Wallets
 
-全てのBitGoウォレットはマルチシグ、階層的、かつ決定性のウォレットです。 マルチシグウォレットは*N*個のキーから成り、トランザクションが有効となる前のトランザクションの署名に*M*個のキーを必要とします。 *M-of-N* ウォレットと呼ばれるものです。
+All BitGo Wallets are multi-signature, hierarchical, deterministic wallets. Multi-signature wallets are comprised of *N* keys, and require *M* keys to sign a transaction before the transaction is valid. This is called an *M-of-N* wallet.
 
-BitGoは現在、2-of-3ウォレットのみサポートしています。ポリシー層を用いてm-of-nのアクセス許可モデルをサポートします。
+BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
 
-ウォレットを作成するには、3つのキーチェーンが提供されなければなりません。 最初の2つのキーチェーンはユーザーによって提供されます、最後のは、BitGoキーチェーンである必要があります。 BitGoは最初の2つのキーの公開部分を見ることができる一方で、決してこれらのキーのプライベートな部分にアクセスできず、よってユーザー抜きに取引を行うことはできません。 BitGoの単一のキーはトランザクションに署名するのに十分でなく、またBitGoはユーザーが設定したポリシーに従ってのみ、このキーを用います。
+To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last must be a BitGo keychain. While BitGo can see the public portion of the first two keys, BitGo never has access to the private portion of these keys and therefore cannot conduct transactions without the user. BitGo's single key is not sufficient to sign transactions, and BitGo will only use this key in accordance with the policies set by the user.
 
-## ウォレットの一覧を取得する
+## List Wallets
 
 ```shell
 curl -X GET \
@@ -969,13 +993,13 @@ for (id in wallets) {
 });
 ```
 
-そのユーザーのウォレットの一覧を取得します
+Get the list of wallets for the user
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1016,27 +1040,27 @@ for (id in wallets) {
 }
 ```
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター | 種類 | 必須か | 説明                                     |
-| ------ | -- | --- | -------------------------------------- |
-| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
-| limit  | 数字 | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
+| Parameter | Type   | Required | Description                                                            |
+| --------- | ------ | -------- | ---------------------------------------------------------------------- |
+| skip      | number | NO       | The starting index number to list from. Default is 0.                  |
+| limit     | number | NO       | Max number of results to return in a single call (default=25, max=250) |
 
-### Response 応答
+### Response
 
-ウォレットモデルオブジェクトの配列を返します。
+Returns an array of Wallet Model objects.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## Add Wallet ウォレットを追加する<aside class="warning"> このメソッドは上級APIユーザー向けで、手動でのキーの生成、ユーザーの仕様、そしてバックアップの各キーxPubを可能にします。 SDKのほとんどの場合、
+## Add Wallet<aside class="warning"> This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs. For most scenarios in the SDK, 
 
-[ウォレットをキーチェーンと作成](#create-wallet-with-keychains) がウォレットからビットコインを送るためのよりシンプルで推奨のSDKのメソッドになります。 </aside> 
+[Create Wallet With Keychains](#create-wallet-with-keychains) is the simpler and recommended SDK method to send bitcoins from a wallet. </aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -1071,30 +1095,30 @@ bitgo.wallets().add(data, function callback(err, wallet) {
 });
 ```
 
-このAPIはユーザーの新しいウォレットを作成します。新しいウォレットとともに利用するキーチェーンは、このAPIを利用するのに先立ってBitGoに登録する必要があります。
+This API creates a new wallet for the user. The keychains to use with the new wallet must be registered with BitGo prior to using this API.
 
-BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン**だけ**は、*BitGoキーでなければなりません*。 1つめのキーチェーンは慣例的にユーザーキーで、その**暗号化された**xprivはBitGoに保管されます。
+BitGo currently only supports 2-of-3 (e.g. m=2 and n=3) wallets. The third keychain, and **only** the third keychain, *must* be a BitGo key. The first keychain is by convention the user key, with it's **encrypted** xpriv is stored on BitGo.
 
-BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をrootとしてハードコードされています（ただし、古いレガシーウォレットは異なるキーのパスを使用している場合があります）。 ルートの下で、ウォレットは0と1のアドレスの2つのチェーンをサポートします。 **0-chain** は外部の受信アドレスは向けで、一方**1-chain** は内部の(お釣りの) アドレスです。
+BitGo wallets currently are hard-coded with their root at **m/0/0** across all 3 keychains (however, older legacy wallets may use different key paths). Below the root, the wallet supports two chains of addresses, 0 and 1. The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
 
-最初のウォレットの受取アドレスはBIP32のパス **m/0/0/0/0**にあり、同時にBitGoのシステム内のウォレットを参照するためのIDです。 最初のお釣りアドレスは**m/0/0/1/0**にあります。 </aside>
+The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which is also the ID used to refer to a wallet in BitGo's system. The first change address of a wallet is at **m/0/0/1/0**. </aside>
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/wallet`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター                          | 種類    | 必須か | 説明                                                   |
-| ------------------------------- | ----- | --- | ---------------------------------------------------- |
-| label                           | 文字列   | YES | このウォレットのラベル                                          |
-| m                               | 数字    | YES | 取得に必要な署名の数（2でなければならない）                               |
-| n                               | 数字    | YES | ウォレットにあるキーの数（3でなければならない）                             |
-| keychains                       | 配列    | YES | このウォレットで使用する**n**個のキーチェーンxpubsの配列; BitGoキーでなければならない。 |
-| enterprise                      | 文字列   | NO  | このウォレットを作成するエンタープライズID。                              |
-| disableTransactionNotifications | ブーリアン | NO  | ウォレットトランザクション通知を止めるにはtrueに設定                         |
+| Parameter                       | Type    | Required | Description                                                                        |
+| ------------------------------- | ------- | -------- | ---------------------------------------------------------------------------------- |
+| label                           | string  | YES      | A label for this wallet                                                            |
+| m                               | number  | YES      | The number of signatures required to redeem (must be 2)                            |
+| n                               | number  | YES      | The number of keys in the wallet (must be 3)                                       |
+| keychains                       | array   | YES      | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key |
+| enterprise                      | string  | NO       | Enterprise ID to create this wallet under.                                         |
+| disableTransactionNotifications | boolean | NO       | Set to true to prevent wallet transaction notifications.                           |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1126,19 +1150,19 @@ BitGoウォレットは、3つのキーチェーンともに現在**m/0/0**をro
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットモデルオブジェクトを返します。
+Returns a Wallet Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答                 | 説明                    |
-| ------------------ | --------------------- |
-| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized   | 認証パラメーターが一致しない        |
-| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
+| Response           | Description                                       |
+| ------------------ | ------------------------------------------------- |
+| 400 Bad Request    | The request parameters were missing or incorrect. |
+| 401 Unauthorized   | The authentication parameters did not match.      |
+| 406 Not acceptable | One of the keychains provided was not acceptable. |
 
-## Get Wallet ウォレットを取得する
+## Get Wallet
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -1177,121 +1201,140 @@ wallets.get(data, function callback(err, wallet) {
 
 ```
 
-ウォレット情報をルックアップし、残高、アクセス許可等を含むウォレットモデルを返します。ウォレットのIDはその最初の受信アドレスです(/0/0)。
+Lookup wallet information, returning the wallet model including balances, permissions etc. The ID of a wallet is its first receiving address (/0/0)
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:id`
 
-> 応答の例
+> Example response
 
 ```json
 {
-  "id":"2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb",
-  "label":"TestNet Wallet",
-  "isActive":true,
-  "type":"safehd",
-  "private":{
-    "keychains":[
+  "_id": "57bb66f07cf7c6da4f2956011df25aa6",
+  "id": "2N6GYGJQSLZyXSgviEmdhWd5jWHoDcSKAfJ",
+  "label": "TestNet Wallet",
+  "isActive": true,
+  "type": "safehd",
+  "freeze": {},
+  "adminCount": 1,
+  "disableTransactionNotifications": false,
+  "private": {
+    "keychains": [
       {
-        "xpub":"xpub681KE1ZbZM8UNecAGowRFH1vJfxrhzA3fMwKHB5yRs7YGU4FQUPJdbZdTaRuyweAXGDSrJt3AWDuDsoXh4CD4h43GPPzAq2H7Cb18xHGivZ",
-        "path":"/101",
-        "_id":"536d3cc573c8329a78000016"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGZp3eJrpEW1VzomFeDqs2nd9vdZhLFdazv2ekEznRZB2BTPVwrcacYTCvy7mPjxw3F9joMCji4WFgxsgd7J5SxkHuRbUNjx",
-        "path":"/102",
-        "_id":"536d3cc573c8329a78000015"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGR4F5XxMfiHGPycWehJT9XA5KZJg4aBcNZogiWnrDMowki4ZsCtZdWFUtHRxMnhTnm9XMEyxSVV7Am9eG7xUnxL3aoAt88d",
-        "path":"/103",
-        "_id":"536d3cc573c8329a78000014"
-      }
-    ]
-  },
-  "permissions":"admin,spend,view",
-  "admin":{
-    "policy":[
-      {
-        "type":"transactionLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":10
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub661MyMwAqRbcGDNuXKbT5Uyeth3yNYQAJY4KksbDSLdHgXdh2q5bjH6aQzSRQ4nPjanfWrkE8LVa1Svet4Nh5EnvA7Rh52tfbC4RjFHAwMZ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "02b910dc08af71a28648e4e1efd3bb851587aad7b87fd0ba73ffc50467d0b85b75",
+          "chainCode": "a7e22c7bb28727f49ccf1c04b4371a8d79cf286ee6a018fb8ea4bc454023e498",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
         }
       },
       {
-        "type":"dailyLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":50
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub6GiRC55CRwu5aiyDHeGFdAqUJ5ieMFsEdJ3BrjufgZNarq1FdcB3uGcqYEAxdsiegXypW2RjfBCmcdwJhRbcCNHZFonmasetQdwUNZHbrus",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "03e21d7fc8383ab067771463b55991480d2b133c96233d6182e0fe779118762c3f",
+          "chainCode": "d4d37ed900e592dac8f5ac3ea546d4a37ed5fe6854526d482bde2109a6808b5c",
+          "depth": 5,
+          "index": 176980,
+          "parentFingerprint": 2966462100
         }
-      }
-    ],
-    "users":[
-      {
-        "user":"51f4a86305b9442c68000005c4666e34ff33aba3d78a2d3197e7b46b",
-        "permissions":"admin,spend,view"
       },
       {
-        "user":"53532a4b43fd69a42f000005f0a2ed87fd8b020040739beb513524b5",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"52e41fcec1a256b31c00001a5ba4eff09976d7278cbce93fcfeb8b25",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"53796821a75b0358c626a4ad16fa7fc4f824cbb58e4a88a5bbc04611",
-        "permissions":"spend,view"
+        "xpub": "xpub661MyMwAqRbcGLsjvczmhk2twZfwfhZx16ai3TXf32QcpMfApjKcaTEnLt4oCz4HTss6CQ8gQfQKSyr8ca4s1Xme8FrsPjsNwEo2XBVdJSQ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "0256002e463c6cde950d0f8319b8c3d98e85e49ea626fff60760db6ff6b8bade52",
+          "chainCode": "b4dddf8762d82896a1c8ee63ae2dcfed45037e73dcb8609bb0baba997fc7e2f1",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
+        }
       }
     ]
   },
-  "spendingAccount":true,
-  "confirmedBalance":39564772124,
-  "balance":39564772124,
-  "pendingApprovals":[ ],
-  "canSendInstant": true
+  "canSendInstant": true,
+  "permissions": "admin,spend,view",
+  "admin": {
+    "policy": {
+      "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+      "version": 2,
+      "date": "2016-09-13T00:08:30.661Z",
+      "rules": [
+        {
+          "id": "my velocity limit",
+          "type": "velocityLimit",
+          "action": {
+            "type": "getApproval"
+          },
+          "condition": {
+            "amount": 10000000,
+            "timeWindow": 86400,
+            "groupTags": [
+              ":tag"
+            ],
+            "excludeTags": []
+          }
+        }
+      ]
+    },
+    "users": [
+      {
+        "user": "5624ade20e86bd04483895223800a967",
+        "permissions": "admin,spend,view"
+      }
+    ]
+  },
+  "tags": [],
+  "approvalsRequired": 1,
+  "spendingAccount": true,
+  "pendingApprovals": [],
+  "balance": 39564772124,
+  "instantBalance": 39564772124,
+  "spendableConfirmedBalance": 39564772124,
+  "confirmedBalance": 39564772124,
+  "spendableBalance": 39564772124,
+  "sent": 0,
+  "received": 39564772124,
+  "unconfirmedSends": 0,
+  "unconfirmedReceives": 0
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットモデルオブジェクトを返します。
+Returns a Wallet Model object.
 
-| フィールド            | 説明                                                  |
-| ---------------- | --------------------------------------------------- |
-| id               | ウォレットのid(同時に最初の受信アドレス)                              |
-| label            | UIに表示されている通りのウォレットのラベル                              |
-| index            | チェーン内(0, 1, 2, ...) のアドレスのインデックス                    |
-| private          | キーチェーンの要約版を含む                                       |
-| permissions      | このウォレットへのユーザーのアクセス許可                                |
-| admin            | ウォレットの管理者に関するポリシー情報                                 |
-| pendingApprovals | ウォレットの保留中のトランザクション承認                                |
-| confirmedBalance | 確認された残高                                             |
-| balance          | 確認が0回のトランザクションを含む残高                                 |
-| canSendInstant   | ウォレットが、二重支払いに対するBitGoの保証が付いた即座取引を送信する資格を持つかを示すブーリアン |
+| Field            | Description                                                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| id               | id of the wallet (also the first receiving address)                                                                     |
+| label            | the wallet label, as shown in the UI                                                                                    |
+| index            | the index of the address within the chain (0, 1, 2, ...)                                                                |
+| private          | contains summarised version of keychains                                                                                |
+| permissions      | user's permissions on this wallet                                                                                       |
+| admin            | policy information on the wallet's administrators                                                                       |
+| pendingApprovals | pending transaction approvals on the wallet                                                                             |
+| confirmedBalance | the confirmed balance                                                                                                   |
+| balance          | the balance, including transactions with 0 confirmations                                                                |
+| canSendInstant   | boolean indicating if wallet is eligible to send instant transactions backed by BitGo's guarantee against double spends |
 
-### Errors　エラー
+### Errors
 
-| 応答                 | 説明                    |
-| ------------------ | --------------------- |
-| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized   | 認証パラメーターが一致しない        |
-| 404 Not Found      | ウォレットが見つからなかった        |
-| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
+| Response           | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| 400 Bad Request    | The request parameters were missing or incorrect.  |
+| 401 Unauthorized   | The authentication parameters did not match.       |
+| 404 Not Found      | The wallet was not found                           |
+| 406 Not acceptable | One of the keychains provided were not acceptable. |
 
-## Create Wallet With Keychains キーチェーンと使用するウォレットを作成
+## Create Wallet With Keychains
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
-上級ユーザーはCreate Wallet API を検討してください。
+Available only as a local method (BitGo Express)
+Advanced users should consider the Create Wallet API.
 
 WALLETPASSPHRASE='newverylongishsecretivepassword'
 LABEL='nicenewpurse'
@@ -1318,30 +1361,30 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 });
 ```
 
-このメソッドはウォレットを作成する簡単な方法として、クライアントSDKで利用可能です。メソッドは次のことを行います。
+This method is available on the client SDK as an easy way to create a wallet. It performs the following:
 
-  1. ユーザー キーチェーンとバックアップのキーチェーンを作成する
-  2. ユーザー キーチェーンを暗号化する
-  3. 暗号化されたユーザーキーチェーンとバックアップキーチェーンをBitGoにアップロードする
-  4. サービス上で BitGo キーを作成する
-  5. 上の公開鍵でBitGoでウォレットを作成する<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷するあるいはバックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
+  1. Creates the user keychain and the backup keychain
+  2. Encrypts the user keychain
+  3. Uploads the encrypted user and backup keychains to BitGo
+  4. Creates the BitGo key on the service
+  5. Creates the wallet on BitGo with the 3 public keys above<aside class="warning"> It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> 
 
-### BitGo Instant Wallets BitGo インスタントウォレット
+### BitGo Instant Wallets
 
-デフォルトで、このメソッドはバックアップのキーチェーンをローカルで作成します。 BitGo Instantを送信するのに使用できるウォレットを作成するには、**backupXpubProvider**パラメーターを使用して、暗号鍵リカバリーシステム(KRS)を指定します（例：keyternal）。
+By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
 
-### Method Parameters メソッドのパラメーター
+### Method Parameters
 
-| 名                               | 種類    | 必須か | 説明                                                                                                            |
-| ------------------------------- | ----- | --- | ------------------------------------------------------------------------------------------------------------- |
-| passphrase                      | 文字列   | YES | BitGoへの送信前に、ウォレットのユーザーキーを暗号化するのに使用されるパスフレーズ                                                                   |
-| label                           | 文字列   | YES | このウォレットのラベル                                                                                                   |
-| backupXpub                      | 文字列   | NO  | 決して2つの秘密鍵が同じマシンに存在しないよう、もう一つのデバイスで作成されたバックアップキーチェーンの公開鍵。あなたのキーをリモートでホスティングするオプションとしてbackupXpubProviderも参照下さい。 |
-| backupXpubProvider              | 文字列   | NO  | お望みの暗号鍵リカバリーシステム(KRS)でバックアップxPubを作成する（例：keyternal）。そうすると、そのウォレットはBitGo Instantと互換性を持ちます。                      |
-| enterprise                      | 文字列   | NO  | このウォレットを作成するエンタープライズID。                                                                                       |
-| disableTransactionNotifications | ブーリアン | NO  | ウォレットトランザクション通知を止めるにはtrueに設定。                                                                                 |
+| Name                            | Type    | Required | Description                                                                                                                                                                                      |
+| ------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| passphrase                      | string  | YES      | The passphrase that will be used to encrypt the user keys of the wallet before sending it to BitGo                                                                                               |
+| label                           | string  | YES      | A label for this wallet                                                                                                                                                                          |
+| backupXpub                      | string  | NO       | Public key of a backup keychain, created on another device, such that no 2 private keys are ever on the same machine. See also backupXpubProvider as an option to have your key hosted remotely. |
+| backupXpubProvider              | string  | NO       | Create a backup xPub on your KRS of choice, e.g. "keyternal". This will make the wallet BitGo Instant compatible.                                                                                |
+| enterprise                      | string  | NO       | Enterprise ID to create this wallet under.                                                                                                                                                       |
+| disableTransactionNotifications | boolean | NO       | Set to true to prevent wallet transaction notifications..                                                                                                                                        |
 
-> 応答の例
+> Example response
 
 ```json
 { "id": "2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf",
@@ -1361,29 +1404,29 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
     Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
     
 
-### Response 応答
+### Response
 
-| 応答             | 説明                                                     |
-| -------------- | ------------------------------------------------------ |
-| wallet         | ウォレットモデル オブジェクト                                        |
-| userKeychain   | 暗号化されたxprvがBitGoに格納された、新たに作成されたユーザーキーチェーン　ーバックアップを取ること |
-| backupKeychain | 新たに作成されたバックアップキーチェーン ーバックアップを取ること                      |
+| Response       | Description                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------- |
+| wallet         | the wallet model object                                                                     |
+| userKeychain   | the newly created user keychain, which has an encrypted xprv stored on BitGo - back this up |
+| backupKeychain | the newly created backup keychain - back this up                                            |
 
-### Errors　エラー
+### Errors
 
-| 応答                 | 説明                    |
-| ------------------ | --------------------- |
-| 400 Bad Request    | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized   | 認証パラメーターが一致しない        |
-| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可 |
+| Response           | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| 400 Bad Request    | The request parameters were missing or incorrect.  |
+| 401 Unauthorized   | The authentication parameters did not match.       |
+| 406 Not acceptable | One of the keychains provided were not acceptable. |
 
-# Wallet Operations - Basic ウォレットの操作 ー基礎編
+# Wallet Operations - Basic
 
-各ウォレットは多くのアドレスから成り、それぞれのアドレスをビットコインの受取りに使用できます。 Wallet APIはユーザーがウォレットと対話するための役に立つインターフェースを提供します。
+Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin. The Wallet API provides helpful interfaces for interacting with a user's wallets.
 
-## Create Address アドレスを作成する
+## Create Address
 
-既存のウォレットのための新たなアドレスを作成する。 BitGoウォレットは、0、1と呼ばれる2つの独立したアドレスのチェーンで構成されています。 0-チェーンは通常資金の受取に使用され、一方1-チェーンはウォレットから出費する際、お釣りの作成に内部的に使用されます。 プライバシーを最大化する助けとするには、着信した各トランザクションごとに新しいアドレスを生成するのがベストプラクティスと見なされます。
+Creates a new address for an existing wallet. BitGo wallets consist of two independent chains of addresses, designated 0 and 1. The 0-chain is typically used for receiving funds, while the 1-chain is used internally for creating change when spending from a wallet. It is considered best practice to generate a new receiving address for each new incoming transaction, in order to help maximize privacy.
 
 ```shell
 CHAIN=0
@@ -1404,18 +1447,18 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/wallet/:walletId/address/:chain`
 
-### URL Parameters URLパラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletid | ビットコインアドレス(文字列) | YES | ウォレットのID |
-| チェーン     | 数字              | YES | 0 または 1  |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletid  | bitcoin address (string) | YES      | The ID of the wallet |
+| chain     | number                   | YES      | 0 or 1               |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1427,29 +1470,29 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットと紐付けられる新しいビットコインアドレスを返す。
+Returns a new bitcoin address which is associated with the wallet.
 
-| フィールド        | 説明                               |
-| ------------ | -------------------------------- |
-| address      | 連鎖アドレス                           |
-| chain        | the chain (0 or 1)               |
-| index        | チェーン内(0, 1, 2, ...) のアドレスのインデックス |
-| path         | ウォレットのrootに対するアドレスのBIP32パス       |
-| redeemScript | アドレスの redeemScript               |
+| Field        | Description                                               |
+| ------------ | --------------------------------------------------------- |
+| address      | The chained address                                       |
+| chain        | the chain (0 or 1)                                        |
+| index        | the index of the address within the chain (0, 1, 2, ...)  |
+| path         | the BIP32 path of the address relative to the wallet root |
+| redeemScript | the redeemScript for the address                          |
 
-### Errors　エラー
+### Errors
 
-| 応答                 | 説明                                 |
-| ------------------ | ---------------------------------- |
-| 400 Bad Request    | 要求パラメーターが見つからないか正しくない              |
-| 401 Unauthorized   | 認証パラメーターが一致しない                     |
-| 403 Forbidden      | ウォレットがマルチシグBIP32(SafeHD) ウォレットではない |
-| 404 Not Found      | ウォレットが見つからなかった                     |
-| 406 Not acceptable | 提供されたキーチェーンの一つが受け入れ不可              |
+| Response           | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| 400 Bad Request    | The request parameters were missing or incorrect.   |
+| 401 Unauthorized   | The authentication parameters did not match.        |
+| 403 Forbidden      | The wallet is not a multi-sig BIP32 (SafeHD) wallet |
+| 404 Not Found      | The wallet was not found                            |
+| 406 Not acceptable | One of the keychains provided were not acceptable.  |
 
-## Send Coins to Address アドレスにコインを送信する
+## Send Coins to Address
 
 ```javascript
 var destinationAddress = '2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD';
@@ -1469,8 +1512,8 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
-上級ユーザーはSend Transaction API を検討してください。
+Available only as a local method (BitGo Express)
+Advanced users should consider the Send Transaction API.
 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 DESTINATIONADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
@@ -1484,38 +1527,42 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 ```
 
-コインをBitGoウォレットから指定のビットコインアドレスへ送る最も簡単な方法。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> 
+Easiest way to send coins from your BitGo wallet to a destination Bitcoin address.
 
-このメソッドはクライアント側で次を行います：
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-* 格納されているキーチェーンについてサーバで（暗号化された秘密鍵で）ウォレットをポーリングすることにより、ユーザーキーチェーンを取得する
-* ユーザー キーを復号化します
-* 指定アドレスへのトランザクションを作成し、お釣りは新たに作成されたウォレットのチェーンアドレス（/1 のパス）に送信される
-* 復号化されたユーザー キーでトランザクションに署名します
+This method will perform the following on the client:
 
-処理されるために、部分的に署名されたトランザクションをBitGoサーバに送信します。そこで私達は：
+* Get the user keychain by polling the wallet on the server for a stored keychain (with encrypted private key)
+* Decrypt the user key
+* Create the transaction to the destination address, with change sent to a newly created chain address on the wallet (path of /1)
+* Sign the transaction with the decrypted user key
 
-* 潜在的に、他のウォレット管理者からの追加の承認を集める
-* 最後の署名を適用する
-* ビットコインP2Pネットワークへトランザクションをブロードキャストする
+It will send the partially signed transaction to BitGo servers for processing, where we will:
 
-### Parameters パラメーター
+* Potentially gather additional approvals from other wallet admins
+* Apply the final signature
+* Broadcast the transaction to the Bitcoin P2P network
 
-| 名                            | 種類    | 必須か | 説明                                                                                                                                                                       |
-| ---------------------------- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| address                      | 文字列   | YES | 宛先ビットコインアドレス                                                                                                                                                             |
-| amount                       | 数字    | YES | 送信される額（単位はSatoshi）、例 1BTCの1/10 は100.1*1e8                                                                                                                                |
-| walletPassphrase             | 文字列   | YES | ウォレットのパスフレーズ、暗号化されたユーザーキーを（クライアント側で）復号するのに使用される                                                                                                                          |
-| fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                                                                |
-| message                      | 文字列   | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                                                                                                         |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                                                      |
-| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                                                                    |
-| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトはfalse。 ウォレットのお釣りアドレスからの、まだ消費されていないそれのminConfirms （上で説明）数の確認を要求するには、trueに設定する。 Falseに設定された場合、minConfirmsはユーザーのウォレットとは異なるウォレットからの、まだ消費されていないそれにのみ適用されます(お釣りでないアドレス)。 |
-| sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                                                                                                   |
-| instant                      | ブーリアン | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                                                                                                                  |
-| otp                          | 文字列   | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。                                                                                    |
+### Parameters
 
-> 応答の例
+| Name                         | Type    | Required | Description                                                                                                                                                                                                                                                                                                                          |
+| ---------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| address                      | string  | YES      | Destination bitcoin address                                                                                                                                                                                                                                                                                                          |
+| amount                       | number  | YES      | Amount to be sent (in Satoshis), e.g. 0.1 * 1e8 for a tenth of a Bitcoin                                                                                                                                                                                                                                                             |
+| walletPassphrase             | string  | YES      | Passphrase for the wallet, used to decrypt the encrypted user key (on client)                                                                                                                                                                                                                                                        |
+| fee                          | number  | NO       | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.                                                                                                                                                                                                                                  |
+| message                      | String  | NO       | User-provided string (this does not hit the blockchain)                                                                                                                                                                                                                                                                              |
+| feeTxConfirmTarget           | number  | NO       | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.                                                                                                                                                                                                       |
+| minConfirms                  | number  | NO       | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.                                                                                                                                                                                             |
+| enforceMinConfirms ForChange | boolean | NO       | Defaults to false. Set to true to require a minConfirms (explain in the line above) number of confirmations for unspents originating from the wallet's change addresses. If set to false then the minConfirms will only be enforced for unspents originating from wallets other than this user's wallet (i.e. non-change addresses). |
+| sequenceId                   | String  | NO       | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing                                                                                                                                                                                                           |
+| instant                      | boolean | NO       | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).                                                                                                                                                                                                           |
+| otp                          | String  | NO       | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details                                                                                                                                                                                                           |
+
+> Example Response
 
 ```json
 { "tx": "0100000001a366332472cebceabdd541beb582d5dbaaecccdbec639b0a2d2b...",
@@ -1527,37 +1574,37 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 }
 ```
 
-> 応答の例(ウォレットポリシーのため保留中の承認が必要)
+> Example Response (pending approval required because of wallet policy)
 
 ```json
 {
-  "error": "exceeds daily limit",
+  "error": "exceeds a spending limit",
   "pendingApproval": "56050b1368217cde3667fcfe0157556b",
   "triggeredPolicy": "5578defa5e44dbcb20c0caf98b297ad7",
   "status": "pendingApproval"
 }
 ```
 
-### Success Response 成功応答
+### Success Response
 
-| フィールド   | 説明                                                  |
-| ------- | --------------------------------------------------- |
-| tx      | 署名されたトランザクションの16進数でエンコードされた形式                       |
-| hash    | トランザクション id                                         |
-| fee     | このトランザクションの一部としてビットコインマイナーに送信されたsatoshi単位の金額        |
-| feeRate | このトランザクションの一部としてビットコインマイナーに送信された1KBあたりのsatoshi単位の金額 |
+| Field   | Description                                                                            |
+| ------- | -------------------------------------------------------------------------------------- |
+| tx      | hex-encoded form of the signed transaction                                             |
+| hash    | the transaction id                                                                     |
+| fee     | amount in satoshis sent to the Bitcoin miners as part of this transaction              |
+| feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction |
 
-### Policy/Failure Response ポリシー/エラー応答
+### Policy/Failure Response
 
-| フィールド           | 説明                                 |
-| --------------- | ---------------------------------- |
-| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
-| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
-| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
-| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
-| status          | トランザクションのステータス                     |
+| Field           | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| error           | the message from the policy that triggered this pending approval        |
+| pendingApproval | the pending approval id, which will need to be approved by another user |
+| otp             | set to true if the policy that fired was a "getOTP" type                |
+| triggeredPolicy | id of the policy that triggered this pending approval                   |
+| status          | the transaction status                                                  |
 
-## Send Coins to Multiple Addresses 複数のアドレスにコインを送信する
+## Send Coins to Multiple Addresses
 
 ```javascript
 var recipients = [];
@@ -1572,11 +1619,15 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 
   wallet.sendMany({ recipients: recipients, walletPassphrase: walletPassphrase }, function(err, result) {
     if (err) { console.log("Error sending coins!"); console.dir(err); return process.exit(-1); }
+
+    console.dir(result);
+  });
+});
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
-上級ユーザーはSend Transaction API を検討してください。
+Available only as a local method (BitGo Express)
+Advanced users should consider the Send Transaction API.
 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 WALLETPASSPHRASE='watashinobitcoin'
@@ -1588,22 +1639,26 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 ```
 
-ビットコインを、一回のトランザクションで複数の宛先アドレスに送信するのに便利な関数。<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+Convenience function to send Bitcoin to multiple destination addresses in a single transaction.
 
-### Parameters パラメーター
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-| 名                            | 種類    | 必須か | 説明                                                                                             |
-| ---------------------------- | ----- | --- | ---------------------------------------------------------------------------------------------- |
-| recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
-| message                      | 文字列   | NO  | そのトランザクションに関するメモ                                                                               |
-| fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                      |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
-| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
-| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
-| sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                         |
-| otp                          | 文字列   | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。          |
+### Parameters
 
-> 応答の例
+| Name                         | Type    | Required | Description                                                                                                                              |
+| ---------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| recipients                   | string  | YES      | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]       |
+| message                      | string  | NO       | Notes about the transaction                                                                                                              |
+| fee                          | number  | NO       | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.                                      |
+| feeTxConfirmTarget           | number  | NO       | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.           |
+| minConfirms                  | number  | NO       | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange. |
+| enforceMinConfirms ForChange | boolean | NO       | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.      |
+| sequenceId                   | String  | NO       | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing               |
+| otp                          | String  | NO       | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details               |
+
+> Example Response
 
 ```json
 { "tx": "0100000001c69d05d3897a25c611324a935d0c688669dc416cb8d8e9ebb36e364fa79547c8000..",
@@ -1611,26 +1666,26 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
   "fee": 10000 }
 ```
 
-### Response 応答
+### Response
 
-| フィールド   | 説明                                                  |
-| ------- | --------------------------------------------------- |
-| tx      | 署名されたトランザクションの16進数でエンコードされた形式                       |
-| hash    | トランザクション id                                         |
-| fee     | このトランザクションの一部としてビットコインマイナーに送信されたsatoshi単位の金額        |
-| feeRate | このトランザクションの一部としてビットコインマイナーに送信された1KBあたりのsatoshi単位の金額 |
+| Field   | Description                                                                            |
+| ------- | -------------------------------------------------------------------------------------- |
+| tx      | hex-encoded form of the signed transaction                                             |
+| hash    | the transaction id                                                                     |
+| fee     | amount in satoshis sent to the Bitcoin miners as part of this transaction              |
+| feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction |
 
-### Policy/Failure Response ポリシー/エラー応答
+### Policy/Failure Response
 
-| フィールド           | 説明                                 |
-| --------------- | ---------------------------------- |
-| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
-| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
-| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
-| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
-| status          | トランザクションのステータス                     |
+| Field           | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| error           | the message from the policy that triggered this pending approval        |
+| pendingApproval | the pending approval id, which will need to be approved by another user |
+| otp             | set to true if the policy that fired was a "getOTP" type                |
+| triggeredPolicy | id of the policy that triggered this pending approval                   |
+| status          | the transaction status                                                  |
 
-## List Wallet Transactions ウォレットのトランザクションの一覧を表示
+## List Wallet Transactions
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1652,7 +1707,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1754,38 +1809,38 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-該当するウォレットのトランザクションを、ブロックの高さ順（逆から）で取得する（未確認のトランザクションを最初に）。
+Get transactions for a given wallet, ordered by reverse block height (unconfirmed transactions first).
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/tx`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター  | 種類    | 必須か | 説明                                     |
-| ------- | ----- | --- | -------------------------------------- |
-| skip    | 数字    | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
-| limit   | 数字    | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
-| compact | ブーリアン | NO  | トランザクション結果でインプットとアウトプットを省略する           |
+| Parameter | Type    | Required | Description                                                            |
+| --------- | ------- | -------- | ---------------------------------------------------------------------- |
+| skip      | number  | NO       | The starting index number to list from. Default is 0.                  |
+| limit     | number  | NO       | Max number of results to return in a single call (default=25, max=250) |
+| compact   | boolean | NO       | Omit inputs and outputs in the transaction results                     |
 
-### Response 応答
+### Response
 
-トランザクションオブジェクトの配列を返す。そのトランザクションが関わったあらゆるウォレットやビットコインアドレスにどのように影響を与えたかに関する概要情報を、各トランザクションは含みます。
+Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected any wallet or bitcoin address involved in the transaction.
 
-### Errors　エラー
+### Errors
 
-| Response 応答      | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-## Get Wallet Transactions ウォレットのトランザクションを取得する
+## Get Wallet Transaction
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1809,7 +1864,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1857,51 +1912,51 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-ウォレットのトランザクションに関する情報を取得します。
+Get information about a transaction on a wallet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/tx/:txId`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類                  | 必須か | 説明                |
-| -------- | ------------------- | --- | ----------------- |
-| walletId | ビットコインアドレス(文字列)     | YES | ウォレットのID          |
-| txId     | トランザクション ハッシュ (文字列) | YES | 取得するトランザクションのハッシュ |
+| Parameter | Type                      | Required | Description                          |
+| --------- | ------------------------- | -------- | ------------------------------------ |
+| walletId  | bitcoin address (string)  | YES      | The ID of the wallet                 |
+| txId      | transaction hash (string) | YES      | The hash of the transaction to fetch |
 
-### Response 応答
+### Response
 
-トランザクション オブジェクトを返します。
+Returns a Transaction object
 
-| パラメーター        | 種類    | 説明                                                                                               |
-| ------------- | ----- | ------------------------------------------------------------------------------------------------ |
-| id            | 文字列   | トランザクションのハッシュ                                                                                    |
-| hex           | 文字列   | トランザクションの未処理の16進数                                                                                |
-| date          | 日時    | このトランザクションが最初に見られた日付                                                                             |
-| blockhash     | 文字列   | ブロックのハッシュ値、このトランザクションが既に確認されている場合                                                                |
-| height        | 数字    | このトランザクションが最初に見られたブロックの高さ                                                                        |
-| confirmations | 数字    | このトランザクションがブロックチェーンの一部であった期間のブロックの数                                                              |
-| entries       | 配列    | 連結されたトランザクションのエントリ、ネット(正味) のインプット/アウトプットを考慮して                                                    |
-| outputs       | 配列    | ウォレットのaccount、value、vout、voutインデックス、isMine、chain (普通のアドレスは0、お釣りのアドレスは1）を含む、トランザクションのアウトプットに関する情報 |
-| fee           | 数字    | このトランザクションについてマイナーに支払われたSatoshi単位の金額                                                             |
-| pending       | ブーリアン | トランザクションがブロックチェーン上でまだ確認されていない場合、trueに設定する                                                        |
-| instant       | ブーリアン | このトランザクションがBitGo instantを使用して送信された場合、trueに設定する                                                   |
-| instantId     | 文字列   | BitGoからの保証を参照または取得するのに使用されるインスタントトランザクションの識別子                                                    |
-| sequenceId    | 文字列   | シーケンスid (トランザクションが送信された時に提供される一意のカスタムデータ)                                                        |
-| comment       | 文字列   | トランザクションに設定されたコメント                                                                               |
+| Parameter     | Type     | Description                                                                                                                                                  |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id            | String   | Hash of the transaction                                                                                                                                      |
+| hex           | String   | Raw hex of the transaction                                                                                                                                   |
+| date          | DateTime | Date this transaction was first seen                                                                                                                         |
+| blockhash     | String   | Hash of the block, if this transaction has been confirmed                                                                                                    |
+| height        | Number   | Height of the block this transaction was seen in                                                                                                             |
+| confirmations | Number   | Number of blocks this transaction has been part of the blockchain                                                                                            |
+| entries       | Array    | Consolidated entries of the transaction, taking into account net inputs/outputs                                                                              |
+| outputs       | Array    | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss) |
+| fee           | Number   | Amount in Satoshis paid to the miners for this transaction                                                                                                   |
+| pending       | Boolean  | Set to true if the transaction has not yet been confirmed on the blockchain                                                                                  |
+| instant       | Boolean  | Set to true if this transaction was sent using BitGo instant                                                                                                 |
+| instantId     | String   | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo                                                         |
+| sequenceId    | String   | The sequenceId (unique custom data provided when the transaction was sent)                                                                                   |
+| comment       | String   | The comment as set on the transaction                                                                                                                        |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
-| 404 Not Found    | ウォレットでトランザクションが見つからなかった    |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 404 Not Found    | The transaction was not found on the wallet                         |
 
-## ウォレットのアドレスの一覧を表示する
+## List Wallet Addresses
 
-ウォレットについて、New Address APIを使用してインスタンス化されたアドレスのリストを取得します。
+Gets a list of addresses which have been instantiated for a wallet using the New Address API.
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -1922,25 +1977,25 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/addresses`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター | 種類 | 必須か | 説明                                 |
-| ------ | -- | --- | ---------------------------------- |
-| chain  | 数字 | NO  | オプションとしてチェーン0またはチェーン1に制限する         |
-| skip   | 数字 | NO  | この数の結果をスキップする                      |
-| limit  | 数字 | NO  | 結果の数をこの数に制限する(default=25, max=500) |
+| Parameter | Type   | Required | Description                                                  |
+| --------- | ------ | -------- | ------------------------------------------------------------ |
+| chain     | number | NO       | Optionally restrict to chain 0 or chain 1                    |
+| skip      | number | NO       | Skip this number of results                                  |
+| limit     | number | NO       | Limit number of results to this number (default=25, max=500) |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -1971,27 +2026,27 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットアドレスオブジェクトの配列を返します。
+Returns an array of Wallet Address objects.
 
-| フィールド   | 説明                        |
-| ------- | ------------------------- |
-| chain   | アドレスがどのチェーンにあるか(現在、0または1) |
-| index   | チェーンの BIP32 インデックス        |
-| path    | 財布からのBIP32パス              |
-| address | ビットコインアドレス                |
+| Field   | Description                                       |
+| ------- | ------------------------------------------------- |
+| chain   | Which chain is the address on (0 or 1, currently) |
+| index   | BIP32 index on the chain                          |
+| path    | BIP32 path from wallet                            |
+| address | the bitcoin address                               |
 
-### Errors　エラー
+### Errors
 
-| Response 応答      | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## Get Single Wallet Address 単一のウォレットアドレスを取得する
+## Get Single Wallet Address
 
-ウォレット内のアドレスに関する情報を取得します。アドレスがウォレット内に存在しているかどうかチェックするのにも使用できます。
+Gets information about an address on a wallet. Can also be used to check if an address exists on a wallet.
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2014,18 +2069,18 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/addresses/:address`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明                |
-| -------- | --------------- | --- | ----------------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID          |
-| address  | ビットコインアドレス(文字列) | YES | 情報を取得するウォレットのアドレス |
+| Parameter | Type                     | Required | Description                                     |
+| --------- | ------------------------ | -------- | ----------------------------------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet                            |
+| address   | bitcoin address (string) | YES      | The address on the wallet to get information of |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -2041,27 +2096,27 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットアドレスオブジェクトを返します。
+Returns a wallet address object
 
-| フィールド        | 説明                                                  |
-| ------------ | --------------------------------------------------- |
-| address      | ルックアップされているビットコインアドレス                               |
-| balance      | このアドレスの現在の残高 (単位はsatoshi)                           |
-| chain        | このアドレスを生成するのに使用されたHDチェーン(ユーザーが生成したアドレスは0、お釣りアドレスは1) |
-| index        | アドレスを生成するのに使用されたHDチェーン内のインデックス                      |
-| path         | ウォレット内のアドレスのHDパス                                    |
-| received     | このアドレスで受信した合計金額 (単位はsatoshi)                        |
-| sent         | このアドレスで送信した合計金額 (単位はsatoshi)                        |
-| txCount      | このアドレスでのトランザクションの合計数                                |
-| redeemScript | このP2SHアドレスからの資金の消費に使用される可能性があるredeemScript          |
+| Field        | Description                                                                     |
+| ------------ | ------------------------------------------------------------------------------- |
+| address      | The bitcoin address being looked up                                             |
+| balance      | Current balance (satoshis) in this address                                      |
+| chain        | The HD chain used to generate this address (0 for user-generated, 1 for change) |
+| index        | The index in the HD chain used to generate this address                         |
+| path         | The HD path of the address on the wallet                                        |
+| received     | Total amount (satoshis) received on this address                                |
+| sent         | Total amount (satoshis) sent on this address                                    |
+| txCount      | Total number of transactions on this address                                    |
+| redeemScript | The redeemScript that may be used to spend funds from this P2SH address         |
 
-# Wallet Operations - Basic ウォレットの操作 ー上級編
+# Wallet Operations - Advanced
 
-これらの機能は上級レベルの開発者向けに利用可能、推奨となっています。 これらのAPIを使用することで、拡張された（ただし潜在的に複雑な）機能と強化されたトランザクション生成プロセスのコントロールが提供されます。
+These features are available and recommended for advanced developers. Using these APIs will provide expanded (but potentially complex) functionality and greater control of the transaction creation process.
 
-## Get Transaction By Sequence Id シーケンスidでトランザクションを取得する
+## Get Transaction By Sequence Id
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2085,7 +2140,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -2122,34 +2177,34 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-送信トランザクションを送信する時に渡されたウォレットシーケンスIDのトランザクションを取得します（sendCoinsまたはsendTransaction経由で） これは、自分の一意のIDを通じて、署名されていない/確認されていないトランザクションをトラッキングするのに役立ちます。ビットコイントランザクションIDは共同署名の前に定義されず、確認前改変されうるため。
+Get the transaction on a wallet sequence ID that was passed in when sending an outgoing transaction (via sendCoins or sendTransaction). This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.
 
-BitGoによってまだ共同署名されていない保留中のトランザクションは、依然としてシーケンスidを持ちます。
+A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/tx/sequence/:sequenceId`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター     | 種類              | 必須か | 説明                           |
-| ---------- | --------------- | --- | ---------------------------- |
-| walletId   | ビットコインアドレス(文字列) | YES | ウォレットのID                     |
-| sequenceId | カスタムのユーザー提供の文字列 | YES | 以前に発信トランザクションとともに送信された一意のid。 |
+| Parameter  | Type                        | Required | Description                                                 |
+| ---------- | --------------------------- | -------- | ----------------------------------------------------------- |
+| walletId   | bitcoin address (string)    | YES      | The ID of the wallet                                        |
+| sequenceId | custom user-provided string | YES      | The unique id previously sent with an outgoing transaction. |
 
-### Response 応答
+### Response
 
-履歴、そしてビットコインネットワーク上のトランザクションの状態を含むWalletTxオブジェクトを返す。
+Returns a WalletTx object, containing the history and state of the transaction on the Bitcoin network.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
-| 404 Not Found    | ウォレットでトランザクションが見つからなかった    |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
+| 404 Not Found    | The transaction was not found on the wallet                         |
 
-## List Wallet Unspents ウォレットの未使用分の一覧を取得する
+## List Wallet Unspents
 
 ```shell
 WALLET=2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr
@@ -2173,29 +2228,29 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
   });
 ```
 
-ウォレットについて、未使用のインプットトランザクションのリストを取得します。
+Gets a list of unspent input transactions for a wallet.
 
-ビットコイントランザクションを作成するには、トランザクションの作成者は、そのトランザクションの作成に使用する一連のビットコイン「インプット」を蓄積することが必要になります。
+In order to create a bitcoin transaction, the creator of the transaction will need to accumulate a set of bitcoin 'inputs' for use in creation of that transaction.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/unspents`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター | 種類 | 必須か | 説明                                            |
-| ------ | -- | --- | --------------------------------------------- |
-| target | 数字 | NO  | APIは最低でもこの金額に達する十分な未使用分（単位はsatoshi）を返そうと試みます。 |
-| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。                      |
-| limit  | 数字 | NO  | 単一コール(default=100, max=250) で返す結果の最大の件数       |
+| Parameter | Type   | Required | Description                                                                                         |
+| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------- |
+| target    | number | NO       | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis). |
+| skip      | number | NO       | The starting index number to list from. Default is 0.                                               |
+| limit     | number | NO       | Max number of results to return in a single call (default=100, max=250)                             |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -2238,30 +2293,30 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
 }
 ```
 
-### Response 応答
+### Response
 
-未使用分のインプットのオブジェクトの配列を返します。
+Returns an array of Unspent Input objects.
 
-| フィールド         | 説明                                                               |
-| ------------- | ---------------------------------------------------------------- |
-| tx_hash       | 未使用のインプットのハッシュ値                                                  |
-| tx_output_n | *tx_hash*からの未使用のインプットのインデックス                                     |
-| value         | 未使用のインプットの値、単位はsatoshi                                           |
-| script        | (16 進数形式で) スクリプト ハッシュを出力                                         |
-| redeemScript  | 交換スクリプト                                                          |
-| chainPath     | ウォレットに関連する未使用のアウトプットのBIP32 パス                                    |
-| confirmations | 未使用分のトランザクションがブロックに含まれた時とその後見られたブロックの数                           |
-| isChange      | これがこのウォレットからの以前の使用からの出力であることを示すブーリアンで、確認数が0だったとしてもおそらく安全に使用可能    |
-| instant       | 二重支払いに関する保証が付いたBitGo Instantトランザクションの作成にこの未使用分が使用できるかどうかを示すブーリアン |
+| Field         | Description                                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| tx_hash       | The hash of the unspent input                                                                                                             |
+| tx_output_n | The index of the unspent input from *tx_hash*                                                                                             |
+| value         | The value, in satoshis of the unspent input                                                                                               |
+| script        | Output script hash (in hex format)                                                                                                        |
+| redeemScript  | The redeem script                                                                                                                         |
+| chainPath     | The BIP32 path of the unspent output relative to the wallet                                                                               |
+| confirmations | Number of blocks seen on and after the unspent transaction was included in a block                                                        |
+| isChange      | Boolean indicating this is an output from a previous spend originating on this wallet, and may be safe to spend even with 0 confirmations |
+| instant       | Boolean indicating if this unspent can be used to create a BitGo Instant transaction guaranteed against double spends                     |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## Consolidate Unspents 未使用分を統合する
+## Consolidate Unspents
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2282,7 +2337,7 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
 WALLETPASSPHRASE="mypassword"
 
@@ -2293,19 +2348,19 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 ```
 
-現在ウォレットに保持されている未使用分を、より小さい数へ合体（統合）します。 これは反復的（イタレーション）プロセスで、主にトランザクションサイズの制限と署名の速さによるものです。 各イタレーションごとにトランザクション手数料が必要です。
+Coalesce the unspents currently held in a wallet to a smaller number. This is an iterative process, largely due to transaction size limits and signing speed. Each iteration requires its own transaction fees.
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター                        | 種類  | 必須か | 説明                                          |
-| ----------------------------- | --- | --- | ------------------------------------------- |
-| target                        | 数字  | NO  | 関数を実行した後の、希望の未使用分の数                         |
-| maxInputCountPerConsolidation | 数字  | NO  | 各イタレーションで使用される未使用分の最大の数。デフォルトで85。           |
-| minConfirms                   | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ                   |
-| walletPassphrase              | 文字列 | NO  | ウォレットのパスフレーズ                                |
-| progressCallback              | 関数  | NO  | 各イテレーション後に呼び出されるクロージャ。進行状況をモニタリングするのに使用できる。 |
+| Parameter                     | Type     | Required | Description                                                                            |
+| ----------------------------- | -------- | -------- | -------------------------------------------------------------------------------------- |
+| target                        | number   | NO       | desired number of unspents after running the function                                  |
+| maxInputCountPerConsolidation | number   | NO       | maximum number of unspents to be used for each iteration. Defaults to 85.              |
+| minConfirms                   | number   | NO       | only choose unspent inputs with a certain number of confirmations                      |
+| walletPassphrase              | string   | NO       | Passphrase of the wallet                                                               |
+| progressCallback              | function | NO       | Closure to be called after each iteration. It can be used for monitoring the progress. |
 
-## Fan Out Unspents 未使用分のファンアウト
+## Fan Out Unspents
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2326,7 +2381,7 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
 WALLETPASSPHRASE="mypassword"
 
@@ -2337,17 +2392,17 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/fanoutunspents
 ```
 
-（最小確認カウント等の選択基準と一致する）ウォレットの未使用分を取って、より大きい数の未使用分に広げます。
+Take all the wallet's unspents (that match the selection criteria, such as minimum confirm count) and spread them into a higher number of unspents.
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター           | 種類  | 必須か | 説明                        |
-| ---------------- | --- | --- | ------------------------- |
-| target           | 数字  | YES | 関数を実行した後の、希望の未使用分の数       |
-| minConfirms      | 数字  | NO  | 一定数の確認があった未使用分のインプットだけを選ぶ |
-| walletPassphrase | 文字列 | NO  | ウォレットのパスフレーズ              |
+| Parameter        | Type   | Required | Description                                                       |
+| ---------------- | ------ | -------- | ----------------------------------------------------------------- |
+| target           | number | YES      | desired number of unspents after running the function             |
+| minConfirms      | number | NO       | only choose unspent inputs with a certain number of confirmations |
+| walletPassphrase | string | NO       | Passphrase of the wallet                                          |
 
-## Create Transaction　トランザクションの作成
+## Create Transaction
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
@@ -2368,7 +2423,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 curl -X POST \
@@ -2376,17 +2431,19 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"recipients\": [{ \"address\": \"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD\", \"amount\": 1500000}, { \"address\": \"2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu\", \"amount\": 2500000 }] }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
 
-そのウォレットの各アドレスからの未使用分をを使用して、ウォレットから複数の受信者を持つトランザクションを作成します。これはSDKでのみのクライアント側の機能です。
+<aside class="warning">
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
+</aside>
 
-通常、signTransactionの前に使用され、signTransactionは作成されたトランザクションに署名します。お釣りはウォレット上で新たに作成されたお釣りアドレス（/1のパス）に送信されます。
+Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only in the SDK.
 
-これは上級のメソッドで、マイナー手数料と復号化されたキーチェーンを手動で指定（マイナー手数料は0も可能）ことを可能にします。
+Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address (path of /1) on the wallet.
 
-**注意**: 不十分な手数料を提供した場合、あなたのトランザクションは確認を得られず、未使用分がしばらく使用できないことがあります。
+This is an advanced method that allows you to manually specify the miner fee (could be 0) and decrypted keychain.<b>WARNING</b>: If you provide an insufficient fee, your transaction may not get confirmed and your unspents may be unusable for some time.
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -2414,20 +2471,20 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 }
 ```
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター                       | 種類    | 必須か | 説明                                                                                             |
-| ---------------------------- | ----- | --- | ---------------------------------------------------------------------------------------------- |
-| recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
-| fee                          | 数字    | NO  | 単位をSatoshiとする、ビットコインマイナーに支払われる絶対的な手数料。自動の場合「undefined」に設定。                                     |
-| feeRate                      | 数字    | NO  | ビットコインマイナーに支払われるトランザクションサイズのKBあたりの手数料。自動の場合「undefined」に設定。                                     |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
-| minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
-| enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
-| minUnspentSize               | 数字    | NO  | 使用可能と考えられる未使用分の単位をsatoshiとする最低額。デフォルトで5460 (トランザクションダストスパムへの対抗として)                             |
-| instant                      | ブーリアン | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                                        |
+| Parameter                    | Type    | Required | Description                                                                                                                              |
+| ---------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| recipients                   | string  | YES      | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]       |
+| fee                          | number  | NO       | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.                                         |
+| feeRate                      | number  | NO       | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.                       |
+| feeTxConfirmTarget           | number  | NO       | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.           |
+| minConfirms                  | number  | NO       | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange. |
+| enforceMinConfirms ForChange | boolean | NO       | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.      |
+| minUnspentSize               | number  | NO       | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).                            |
+| instant                      | boolean | NO       | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).               |
 
-## Sign Transaction トランザクションへ署名する
+## Sign Transaction
 
 ```javascript
 bitgo.wallets().get({id: walletId}, function(err, wallet) {
@@ -2457,7 +2514,7 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 UNSPENTS='[
@@ -2487,29 +2544,33 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d "{ \"transactionHex\": \"$TRANSACTIONHEX\", \"unspents\": $UNSPENTS, \"keychain\": $KEYCHAIN }" \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
 
-作成されたトランザクションの16進数、キーチェーンそして未使用分の情報を使用してマルチシグトランザクションに署名します(導出パスと交換スクリプト)。通常createTransactionからの出力と使用します。
+<aside class="warning">
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
+</aside>
 
-オフラインで実行することができます。
+Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.
 
-これは、SDKでのみのクライアント側の機能です。
+Can be performed offline.
 
-> 応答の例
+This is client-side functionality only in the SDK.
+
+> Example Response
 
 ```json
 {"tx":"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."}
 ```
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター         | 種類            | 必須か | 説明                                           |
-| -------------- | ------------- | --- | -------------------------------------------- |
-| transactionHex | 文字列           | YES | The unsigned transaction, in hex string form |
-| unspents       | 配列            | YES | unspentsオブジェクトの配列で、chainpathとredeemScriptを含む |
-| keychain       | キーチェーン オブジェクト | YES | 利用できるxprvのプロパティを持つ復号化されたキーチェーン（オブジェクト）。      |
+| Parameter      | Type            | Required | Description                                                              |
+| -------------- | --------------- | -------- | ------------------------------------------------------------------------ |
+| transactionHex | string          | YES      | The unsigned transaction, in hex string form                             |
+| unspents       | array           | YES      | Array of unspents objects, which contain the chainpath and redeemScript. |
+| keychain       | keychain object | YES      | The decrypted keychain (object), with available xprv property.           |
 
-## Send Transaction トランザクションを送信する
+## Send Transaction
 
 ```shell
 TX={raw hex transaction}
@@ -2574,15 +2635,19 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
     );
   });
 });
-```<aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 \[sendCoins\](#send-coins-to-address) がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
+```
 
-部分的に署名されたトランザクションを送信します。 サーバは次のいずれかを行います： *トランザクションを拒否する *他のウォレットのアドミンから追加の承認を集める *最後の署名を適用し、ビットコインP2Pネットワークに提出する<aside class="info"> このAPIはUnlock APIを使用してセッションがアンロックされることを必要とします。 Unlock APIへの単一コールは、内部的に設定されたBitGoのクォータ（現在50BTCに設定）までの、全ての単一トランザクションまたは複数トランザクションを可能にします。 </aside> 
+<aside class="warning">
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
+</aside>
 
-### HTTP Request HTTPリクエスト
+Send a partially-signed transaction. The server will do one of the following: * reject the transaction * gather additional approvals from other wallet admins * apply the final signature, and submit to the Bitcoin P2P network<aside class="info"> This API requires the session to be unlocked using the Unlock API A single call to the Unlock API allows any single transaction, or multiple transactions up to an internally-set BitGo quota (currently set at 50 BTC). </aside> 
+
+### HTTP Request
 
 `POST /api/v1/tx/send`
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -2594,39 +2659,39 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 }
 ```
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター     | 種類              | 必須か | 説明                                                                                    |
-| ---------- | --------------- | --- | ------------------------------------------------------------------------------------- |
-| tx         | トランザクション オブジェクト | YES | 16進数文字列形式でのトランザクション                                                                   |
-| sequenceId | 文字列             | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                |
-| message    | 文字列             | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                      |
-| instant    | ブーリアン           | NO  | BitGoの二重支払いに対するインスタント保証が付いたトランザクションの送信をリクエストする際、trueに設定                               |
-| otp        | 文字列             | NO  | "getOTP"アクションタイプのポリシーをを迂回するのに使用される7桁のコード。詳細については[ウォレットポリシー](#wallet-policy)を参照してください。 |
+| Parameter  | Type               | Required | Description                                                                                                                |
+| ---------- | ------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| tx         | Transaction Object | YES      | The transaction, in hex string form                                                                                        |
+| sequenceId | String             | NO       | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing |
+| message    | String             | NO       | User-provided string (this does not hit the blockchain)                                                                    |
+| instant    | boolean            | NO       | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply). |
+| otp        | String             | NO       | A 7 digit code used to bypass a policy with the "getOTP" action type. See [Wallet Policy](#wallet-policy) for more details |
 
-### Response 応答
+### Response
 
-16 進数エンコード形式で、送信されたトランザクションとそのハッシュ値を返します。
+Returns the sent transaction and its hash in hex-encoded form.
 
-### Errors　エラー
+### Errors
 
-| 応答                   | 説明                             |
-| -------------------- | ------------------------------ |
-| 400 Bad Request      | 要求パラメーターが見つからないか正しくない          |
-| 401 Unauthorized     | 認証パラメーターが一致しない、またはアンロックが必要     |
-| 402 Payment Required | このリクエストでのトランザクション手数料が低すぎるようです。 |
+| Response             | Description                                                         |
+| -------------------- | ------------------------------------------------------------------- |
+| 400 Bad Request      | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized     | The authentication parameters did not match, or unlock is required. |
+| 402 Payment Required | The transaction fee in this request seems too low.                  |
 
-### Policy/Failure Response ポリシー/エラー応答
+### Policy/Failure Response
 
-| フィールド           | 説明                                 |
-| --------------- | ---------------------------------- |
-| error           | この保留中の承認をトリガーしたポリシーからのメッセージ        |
-| pendingApproval | 保留中の承認のidで、別のユーザーにより承認される必要がある     |
-| otp             | 発射されたポリシーが"getOTP"タイプだった場合、trueに設定 |
-| triggeredPolicy | この保留中の承認をトリガーしたポリシーのid             |
-| status          | トランザクションのステータス                     |
+| Field           | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| error           | the message from the policy that triggered this pending approval        |
+| pendingApproval | the pending approval id, which will need to be approved by another user |
+| otp             | set to true if the policy that fired was a "getOTP" type                |
+| triggeredPolicy | id of the policy that triggered this pending approval                   |
+| status          | the transaction status                                                  |
 
-## Get Instant Guarantee インスタント保証を得る
+## Get Instant Guarantee
 
 ```shell
 INSTANTID=564ea1fa95f4344c6db00773d1277160
@@ -2648,13 +2713,17 @@ bitgo.instantGuarantee({ id: '56562ee923ab7f3a28d638085ba6955a' }, function(err,
 });
 ```
 
-BitGo Instantは、私達による二重支払いに対する保証として、ウォレットプラットフォームの上に構築されています。 マルチシグウォレットの共同署名者として、BitGoがアウトプットを二重支払いすることは決してありません。 私達の約束は各トランザクションごとに暗号署名された保証によって裏付けられており、受信者がブロック確認の必要なしに資金を受け入れるのを可能にします。<aside class="info"> 誰でも即座のトランザクションを受け取ることができます。インスタントトランザクションの送信にはinstantと互換性がある / 暗号鍵リカバリーシステム（KRS）のBitGoウォレットが必要です。 </aside> 
+BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo against double spends. As a co-signer on a multi-sig wallet, BitGo will never double-spend an output. We back our promise with a cryptographically signed guarantee on each transaction, enabling receivers to accept funds without the need for any block confirmations.
 
-### HTTP Request HTTPリクエスト
+<aside class="info">
+Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet.
+</aside>
+
+### HTTP Request
 
 `GET /api/v1/instant/<id>`
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -2669,41 +2738,41 @@ BitGo Instantは、私達による二重支払いに対する保証として、�
 }
 ```
 
-### Response 応答
+### Response
 
-金額とトランザクションIDを含む、instant保証のメッセージを返します。
+Returns the instant guarantee message, including the amount and Transaction ID.
 
-| パラメーター         | 種類  | 説明                                                  |
-| -------------- | --- | --------------------------------------------------- |
-| amount         | 数字  | Instant保証の金額、単位はSatoshi                             |
-| createTime     | 日時  | トランザクションが作成された時間                                    |
-| guarantee      | 文字列 | 即座トランザクションを保証する BitGo からのメッセージ                      |
-| id             | 文字列 | BitGo のインスタント保証 ID                                  |
-| transactionId  | 文字列 | 保証されたトランザクションのハッシュ                                  |
-| normalizedHash | 文字列 | 署名のない保証されたトランザクションのハッシュ                             |
-| signature      | 文字列 | 紛争があった場合に備え監査記録を提供するための、暗号署名された保証                   |
-| state          | 文字列 | BitGoによってモニタリングされるトランザクションの状態（あなたの方で措置を講じる必要はありません） |
+| Parameter      | Type     | Description                                                                                   |
+| -------------- | -------- | --------------------------------------------------------------------------------------------- |
+| amount         | Number   | Amount in Satoshis of the instant guarantee                                                   |
+| createTime     | DateTime | The time at which the transaction was created                                                 |
+| guarantee      | String   | The message by BitGo to guarantee the instant transaction                                     |
+| id             | String   | The instant guarantee ID on BitGo                                                             |
+| transactionId  | String   | The hash of the guaranteed transaction                                                        |
+| normalizedHash | String   | The hash of the guaranteed transaction without signatures                                     |
+| signature      | String   | Cryptographically signed guarantee, to provide an audit record in cases of a dispute          |
+| state          | String   | The state of a transaction as monitored by BitGo (you do not need to take any action on this) |
 
-### Verifying BitGo's Guarantee BitGoの保証を認証する
+### Verifying BitGo's Guarantee
 
-BitGoの保証は、パブリックビットコインアドレス（1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja）に対応する私達の会社の署名キーを使用して署名されます。
+BitGo’s guarantee is signed using our corporate signing key, which corresponds to the public Bitcoin address 1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja.
 
-確認するには、私達の署名で保証を認証します。例：
+To confirm, verify the guarantee with our signature. Example:
 
 `assert(bitcoin.Message.verify('1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja', signature, guarantee, process.config.bitcoin.network));`
 
-署名が有効な場合、ブロック情報を全く必要としないでトランザクションを即座に受け取ることができます。 保証の署名を節約して& ローカルで署名して紛争があった場合に監査記録を提供することができます。
+If the signature is valid, you may accept the transaction instantly without the need for any block information. You can save the guarantee & signature locally to provide an audit record in case of a dispute.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-## Get Wallet by Address アドレスでウォレットを取得する
+## Get Wallet by Address
 
-アドレスを与えられ、そのアドレスの情報(残高も含む) とそのアドレスが関連するウォレットを返します。 １人で多数のアドレス/ウォレットを持っているが、アドレスが属するウォレットが不明な時に役に立ちます。
+Given an address, returns the address information (including balances) and wallet the address is associated with. Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.
 
 ```shell
 ADDRESS=2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
@@ -2722,17 +2791,17 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/walletaddress/:address`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター  | 種類              | 必須か | 説明              |
-| ------- | --------------- | --- | --------------- |
-| address | ビットコインアドレス(文字列) | YES | 情報をルックアップするアドレス |
+| Parameter | Type                     | Required | Description                           |
+| --------- | ------------------------ | -------- | ------------------------------------- |
+| address   | bitcoin address (string) | YES      | The address to look up information on |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -2749,24 +2818,24 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 }
 ```
 
-### Response 応答
+### Response
 
-ウォレットアドレスオブジェクトを返します。
+Returns a wallet address object
 
-| フィールド        | 説明                                                  |
-| ------------ | --------------------------------------------------- |
-| address      | ルックアップされているビットコインアドレス                               |
-| balance      | このアドレスの現在の残高 (単位はsatoshi)                           |
-| chain        | このアドレスを生成するのに使用されたHDチェーン(ユーザーが生成したアドレスは0、お釣りアドレスは1) |
-| index        | アドレスを生成するのに使用されたHDチェーン内のインデックス                      |
-| path         | ウォレット内のアドレスのHDパス                                    |
-| received     | このアドレスで受信した合計金額 (単位はsatoshi)                        |
-| sent         | このアドレスで送信した合計金額 (単位はsatoshi)                        |
-| txCount      | このアドレスでのトランザクションの合計数                                |
-| redeemScript | このP2SHアドレスからの資金の消費に使用される可能性があるredeemScript          |
-| wallet       | このアドレスがあるウォレットのベースアドレス（ウォレットID）　                    |
+| Field        | Description                                                                     |
+| ------------ | ------------------------------------------------------------------------------- |
+| address      | The bitcoin address being looked up                                             |
+| balance      | Current balance (satoshis) in this address                                      |
+| chain        | The HD chain used to generate this address (0 for user-generated, 1 for change) |
+| index        | The index in the HD chain used to generate this address                         |
+| path         | The HD path of the address on the wallet                                        |
+| received     | Total amount (satoshis) received on this address                                |
+| sent         | Total amount (satoshis) sent on this address                                    |
+| txCount      | Total number of transactions on this address                                    |
+| redeemScript | The redeemScript that may be used to spend funds from this P2SH address         |
+| wallet       | The base address (wallet ID) of the wallet this address is on                   |
 
-## Freeze Wallet 財布を凍結する
+## Freeze Wallet
 
 ```shell
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
@@ -2792,7 +2861,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -2801,46 +2870,46 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-ウォレットでの全ての使用活動を防止します。このコールは緊急時に使用されるように設計されており、デフォルトで一時間使用を妨げます。
+Prevent all spend activity on a wallet. This call is designed to be used in cases of emergency, and prevent spends for a default of 1 hour.
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター   | 種類 | 必須か | 説明                        |
-| -------- | -- | --- | ------------------------- |
-| duration | 数字 | NO  | 使用活動の凍結の期間、秒数で。デフォルトで1時間。 |
+| Parameter | Type   | Required | Description                                                             |
+| --------- | ------ | -------- | ----------------------------------------------------------------------- |
+| duration  | number | NO       | length of time in seconds to freeze spend activity. Defaults to 1 hour. |
 
-### Response 応答
+### Response
 
-| フィールド   | 説明                |
-| ------- | ----------------- |
-| time    | 凍結のコマンドが呼び出された日付  |
-| expires | 使用活動が認められるようになる日付 |
+| Field   | Description                                         |
+| ------- | --------------------------------------------------- |
+| time    | The date the freeze command was called              |
+| expires | The date after which spend activity will be allowed |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-# Wallet Sharing ウォレットの共有
+# Wallet Sharing
 
-BitGoウォレットは複数のユーザー間で共有することが出来ます。 ウォレットのすべてのユーザーは同じ秘密鍵を共有します（各ユーザーはそれを個別に暗号化することできますが）。
+A BitGo wallet may be shared between multiple users. All users on a wallet share the same private key (although each individual user may encrypt it separately).
 
-BitGoによって共有されるウォレットのセキュリティが施行され、ユーザーはログイン後、認証を行うことを求められます。 ウォレットのアクセス許可レベルは、ウォレットで各ユーザーが行えることを定義します。
+Security on a shared wallet is enforced by BitGo, which requires that users log in and authenticate before co-signing. Wallet permission levels define what an individual user is able to do on a wallet.
 
-### Wallet Permissions ウォレットの許可
+### Wallet Permissions
 
-| 許可    | 説明                                  |
-| ----- | ----------------------------------- |
-| View  | ウォレットでのトランザクションを表示                  |
-| Spend | ウォレットポリシーの対象となるトランザクションを、ウォレットで開始する |
-| Admin | ポリシーを変更し、ウォレットでユーザーと設定を管理           |
+| Permission | Description                                                             |
+| ---------- | ----------------------------------------------------------------------- |
+| View       | View transactions on the wallet                                         |
+| Spend      | Initiate transactions on the wallet, which are subject to wallet policy |
+| Admin      | Change policy and manage users and settings on the wallet               |
 
-## Sharing a wallet ウォレットを共有する
+## Sharing a wallet
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
 PASSPHRASE='walletpassphrase'
@@ -2861,7 +2930,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -2880,42 +2949,46 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
      "path": "m/999999/26697279/124485569"
    }
 }
-```<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+```
 
-ウォレットの共有は、もう一人のユーザーにウォレットを使用する許可をBitGoを通じ与えることを伴います。
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-受取り手がウォレットを使用するには、私達と彼らが秘密鍵を共有する必要があります。 BitGoの各ユーザーは登録プロセスの際、この目的のために公開と秘密のキーペアを作成します。
+Sharing a wallet involves giving another user permission to use the wallet through BitGo.
 
-BitGo SDKはクライアント側で以下を行って、新たなウォレットの共有を作成します:
+In order for the receiver to use the wallet, we also need to share the private key with them. Each user on BitGo creates a public-private keypair for this purpose during their signup process.
 
-* 受け取るユーザーの共有する鍵を取得する（受取り手の公開鍵の派生パス）
-* ローカルで共有されるウォレットを復号化する
-* 上の公開鍵に対しウォレットを再暗号化し、受取り手だけが復号化できるようにする。
-* 暗号化された鍵をBitGoサービスにアップロードし、BitGoサービスは受取り手に保留中の共有があることを知らせる。
+The BitGo SDK does the following client-side to create a new wallet share:
 
-### Parameters パラメーター
+* Get the receiving user's sharing key (a derived path of the receiver's public key)
+* Decrypt the wallet to be shared locally.
+* Re-encrypt the wallet against the public key above, so that only the receiver may decrypt it.
+* Upload the encrypted keys to the BitGo service, which informs the receiver they have a pending share.
 
-| パラメーター           | 種類    | 必須か | 説明                                        |
-| ---------------- | ----- | --- | ----------------------------------------- |
-| email            | 文字列   | YES | ウォレットを共有するユーザーのメールアドレス                    |
-| permissions      | 文字列   | YES | コンマで区切った許可のリスト（例：view、spend、admin）        |
-| walletPassphrase | 文字列   | NO  | 共有されているウォレットのパスフレーズ                       |
-| skipKeychain     | ブーリアン | NO  | 帯域外でキーチェーンを取得する別のユーザーと、ウォレットを共有の場合trueに設定 |
-| disableEmail     | ブーリアン | NO  | 追加されたユーザーに送信される通知メールを止めるには、trueに設定        |
+### Parameters
 
-### Response 応答
+| Parameter        | Type    | Required | Description                                                                                |
+| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------ |
+| email            | string  | YES      | Email of the user to share the wallet with                                                 |
+| permissions      | string  | YES      | Comma-separated list of permissions, e.g. view,spend,admin                                 |
+| walletPassphrase | string  | NO       | Passphrase on the wallet being shared                                                      |
+| skipKeychain     | boolean | NO       | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band |
+| disableEmail     | boolean | NO       | Set to true to prevent a notification email sent to the user added                         |
 
-| フィールド       | 説明                                     |
-| ----------- | -------------------------------------- |
-| id          | ウォレット共有のid、受け入れるために使用                  |
-| walletId    | 共有されているウォレットのid                        |
-| walletLabel | ユーザーに提示するウォレットのラベル                     |
-| fromUser    | ウォレットを共有しているユーザーのBitGo ID              |
-| toUser      | ウォレットを受け取るユーザーのBitGo ID                |
-| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト  |
-| keychain    | （秘密鍵を取得する目的で）受取り手が復号化するための暗号化されたキーチェーン |
+### Response
 
-## List Wallet Shares ウォレット共有の一覧を表示する
+| Field       | Description                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| id          | The id of the walletShare, used to accept it                                              |
+| walletId    | The id of the wallet being shared                                                         |
+| walletLabel | Label of the wallet to present to the user                                                |
+| fromUser    | BitGo ID of the user sharing the wallet                                                   |
+| toUser      | BitGo ID of the user receiving the wallet                                                 |
+| permissions | Comma-separated list of permissions that the wallet share will give to the receiving user |
+| keychain    | The encrypted keychain for the receiver to decrypt (to obtain the private key)            |
+
+## List Wallet Shares
 
 ```shell
 curl -X GET \
@@ -2933,13 +3006,13 @@ https://test.bitgo.com/api/v1/walletShare
   });
 ```
 
-ログオン中のアカウントについて着信及び発信したウォレット共有の一覧を取得します。
+Gets lists of incoming and outgoing wallet shares for the logged-on account.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/walletShare`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -2964,23 +3037,23 @@ https://test.bitgo.com/api/v1/walletShare
 }
 ```
 
-### Response 応答
+### Response
 
-各ウォレット共有オブジェクトは、次のフィールドを含みます：
+Each wallet share object returned contains the following fields:
 
-| フィールド       | 説明                                    |
-| ----------- | ------------------------------------- |
-| id          | ウォレット共有のid、受け入れるために使用                 |
-| walletId    | 共有されているウォレットのid                       |
-| walletLabel | ユーザーに提示するウォレットのラベル                    |
-| fromUser    | ウォレットを共有しているユーザーのBitGo ID             |
-| toUser      | ウォレットを受け取るユーザーのBitGo ID               |
-| permissions | ウォレットの共有が受取り手のユーザーに与える許可の、コンマで区切ったリスト |
+| Field       | Description                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| id          | The id of the walletShare, used to accept it                                              |
+| walletId    | The id of the wallet being shared                                                         |
+| walletLabel | Label of the wallet to present to the user                                                |
+| fromUser    | BitGo ID of the user sharing the wallet                                                   |
+| toUser      | BitGo ID of the user receiving the wallet                                                 |
+| permissions | Comma-separated list of permissions that the wallet share will give to the receiving user |
 
-## Accept Wallet Share ウォレット共有を受け入れる
+## Accept Wallet Share
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 
 SHAREID='54c594802ebe8510790092958f526f47'
 NEWPASSPHRASE='receiverpassphrase'
@@ -3004,36 +3077,40 @@ bitgo.wallets().acceptShare(
 )
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 { "state": "accepted", "changed": "true" }
-```<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+```
 
-ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-* 暗号化された秘密のキーチェーンを含む、着信したウォレットの共有を取得する
-* ユーザーが共有する秘密鍵とウォレット共有xPubを使用してプライベートのキーチェーンを復号化する鍵を派生させる。
-* 将来の利用のため、ユーザーが選んだパスフレーズでウォレットを再暗号化する。
-* 暗号化された鍵をBitGoのサービスにアップロードし、共有を「accepted」(受け入れられた) にセットする。そうするとユーザーに、BigGoにあるウォレットへのアクセスが与えられる。
+Client-side operation to accept a wallet share. Performs the following steps:
 
-### Parameters パラメーター
+* Get the incoming wallet share, including the encrypted private keychain.
+* Using the user's sharing private key and the wallet share xPub, derive the key to decrypt the private keychain.
+* Re-encrypt the wallet with the user's chosen passphrase for future use.
+* Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.
 
-| パラメーター                | 種類              | 必須か | 説明                                             |
-| --------------------- | --------------- | --- | ---------------------------------------------- |
-| walletShareId         | ビットコインアドレス(文字列) | YES | 受け入れる、着信したウォレット共有ID                            |
-| newWalletPassphrase   | 文字列             | NO  | 将来の使用の際用いるための、ウォレットで設定するパスフレーズ                 |
-| userPassword          | 文字列             | NO  | 共有された秘密鍵を復号化する、ユーザーのパスワード                      |
-| overrideEncryptedXprv | 文字列             | NO  | 帯域外で受け取った暗号化されたxprvの保存を望む場合、代替の暗号化されたxprvに設定する |
+### Parameters
 
-### Response 応答
+| Parameter             | Type                     | Required | Description                                                                                    |
+| --------------------- | ------------------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| walletShareId         | bitcoin address (string) | YES      | The incoming wallet share ID to accept                                                         |
+| newWalletPassphrase   | string                   | NO       | the passphrase to set on the wallet, for use during future spends                              |
+| userPassword          | string                   | NO       | the user's password to decrypt the shared private key                                          |
+| overrideEncryptedXprv | string                   | NO       | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band |
 
-| フィールド   | 説明                            |
-| ------- | ----------------------------- |
-| state   | ウォレット共有の最終状態（'accepted'であるべき） |
-| changed | 成功した場合、 true                  |
+### Response
 
-## Cancel Wallet Share ウォレット共有をキャンセルする
+| Field   | Description                                     |
+| ------- | ----------------------------------------------- |
+| state   | end state of walletShare (should be 'accepted') |
+| changed | true if successful                              |
+
+## Cancel Wallet Share
 
 ```shell
 SHAREID='54c594802ebe8510790092958f526f47'
@@ -3051,32 +3128,32 @@ bitgo.wallets().cancelShare({ walletShareId: cancelledWalletShareId }, function(
 )
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 { "state": "canceled", "changed": "true" }
 ```
 
-保留中の発信したウォレット共有をキャンセルする、または着信した共有を拒否するのに使用できます。共有はまだ受け入れられているべきでありません。
+Can be used to cancel a pending outgoing wallet share, or reject an incoming share. The share should not have been accepted yet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `DELETE/api/v1/walletshare/:SHAREID`
 
-### Response 応答
+### Response
 
-| フィールド   | 説明            |
-| ------- | ------------- |
-| state   | ウォレット共有の新たな状態 |
-| changed | 成功した場合、 true  |
+| Field   | Description              |
+| ------- | ------------------------ |
+| state   | new state of walletShare |
+| changed | true if successful       |
 
-## Remove Wallet User ウォレットのユーザーを削除する
+## Remove Wallet User
 
-ユーザーがウォレットの共有を受け入れた後、彼らはウォレットの当事者になり、ウォレットの共有は「完了」とみなされます。
+After a user has accepted a wallet share, they become a party on a wallet and the wallet share is considered "complete".
 
-受け入れられた後に共有を解除するためには、ウォレットからユーザーを削除することができます。
+In order to revoke the share after they have accepted, you can remove the user from the wallet.
 
-ウォレットの管理者が複数名いる場合、別のウォレット管理者による承認を要する場合があります。
+This may require approval by another wallet administrator if there is more than a single administrator on a wallet.
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
@@ -3102,41 +3179,41 @@ curl -X DELETE \
 https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `DELETE /api/v1/wallet/:wallet/user/:userId`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター | 必須か | 説明                                      |
-| ------ | --- | --------------------------------------- |
-| wallet | YES | ウォレットのID                                |
-| userId | YES | 削除するユーザーのユーザーid(ウォレットオブジェクトで見つけることができる) |
+| Parameter | Required | Description                                                           |
+| --------- | -------- | --------------------------------------------------------------------- |
+| wallet    | YES      | The ID of the wallet                                                  |
+| userId    | YES      | The user id of the user to remove (can be found on the wallet object) |
 
-### Response 応答
+### Response
 
-このウォレットの更新されたウォレットモデル、または保留中の承認オブジェクトを返します(承認が必要な場合)
+Returns the updated Wallet Model for this wallet, or a Pending Approval object (if approval is required).
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                         |
-| ---------------- | -------------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない      |
-| 401 Unauthorized | 認証パラメーターが一致しない、またはアンロックが必要 |
+| Response         | Description                                                         |
+| ---------------- | ------------------------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect.                   |
+| 401 Unauthorized | The authentication parameters did not match, or unlock is required. |
 
-# ウォレットのポリシー
+# Wallet Policy
 
-BitGoウォレットはマルチユーザーまたはトランザクションとの2FA（2要素認証）承認そして支出制限等の、高度なセキュリティ機能を特徴としています。 これを利用するために、ユーザー/開発者はウォレットのポリシールールを追加、修正することができます。 ルールは（ユーザーによって設定された）関連付けられたアクションをトリガーします。 ポリシーエンジンは全てのトリガーされたルール結果を集め、deny、 get approval (別のユーザーから), get OTP (別のユーザーによってSMSを通じ送信)、 allow (デフォルト) の順で任意のトリガーされたアクションを実行します。
+BitGo wallets feature advanced security features such as multi-user or SMS approval of transactions and spending limits. To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will trigger an associated action (set by the user). The policy engine will collect all triggered rule results, and perform any triggered actions in the order of `deny`, `getApproval` (from another user), or `getOTP` (sent via SMS to a specified user).
 
-ウォレットに残高があり、2人以上のウォレットに関連付けられた"admin"ユーザーがいる場合、全てのポリシー変更には、有効になる前に別の管理者による承認を必要とします（追加の"admin"ユーザーがいない場合、不要です）。 よって、[ウォレットの共有を実行する](#wallet-sharing)ことにより最低2人の管理者でウォレットを作成すること強く推奨します。 そうすれば、ポリシーは、1人のユーザーが不正アクセスを受けたとしても有効になります。
+If a wallet carries a balance and there are more than two "admin" users associated with a Wallet, any policy change will require approval by another administrator before it will take effect (if there are no additional "admin" users, this will not be necessary). It is thus highly recommended to create wallets with at least 2 administrators by [performing a wallet share](#wallet-sharing). This way, policy can be effective even if a single user is compromised.
 
-"getOTP"アクションタイプのポリシーについては、トランザクションを正常に送信するには、署名され送信される前に7桁のワンタイムパスワードが必要になります。 このポリシーは事実上、デバイスに、あなた自身で実装する必要なしに二要素認証を提供するものです。 トランザクション送信の一回目の試みは失敗し、コードをポリシーで指定されている電話に送信します。 ユーザーからコードを取得したら、もう一度APIコールのパラメーターとしてotpコードが含まれた送信トランザクションを行い、トランザクションは正常に送信されます。 詳細は[アドレスにコインを送信する](#send-coins-to-address)にある"otp"パラメーターを参照下さい。
+For policies with the `getOTP` action type, successfully sending a transaction will require a 7 digit OTP before the transaction is signed and sent. This action type lets you offer a Two Factor Authentication security option for your own service, without implementing it yourself. The first attempt to send a transaction will fail and send out the code to the phone specified on the rule. Once you acquire the code from the user, make another send transaction call with the otp code included as a parameter in the API call and the transaction will successfully send. See the `otp` parameter at [Sends Coins to Address](#send-coins-to-address) for further details.
 
-このドキュメンテーションでは、単一ウォレットに関わる基本的なBitGoポリシーのAPIとSDKをカバーします。 [webhookポリシータイプ](#set-policy-rule)を使用して、さらなるカスタムポリシーを実装することができます。BitGoは外部の状態に関連したカスタムポリシーの動作を評価することができるURLエンドポイントを呼び出します。
+This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet. Further custom policy may be implemented using the [webhook policy type](#set-policy-rule), which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.
 
-複数のウォレットが関わる高度なポリシーは、BitGoに直接連絡することにより実装が可能です。
+Advanced policy involving multiple wallets may be implemented by contacting BitGo directly.
 
-## Get Policy ポリシーを取得する
+## Get Policy
 
 ```shell
 WALLET=2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
@@ -3162,60 +3239,65 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example response
 
 ```json
 {
-    "date": "2015-04-29T19:03:37.189Z",
-    "id": "55380d34d0d3b00364a52285f09e23a4",
-    "rules": [
-        {
-            "action": {
-                "type": "getApproval"
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.day",
-            "type": "dailyLimit"
-        },
-        {
-            "action": {
-                "type": "getOTP"
-                "actionParams": {
-                    "otpType": "sms",
-                    "phone": "+15417543010",
-                    "duration": "3600"
-                }
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.tx",
-            "type": "transactionLimit"
+  "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+  "version": 0,
+  "date": "2016-09-12T23:44:45.462Z",
+  "rules": [
+    {
+      "id": "my velocity limit",
+      "type": "velocityLimit",
+      "action": {
+        "type": "getOTP",
+        "actionParams": {
+          "otpType": "sms",
+          "phone": "+15417543010",
+          "duration": "3600"
         }
-    ],
-    "version": 4
+      },
+      "condition": {
+        "amount": 10000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    },
+    {
+      "action": {
+          "type": "getApproval"
+      },
+      "condition": {
+        "amount": 200000000
+      },
+      "id": "com.bitgo.limit.velocity.day",
+      "type": "velocityLimit"
+    }
+  ]
 }
 ```
 
-ウォレットの操作に関するポリシールールを取得します。
+Gets the policy rules in operation on a wallet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/policy`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
 
-### Response 応答
+### Response
 
-それに設定されたルールを含むウォレットポリシーオブジェクトを返します。
+Returns a Wallet Policy object, containing the rules set up on it
 
-## Get Policy Status ポリシー ステータスを取得する
+## Get Policy Status
 
 ```shell
 WALLET=2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
@@ -3241,14 +3323,14 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example response
 
 ```json
 {
     "statusResults": [
         {
             "policy": "55380d34d0d3b00364a52285f09e23a4",
-            "ruleId": "com.bitgo.limit.day",
+            "ruleId": "com.bitgo.limit.velocity.day",
             "status": {
                 "remaining": 94982419
             }
@@ -3264,23 +3346,33 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/policy/status`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類              | 必須か | 説明       |
-| -------- | --------------- | --- | -------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのID |
+| Parameter | Type                     | Required | Description          |
+| --------- | ------------------------ | -------- | -------------------- |
+| walletId  | bitcoin address (string) | YES      | The ID of the wallet |
 
-### Response 応答
+### Response
 
-使用の制限に関する情報を含む、ウォレットポリシーで有効になっているルールによって生成されたステータス結果を返します
+Returns status results as generated by rules active on the wallet policy, including information about the limit usage.
 
-## Set Policy Rule ポリシールールを設定する
+## Set Policy Rule
 
-ウォレットでのポリシーを設定します。ウォレットポリシーは、BitGoが一つの鍵を使ってトランザクションに署名する条件をコントロールします。
+Add or update a rule to a wallet's policy. A wallet policy's rules controls the conditions under which BitGo will use its single key to sign a transaction. An email notification will be sent to all wallet users when a policy is updated. This email is NOT sent for the first time policy is added.
+
+```shell
+WALLETID=2NFj9CHyY8cLKH4UXsivpRa5xkdvAXqqai9
+
+curl -X PUT \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
+-d '{ "action" : { "type" : "getApproval" }, "condition": {"type": "velocity", "amount": 10100000000, "timeWindow": 86400, "groupTags": [":tag"], "excludeTags": [] }, "id": "my velocity limit", "type": "velocityLimit" }' \
+https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
+```
 
 ```javascript
 var walletId = '2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2';
@@ -3289,9 +3381,17 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
   // Sets the policy
   var rule = {
     id: "test1",
-    type: "dailyLimit"
+    type: "velocityLimit"
     action: { type: "getApproval" },
-    condition: { "amount": 101*1e8 },
+    condition: {
+      "type": "velocity",
+      "amount": 101*1e8,
+      "timeWindow": 24 * 60 * 60,
+      "groupTags": [
+        ":tag"
+      ],
+      "excludeTags": []
+    }
   };
   wallet.setPolicyRule(rule, function callback(err, wallet) {
     if (err) { throw err; }
@@ -3300,115 +3400,109 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-```shell
-curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $ACCESS_TOKEN" \
--d '{ "action" : { "type" : "getApproval" }, "condition": { "amount" : 100000000 }, "id": "com.bitgo.limit.tx", "type": "transactionLimit", "default":true}' \
-https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
-```
+### HTTP Request
 
-### HTTP Request HTTPリクエスト
+`PUT /api/v1/wallet/:wallet/policy/rule`
 
-`PUT /api/v1/wallet/:wallet/policy/rule`<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-ポリシールールオブジェクトは種類、条件、そしてアクションを持ちます。この種類のポリシーはしばしば条件の値を決定します。
+Policy rule objects have a type, a condition, and an action. The type of policy often dictates the condition values.
 
-| パラメーター    | 種類                      | 必須か                                                | 例 |
-| --------- | ----------------------- | -------------------------------------------------- | - |
-| id        | ポリシーの id                | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId" |   |
-| type      | ポリシーの種類                 | *ポリシーの種類を参照*                                       |   |
-| condition | このポリシーの条件               | *ポリシーの種類を参照*                                       |   |
-| action    | 条件が false の場合に実行するアクション | *ポリシー アクション オブジェクトを参照*                             |   |
+| Parameter | Type                                           | Required                     | Example |
+| --------- | ---------------------------------------------- | ---------------------------- | ------- |
+| id        | the id of the policy                           | "custom1", "anyUniqueRuleId" |         |
+| type      | The type of policy                             | *See Policy Types*           |         |
+| condition | The condition for this policy                  | *See Policy Types*           |         |
+| action    | The action to take when the condition is false | *See Policy Action Object*   |         |
 
-> 応答の例
+> Example response
 
 ```json
 {
-  "date": "2015-10-29T23:33:20.166Z",
-  "id": "5631d2f48cad5fab2c6abe16682372bb",
-  "rules": [
-    {
+  "policy": {
+    "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+    "version": 0,
+    "date": "2016-09-13T00:08:30.661Z",
+    "rules": [{
+      "id": "my velocity limit",
+      "type": "velocityLimit",
       "action": {
         "type": "getApproval"
       },
       "condition": {
-        "amount": 100000000
-      },
-      "id": "com.bitgo.limit.tx",
-      "type": "transactionLimit"
-    },
-    {
-      "action": {
-        "type": "getApproval"
-      },
-      "condition": {
-        "addresses": [
-          "muDjD4YdVzi1vyqKtYVbAkLi2J84GkKj5h"
-        ]
-      },
-      "id": "com.bitgo.whitelist.address",
-      "type": "bitcoinAddressWhitelist"
-    }
-  ],
-  "version": 4
+        "amount": 10100000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    }]
+  }
 }
 ```
 
-### Response 応答
+### Response
 
-更新されたウォレットモデルオブジェクトを返します。
+Returns the updated Wallet Model object.
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-### Policy Object ポリシー オブジェクト
+### Policy Object
 
-統合されたウォレットポリシーはポリシールールオブジェクトの配列です。ポリシールールオブジェクトは種類、条件、そしてアクションを持ちます。
+The aggregate Wallet Policy is an array of Policy Rule Objects. Policy rule objects have a type, a condition, and an action.
 
-| フィールド     | 説明                      | 可能な値                                                                   |
-| --------- | ----------------------- | ---------------------------------------------------------------------- |
-| id        | ポリシーの id                | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                     |
-| type      | ポリシーの種類                 | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook" |
-| condition | このポリシーの条件               | *使用されるポリシー ルールの種類によって異なる*                                              |
-| action    | 条件が false の場合に実行するアクション | *ポリシー アクション オブジェクトを参照*                                                 |
+| Field     | Description                                    | Possible Values                                                           |
+| --------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| id        | the id of the policy                           | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                        |
+| type      | The type of policy                             | "transactionLimit", "velocityLimit", "bitcoinAddressWhitelist", "webhook" |
+| condition | The condition for this policy                  | *Depends on policy rule type used*                                        |
+| action    | The action to take when the condition is false | *See policy action object*                                                |
 
-### ポリシータイプ - dailyLimit
+### Policy Type - velocityLimit
 
-直近の24時間の間にビットコインの額が一定額を超過すると、dailyLimit (一日の限度) ポリシールールがトリガーされます。
+A velocityLimit policy rule will trigger when the amount of Bitcoin spent within the specified time window exceeds the specified amount.
 
-そのための条件には次があります:
+Conditions for this include:
 
-| フィールド  | 説明                       | 可能な値          |
-| ------ | ------------------------ | ------------- |
-| amount | 一日あたりの全てのトランザクションの可能な最大額 | Satoshis 単位の額 |
+| Field       | Description                                                                                                                                                         | Possible Values    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| amount      | The maximum allowed value of all transactions able to be sent during the time window                                                                                | Number of satoshis |
+| timeWindow  | The interval of time in which to sum transaction spend amounts and compare to the limit                                                                             | Number of seconds  |
+| groupTags   | List of tags specific operations, ":tag" is appropriate is most circumstances                                                                                       | String Array       |
+| excludeTags | Tags which define the group of wallet ids which, if spent to, will exclude that spend from the limit calculation. Also supports :tag to include current tag context | String Array       |
 
-### ポリシータイプ - transactionLimit
+### Policy Type - transactionLimit
 
-単一のトランザクションが指定された金額を超過した場合、transactionLimitポリシールールがトリガーされます。
+A transactionLimit policy rule will trigger when a single transaction exceeds the specified amount.<aside class="warning"> Transaction limits almost always want to have an amount of 0, which means every attempt to send from this wallet will trigger the policy. A transaction limit with an amount not equal to 0 provides very little security on its own, because an attacker can simply send an amount just under the policy rule's amount multiple times, without triggering the policy. </aside> 
 
-そのための条件には次があります:
+Conditions for this include:
 
-| フィールド  | 説明                       | 可能な値          |
-| ------ | ------------------------ | ------------- |
-| amount | ウォレットの全てのトランザクションの可能な最大額 | Satoshis 単位の額 |
+| Field  | Description                                                 | Possible Values    |
+| ------ | ----------------------------------------------------------- | ------------------ |
+| amount | The maximum allowed value of each transaction on the wallet | Number of satoshis |
 
-### ポリシータイプ - bitcoinAddressWhitelist
+### Policy Type - bitcoinAddressWhitelist
 
-有効な時、送信トランザクションの宛先ビットコインアドレス（お釣りでない）がホワイトリストにない場合、いつでもビットコインアドレスホワイトリストルールがトリガーされます。
+When active, a Bitcoin address whitelist rule will be triggered whenever any destination Bitcoin address (non-change) of an outgoing transaction is not in the white list.
 
-そのための条件には次があります:
+Conditions for this include:
 
-| フィールド  | 説明                      | 可能な値       |
-| ------ | ----------------------- | ---------- |
-| add    | ホワイトリストに追加するビットコインアドレス  | ビットコインアドレス |
-| remove | ホワイトリストから削除するビットコインアドレス | ビットコインアドレス |
+| Field  | Description                                      | Possible Values |
+| ------ | ------------------------------------------------ | --------------- |
+| add    | The bitcoin address to add to the whitelist      | Bitcoin address |
+| remove | The bitcoin address to remove from the whitelist | Bitcoin address |
 
-> Webhookコールバックの例(サーバに送信され、全ての非200応答はポリシールールアクションをトリガーします)
+> Example webhook callback (sent to your server, any non-200 response will trigger the policy rule action)
 
 ```json
 {
@@ -3433,41 +3527,41 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 }
 ```
 
-### Policy Type - webhook ポリシータイプ - webhook
+### Policy Type - webhook
 
-有効な時、webhookルールは条件で指定されたHTTPSエンドポイントへコールバックを発行します。 HTTPエンドポイントが非200(ステータス) 応答を返す場合、ルールはアクションをトリガーします。
+When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition. The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.
 
-このルールの条件は：
+Conditions for this rule:
 
-| フィールド | 説明                   | 可能な値    |
-| ----- | -------------------- | ------- |
-| url   | HTTPsエンドポイントにコールバックを | 発行するURL |
+| Field | Description                      | Possible Values |
+| ----- | -------------------------------- | --------------- |
+| url   | The URL to issue the callback to | HTTPs endpoint  |
 
-コールバックで送信されたBodyパラメーター：
+Body parameters sent in the callback:
 
-| フィールド         | 説明                                    | 可能な値                                                                         |
-| ------------- | ------------------------------------- | ---------------------------------------------------------------------------- |
-| walletId      | トランザクションの起点となっているウォレットのID             | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
-| ruleId        | トランザクションの起点となっているウォレットのID             | "webhookPolicy1"                                                             |
-| outputs       | OutputAddressとvalueを含むoutputオブジェクトの配列 | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
-| spendAmount   | 正味(net) のウォレットからの使用額、お釣りを差し引いて(手数料含む) | 10009060                                                                     |
-| approvalCount | これまでのウォレットでのユーザーによる承認の数               |                                                                              |
-| unsignedRawTx | 半分署名の未処理トランザクションの 16 進数の文字列           | "0100000001... 0794c5382a38700000000"                                        |
-| sequenceId    | トランザクション作成の際、送信者によって提供されるカスタムシーケンスID  | "custom1"                                                                    |
+| Field         | Description                                                               | Possible Values                                                              |
+| ------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| walletId      | The ID of the wallet from which the transaction is originating            | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
+| ruleId        | The ID of the wallet from which the transaction is originating            | "webhookPolicy1"                                                             |
+| outputs       | Array of output objects containing outputAddress and value                | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
+| spendAmount   | The net spend amount from the wallet, less change (includes fees)         | 10009060                                                                     |
+| approvalCount | The number of user approvals on the wallet thus far                       |                                                                              |
+| unsignedRawTx | The hex string of the half-signed raw transaction                         | "0100000001... 0794c5382a38700000000"                                        |
+| sequenceId    | The custom sequence ID provided by the sender when creating a transaction | "custom1"                                                                    |
 
-### Policy Action Object ポリシーアクションオブジェクト
+### Policy Action Object
 
-アクションとは、トランザクションによって条件が満たされない場合に実行するアクションです。
+An action is the action to take when the condition is not met by a transaction.
 
-| フィールド        | 説明                                                  | 可能な値                            |
-| ------------ | --------------------------------------------------- | ------------------------------- |
-| type         | アクションの種類                                            | "deny", "getApproval", "getOTP" |
-| actionParams | Phone/otpType/durationを含むJSONオブジェクト                 | *以下を参照*                         |
-| otpType      | コードがどのように送られるべきかを決定する( type === "getOTP"に設定する必要がある) | "sms"                           |
-| phone        | コードを受信する電話番号(type === "getOTP"に設定する必要がある)           | "541-754-3010", "+498963648018" |
-| duration     | OTPが有効であるべき時間（秒数）（type === "getOTP"に設定する必要がある）      | 3600                            |
+| Field        | Description                                                                  | Possible Values                 |
+| ------------ | ---------------------------------------------------------------------------- | ------------------------------- |
+| type         | The type of action                                                           | "deny", "getApproval", "getOTP" |
+| actionParams | JSON object containing phone/otpType/duration                                | *See below*                     |
+| otpType      | Determines how the code should be sent (must set type === "getOTP")          | "sms"                           |
+| phone        | The phone number that will receive the code (must set type === "getOTP")     | "541-754-3010", "+498963648018" |
+| duration     | The time in seconds the OTP should be valid for (must set type === "getOTP") | 3600                            |
 
-## Remove Policy Rule ポリシールールを削除する
+## Remove Policy Rule
 
 ```shell
 RULEID='test1'
@@ -3491,7 +3585,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -3502,27 +3596,31 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-指定されたidを持つポリシールールを削除する。ウォレットに複数の管理者がいる場合は、セカンダリー承認を必要とする場合があります。
+Removes a policy rule with the id specified. This may require a secondary approval if there is more than 1 administrator on the wallet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
-`DELETE /api/v1/wallet/:WALLETID/policy/rule`<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
+`DELETE /api/v1/wallet/:WALLETID/policy/rule`
 
-### BODY Parameters BODYパラメーター
+<aside class="info">
+This operation requires the session to be unlocked using the Unlock API.
+</aside>
 
-| パラメーター | 種類  | 必須か | 説明               |
-| ------ | --- | --- | ---------------- |
-| id     | 文字列 | YES | 削除するポリシー ルールの id |
+### BODY Parameters
 
-### Response 応答
+| Parameter | Type   | Required | Description                         |
+| --------- | ------ | -------- | ----------------------------------- |
+| id        | string | YES      | the id of the policy rule to remove |
 
-更新されたウォレットモデルオブジェクトを返します。
+### Response
 
-# Pending Approvals　保留中の承認
+Returns the updated Wallet Model object.
 
-## 保留中の承認の一覧を表示する
+# Pending Approvals
 
-ウォレットidまたは提供することによりウォレットまたはエンタープライズの保留中の承認の一覧を表示します。
+## List Pending Approvals
+
+List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.
 
 ```shell
 curl -X GET \
@@ -3541,7 +3639,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -3562,8 +3660,8 @@ bitgo.pendingapprovals().list({
                        "condition": {
                            "amount": 300000000
                        },
-                       "id": "com.bitgo.limit.day",
-                       "type": "dailyLimit"
+                       "id": "com.bitgo.limit.velocity.day",
+                       "type": "velocityLimit"
                    }
                },
                "type": "policyRuleRequest"
@@ -3574,24 +3672,24 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/pendingapprovals`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター     | 種類         | 必須か | 説明               |
-| ---------- | ---------- | --- | ---------------- |
-| walletId   | アドレス (文字列) | NO  | ウォレットのベースアドレス    |
-| enterprise | 文字列        | NO  | エンタープライズのパブリックID |
+| Parameter  | Type             | Required | Description                     |
+| ---------- | ---------------- | -------- | ------------------------------- |
+| walletId   | address (string) | NO       | The base address of the wallet  |
+| enterprise | string           | NO       | The public ID of the enterprise |
 
-### Response 応答
+### Response
 
-保留中の承認のリストを返します。
+Returns a list of pending approvals.
 
-## Update Pending Approval 保留中の承認を更新する
+## Update Pending Approval
 
-保留中の承認の状態を'approved'または'rejected'に更新します。
+Update the state of a pending approval to either 'approved' or 'rejected'.
 
 ```shell
 curl -X PUT \
@@ -3617,7 +3715,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -3636,8 +3734,8 @@ bitgo.pendingapprovals().list({
                "condition": {
                    "amount": 300000000
                },
-               "id": "com.bitgo.limit.day",
-               "type": "dailyLimit"
+               "id": "com.bitgo.limit.velocity.day",
+               "type": "velocityLimit"
            }
        },
        "type": "policyRuleRequest"
@@ -3652,25 +3750,25 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `PUT /api/v1/pendingapprovals/:pendingApprovalId`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-| パラメーター | 種類  | 必須か | 説明                                   |
-| ------ | --- | --- | ------------------------------------ |
-| state  | 文字列 | YES | 保留中の承認の新たな状態： 'approved'、 'rejected' |
+| Parameter | Type   | Required | Description                                                   |
+| --------- | ------ | -------- | ------------------------------------------------------------- |
+| state     | string | YES      | the new state of the pending approval: 'approved', 'rejected' |
 
-### Response 応答
+### Response
 
-新しい状態を持った更新された保留中の承認を返します。
+Returns the updated pending approvals with the new state.
 
-# Address Labels アドレスのラベル
+# Address Labels
 
-ラベルで、人間が読むことが出来るアドレスの記録（ノート）をつけることが可能です。 全ての有効なアドレスにラベルを追加することが出来ます。アドレスはウォレットがコントロールしているものである必要はありません。 アドレスラベルはウォレットラベルと異なりますが、ウォレットに紐づいているので、他のユーザーとウォレットを共有すると、彼らもラベルを見ることができます。
+Labels allow you to keep track of addresses with human readable notes. You can add a label to any valid address; the address does not need to be one controlled by the wallet. Address labels are distinct from wallet labels, but they are tied to a wallet so that when you share the wallet with other users they will be also able to view the labels.
 
-## List Labels For All Wallets 全てのウォレットのラベルの一覧を表示する
+## List Labels For All Wallets
 
 ```shell
 curl -X GET \
@@ -3688,13 +3786,13 @@ bitgo.labels({}, function callback(err, labels) {
 });
 ```
 
-そのユーザーのウォレットの一覧を取得します
+Get the list of labels for the user
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/labels`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -3713,24 +3811,24 @@ bitgo.labels({}, function callback(err, labels) {
 }
 ```
 
-### Response 応答
+### Response
 
-ラベルモデルオブジェクトの配列を返します。
+Returns an array of Label Model objects.
 
-| フィールド    | 説明                     |
-| -------- | ---------------------- |
-| walletId | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ラベルされているビットコインアドレス     |
-| label    | アドレスラベル                |
+| Field    | Description                                         |
+| -------- | --------------------------------------------------- |
+| walletId | id of the wallet (also the first receiving address) |
+| address  | the bitcoin address being labeled                   |
+| label    | the address label                                   |
 
-### Errors　エラー
+### Errors
 
-| Response 応答      | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
 
-## List Labels For Specific Wallet 特定のウォレットのラベルの一覧を表示する
+## List Labels For Specific Wallet
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3760,13 +3858,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-そのウォレットのラベルの一覧を取得します
+Get the list of labels for the wallet
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/labels/:walletId`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -3780,25 +3878,25 @@ wallets.get(data, function callback(err, wallet) {
 }
 ```
 
-### Response 応答
+### Response
 
-ラベルモデルオブジェクトの配列を返します。
+Returns an array of Label Model objects.
 
-| フィールド    | 説明                     |
-| -------- | ---------------------- |
-| walletId | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ラベルされているビットコインアドレス     |
-| label    | アドレスラベル                |
+| Field    | Description                                         |
+| -------- | --------------------------------------------------- |
+| walletId | id of the wallet (also the first receiving address) |
+| address  | the bitcoin address being labeled                   |
+| label    | the address label                                   |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
-| 404 Not Found    | ウォレットが見つけられなかった       |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
+| 404 Not Found    | The wallet could not be found.                    |
 
-## Set Label ラベルを設定する
+## Set Label
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3831,13 +3929,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-特定のアドレスにラベルを設定し、特定のウォレットに関連付けます。 ラベルの長さは最大で250文字に制限されています。 ウォレットのラベルとして予約されているため、ウォレットの最初の受取アドレスにラベルは設定できません。
+Set a label on a specific address and associate it with a specific wallet. Labels are limited to 250 characters in length. Labels cannot be set on a wallet's first receiving address because it reserved for the wallet's label.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `PUT /api/v1/labels/:walletId/:address`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -3847,38 +3945,38 @@ wallets.get(data, function callback(err, wallet) {
 }
 ```
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| 名        | 種類              | 必須か | 説明                     |
-| -------- | --------------- | --- | ---------------------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ビットコインアドレス(文字列) | YES | ラベルされているビットコインアドレス     |
+| Name     | Type                     | Required | Description                                         |
+| -------- | ------------------------ | -------- | --------------------------------------------------- |
+| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address) |
+| address  | bitcoin address (string) | YES      | the bitcoin address being labeled                   |
 
-### PUT Parameters PUT パラメーター
+### PUT Parameters
 
-| 名     | 種類  | 必須か | 説明      |
-| ----- | --- | --- | ------- |
-| label | 文字列 | YES | アドレスラベル |
+| Name  | Type   | Required | Description       |
+| ----- | ------ | -------- | ----------------- |
+| label | string | YES      | the address label |
 
-### Response 応答
+### Response
 
-ラベルモデルオブジェクトを返します。
+Returns a Label Model object.
 
-| フィールド    | 説明                     |
-| -------- | ---------------------- |
-| walletId | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ラベルされているビットコインアドレス     |
-| label    | アドレスラベル                |
+| Field    | Description                                         |
+| -------- | --------------------------------------------------- |
+| walletId | id of the wallet (also the first receiving address) |
+| address  | the bitcoin address being labeled                   |
+| label    | the address label                                   |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
-| 404 Not Found    | ウォレットが見つけられなかった       |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
+| 404 Not Found    | The wallet could not be found.                    |
 
-## Delete Label ラベルを削除する
+## Delete Label
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3897,13 +3995,13 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 });
 ```
 
-特定のアドレスやウォレットからラベルを削除します。
+Delete a label from a specific address and wallet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `DELETE /api/v1/labels/:walletId/:address`
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -3913,156 +4011,55 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 }
 ```
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| 名        | 種類              | 必須か | 説明                     |
-| -------- | --------------- | --- | ---------------------- |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ビットコインアドレス(文字列) | YES | ラベルされているビットコインアドレス     |
+| Name     | Type                     | Required | Description                                         |
+| -------- | ------------------------ | -------- | --------------------------------------------------- |
+| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address) |
+| address  | bitcoin address (string) | YES      | the bitcoin address being labeled                   |
 
-### Response 応答
+### Response
 
-削除されたラベルのラベルモデルオブジェクトを返します。
+Returns a Label Model object of the label that was deleted.
 
-| フィールド    | 説明                     |
-| -------- | ---------------------- |
-| walletId | ウォレットのid(同時に最初の受信アドレス) |
-| address  | ラベルされているビットコインアドレス     |
-| label    | アドレスラベル                |
+| Field    | Description                                         |
+| -------- | --------------------------------------------------- |
+| walletId | id of the wallet (also the first receiving address) |
+| address  | the bitcoin address being labeled                   |
+| label    | the address label                                   |
 
-### Errors　エラー
+### Errors
 
-| 応答               | 説明                    |
-| ---------------- | --------------------- |
-| 400 Bad Request  | 要求パラメーターが見つからないか正しくない |
-| 401 Unauthorized | 認証パラメーターが一致しない        |
-| 404 Not Found    | ウォレットまたはラベルが見つけられなかった |
+| Response         | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 400 Bad Request  | The request parameters were missing or incorrect. |
+| 401 Unauthorized | The authentication parameters did not match.      |
+| 404 Not Found    | The wallet or label could not be found.           |
 
-# Tag タグ
+# Tags
 
-タグは、法人顧客向けの高度なポリシー機能です。
+Tags are an advanced policy feature for enterprise clients.
 
-## Create a tag タグを作成します
+## Create a tag
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/tag`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-タグは名前を持つ必要があり、単一のユーザー、ウォレット、またはエンタープライズを持たなければなりません。
+The tag must have a name and exactly one of either a user, wallet, or enterprise.
 
-<table>
-  <tr>
-    <th>
-      パラメーター
-    </th>
-    
-    <th>
-      種類
-    </th>
-    
-    <th>
-      必須か
-    </th>
-    
-    <th>
-      説明
-    </th>
-    
-    <th>
-      可能な値
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      name
-    </td>
-    
-    <td>
-      文字列
-    </td>
-    
-    <td>
-      YES
-    </td>
-    
-    <td>
-      タグの名前
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      user
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      タグを所有するユーザーのユーザーIDで、必ずタグを追加するユーザーのIDでなければならない
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      wallet
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      タグを所有するウォレットのビットコインアドレスでなくid
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      enterprise
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      NO
-    </td>
-    
-    <td>
-      タグを所有するエンタープライズのid
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-</table>
+| Parameter  | Type   | Required | Description                                                                                    | Possible Values |
+| ---------- | ------ | -------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| name       | string | YES      | The name of the tag.                                                                           |                 |
+| user       | id     | NO       | The user id of the user who owns the tag, which can only be the id of the user adding the tag. |                 |
+| wallet     | id     | NO       | The id, not bitcoin address, of the wallet to own the tag.                                     |                 |
+| enterprise | id     | NO       | The id of the enterprise to own the tag.                                                       |                 |
 
-### Response 応答
+### Response
 
-タグを返します。
+Returns the tag.
 
 ```json
 {
@@ -4072,70 +4069,29 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 }
 ```
 
-### Errors　エラー
+### Errors
 
-| 応答              | 説明                    |
-| --------------- | --------------------- |
-| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
+| Response        | Description                                       |
+| --------------- | ------------------------------------------------- |
+| 400 Bad Request | The request parameters were missing or incorrect. |
 
-## Add a tag to a wallet ウォレットにタグを追加する
+## Add a tag to a wallet
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/wallet/:wallet/tag`
 
-### BODY Parameters BODYパラメーター
+### BODY Parameters
 
-ウォレットに追加しているタグのidを指定するする必要があります。他のパラメーターは不要です。
+You must specify the id of the tag you are adding to the wallet, and no other parameters are required.
 
-<table>
-  <tr>
-    <th>
-      パラメーター
-    </th>
-    
-    <th>
-      種類
-    </th>
-    
-    <th>
-      必須か
-    </th>
-    
-    <th>
-      説明
-    </th>
-    
-    <th>
-      可能な値
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      tag
-    </td>
-    
-    <td>
-      id
-    </td>
-    
-    <td>
-      YES
-    </td>
-    
-    <td>
-      タグのid。
-    </td>
-    
-    <td>
-    </td>
-  </tr>
-</table>
+| Parameter | Type | Required | Description        | Possible Values |
+| --------- | ---- | -------- | ------------------ | --------------- |
+| tag       | id   | YES      | The id of the tag. |                 |
 
-### Response 応答
+### Response
 
-ウォレット、タグ、そして影響を受けるwallettxsの数を返します。
+Returns the wallet, tag, and number of wallettxs affected.
 
 ```json
 {
@@ -4145,18 +4101,17 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
 }
 ```
 
-### Errors　エラー
+### Errors
 
-| 応答            | 説明          |
-| ------------- | ----------- |
-| 404 Not Found | タグが見つからなかった |
+| Response      | Description           |
+| ------------- | --------------------- |
+| 404 Not Found | The tag was not found |
 
-# Webhook Notifications Webhook 通知
+# Webhook Notifications
 
-> Webhookコールバックのトランザクションの例
+> Example transaction Webhook callback
 
     POST http://your.server.com/webhook
-    
     {
       "type": "transaction",
       "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
@@ -4164,7 +4119,7 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     }
     
 
-> Webhook コールバック 保留中の承認 例
+> Example pending approval Webhook callback
 
     POST http://your.server.com/webhook
     {
@@ -4175,37 +4130,37 @@ wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (e
     }
     
 
-BitGoからプログラマティックにコールバックを受け取るために、Webhookを設定することができます。 ウォレット(トランザクションの場合) またはユーザー（ブロック通知で）に添付することができます。 受信トランザクション等指定されたイベントが発生した時、Webhook通知がトリガーされます。
+Webhooks may be setup up to programmatically receive callbacks from BitGo. These may be attached to wallets (in the case of transactions), or to a user (for block notifications). Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
 
-BitGoサーバはJSONペイロードと定義された、POST httpリクエストを行い、`HTTP 200 OK`を期待します。 正常な応答が受信されない場合、BitGo は各再試行間隔を増やし webhook を再試行しようとします。
+BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a `HTTP 200 OK`. If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.
 
-開発者は一時的なネットワークエラーの場合でも、あるいは不適切な確認のため同じwebhookを二度受信した場合でもアプリケーションが正常に動くことを確保するべきです。
+Developers should take care to ensure that their application succeeds even in the cases of transient network error, or if receive the same webhook twice due to an improper acknowledgement.
 
-### Request Schema スキーマをリクエストする
+### Request Schema
 
-Webhook URLは、次のHTTPのボディ内のJSONエンコードされたフィールドで呼び出されます。
+The Webhook URL will be called with the following JSON-encoded fields in the HTTP body.
 
-| フィールド             | 説明                                                                                                   |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| type              | webhookの種類： 'transaction', 'transactionExpire', 'transactionRemoved', 'block', そして 'pendingapproval' |
-| walletId          | Webhookイベントに関連付けられたウォレットのID、ウォレットのwebhookであっても                                                       |
-| hash              | トランザクションwebhookの場合、トランザクションID                                                                        |
-| pendingApprovalId | 保留中の承認webhookの場合、保留中の承認ID                                                                            |
-| state             | 保留中の承認のwebhookの場合、保留中の承認の状態(pending, approved, またはrejected)                                          |
+| Field             | Description                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| type              | type of Webhook: 'transaction', 'transactionExpire', 'transactionRemoved', 'block', and 'pendingapproval'. |
+| walletId          | ID of the wallet associated with the webhook event, if this is a wallet webhook.                           |
+| hash              | transaction ID, if this is a transaction webhook                                                           |
+| pendingApprovalId | pending approval ID, if this is a pending approval webhook                                                 |
+| state             | the state of the pending approval (pending, approved, or rejected), if this is a pending approval webhook  |
 
-### Webhook Types Webhookの種類
+### Webhook Types
 
-BitGoでは、現在積極的にwebhookに取り組んでいます。もっと多くの種類をリクエストされたい場合は、弊社までご連絡ください。
+BitGo is currently actively working on webhooks. Please get in touch with us to request more webhook types.
 
-| 種類                 | 説明                                            |
-| ------------------ | --------------------------------------------- |
-| transaction        | トランザクションが、ウォレットの任意の受信アドレスで既読になった/確認された時に有効になる |
-| transactionRemoved | トランザクションがユーザーのウォレットから削除された時に有効になる             |
-| transactionExpire  | トランザクションの有効期限が切れる時に有効になる                      |
-| pendingapproval    | ユーザーのウォレットに関係する保留中の承認が、作成、承認、拒否された時に有効になる     |
-| block              | ビットコインネットワークで新しいブロックが見られた時に有効になる              |
+| Type               | Description                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| transaction        | Activates when a transaction is seen/confirmed on any receive address of a wallet                 |
+| transactionRemoved | Activates when a transaction is removed from a user's wallet                                      |
+| transactionExpire  | Activates when a transaction is about to expire                                                   |
+| pendingapproval    | Activates when a pending approval pertaining to a user's wallet is created, approved, or rejected |
+| block              | Activates when a new block is seen on the Bitcoin network                                         |
 
-## List Wallet Webhooks ウォレットwebhookの一覧を取得する 
+## List Wallet Webhooks
 
 ```shell
 curl -X GET \
@@ -4222,7 +4177,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 [
@@ -4240,23 +4195,23 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 ]
 ```
 
-ウォレットで設定されているwehookの一覧を取得します。 現在、ウォレットに添付できるwebhookの種類はtransactionとpendingapprovalの通知のみです。
+Gets list of webhooks set up on the wallet. Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/wallet/:walletId/webhooks`
 
-### Response 応答
+### Response
 
-Webhookオブジェクトの配列
+An array of Webhook objects
 
-| フィールド    | 説明                         |
-| -------- | -------------------------- |
-| walletId | ウォレットのID                   |
-| type     | Webhookの種類、例えば transaction |
-| url      | コールバック要求のhttp/https url    |
+| Field    | Description                          |
+| -------- | ------------------------------------ |
+| walletId | id of the wallet                     |
+| type     | type of Webhook, e.g. transaction    |
+| url      | http/https url for callback requests |
 
-## Add Wallet Webhooks ウォレット Webhookを追加する
+## Add Wallet Webhooks
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4277,7 +4232,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -4287,31 +4242,31 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 ウォレット毎に各種類ごとに10 webhook上限があります。
+Adds a Webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. There is a limit of 10 Webhooks of each type per wallet.
 
-2種類のウォレットwebhookが利用可能となっています： 1. ウォレット上の任意のトランザクションについて、トランザクションwebhookが発射します。 2。 送信トランザクションがウォレットのポリシーをトリガーした時、保留中の承認 webhookが発射します。
+There are 2 types of wallet webhooks available: 1. Transaction webhooks will fire on any transaction on the wallet. 2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/wallet/:walletId/webhooks`
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター           | 種類      | 必須か | 説明                                                                                                        |
-| ---------------- | ------- | --- | --------------------------------------------------------------------------------------------------------- |
-| type             | 文字列     | YES | Webhookの種類、例えば transaction や pendingapproval                                                              |
-| url              | 文字列     | YES | コールバック要求の有効なhttp/https URL                                                                                |
-| numConfirmations | integer | NO  | transaction webhookをトリガーする前の前の確認の数。 0または示されていない場合、要求はコールバックエンドポイントに送られ、トランザクションがまず見られた時、そして確認された時呼び出されます。 |
+| Parameter        | Type    | Required | Description                                                                                                                                                                                                        |
+| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type             | string  | YES      | type of Webhook, e.g. transaction or pendingapproval                                                                                                                                                               |
+| url              | string  | YES      | valid http/https url for callback requests                                                                                                                                                                         |
+| numConfirmations | integer | NO       | number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed. |
 
-### Response 応答
+### Response
 
-| フィールド    | 説明                         |
-| -------- | -------------------------- |
-| walletId | ウォレットのID                   |
-| type     | Webhookの種類、例えば transaction |
-| url      | コールバック要求のhttp/https url    |
+| Field    | Description                          |
+| -------- | ------------------------------------ |
+| walletId | id of the wallet                     |
+| type     | type of Webhook, e.g. transaction    |
+| url      | http/https url for callback requests |
 
-## Remove Wallet Webhooks ウォレット webhookを削除する
+## Remove Wallet Webhooks
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4332,7 +4287,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -4340,28 +4295,28 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。
+Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `DELETE /api/v1/wallet/:walletId/webhooks`
 
-### パラメーター
+### Parameters
 
-| パラメーター | 種類  | 必須か | 説明                              |
-| ------ | --- | --- | ------------------------------- |
-| type   | 文字列 | YES | Webhookの種類、例えば transaction      |
-| url    | 文字列 | YES | コールバック要求を行う先の、有効なhttp/https URL |
+| Parameter | Type   | Required | Description                                              |
+| --------- | ------ | -------- | -------------------------------------------------------- |
+| type      | string | YES      | type of Webhook, e.g. transaction                        |
+| url       | string | YES      | valid http/https url for callback requests to be made at |
 
-### Response 応答
+### Response
 
-| フィールド    | 説明                         |
-| -------- | -------------------------- |
-| walletId | ウォレットのID                   |
-| type     | Webhookの種類、例えば transaction |
-| url      | コールバック要求のhttp/https url    |
+| Field    | Description                          |
+| -------- | ------------------------------------ |
+| walletId | id of the wallet                     |
+| type     | type of Webhook, e.g. transaction    |
+| url      | http/https url for callback requests |
 
-## List User Webhooks ユーザー Webhookの一覧を取得する
+## List User Webhooks
 
 ```shell
 curl -X GET \
@@ -4376,7 +4331,7 @@ bitgo.listWebhooks({}, function callback(err, result) {
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 [
@@ -4393,23 +4348,23 @@ bitgo.listWebhooks({}, function callback(err, result) {
 ]
 ```
 
-ユーザーに添付されるwebhookの一覧を取得します。現在、ユーザーに添付できるwebhookの種類はブロック通知だけです。
+Gets list of webhooks attached to the user. Currently, the only type of webhook that can be attached to a user is a block notification.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/webhooks`
 
-### Response 応答
+### Response
 
-Webhookオブジェクトの配列
+An array of Webhook objects
 
-| フィールド | 説明                                                    |
-| ----- | ----------------------------------------------------- |
-| type  | Webhookの種類、例えばブロック                                    |
-| coin  | 文字列 | No |ネットワーク トークン、例えば「ビットコイン」や「eth」(デフォルトでビットコイン) |
-| url   | コールバック要求のhttp/https url                               |
+| Field | Description                                                                   |
+| ----- | ----------------------------------------------------------------------------- |
+| type  | type of Webhook, e.g. block                                                   |
+| coin  | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin) |
+| url   | http/https url for callback requests                                          |
 
-## Add User Webhooks ユーザー Webhook を追加する
+## Add User Webhooks
 
 ```shell
 URL='https://303fe960.ngrok.com'
@@ -4428,7 +4383,7 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -4438,28 +4393,28 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 }
 ```
 
-イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 Webhookの記録はユーザーアカウントに添付されます。
+Adds a webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. The webhook record is attached to the user account.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `POST /api/v1/webhooks`
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター | 種類  | 必須か | 説明                                          |
-| ------ | --- | --- | ------------------------------------------- |
-| type   | 文字列 | YES | Webhookの種類、例えばブロック                          |
-| coin   | 文字列 | NO  | ネットワーク トークン、例えば「ビットコイン」や「eth」(デフォルトでビットコイン) |
-| url    | 文字列 | YES | コールバック要求の有効なhttp/https URL                  |
+| Parameter | Type   | Required | Description                                                     |
+| --------- | ------ | -------- | --------------------------------------------------------------- |
+| type      | string | YES      | type of Webhook, e.g. block                                     |
+| coin      | string | NO       | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin) |
+| url       | string | YES      | valid http/https url for callback requests                      |
 
-### Response 応答
+### Response
 
-| フィールド | 説明                      |
-| ----- | ----------------------- |
-| type  | Webhookの種類、例えばブロック      |
-| url   | コールバック要求のhttp/https url |
+| Field | Description                          |
+| ----- | ------------------------------------ |
+| type  | type of Webhook, e.g. block          |
+| url   | http/https url for callback requests |
 
-## ユーザー webhook を削除する
+## Remove User Webhooks
 
 ```shell
 URL='http://www.yoursite.com/partner/webhooks'
@@ -4477,7 +4432,7 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 });
 ```
 
-> 応答の例
+> Example Response
 
 ```json
 {
@@ -4485,31 +4440,31 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 }
 ```
 
-Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。
+Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
 
-### HTTP Request HTTPリクエスト 
+### HTTP Request
 
 `DELETE /api/v1/webhooks`
 
-### Parameters パラメーター
+### Parameters
 
-| パラメーター | 種類  | 必須か | 説明                              |
-| ------ | --- | --- | ------------------------------- |
-| type   | 文字列 | YES | webhookの種類、例えば transaction      |
-| url    | 文字列 | YES | コールバック要求を行う先の、有効なhttp/https URL |
+| Parameter | Type   | Required | Description                                              |
+| --------- | ------ | -------- | -------------------------------------------------------- |
+| type      | string | YES      | type of Webhook, e.g. transaction                        |
+| url       | string | YES      | valid http/https url for callback requests to be made at |
 
-### Response 応答
+### Response
 
-| フィールド | 説明                         |
-| ----- | -------------------------- |
-| type  | webhookの種類、例えば transaction |
-| url   | コールバック要求のhttp/https url    |
+| Field | Description                          |
+| ----- | ------------------------------------ |
+| type  | type of Webhook, e.g. transaction    |
+| url   | http/https url for callback requests |
 
-# Utilities 各ユーティリティ
+# Utilities
 
-このセクションでは、BitGo APIの一部として提供されている有用なユーティリティサービスについて説明します。
+This section describes utility services provided as part of the BitGo API.
 
-## Decrypt 復号化
+## Decrypt
 
 ```javascript
 var encryptedString = '{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}';
@@ -4518,7 +4473,7 @@ var decryptedString = bitgo.decrypt({ password: "password", input: encryptedStri
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express)
+Available only as a local method (BitGo Express)
 
 PASSWORD='password'
 INPUT='{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}'
@@ -4531,9 +4486,9 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/decrypt
 { "decrypted" : "this is a secret" }
 ```
 
-BitGo APIから暗号化されたblobを復号化するクライアント側関数
+Client-side function to decrypt an encrypted blob from the BitGo API.
 
-## Encrypt 暗号化
+## Encrypt
 
 ```javascript
 var encryptedString = bitgo.encrypt({ password: "password", input: "this is a secret" });
@@ -4541,7 +4496,7 @@ var encryptedString = bitgo.encrypt({ password: "password", input: "this is a se
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 
 PASSWORD='password'
 INPUT='this is a secret'
@@ -4554,9 +4509,9 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/encrypt
 { "encrypted" : "{\"iv\":\"U4uRz85ytmlCeTe2P3iOmg==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"/tRnUh9LUyI7L5e5LPqpvnPR7RD1CdUi\"}" }
 ```
 
-文字列を暗号化するクライアント側関数です。BitGoで保管される全てのデータは、このAPIを用いて暗号化されます。
+Client-side function to encrypt a string. All data stored with BitGo is encrypted using this API.
 
-## Estimate Transaction Fees トランザクションフィーを見積もる
+## Estimate Transaction Fees
 
 ```javascript
 bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
@@ -4565,16 +4520,16 @@ bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
 ```
 
 ```shell
-curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks=6
+curl -k https://www.bitgo.com/api/v1/tx/fee?numBlocks=6
 ```
 
-目標となるブロックの数内でトランザクションを確認するための、キロバイトあたりの推奨手数料のレートを返します。 トランザクションの作成に使用できます。 注意：見積もりアルゴリズムは最低2ブロック先まで正確なものです。
+Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions. Note: The estimation algorithm is only accurate in the production environment (www.bitgo.com) and for a minimum of 2 blocks ahead.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/tx/fee?numBlocks=6`
 
-> 応答の例
+> Example response
 
 ```json
 { "feePerKb": 21949,
@@ -4596,16 +4551,16 @@ curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks=6
 }
 ```
 
-### Response 応答
+### Response
 
-| フィールド      | 説明                                                 |
-| ---------- | -------------------------------------------------- |
-| confidence | BitGoによって使用される見積もり額の信頼値。この値が85より小さい場合見積もりを使用しないこと。 |
-| feePerKb   | 使用するキロバイト当たりの（Satoshiを単位とする）手数料                    |
-| multiplier | BitGoによって、feePerKbを計算するために使用される乗数。情報目的のみ、使用しないこと   |
-| numBlocks  | 見積もりにおいてリクエストされたターゲットのブロック数                        |
+| Field      | Description                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| confidence | confidence of the estimation as used by BitGo. do not use estimation if this value is less than 85. |
+| feePerKb   | fee (in satoshis) per kilobyte to use                                                               |
+| multiplier | multiplier amount used by BitGo to compute the feePerKb. informational only - do not use.           |
+| numBlocks  | the target number of blocks requested for the estimate                                              |
 
-## Market Price Data 市場価格データ
+## Market Price Data
 
 ```javascript
 bitgo.markets().latest({}, function callback(err, market) {
@@ -4620,13 +4575,13 @@ bitgo.markets().latest({}, function callback(err, market) {
 curl -k https://test.bitgo.com/api/v1/market/latest
 ```
 
-現在の市場についての情報を得ます。
+Get information about the current market
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/market/latest`
 
-> マーケットモデルの応答の例
+> Example Market Model response
 
 ```json
 {
@@ -4670,41 +4625,41 @@ curl -k https://test.bitgo.com/api/v1/market/latest
 }
 ```
 
-### Response 応答
+### Response
 
-マーケットモデルオブジェクトを返します。全ての価格はユーザーが設定した通貨の単位建てです。
+Returns a Market Model object. All prices are denominated in the user's set currency.
 
-| フィールド       | 説明                                    |
-| ----------- | ------------------------------------- |
-| last        | 最新の市場価格                               |
-| bid         | 最も高い現在の入札価格                           |
-| ask         | 最も低い現在の売り呼び値                          |
-| volume      | 取引されたビットコインの24時間の出来高                  |
-| high        | 今日の市場価格の最高額                           |
-| low         | 今日の市場価格の最低額                           |
-| monthlyHigh | 今月の市場価格の最高額                           |
-| monthlyLow  | 今月の市場価格の最低額                           |
-| marketcap   | ビットコインの時価総額                           |
-| updateTime  | このデータが更新された日時                         |
-| yesterday   | 以前表示されたフィールドを含むオブジェクト、ただし昨日の市場データについて |
+| Field       | Description                                                                   |
+| ----------- | ----------------------------------------------------------------------------- |
+| last        | Latest market price                                                           |
+| bid         | Highest current bid price                                                     |
+| ask         | Lowest current ask price                                                      |
+| volume      | 24 hour volume of bitcoins exchanged                                          |
+| high        | Highest market price today                                                    |
+| low         | Lowest market price today                                                     |
+| monthlyHigh | Highest market price this month                                               |
+| monthlyLow  | Lowest market price this month                                                |
+| marketcap   | Bitcoin market cap                                                            |
+| updateTime  | Datetime of when this data was updated                                        |
+| yesterday   | An object containing the prior listed fields, but for yesterday's market data |
 
-## マルウェアアドレスのリスト Malware Address List
+## Malware Address List
 
 ```shell
 curl https://www.bitgo.com/api/v1/malware/bitcoin
 ```
 
-BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 さもなくばあなたの顧客が感染していて引出しをリクエストした場合、間違って「悪い」トランザクションを提出してしまう可能性があります。
+BitGo maintains a list of addresses known to be used by address-swapping malware. BitGo will refuse to co-sign transactions to these addresses. This API provides the list of addresses which are currently blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your customers is infected and requests a withdrawal.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/malware/bitcoin`
 
-> 応答の例
+> Example response
 
 ```json
 {
-  "readme": "これはBitGoが知る、ビットコインを盗むマルウェアに紐付いたアドレスのリストです。 BitGoがそれらのアドレスを宛先とするトランザクションに共同署名することはありません。 自身の「悪い」アドレスのリストを更新するため、定期的にこのAPIを照会することを推奨します", [
+  "readme": "This is a list of addresses known by BitGo to be tied to bitcoin-stealing malware. BitGo will not co-sign transactions going to these addresses. It is recommended to periodically query this API to update your own internal list of bad addresses, in order to prevent transaction failures.",
   "addresses": [
     {
       "address": "19ZM2pjq6U4jVb283GZkCPNukjeyb2YZ2u"
@@ -4716,21 +4671,21 @@ BitGoはアドレススワッピングマルウェアによって使用されて
 }
 ```
 
-### Response 応答
+### Response
 
-| フィールド   | 説明                         |
-| ------- | -------------------------- |
-| readme  | 人間が読めるこのリストの説明             |
-| address | { address: xxx } オブジェクトの一覧 |
+| Field     | Description                             |
+| --------- | --------------------------------------- |
+| readme    | Human-readable explanation of this list |
+| addresses | List of { address: xxx } objects        |
 
-## Verify Bitcoin Address ビットコインアドレスを確認する
+## Verify Bitcoin Address
 
 ```javascript
 var isValid = bitgo.verifyAddress({ address: "1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F" });
 ```
 
 ```shell
-ローカル メソッドとしてのみ使用できます (BitGo Express) 
+Available only as a local method (BitGo Express)
 
 curl -X POST \
 -H "Content-Type: application/json" \
@@ -4738,29 +4693,29 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/verifyaddress
 ```
 
-与えられた文字列が有効なビットコインアドレスであることを確認するクライアント側関数 v1 アドレス (例: "1...") とP2SH アドレス (例: "3...")の両方がサポートされています。
+Client-side function to verify that a given string is a valid Bitcoin Address. Supports both v1 addresses (e.g. "1...") and P2SH addresses (e.g. "3...").
 
-アドレスが有効な場合は true を返します。
+Returns true if the address is valid.
 
-## BitGo Client Version BitGoクライアントバージョン
+## BitGo Client Version
 
 ```javascript
 var version = bitgo.version();
 ```
 
-このBitGo SDKのバージョンを取得するクライアント側関数です。
+Client-side function to get the version of this BitGo SDK.
 
-文字列を返します。
+Returns a string.
 
-# Blockchain Data ブロックチェーンデータ
+# Blockchain Data
 
-BitGoは、アドレスやトランザクションについてブロックチェーンデータを取得するパブリックAPIを提供しています。 これらのAPIはBitGoユーザーやウォレットの概念と関連しません。 このAPIのエンドポイントの目的は、APIの消費者(利用者) が非BitGoのアドレスとトランザクションのデータを取得することを可能にすることです（Satoshiクライアントのtxiindexとwatchonlyの概念と類似）。
+BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets. The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).
 
-ほとんどのウォレットの利用ケースで、開発者はこのウォレットとキーチェーンAPIを利用したいでしょう。 それらはHDウォレットの合計残高や、アドレスの作成、トランザクションの送信等のような、より多くの操作をサポートします。<aside class="success"> パブリックブロックチェーンデータだけを返すため、ブロックチェーンデータAPIは認証を必要としません。 ただし、私達のサービスからの高いレートの限度を達成するため、ヘッダーにあるアクセストークンを送信することを推奨します。 </aside> 
+For most wallet use cases, developers will want to use the Wallet and Keychain APIs. They support many more operations, such as checking the combined balances of HD wallets, creating addresses, sending transactions, etc.<aside class="success"> The Blockchain Data API does not require authentication, since it returns only public blockchain data. It is still recommended to send the access token in the header to achieve a higher rate limit allowance from our service. </aside> 
 
-## Get Address アドレスを取得する
+## Get Address
 
-残高情報を持つアドレスをルックアップします。
+Lookup an address with balance info.
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4775,17 +4730,17 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/address/:address`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター  | 種類              | 必須か | 説明         |
-| ------- | --------------- | --- | ---------- |
-| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
+| Parameter | Type                     | Required | Description         |
+| --------- | ------------------------ | -------- | ------------------- |
+| address   | bitcoin address (string) | YES      | The bitcoin address |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -4795,26 +4750,26 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 }
 ```
 
-### Response 応答
+### Response
 
-アドレスの概要情報を返します。
+Returns address summary information.
 
-| フィールド            | 説明                  |
-| ---------------- | ------------------- |
-| address          | アドレス                |
-| balance          | 確認が0回のトランザクションを含む残高 |
-| confirmedBalance | 確認された残高             |
+| Field            | Description                                              |
+| ---------------- | -------------------------------------------------------- |
+| address          | The address                                              |
+| balance          | the balance, including transactions with 0 confirmations |
+| confirmedBalance | the confirmed balance                                    |
 
-### Errors　エラー
+### Errors
 
-| 応答              | 説明                    |
-| --------------- | --------------------- |
-| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
-| 404 Not Found   | ウォレットが見つからなかった        |
+| Response        | Description                                       |
+| --------------- | ------------------------------------------------- |
+| 400 Bad Request | The request parameters were missing or incorrect. |
+| 404 Not Found   | The address was not found                         |
 
-## Get Address Transactions アドレス トランザクションを取得する
+## Get Address Transactions
 
-指定されたアドレスについて、逆のブロックの高さの順でトランザクションを取得します。
+Get transactions for a given address, ordered by reverse block height.
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4829,24 +4784,24 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/address/:address/tx`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター  | 種類              | 必須か | 説明         |
-| ------- | --------------- | --- | ---------- |
-| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
+| Parameter | Type                     | Required | Description         |
+| --------- | ------------------------ | -------- | ------------------- |
+| address   | bitcoin address (string) | YES      | The bitcoin address |
 
-### QUERY Parameters クエリ パラメーター
+### QUERY Parameters
 
-| パラメーター | 種類 | 必須か | 説明                                     |
-| ------ | -- | --- | -------------------------------------- |
-| skip   | 数字 | NO  | 一覧取得を開始するインデックス番号。既定値は0。               |
-| limit  | 数字 | NO  | 単一コール(default=25, max=250) で返す結果の最大の件数 |
+| Parameter | Type   | Required | Description                                                            |
+| --------- | ------ | -------- | ---------------------------------------------------------------------- |
+| skip      | number | NO       | The starting index number to list from. Default is 0.                  |
+| limit     | number | NO       | Max number of results to return in a single call (default=25, max=250) |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -4897,19 +4852,19 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 }
 ```
 
-### Response 応答
+### Response
 
-トランザクションオブジェクトの配列を返す。そのトランザクションがそのトランザクションが関わった任意のビットコインアドレスの正味残高にどのように影響したかの概要情報を、各トランザクションは含みます。
+Returns an array of Transaction objects. Each transaction contains summary information about how that transaction affected the net balance of any bitcoin address involved in the transaction.
 
-### Errors　エラー
+### Errors
 
-| 応答              | 説明                    |
-| --------------- | --------------------- |
-| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
+| Response        | Description                                       |
+| --------------- | ------------------------------------------------- |
+| 400 Bad Request | The request parameters were missing or incorrect. |
 
-## Get Address Unspent Outputs アドレスの未使用分のアウトプットを取得する
+## Get Address Unspent Outputs
 
-特定のアドレスへ行く未使用分のアウトプットを取得します。ブロックの高さの降順に並びます(確認されていないトランザクションの順)。
+Get unspent outputs going into a given address. Ordered by descending block height (unconfirmed transactions first).
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4924,17 +4879,17 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 });
 ```
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/address/:address/unspents`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター  | 種類              | 必須か | 説明         |
-| ------- | --------------- | --- | ---------- |
-| address | ビットコインアドレス(文字列) | YES | ビットコインアドレス |
+| Parameter | Type                     | Required | Description         |
+| --------- | ------------------------ | -------- | ------------------- |
+| address   | bitcoin address (string) | YES      | The bitcoin address |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -4964,28 +4919,28 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 }
 ```
 
-### Response 応答
+### Response
 
-未使用分のトランザクションオブジェクトの配列を返します。各トランザクションには次の情報が含まれています：
+Returns an array of unspent Transaction objects. Each transaction contains the following information
 
-| 名             | 種類   | 説明                       |
-| ------------- | ---- | ------------------------ |
-| address       | 文字列  | 未使用のアウトプットを持つアドレス        |
-| tx_hash       | 数字   | 未使用のアウトプットの額、satoshi単位   |
-| tx_output_n | 数字   | 未使用のアウトプットの額、satoshi単位   |
-| value         | 数字   | 未使用のアウトプットの額、satoshi単位   |
-| blockheight   | 数字   | トランザクションが見られた（ブロックの）高さ   |
-| confirmations | 数字   | このトランザクションの確認数           |
-| date          | date | ネットワークでトランザクションが見られた日時   |
-| script        | 文字列  | 16進数形式のアウトプットビットコインスクリプト |
+| Name          | Type   | Description                                          |
+| ------------- | ------ | ---------------------------------------------------- |
+| address       | string | The address with the unspent output                  |
+| tx_hash       | number | Amount in satoshis of the output unspent             |
+| tx_output_n | number | Amount in satoshis of the output unspent             |
+| value         | number | Amount in satoshis of the output unspent             |
+| blockheight   | number | The height in which the transaction was seen         |
+| confirmations | number | The number of confirmations for this transaction     |
+| date          | date   | The datetime the transaction was seen on the network |
+| script        | string | The output bitcoin script in hex format              |
 
-### Errors　エラー
+### Errors
 
-| 応答              | 説明                    |
-| --------------- | --------------------- |
-| 400 Bad Request | 要求パラメーターが見つからないか正しくない |
+| Response        | Description                                       |
+| --------------- | ------------------------------------------------- |
+| 400 Bad Request | The request parameters were missing or incorrect. |
 
-## Get Transaction Details トランザクションの詳細を取得する
+## Get Transaction Details
 
 ```shell
 TX=af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
@@ -5000,19 +4955,19 @@ bitgo.blockchain().getTransaction({id: txId}, function(err, response) {
 });
 ```
 
-トランザクション・ハッシュの詳細を取得します。
+Gets details for a transaction hash
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/tx/:txid`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター | 種類  | 必須か | 説明                 |
-| ------ | --- | --- | ------------------ |
-| txId   | 文字列 | YES | トランザクション ID (ハッシュ) |
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| txid      | string | YES      | The transaction ID (hash) |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -5059,11 +5014,11 @@ bitgo.blockchain().getTransaction({id: txId}, function(err, response) {
 }
 ```
 
-### Response 応答
+### Response
 
-トランザクションに関連する全てのビットコインアドレスへの実質的影響を含む、トランザクションの詳細な情報を返します。
+Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.
 
-## Get Block 　ブロックを取得する
+## Get Block
 
 ```shell
 BLOCK=00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
@@ -5078,9 +5033,9 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 });
 ```
 
-ビットコインブロックとその中の各トランザクションを取得します。'latest'を利用することで、ビットコインネットワークの最新ブロックを取得できます。
+Gets a Bitcoin block and the transactions within it. You can use 'latest' to get the latest block on the bitcoin network.
 
-### HTTP Request HTTPリクエスト
+### HTTP Request
 
 `GET /api/v1/block/latest`
 
@@ -5088,22 +5043,27 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 
 `GET /api/v1/block/:blockHash`
 
-### URL Parameters URL パラメーター
+### URL Parameters
 
-| パラメーター   | 種類    | 必須か | 説明                                        |
-| -------- | ----- | --- | ----------------------------------------- |
-| id       | 変数    | YES | ブロックのハッシュ値(文字列)、高さ（数字）または最新ブロック（'latest'） |
-| extended | ブーリアン | NO  | trueにセットすると、ブロック内の各トランザクションの詳細を返す         |
+| Parameter | Type     | Required | Description                                                               |
+| --------- | -------- | -------- | ------------------------------------------------------------------------- |
+| id        | variable | YES      | The block hash (string), height (number) or 'latest' for the latest block |
+| extended  | boolean  | NO       | Set to true to return details on each transaction within the block        |
 
-> 応答の例
+> Example response
 
 ```json
 {
     "chainWork": "60359949399610308617",
     "date": "2015-04-15T23:05:50.139Z",
+    "fees": 21226,
     "height": 326945,
     "id": "00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a",
+    "merkleRoot": "0b9c0bf5193fece523780bf92e3ad05025371a3d86987005a7316c35c507dcc3",
+    "nonce": 924308913,
     "previous": "00000000eecd159babde9b094c6dbf1f4f63028ba100f6f092cacb65f04afc46",
+    "value": 66640872300,
+    "version": 2,
     "transactions": [
         "e393422e5a0b4c011f511cf3c5911e9c09defdcadbcf16ceb12a47a80e257aaa",
         "fe429dd68ef56613a038238e81b19e2158ef3ad9d9535d1127018bb78ff83537",
@@ -5114,119 +5074,119 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 }
 ```
 
-### Response 応答
+### Response
 
-| 名            | 種類  | 説明                          |
-| ------------ | --- | --------------------------- |
-| date         | 日時  | ネットワークでブロックが見られた時点のタイムスタンプ  |
-| id           | 文字列 | ブロックのハッシュ                   |
-| previous     | 文字列 | チェーンの前のブロックのハッシュ            |
-| transactions | 配列  | ブロックにあるトランザクションハッシュ（文字列）の配列 |
+| Name         | Type     | Description                                                 |
+| ------------ | -------- | ----------------------------------------------------------- |
+| date         | datetime | The timestamp the block was seen on the network             |
+| id           | string   | Hash of the block                                           |
+| previous     | string   | Hash of the previous block in the chain                     |
+| transactions | array    | Array of transaction hashes (strings) that are in the block |
 
 # BitGo Instant
 
-BitGo Instantは、BitGoによる二重支払いに対する金融保証により金融保証受信者のアカウントへ即座に着金する、オンチェーンのトランザクションの送信を可能にします。 誰でもBitGo Instant トランザクションを受け取ることができます。 BitGo Instantトランザクションを送信するには、BitGo KRSウォレットまたはBitGoとの担保契約を手配することが必要です。
+BitGo Instant allows sending on-chain transactions which can be credited instantly by recipients, due to a financial guarantee by BitGo against double-spending. Anyone can receive BitGo Instant transactions. In order to send BitGo Instant transactions, you will need either a BitGo KRS wallet, or will need to arrange a collateral agreement with BitGo.
 
-## Receiving　受信
+## Receiving
 
-BitGo Instant トランザクションをが即座に着金するためには、[List Wallet Transactions](#list-wallet-transactions) と [Get Wallet Transaction](#get-wallet-transaction) のAPIから返されたトランザクションオブジェクトの **instant: true**のプロパティに注意を払う必要があります。 インスタントトランザクションはまた、トランザクションで[インスタント保証の取得](#get-instant-guarantee)に使用できる**instantld**のフィールドを持ちます。
+In order to credit BitGo Instant transactions instantly, you will need to respect the **instant: true** property on the transaction objects returned from the [List Wallet Transactions](#list-wallet-transactions) and [Get Wallet Transaction](#get-wallet-transaction) APIs. Instant transactions will also have a field **instantId** which can be used to [Get the Instant Guarantee](#get-instant-guarantee) on a transaction.
 
-## Sending 送信
+## Sending
 
-まず、BitGoのインスタントと互換のウォレットが必要です。 ウェブインターフェースのKRSが有効なウォレットの作成、または**backupXpubProvider**を指定の上[Create Wallet API](#create-wallet-with-keychains) を利用することにより行えます。 非KRSのウォレットを持っている場合、BitGoとの担保契約を手配することによってBitGo Instantの機能を持つようアップグレードすることができます。
+You will first need a BitGo Instant-compatible wallet. This can be done by creating a KRS-enabled wallet in the web interface, or using the [Create Wallet API](#create-wallet-with-keychains) with a **backupXpubProvider** specified. If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a collateral agreement with BitGo.
 
-BitGo Instantトランザクションを送信するには、[Send Coins to Address](#send-coins-to-address) または [Create Transaction](#create-transaction)等のトランザクションAPIのいずれかで**instant: true** のフラグを使用します。 またBitGoは、JSONインターフェースを通じBitGo Instantトランザクションを送信する機能も持っています。
+In order to send a BitGo Instant transaction, use the **instant: true** flag on any of the transaction APIs, such as [Send Coins to Address](#send-coins-to-address) or [Create Transaction](#create-transaction). BitGoD also has the capability to send BitGo Instant transactions through its JSON interface.
 
-BitGo Instantトランザクションは消費されているインプットの深さについてより厳格な要件を持ちます。 これはBitGo Instantトランザクションの送信に利用可能なウォレットの残高がウォレットの合計残高より少ない場合があることを意味します。 [Get Wallet API](#get-wallet)が返すウォレットオブジェクトの **instantBalance**プロパティでBitGo Instantトランザクションの送信前に、利用可能な残高がわかります。
+BitGo Instant transactions have stricter requirements about the depths of the inputs being spent. This means that the balance of a wallet available for sending a BitGo Instant transaction may be less than the total balance of the wallet. The **instantBalance** property on the wallet object returned by the [Get Wallet API](#get-wallet) will tell you the available balance for sending a BitGo Instant transaction.
 
-BitGo Instantトランザクションの送信時、ウォレット内に十分な確認済みの未使用分がない場合、あるいはトランザクションがウォレットがサポートしているリスクの上限を超えた場合、トランザクションが失敗する場合があります。 リスクの上限は、入金された担保の額、あるいは特定のKRSによる提供の全ウォレットに対しBitGoが適用するリスクの上限によって決まります。 BitGo Instantトランザクションの送信時、潜在的な障害を処理する必要があります。場合によっては標準的なトランザクションとしての再試行が必要です。
+When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures when sending a BitGo Instant transaction, and possibly retry as a standard transaction.
 
-BitGo Instantトランザクションは、ボリュームディスカウントプランを含む全ての標準トランザクション価格プランの顧客に、追加費用なしで提供されています。
+BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional pricing plans, including volume discount plans.
 
-# Partner OAuth パートナー OAuth
+# Partner OAuth
 
-BitGoのパートナーは、許可されたアクセスを得て3rdパーティBitGoアカウントに代わってアクションを実行するために、私達のOAuthエンドポイントを利用できます。 BitGoはOAuthの基準に従い、パスワードを安全に保管する一方で、顧客アカウントへのセキュアなアクセスを可能にしています。
+BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts. BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.
 
-まずはじめに、パートナーは私達に連絡して、OAuthのアプリケーションパラメーターを取得して下さい。OAuthの流れは通常次のようになります:
+To begin, partners should obtain OAuth application parameters by getting in touch with us. The OAuth flow typically goes as follows:
 
-  1. OAuthゲートウェイ`https://www.bitgo.com/oauth/authorize` 経由、でBitGoにログインするようユーザーをリダイレクトします。このリクエストの各パラメーターで、client id、redirect uri、そしてscopeを指定します。
-  2. ユーザーはOAuthゲートウェイにアクセスします。私達は彼に、リクエストされたスコープへのアクセスを取得するのはOKですかとたずねます。彼は確認の為、自身のパスワードと二要素認証でログインします。　
-  3. 私達はユーザーを、コードのパラメータとともにあなたのリダイレクトUriへと再びリダイレクトします。この認証コードはあなたのクライアントIDによる使用のみに有効です。
-  4. あなたは再び認証コードをあなたのサーバに送信し、その認証コード、クライアントid、そしてsecretで、BitGoサーバへのリクエストを作成します。それらを私達は、アクセストークンと交換します。
-  5. 認証ヘッダーでアクセストークンを用いて、BitGoユーザーに代わってAPIコールを行います。
+  1. You redirect users to log into BitGo via our OAuth gateway at `https://www.bitgo.com/oauth/authorize`. In the parameters of this request, you specify the client id, redirect uri and scope.
+  2. The user reaches the BitGo OAuth gateway. We ask them if it's ok for you to gain access to the requested scope. They log in with their password and 2FA to confirm.
+  3. We redirect the user back to your redirect Uri, with a code parameter. This authorization code is valid for use by your client ID only.
+  4. You send the authorization code back to your servers and create a request to BitGo servers with the code, client id and secret. We exchange this for an access token.
+  5. You use the access token in the Authorization header to make API calls on behalf of the BitGo user.
 
-### OAuth Variables OAuth変数
+### OAuth Variables
 
-| 名             | 説明                                                                                       |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| Client Id     | サードパーティアカウントへのアクセスを求めているOAuthアプリケーションの文字列（名前）。これは公開されます。                                 |
-| Client Secret | OAuthコンシューマーのサーバに格納された秘密の文字列、client idがトークンにアクセスするための認証コードを変換するのに使用される。                  |
-| Redirect Uris | 受け入れ可能なリダイレクトURIのリスト。あなたが認証のため私達のOAuthゲートウェイへユーザーを送る時、私達は再び彼らを認証コードとともにあなたのサイトのUriへ送ります。 |
-| Scope         | OAuthスコープのリスト。これらはあなたのアプリケーションがユーザーに要求することが認められるスコープです。                                  |
+| Name          | Description                                                                                                                                                          |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Client Id     | A string (name) of the OAuth application seeking access to 3rd party accounts. This will be public.                                                                  |
+| Client Secret | A secret string, stored on the server of the OAuth consumer, used to convert authorization codes for the client id to access tokens.                                 |
+| Redirect Uris | A list of acceptable redirect URIs. When you send users to our OAuth gateway for authorization, we send them back to a Uri on your site with the authorization code. |
+| Scope         | A list of OAuth scopes. These are the scopes that your application will be allowed to request for from the user.                                                     |
 
-### Scope Values スコープ値
+### Scope Values
 
-スコープの値はOAuthセッション内で許可される操作を定義します。 これらのスコープは、BitGoがユーザーにあなたの意図を知らせ要求されたスコープを持つ適切な認証コード割り当てることができるよう、BitGo OAuthゲートウェイに提供される必要があります。
+The scope values define the allowed operations within an OAuth session. These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.
 
-スペースで区切られたスコープを指定して下さい。（例："openid profile wallet_view_enterprise wallet_spend_enterprise"）
+Please specify scopes separated using spaces, e.g. "openid profile wallet_view_enterprise wallet_spend_enterprise".
 
-より強力なスコープが基本的なスコープを包含しない事にご注意下さい。つまり、wallet_spendはwallet_view包含せず、よってあなたは両方をリクエストすべきということです。
+Note that more powerful scopes do not encompass basic ones, ie. wallet_spend does not encompass wallet_view, so you should request for both.
 
-| OAuth スコープの値               | 許可されるアクションの説明                               |
-| -------------------------- | ------------------------------------------- |
-| openid                     | ユーザーがログインしていることを確認し、彼らのユーザーIDを取得する          |
-| profile                    | メールアドレスと電話番号を含むユーザーのプロファイルを取得する             |
-| wallet_create              | ユーザーに代わってウォレットを作成する                         |
-| wallet_view_enterprise   | ユーザーのエンタープライズのもと作成されたウォレットを見る               |
-| wallet_spend_enterprise  | ユーザーのエンタープライズのもと作成されたウォレットからビットコインを消費する     |
-| wallet_manage_enterprise | ユーザーのエンタープライズのもと作成されたウォレットからの設定を管理、修正する     |
-| wallet_view: #WALLETID     | ウォレットのトランザクションとアドレスを見る                      |
-| wallet_spend:#WALLETID     | 特定のウォレットからビットコインを消費する                       |
-| wallet_manage:#WALLETID    | 特定のウォレットの設定を管理、修正する                         |
-| wallet_view_all          | ユーザーがアクセスを持つ全てのウォレットについて全てのトランザクションとアドレスを見る |
-| wallet_freeze_#WALLETID  | 所定の期間特定のウォレットでの全ての消費活動を凍結する（デフォルトで1時間）      |
-| wallet_freeze_all        | そのユーザーの全てのウォレットで全ての消費活動を凍結する                |
+| OAuth Scope Value          | Description of Allowed Actions                                                           |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| openid                     | Verify the user is logged in and get their User ID                                       |
+| profile                    | Get the user's profile, including email and phone number                                 |
+| wallet_create              | Create wallets on behalf of the user                                                     |
+| wallet_view_enterprise   | View wallets created under their enterprise                                              |
+| wallet_spend_enterprise  | Spend Bitcoin from wallets created under their enterprise                                |
+| wallet_manage_enterprise | Manage and modify settings from wallets created under their enterprise                   |
+| wallet_view:#WALLETID      | View a wallet's transactions and addresses                                               |
+| wallet_spend:#WALLETID     | Spend Bitcoin from the specific wallet                                                   |
+| wallet_manage:#WALLETID    | Manage and modify settings on the specific wallet                                        |
+| wallet_view_all          | View all the transactions and addresses for all wallets the user has access to           |
+| wallet_freeze_#WALLETID  | Freeze all spend activity on a specific wallet for a given duration (defaults to 1 hour) |
+| wallet_freeze_all        | Freeze all spend activity on all of the user's wallets                                   |
 
-## 3rd Party BitGo Login サードパーティ BitGo ログイン
+## 3rd Party BitGo Login
 
-> あなたのユーザーをBitGo OAuthに送るOAuthゲートウェイリダイレクトの例
+> Example OAuth gateway redirect to send your users to BitGo OAuth
 
     https://test.bitgo.com/oauth/authorize?client_id=FBExchange&redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&scope=openid%20profile%20wallet_view_enterprise&email=test@bitgo.com&signup=false
     
 
-OAuthのフローの最初のステップは、あなたのユーザーをClient ID、Scope、そしてリダイレクトUriパラメータとともにBitGo OAuthにリダイレクトすることです。
+The first step in the OAuth flow is to redirect your users to the BitGo OAuth gateway with the Client ID, Scope and Redirect Uri parameters.
 
-* テストエンドポイント： https://test.bitgo.com/oauth/authorize
-* プロダクションエンドポイント：https://www.bitgo.com/oauth/authorize
+* Test Endpoint: https://test.bitgo.com/oauth/authorize
+* Production Endpoint: https://www.bitgo.com/oauth/authorize
 
-パラメータはGETまたはPOST経由で送ることができます。
+Parameters may be sent via GET or POST.
 
-### OAuth Request Parameters OAuth 要求パラメータ
+### OAuth Request Parameters
 
-> 再びユーザーをあなたのサイトに送るBitGoからのリダイレクトURLの例
+> Example redirect URL from BitGo sending users back to your site
 
     https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
     
 
-| パラメーター       | 必須か | 説明                                                                  |
-| ------------ | --- | ------------------------------------------------------------------- |
-| client_id    | YES | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの名前                            |
-| redirect_uri | YES | BitGoで認証された後、再びユーザーをあなたのサイトに送るBitGoのリダイレクトUri                       |
-| scope        | YES | スペースで区切られた要求されたOAuthスコープのリスト。ユーザーの情報へのあなたのアクセスはこれらのスコープに依存します       |
-| state        | NO  | あなたが提供したいと望むカスタム情報を含める不透明な文字列。リダイレクトUriにあるパラメータとして送り返します            |
-| signup       | NO  | BitGoでのOAuthゲートウェイに着いた時、ユーザーがデフォルトでログインまたはサインアップする場合コントロールに使用するブール値 |
-| email        | NO  | 値を予め用意するのに使用されるメールユーザ名の文字列の値                                        |
-| force_email  | NO  | trueに設定された場合、ユーザーのクライアント側でメールフィールド（上で設定）は読み取り専用になる                  |
+| Parameter    | Required | Description                                                                                                                  |
+| ------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| client_id    | YES      | Name of the OAuth application seeking access to 3rd party accounts                                                           |
+| redirect_uri | YES      | Redirect Uri for BitGo to send users back to your site after they have authenticated on BitGo                                |
+| scope        | YES      | List of requested OAuth scopes, separated by spaces. Your access to the user's information will be dependent on these scopes |
+| state        | NO       | opaque string that you contain any custom information you wish to provide. Send back as a parameter in the redirect Uri      |
+| signup       | NO       | boolean value to be used to control if the user defaults to login or sign up when they land on the OAuth gateway at BitGo    |
+| email        | NO       | string value of the email username, used to pre-populate the value                                                           |
+| force_email  | NO       | if set to true, the email field (set above) will be readonly on the user's client                                            |
 
-### Our server will redirect 私達のサーバーはリダイレクトします
+### Our server will redirect
 
-ユーザーがあなたのアプリケーションを認証した後、私達は再び彼らをあなたのURLにリダイレクトします。リダイレクトはURLパラメータを含みます：
+After the user has authorized your application, we will redirect back them to your URL. The redirect will contain the URL parameters:
 
-| パラメーター | 説明                                              |
-| ------ | ----------------------------------------------- |
-| code   | アクセストークンと交換するため（secretとともにあなたが）使用できるコード文字列を承認する |
+| Parameter | Description                                                                                           |
+| --------- | ----------------------------------------------------------------------------------------------------- |
+| code      | Authorizing code string which you can use (together with your secret) to exchange for an access token |
 
-## Obtaining Access Tokens アクセス トークンの取得
+## Obtaining Access Tokens
 
 ```javascript
 var bitgo = new BitGoJS.BitGo({clientId:clientId, clientSecret:clientSecret});
@@ -5260,23 +5220,23 @@ curl -X POST https://test.bitgo.com/oauth/token \
     }"
 ```
 
-ユーザーが認証コードを受け取った時、ユーザーに代わりアクションを実行するため使用したいサービスのバックエンドに送って下さい。
+When your user receives the authorization code, send it to the service backend you wish to use to perform actions on behalf of the user.
 
-次に認証コードを、apiの残りにおいて使用できるアクセストークンと交換する必要があります。
+You then need to exchange the authentication code for an access token that you can use as you would the rest of the api.
 
-* テストエンドポイント： https://test.bitgo.com/oauth/token
-* プロダクションエンドポイント：https://www.bitgo.com/oauth/token
+* Test Endpoint: https://test.bitgo.com/oauth/token
+* Production Endpoint: https://www.bitgo.com/oauth/token
 
-### OAuth Token Request Parameters OAuth トークン要求パラメータ
+### OAuth Token Request Parameters
 
-| パラメーター        | 説明                                            |
-| ------------- | --------------------------------------------- |
-| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前) |
-| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列 |
-| grant_type    | 'authorization_code' であるべき                    |
-| code          | 上のユーザーログインステップからのリダイレクトで受け取った認証コード            |
+| Parameter     | Description                                                                            |
+| ------------- | -------------------------------------------------------------------------------------- |
+| client_id     | A string (name) of the OAuth application seeking access to 3rd party accounts          |
+| client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo |
+| grant_type    | should be 'authorization_code'                                                         |
+| code          | The authentication code you received in the redirect from the above user login step    |
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -5289,30 +5249,30 @@ curl -X POST https://test.bitgo.com/oauth/token \
 }
 ```
 
-### OAuth Response OAuth 応答
+### OAuth Response
 
-私達のサーバがAPIと使用するためのアクセストークンを返します。
+Our server will return an access token for use with the API.
 
-トークンはHTTP"Authorization"ヘッダーにある全てのAPIコールへへ、HTTPヘッダーとして追加されなければなりません。
+The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
 
-`Authorization: Bearer <あなたのトークンはここ>`
+`Authorization: Bearer <your token goes here>`
 
-| パラメーター        | 説明                                                             |
-| ------------- | -------------------------------------------------------------- |
-| token_type    | トークンの種類（例：'bearer'）                                            |
-| access_token  | 以降の認証されたAPIリクエストでユーザーに代わって認証ヘッダで使用されるトークン                      |
-| expires_in    | トークンが有効な秒数                                                     |
-| expires_at    | トークンが失効するまでの有効期限、1970年からの秒数                                    |
-| refresh_token | あなたのセッションが期限切れの場合、もう一つのアクセストークンを取得するのに使用できる                    |
-| id_token      | スコープとして要求された場合、ユーザープロファイル情報を含むopenid jwt (JSON Web Token) トークン |
+| Parameter     | Description                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| token_type    | The type of token e.g. 'bearer'                                                                               |
+| access_token  | The token to be used in the Authorization header for subsequent authorized API requests on behalf of the user |
+| expires_in    | Number of seconds the token is valid                                                                          |
+| expires_at    | Time which the token will expire, in seconds since 1970.                                                      |
+| refresh_token | Can be used to obtain another access token, if your session is due to expire                                  |
+| id_token      | openid jwt token containing user profile information, if requested as a scope                                 |
 
-## OpenID JSON Web Token OpenID JSON Web トークン
+## OpenID JSON Web Token
 
-パートナー認証リクエストがopenidプロファイルスコープを持つ場合、上のアクセストークン要求への応答でJSON Web Token (JWT) base64エンコード形式のid_tokenが返されます。 あなたは、（BitGoからのものであることを証明するため）JSON Webトークンがあなたのクライアントsecxretを使用してHS256アルゴリズムで署名されたことを検証すべきです。
+If the partner authentication request had an openid profile scope, a id_token in JSON Web Token (JWT) base64-encoded format will be returned in the response to the OAuth access token request above. You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).
 
-このトークンはユーザープロファイル情報を含みます。ユーザーを詐欺師やフィッシングにさらさないよう、注意して安全にこの情報を格納して下さい。
+This token will contain user profile information. You should take care to store this information securely so as not to expose your users to scammers or phishing.
 
-> 復号化されたid_tokenの例(上のアクセストークン応答から)
+> Example decrypted id_token (from the above access token response)
 
 ```json
 {
@@ -5330,26 +5290,26 @@ curl -X POST https://test.bitgo.com/oauth/token \
 }
 ```
 
-### ID Token Claims IDトークンの要求
+### ID Token Claims
 
-| パラメーター                  | 形式        | 説明                                   |
-| ----------------------- | --------- | ------------------------------------ |
-| iat                     | utc からの秒数 | このトークンが作成された時間、1970年からの秒数            |
-| exp                     | utc からの秒数 | トークンの有効期限 (いつまで受け入れるか)、1970 年からの秒数で。 |
-| aud                     | 文字列       | クライアント id                            |
-| iss                     | uri 文字列   | 発行識別子                                |
-| sub                     | 文字列       | BitGoの一意のユーザーid                      |
-| access_token            | 文字列       | 認証目的でこのリクエストからあなたが受け取ったアクセストークン      |
-| email                   | 文字列       | ユーザーの電子メール                           |
-| email_verified          | ブーリアン     | ユーザーの電子メールが認証されている場合                 |
-| phone_number            | 文字列       | ユーザーの電話番号                            |
-| phone_number_verified | ブーリアン     | 電話番号がが認証された場合                        |
-| zoneinfo                | タイムゾーン    | タイムゾーン情報 (例 米国/太平洋)                  |
+| Parameter               | Format            | Description                                                                |
+| ----------------------- | ----------------- | -------------------------------------------------------------------------- |
+| iat                     | seconds since utc | time this token was created, in seconds since 1970.                        |
+| exp                     | seconds since utc | expiry time of the token (when to accept it until), in seconds since 1970. |
+| aud                     | string            | the client id                                                              |
+| iss                     | uri string        | the issue identifier                                                       |
+| sub                     | string            | BitGo unique user id                                                       |
+| access_token            | string            | access token you received from this request, for verification purposes     |
+| email                   | string            | user email                                                                 |
+| email_verified          | boolean           | if the user email has been verified                                        |
+| phone_number            | string            | user phone number                                                          |
+| phone_number_verified | boolean           | if the phone number has been verified                                      |
+| zoneinfo                | TZ                | time zone information, e.g. US/pacific                                     |
 
-## Refreshing Access Tokens アクセストークンをリフレッシュする
+## Refreshing Access Tokens
 
 ```javascript
-// var refreshToken = 'undefined' //設定されていない場合、前回の認証要求から保存されたリフレッシュトークンを使用します。
+// var refreshToken = 'undefined'; // if unset, uses the refresh token saved from a previous authentication request.
 var refreshToken = '3f8aa90479b4e3f0ea4544ed302e3bfe91968581' // from above auth request
 bitgo.refreshToken({ refreshToken: refreshToken }, function(err, result) {
   if (err) {
@@ -5373,11 +5333,11 @@ curl -X POST https://test.bitgo.com/oauth/token \
     }"
 ```
 
-前のステップで取得されたアクセストークンは通常一時間利用可能です。
+The access token obtained in the previous step is typically good for an hour.
 
-ユーザーセッションを延長するには、これも前のステップで送信したリクエストトークンを使用して、もう一つのアクセストークンを要求することができます。
+To extend a user session, you can request another access token using the request token also sent in the previous step.
 
-> 応答の例
+> Example response
 
 ```json
 {
@@ -5389,33 +5349,35 @@ curl -X POST https://test.bitgo.com/oauth/token \
 }
 ```
 
-* テストエンドポイント： https://test.bitgo.com/oauth/token
-* プロダクションエンドポイント：https://www.bitgo.com/oauth/token
+* Test Endpoint: https://test.bitgo.com/oauth/token
+* Production Endpoint: https://www.bitgo.com/oauth/token
 
-リフレッシュトークンの寿命は作成から二週間で、*一回の使用のみ*において有効です。毎回一つ使用されるたびに、新たなリフレッシュトークンがあなたに割り当てられます。
+Refresh tokens have a lifetime of 2 weeks from creation and are valid for a *single use only*. A new refresh token is assigned to you each time one is used.
 
-### OAuth Token Request Parameters OAuth トークン要求パラメータ
+### OAuth Token Request Parameters
 
-| パラメーター        | 説明                                            |
-| ------------- | --------------------------------------------- |
-| client_id     | サードパーティのアカウントにアクセスを求めているOAuthアプリケーションの文字列(名前) |
-| client_secret | BitGoによって発行されたOAuthアプリケーションのサーバに格納されている秘密の文字列 |
-| grant_type    | 'refresh_token'であるべき                          |
-| refresh_token | 認証コードをアクセストークンと交換した時受信したリフレッシュトークン            |
+| Parameter     | Description                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| client_id     | A string (name) of the OAuth application seeking access to 3rd party accounts             |
+| client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo    |
+| grant_type    | should be 'refresh_token'                                                                 |
+| refresh_token | The refresh token received when you exchanged the authorization code for the access token |
 
-# Examples 例
+# Examples
 
-BitGoの方で、SDKを使用した、いくつかの一般的なウォレットの操作方法の例を提供いたしました。比較的重要なものをここで扱います。<aside class="info"> 私達のSDKと例は、ビットコインのテストネットと接続されたBitGoテスト環境がデフォルトとなっています。 さらなる詳細については、\[テスト環境\](#bitgo-api-endpoints) のセクションをご参照下さい。 </aside> 
+BitGo has provided examples of how to perform several common wallet operations using our SDK. The more important ones are covered here.<aside class="info"> Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Do refer to the 
 
-以下の各例(ともっと！) は私達のSDKレポジトリの`BitGoJS/examples` のディレクトリに見つけることができます。 各例に関する問題はメールかGitのイシュー経由でご報告下さい。
+[Test Environments](#bitgo-api-endpoints) section for further details. </aside> 
 
-### Obtaining the Wallet ID ウォレット ID を取得する
+The examples below (and more!) can be found in the `BitGoJS/examples` directory in our SDK repository. Please report problems with the examples via email or Git issues.
 
-BitGoテストウェブサイトでウォレットを作成する時、ウォレットidが最初の受信アドレスです。またメインメニューからクリックする時のURIでもあります。
+### Obtaining the Wallet ID
 
-## Get Wallet Balance ウォレットの残高を取得する
+When you create your wallet on the BitGo test website, the wallet id is the first receiving address. It is also in the URI when you click on it from the main menu.
 
-> コード スニペット
+## Get Wallet Balance
+
+> Code Snippet
 
 ```javascript
 var bitgo = new BitGoJS.BitGo();
@@ -5434,30 +5396,30 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     
 
-> アウトプット例
+> Example output
 
     Logged in!
     Balance is: 0.6274
     
 
-このシンプルな例は認証とウォレットを取得する方法を示しています。 ビットコインでの残高はウォレットモデルに見つけることができます。
+This simple example shows how to authenticate and get the wallet. The balance in bitcoins can be found on the wallet model.
 
-### Usage 使い方
+### Usage
 
 `node getWalletBalance.js <user> <pass> <otp> <walletId>`
 
-### Parameters パラメーター
+### Parameters
 
-| 名        | 種類  | 必須か | 説明                                |
-| -------- | --- | --- | --------------------------------- |
-| user     | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
-| pass     | 文字列 | YES | BitGo でのパスワード                     |
-| otp      | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
-| walletId | 文字列 | YES | ウォレットのid(同時に最初の受信アドレス)            |
+| Name     | Type   | Required | Description                                                         |
+| -------- | ------ | -------- | ------------------------------------------------------------------- |
+| user     | string | YES      | username (your email on the test environment)                       |
+| pass     | string | YES      | password on BitGo                                                   |
+| otp      | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| walletId | string | YES      | id of the wallet (also the first receiving address)                 |
 
-## List Wallet Transactions ウォレットでのトランザクションの一覧を取得する
+## List Wallet Transactions
 
-> コード スニペット
+> Code Snippet
 
 ```javascript
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
@@ -5488,7 +5450,7 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     
 
-> アウトプット例
+> Example output
 
     Logged in!
     Balance is: 0.6274
@@ -5498,27 +5460,27 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
     
 
-この例はウォレットでのトランザクションのリストを取得する方法を示しています。受信されたトランザクションIDの確認に有用かもしれません。
+This example shows how to get the list of transactions on a wallet. This may be useful for verifying received transaction IDs.
 
-### Usage 使い方
+### Usage
 
 `node listWalletTransactions.js <user> <pass> <otp> <walletId>`
 
-### Parameters パラメーター
+### Parameters
 
-| 名        | 種類              | 必須か | 説明                                |
-| -------- | --------------- | --- | --------------------------------- |
-| user     | 文字列             | YES | ユーザー名 (テスト環境でのメールアドレス)            |
-| pass     | 文字列             | YES | BitGo でのパスワード                     |
-| otp      | 数字              | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
-| walletId | ビットコインアドレス(文字列) | YES | ウォレットのid(同時に最初の受信アドレス)            |
+| Name     | Type                     | Required | Description                                                         |
+| -------- | ------------------------ | -------- | ------------------------------------------------------------------- |
+| user     | string                   | YES      | username (your email on the test environment)                       |
+| pass     | string                   | YES      | password on BitGo                                                   |
+| otp      | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| walletId | bitcoin address (string) | YES      | id of the wallet (also the first receiving address)                 |
 
-## Address Labels アドレスのラベル
+## Address Labels
 
     $ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
     
 
-> アウトプット例
+> Example output
 
     Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
     Which label action do you wish to perform? [list, set, delete]: list
@@ -5528,23 +5490,23 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
      n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address
     
 
-この例は、各アドレスでのラベルの一覧取得、設定、削除の方法を示しています。
+This example shows how to list, set, and delete labels on addresses.
 
-### Usage 使い方
+### Usage
 
 `node addressLabels.js <user> <pass> <otp>`
 
-### Parameters パラメーター
+### Parameters
 
-| 名    | 種類  | 必須か | 説明                                |
-| ---- | --- | --- | --------------------------------- |
-| user | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
-| pass | 文字列 | YES | BitGo でのパスワード                     |
-| otp  | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
+| Name | Type   | Required | Description                                                         |
+| ---- | ------ | -------- | ------------------------------------------------------------------- |
+| user | string | YES      | username (your email on the test environment)                       |
+| pass | string | YES      | password on BitGo                                                   |
+| otp  | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
 
-## Create Wallet ウォレットを作成する
+## Create Wallet
 
-> コード スニペット
+> Code Snippet
 
 ```javascript
   bitgo.wallets().createWalletWithKeychains({"passphrase": password, "label": label, "backupXpubProvider": "keyternal"}, function(err, result) {
@@ -5561,7 +5523,7 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
     
 
-> アウトプット例
+> Example output
 
     New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
     
@@ -5585,31 +5547,31 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
     
 
-BitGo でウォレットを作成します。例は、次の手順を実行します：
+Creates a wallet on BitGo. The example performs the following steps:
 
-  1. BitGo で認証します。
-  2. アカウントをアンロックします
-  3. クライアントでユーザーキーチェーンを作成、パスワードで暗号化し、サーバに送信します。
-  4. クライアントでバックアップキーチェーンを作成します。
-  5. BitGoサーバでBitGoキーチェーンを作成します。
-  6. 上のキーチェーンに対応するパブリックキーでウォレットを作成します。<aside class="warning"> ユーザーが彼らのユーザーとバックアップのキーを印刷/バックアップを取ることは**非常に重要**です。 やっておかなければ、資金の喪失という結果になり得ます！ </aside> 
+  1. Authenticates with BitGo
+  2. Unlocks the account
+  3. Creates the user keychain on the client, encrypts it with the password and sends it to the server.
+  4. Creates the backup keychain on the client.
+  5. Creates the BitGo keychain on the BitGo server.
+  6. Creates the wallet with the corresponding public keys to the keychains above.<aside class="warning"> It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys. Failure to do so can result in the loss of funds! </aside> 
 
-### Usage 使い方
+### Usage
 
 `node createWallet.js <user> <pass> <otp> <label>`
 
-### パラメーター
+### Parameters
 
-| 名     | 種類  | 必須か | 説明                                |
-| ----- | --- | --- | --------------------------------- |
-| user  | 文字列 | YES | ユーザー名 (テスト環境でのメールアドレス)            |
-| pass  | 文字列 | YES | BitGo でのパスワード                     |
-| otp   | 数字  | YES | ワンタイムパスワード（テスト環境では0000000を使用できます） |
-| label | 文字列 | YES | BitGo UIで表示されているウォレット名            |
+| Name  | Type   | Required | Description                                                         |
+| ----- | ------ | -------- | ------------------------------------------------------------------- |
+| user  | string | YES      | username (your email on the test environment)                       |
+| pass  | string | YES      | password on BitGo                                                   |
+| otp   | number | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| label | string | YES      | the wallet name as shown in the BitGo UI                            |
 
-## Send Bitcoins to an Address アドレスにビットコインを送信する
+## Send Bitcoins to an Address
 
-> コード スニペット
+> Code Snippet
 
 ```javascript
 var sendBitcoin = function() {
@@ -5633,39 +5595,39 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
     $ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
     
 
-> アウトプット例
+> Example output
 
     { "tx": "01000000017bc6aca03146d8d10b875781...",
       "hash": "101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7",
       "fee": 10000 }
     
 
-もう一つのビットコインアドレスにビットコインを送信する。例は、次の手順を使用します：
+Sends Bitcoin to another bitcoin address. The example uses the following steps:
 
-  1. BitGo で認証する。
-  2. コインの消費が可能になるようアカウントをアンロックする。
-  3. 提供されたwalletldでサーバからウォレットを取得します。
-  4. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
+  1. Authenticates with BitGo
+  2. Unlocks the account to make it possible to spend coins
+  3. Gets the wallet from the server by the provided walletId.
+  4. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
 
-### Usage 使い方
+### Usage
 
 `node sendBitcoin <user> <pass> <otp> <walletId> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-### パラメーター
+### Parameters
 
-| 名                  | 種類              | 必須か | 説明                                       |
-| ------------------ | --------------- | --- | ---------------------------------------- |
-| user               | 文字列             | YES | ユーザー名 (テスト環境でのメールアドレス)                   |
-| pass               | 文字列             | YES | BitGo でのパスワード                            |
-| otp                | 数字              | YES | ワンタイムパスワード（テスト環境では0000000を使用できます）        |
-| walletId           | ビットコインアドレス(文字列) | YES | BitGo UIで表示されているウォレット名                   |
-| walletPassphrase   | 文字列             | YES | ユーザーの秘密鍵を暗号化するため使用されるパスフレーズ              |
-| destinationAddress | ビットコインアドレス(文字列) | YES | ウォレットの宛先アドレス                             |
-| amountSatoshis     | 文字列             | YES | 送信するsatoshiの数字 (例: 0.1ビットコインについて0.1*1e8) |
+| Name               | Type                     | Required | Description                                                         |
+| ------------------ | ------------------------ | -------- | ------------------------------------------------------------------- |
+| user               | string                   | YES      | username (your email on the test environment)                       |
+| pass               | string                   | YES      | password on BitGo                                                   |
+| otp                | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| walletId           | bitcoin address (string) | YES      | the wallet name as shown in the BitGo UI                            |
+| walletPassphrase   | string                   | YES      | the passphrase used to encrypt the user's private key               |
+| destinationAddress | bitcoin address (string) | YES      | the destination address of the wallet                               |
+| amountSatoshis     | string                   | YES      | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
 
-## Webhook Oracle Policy Webhookオラクルポリシー
+## Webhook Oracle Policy
 
-> コード スニペット
+> Code Snippet
 
 ```javascript
 var setUpPolicyAndSendBitcoin = function() {
@@ -5711,7 +5673,7 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
 $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 0000000 2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2 https://486d7844.ngrok.com/ walletpasw0rd 2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe 1380000
 ```
 
-> アウトプット例
+> Example output
 
     Getting wallet..
     Balance is: 1.2582
@@ -5732,7 +5694,7 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
     Removed policy rule
     
 
-> Webhookコールバックの例(提供されたURLに送信され、全ての非200応答はポリシー拒否をトリガーします)
+> Example webhook callback (sent to the URL provided, any non-200 response will trigger the policy denial)
 
 ```json
 {
@@ -5757,56 +5719,56 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
 }
 ```
 
-この例は、インターネット上のURLエンドポイント(スクリプトまたは他のプログラムの可能性も)を通じあらゆるカスタム外部ロジックを実行する能力を持つウォレットでwebhookポリシーを設定する方法を示します。 これにより、外部の状態をさまざまなユーザーが単一のウォレットを共有するをコントラクトにマップすることが可能になります（URLは「オラクル」として機能します）。
+This example demonstrates how to set up a webhook policy on a wallet capable of executing any custom external logic via a URL endpoint (potentially a script or other program) on the Internet. This allows external state to be mapped into a contract where various users share a single wallet (the URL acts as the "oracle").
 
-トランザクションが発生すると、提供されたURLがヒットされます。それが200ステータスを返す場合、トランザクションは許可されます。そうでなければ、ポリシールールが発生し、トランザクションは拒否されます。
+When a transaction is made, the URL provided is hit. If it returns a 200 status, then the transaction will be allowed. If not, then the policy rule is fired and the transaction denied.
 
-  1. BitGo で認証する。
-  2. コインの消費とポリシーの設定が可能になるようアカウントをアンロックする
-  3. 提供されたwalletldでサーバからウォレットを取得する
-  4. 提供されたURLがヒットされる原因となるポリシーを設定する
-  5. ユーザーキーを見つけてそれを復号化し、トランザクションを作成し署名、そしてBitGoに署名のため送信するwallet.sendCoinsメソッドを呼び出します。
-  6. ポリシーを削除し、結果を返します。
+  1. Authenticates with BitGo
+  2. Unlocks the account to make it possible to spend coins and set policy
+  3. Gets the wallet from the server by the provided walletId
+  4. Sets up the policy which will cause the URL provided to be hit.
+  5. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
+  6. Removes the policy and returns the result.
 
-ローカル環境でテストの際、公開向けのURLを取得するために、まずローカルサーバーをセットアップし(expressまたは任意のhttpサーバで大丈夫です) ngrokのようなツールを実行することによりURLを作成できます。
+When testing locally, one can create a URL by first setting up a local server (express or any http server will work), and then running a tool such as ngrok to get a public facing url.
 
-### Usage 使い方
+### Usage
 
 `node addPolicyWebhookAndSendCoins <user> <pass> <otp> <walletId> <url> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-### パラメーター Parameters
+### Parameters
 
-| 名                  | 種類                 | 必須か | 説明                                       |
-| ------------------ | ------------------ | --- | ---------------------------------------- |
-| user               | 文字列                | YES | ユーザー名 (テスト環境でのメールアドレス)                   |
-| pass               | 文字列                | YES | bitGo でのパスワード                            |
-| otp                | 数字                 | YES | ワンタイムパスワード（テスト環境では0000000を使用できます）        |
-| walletId           | ビットコインアドレス(文字列)    | YES | BitGo UIで表示されているウォレット名                   |
-| url                | http エンドポイント (文字列) | YES | ポリシーを設定するURL                             |
-| walletPassphrase   | 文字列                | YES | ユーザーの秘密鍵を暗号化するのに使用するパスフレーズ               |
-| destinationAddress | ビットコインアドレス(文字列)    | YES | ウォレットの宛先アドレス                             |
-| amountSatoshis     | 文字列                | YES | 送信するsatoshiの数字 (例: 0.1ビットコインについて0.1*1e8) |
+| Name               | Type                     | Required | Description                                                         |
+| ------------------ | ------------------------ | -------- | ------------------------------------------------------------------- |
+| user               | string                   | YES      | username (your email on the test environment)                       |
+| pass               | string                   | YES      | password on BitGo                                                   |
+| otp                | number                   | YES      | the one-time-password (you can use 0000000 in the test environment) |
+| walletId           | bitcoin address (string) | YES      | the wallet name as shown in the BitGo UI                            |
+| url                | http endpoint (string)   | YES      | the URL to set up the policy with                                   |
+| walletPassphrase   | string                   | YES      | the passphrase used to encrypt the user's private key               |
+| destinationAddress | bitcoin address (string) | YES      | the destination address of the wallet                               |
+| amountSatoshis     | string                   | YES      | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin        |
 
-## Recover Wallet ウォレットを回復する
+## Recover Wallet
 
-RecoverWalletは BitGoのサービスを利用することなしに、BitGoウォレットから資金を回復できるツールです。 デモンストレーションの目的で、またBitGoのサービスが利用不可の時であってもBitGoウォレットが100%回復可能であることを証明するためにも提供されています。 運用環境向けにツールが使用されることは想定されません。
+RecoverWallet is a tool that can recover funds from a BitGo wallet without using the BitGo service. It is provided for demonstration purposes and to prove that BitGo wallets are 100% recoverable even if the BitGo Service is unavailable. It is not expected that this tool would be used for production environments.
 
-ウォレット'のキーカードについての情報のみから、このツールは、ユーザー'が選ぶ新しいアカウントへウォレット内のすべての資金を移動するトランザクションを構築します。 これはBitGoのサービスのAPIを使用することなく行われます。
+Given only the information on a wallet's keycard, the tool constructs a transaction which moves all of the funds within that wallet to a new account of the user's choice. This is done without using any BitGo Service APIs.
 
-RecoverWalletツールはインタラクティブで、コマンドラインで駆動します。
+The RecoverWallet tool is interactive or command line driven.
 
-### Usage 使い方
+### Usage
 
-node recoverwallet.js --userKey <userkey from keycard> -backupKey <backupkey from keycard> -bitgoKey <bitgo public key from keycard>
+node recoverwallet.js --userKey <userkey from keycard> --backupKey <backupkey from keycard> --bitgoKey <bitgo public key from keycard>
 
-### パラメーター Parameters
+### Parameters
 
-| 名           | 意味                                            |
-| ----------- | --------------------------------------------- |
-| userKey     | ユーザーによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox A)   |
-| backupKey   | バックアップによって拡張されたウォレットの秘密鍵 (ウォレットキーカードからのBox B) |
-| bitgoKey    | BitGoによって拡張されたウォレットの公開鍵 (ウォレットキーカードからのBox C)  |
-| testnet     | プロダクションビットコインネットワークの代わりにテストネットを使用のフラグ         |
-| nosend      | トランザクションを作成するがそれを送信しないフラグ                     |
-| password    | UserKeyとbackupKeyの復号化に使用するパスワード               |
-| destination | あなたが回復した資金を送信したいビットコインアドレス                    |
+| Name        | Meaning                                                                         |
+| ----------- | ------------------------------------------------------------------------------- |
+| userKey     | The user extended private key for the wallet. (Box A from the Wallet KeyCard)   |
+| backupKey   | The backup extended private key for the wallet. (Box B from the Wallet KeyCard) |
+| bitgoKey    | The bitgo extended public key for the wallet. (Box C from the Wallet KeyCard)   |
+| testnet     | Flag to use testnet instead of the production bitcoin network                   |
+| nosend      | Flag to create the transaction but not send it                                  |
+| password    | The password to use to decrypt the userKey and backupKey                        |
+| destination | The bitcoin address to which you want to send the recovered funds               |
