@@ -7,13 +7,12 @@ language_tabs:
 
 toc_footers:
  - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a>
- - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a>
- - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a>
+ - <a href="http://bitgoinc.com/bitgo-services-agreement/" target="_new">Services Agreement</a>
+ - <a href="/settings" target="_new">BitGo Settings (Get API Access Token)</a>
  - <a>Languages</a>
  - <a href="index.html">- English</a>
  - <a href="ja/index.html">- Japanese 日本語</a>
- - <a href="zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
- 
+
 ---
 
 # Getting Started
@@ -1297,77 +1296,96 @@ Lookup wallet information, returning the wallet model including balances, permis
 
 ```json
 {
-  "id":"2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb",
-  "label":"TestNet Wallet",
-  "isActive":true,
-  "type":"safehd",
-  "private":{
-    "keychains":[
+  "_id": "57bb66f07cf7c6da4f2956011df25aa6",
+  "id": "2N6GYGJQSLZyXSgviEmdhWd5jWHoDcSKAfJ",
+  "label": "TestNet Wallet",
+  "isActive": true,
+  "type": "safehd",
+  "freeze": {},
+  "adminCount": 1,
+  "disableTransactionNotifications": false,
+  "private": {
+    "keychains": [
       {
-        "xpub":"xpub681KE1ZbZM8UNecAGowRFH1vJfxrhzA3fMwKHB5yRs7YGU4FQUPJdbZdTaRuyweAXGDSrJt3AWDuDsoXh4CD4h43GPPzAq2H7Cb18xHGivZ",
-        "path":"/101",
-        "_id":"536d3cc573c8329a78000016"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGZp3eJrpEW1VzomFeDqs2nd9vdZhLFdazv2ekEznRZB2BTPVwrcacYTCvy7mPjxw3F9joMCji4WFgxsgd7J5SxkHuRbUNjx",
-        "path":"/102",
-        "_id":"536d3cc573c8329a78000015"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGR4F5XxMfiHGPycWehJT9XA5KZJg4aBcNZogiWnrDMowki4ZsCtZdWFUtHRxMnhTnm9XMEyxSVV7Am9eG7xUnxL3aoAt88d",
-        "path":"/103",
-        "_id":"536d3cc573c8329a78000014"
-      }
-    ]
-  },
-  "permissions":"admin,spend,view",
-  "admin":{
-    "policy":[
-      {
-        "type":"transactionLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":10
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub661MyMwAqRbcGDNuXKbT5Uyeth3yNYQAJY4KksbDSLdHgXdh2q5bjH6aQzSRQ4nPjanfWrkE8LVa1Svet4Nh5EnvA7Rh52tfbC4RjFHAwMZ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "02b910dc08af71a28648e4e1efd3bb851587aad7b87fd0ba73ffc50467d0b85b75",
+          "chainCode": "a7e22c7bb28727f49ccf1c04b4371a8d79cf286ee6a018fb8ea4bc454023e498",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
         }
       },
       {
-        "type":"dailyLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":50
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub6GiRC55CRwu5aiyDHeGFdAqUJ5ieMFsEdJ3BrjufgZNarq1FdcB3uGcqYEAxdsiegXypW2RjfBCmcdwJhRbcCNHZFonmasetQdwUNZHbrus",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "03e21d7fc8383ab067771463b55991480d2b133c96233d6182e0fe779118762c3f",
+          "chainCode": "d4d37ed900e592dac8f5ac3ea546d4a37ed5fe6854526d482bde2109a6808b5c",
+          "depth": 5,
+          "index": 176980,
+          "parentFingerprint": 2966462100
         }
-      }
-    ],
-    "users":[
-      {
-        "user":"51f4a86305b9442c68000005c4666e34ff33aba3d78a2d3197e7b46b",
-        "permissions":"admin,spend,view"
       },
       {
-        "user":"53532a4b43fd69a42f000005f0a2ed87fd8b020040739beb513524b5",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"52e41fcec1a256b31c00001a5ba4eff09976d7278cbce93fcfeb8b25",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"53796821a75b0358c626a4ad16fa7fc4f824cbb58e4a88a5bbc04611",
-        "permissions":"spend,view"
+        "xpub": "xpub661MyMwAqRbcGLsjvczmhk2twZfwfhZx16ai3TXf32QcpMfApjKcaTEnLt4oCz4HTss6CQ8gQfQKSyr8ca4s1Xme8FrsPjsNwEo2XBVdJSQ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "0256002e463c6cde950d0f8319b8c3d98e85e49ea626fff60760db6ff6b8bade52",
+          "chainCode": "b4dddf8762d82896a1c8ee63ae2dcfed45037e73dcb8609bb0baba997fc7e2f1",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
+        }
       }
     ]
   },
-  "spendingAccount":true,
-  "confirmedBalance":39564772124,
-  "balance":39564772124,
-  "pendingApprovals":[ ],
-  "canSendInstant": true
+  "canSendInstant": true,
+  "permissions": "admin,spend,view",
+  "admin": {
+    "policy": {
+      "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+      "version": 2,
+      "date": "2016-09-13T00:08:30.661Z",
+      "rules": [
+        {
+          "id": "my velocity limit",
+          "type": "velocityLimit",
+          "action": {
+            "type": "getApproval"
+          },
+          "condition": {
+            "amount": 10000000,
+            "timeWindow": 86400,
+            "groupTags": [
+              ":tag"
+            ],
+            "excludeTags": []
+          }
+        }
+      ]
+    },
+    "users": [
+      {
+        "user": "5624ade20e86bd04483895223800a967",
+        "permissions": "admin,spend,view"
+      }
+    ]
+  },
+  "tags": [],
+  "approvalsRequired": 1,
+  "spendingAccount": true,
+  "pendingApprovals": [],
+  "balance": 39564772124,
+  "instantBalance": 39564772124,
+  "spendableConfirmedBalance": 39564772124,
+  "confirmedBalance": 39564772124,
+  "spendableBalance": 39564772124,
+  "sent": 0,
+  "received": 39564772124,
+  "unconfirmedSends": 0,
+  "unconfirmedReceives": 0
 }
 ```
 
@@ -1651,7 +1669,7 @@ otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" act
 
 ```json
 {
-  "error": "exceeds daily limit",
+  "error": "exceeds a spending limit",
   "pendingApproval": "56050b1368217cde3667fcfe0157556b",
   "triggeredPolicy": "5578defa5e44dbcb20c0caf98b297ad7",
   "status": "pendingApproval"
@@ -2507,7 +2525,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 ```
 
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
 </aside>
 
 Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only in the SDK.
@@ -2621,7 +2639,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
 ```
 
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
 </aside>
 
 Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.
@@ -2711,7 +2729,7 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
 });
 ```
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
 </aside>
 
 Send a partially-signed transaction. The server will do one of the following:
@@ -3287,20 +3305,20 @@ Response | Description
 401 Unauthorized | The authentication parameters did not match, or unlock is required.
 
 # Wallet Policy
-BitGo wallets feature advanced security features such as multi-user or 2FA approval of transactions and spending limits.
-To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will triggered an associated action (set by the user).
-The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
+BitGo wallets feature advanced security features such as multi-user or SMS approval of transactions and spending limits.
+To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will trigger an associated action (set by the user).
+The policy engine will collect all triggered rule results, and perform any triggered actions in the order of `deny`, `getApproval` (from another user), or `getOTP` (sent via SMS to a specified user).
 
 If a wallet carries a balance and there are more than two "admin" users associated with a Wallet,
 any policy change will require approval by another administrator before it will take effect (if there are no additional "admin" users, this will not be necessary).
 It is thus highly recommended to create wallets with at least 2 administrators by [performing a wallet share](#wallet-sharing).
 This way, policy can be effective even if a single user is compromised.
 
-For policies with the "getOTP" action type, successfully sending a transaction will require a 7 digit OTP code before the
-transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself.
-The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire
+For policies with the `getOTP` action type, successfully sending a transaction will require a 7 digit OTP before the
+transaction is signed and sent. This action type lets you offer a Two Factor Authentication security option for your own service, without implementing it yourself.
+The first attempt to send a transaction will fail and send out the code to the phone specified on the rule. Once you acquire
 the code from the user, make another send transaction call with the otp code included as a parameter in the API call
-and the transaction will successfully send. See the "otp" parameter at <a href="#send-coins-to-address">Sends Coins to Address</a> for further details.
+and the transaction will successfully send. See the `otp` parameter at <a href="#send-coins-to-address">Sends Coins to Address</a> for further details.
 
 This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet.
 Further custom policy may be implemented using the [webhook policy type](#set-policy-rule),
@@ -3338,36 +3356,41 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 ```json
 {
-    "date": "2015-04-29T19:03:37.189Z",
-    "id": "55380d34d0d3b00364a52285f09e23a4",
-    "rules": [
-        {
-            "action": {
-                "type": "getApproval"
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.day",
-            "type": "dailyLimit"
-        },
-        {
-            "action": {
-                "type": "getOTP"
-                "actionParams": {
-                    "otpType": "sms",
-                    "phone": "+15417543010",
-                    "duration": "3600"
-                }
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.tx",
-            "type": "transactionLimit"
+  "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+  "version": 0,
+  "date": "2016-09-12T23:44:45.462Z",
+  "rules": [
+    {
+      "id": "my velocity limit",
+      "type": "velocityLimit",
+      "action": {
+        "type": "getOTP",
+        "actionParams": {
+          "otpType": "sms",
+          "phone": "+15417543010",
+          "duration": "3600"
         }
-    ],
-    "version": 4
+      },
+      "condition": {
+        "amount": 10000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    },
+    {
+      "action": {
+          "type": "getApproval"
+      },
+      "condition": {
+        "amount": 200000000
+      },
+      "id": "com.bitgo.limit.velocity.day",
+      "type": "velocityLimit"
+    }
+  ]
 }
 ```
 Gets the policy rules in operation on a wallet.
@@ -3419,7 +3442,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
     "statusResults": [
         {
             "policy": "55380d34d0d3b00364a52285f09e23a4",
-            "ruleId": "com.bitgo.limit.day",
+            "ruleId": "com.bitgo.limit.velocity.day",
             "status": {
                 "remaining": 94982419
             }
@@ -3451,7 +3474,18 @@ Returns status results as generated by rules active on the wallet policy, includ
 
 ## Set Policy Rule
 
-Set the policy on a wallet. A wallet policy controls the conditions under which BitGo will use its single key to sign a transaction.
+Add or update a rule to a wallet's policy. A wallet policy's rules controls the conditions under which BitGo will use its single key to sign a transaction. 
+An email notification will be sent to all wallet users when a policy is updated. This email is NOT sent for the first time policy is added. 
+
+```shell
+WALLETID=2NFj9CHyY8cLKH4UXsivpRa5xkdvAXqqai9
+
+curl -X PUT \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
+-d '{ "action" : { "type" : "getApproval" }, "condition": {"type": "velocity", "amount": 10100000000, "timeWindow": 86400, "groupTags": [":tag"], "excludeTags": [] }, "id": "my velocity limit", "type": "velocityLimit" }' \
+https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
+```
 
 ```javascript
 var walletId = '2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2';
@@ -3460,21 +3494,23 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
   // Sets the policy
   var rule = {
     id: "test1",
-    type: "dailyLimit"
+    type: "velocityLimit"
     action: { type: "getApproval" },
-    condition: { "amount": 101*1e8 },
+    condition: {
+      "type": "velocity",
+      "amount": 101*1e8,
+      "timeWindow": 24 * 60 * 60,
+      "groupTags": [
+        ":tag"
+      ],
+      "excludeTags": []
+    }
   };
   wallet.setPolicyRule(rule, function callback(err, wallet) {
     if (err) { throw err; }
     console.dir(wallet.admin.policy);
   });
 });
-```
-
-```shell
-curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $ACCESS_TOKEN" \
--d '{ "action" : { "type" : "getApproval" }, "condition": { "amount" : 100000000 }, "id": "com.bitgo.limit.tx", "type": "transactionLimit", "default":true}' \
-https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
 ```
 
 ### HTTP Request
@@ -3491,7 +3527,7 @@ Policy rule objects have a type, a condition, and an action. The type of policy 
 
 Parameter | Type | Required | Example
 --------- | ---- | -------- | -----------
-id | the id of the policy | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"
+id | the id of the policy | "custom1", "anyUniqueRuleId"
 type | The type of policy | *See Policy Types*
 condition | The condition for this policy | *See Policy Types*
 action | The action to take when the condition is false |  *See Policy Action Object*
@@ -3500,33 +3536,26 @@ action | The action to take when the condition is false |  *See Policy Action Ob
 
 ```json
 {
-  "date": "2015-10-29T23:33:20.166Z",
-  "id": "5631d2f48cad5fab2c6abe16682372bb",
-  "rules": [
-    {
+  "policy": {
+    "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+    "version": 0,
+    "date": "2016-09-13T00:08:30.661Z",
+    "rules": [{
+      "id": "my velocity limit",
+      "type": "velocityLimit",
       "action": {
         "type": "getApproval"
       },
       "condition": {
-        "amount": 100000000
-      },
-      "id": "com.bitgo.limit.tx",
-      "type": "transactionLimit"
-    },
-    {
-      "action": {
-        "type": "getApproval"
-      },
-      "condition": {
-        "addresses": [
-          "muDjD4YdVzi1vyqKtYVbAkLi2J84GkKj5h"
-        ]
-      },
-      "id": "com.bitgo.whitelist.address",
-      "type": "bitcoinAddressWhitelist"
-    }
-  ],
-  "version": 4
+        "amount": 10100000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    }]
+  }
 }
 ```
 
@@ -3547,23 +3576,32 @@ The aggregate Wallet Policy is an array of Policy Rule Objects. Policy rule obje
 Field | Description | Possible Values
 ----- | ----------- | ---------------
 id | the id of the policy | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"
-type | The type of policy | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook"
+type | The type of policy | "transactionLimit", "velocityLimit", "bitcoinAddressWhitelist", "webhook"
 condition | The condition for this policy | *Depends on policy rule type used*
 action | The action to take when the condition is false |  *See policy action object*
 
-### Policy Type - dailyLimit
+### Policy Type - velocityLimit
 
-A dailyLimit policy rule will trigger when the amount of Bitcoin within the last rolling 24 hours exceeds the specified amount.
+A velocityLimit policy rule will trigger when the amount of Bitcoin spent within the specified time window exceeds the specified amount.
 
 Conditions for this include:
 
 Field | Description | Possible Values
 ----- | ----------- | ---------------
-amount | The maximum allowed value of all transactions per day| Number of satoshis
+amount | The maximum allowed value of all transactions able to be sent during the time window | Number of satoshis
+timeWindow | The interval of time in which to sum transaction spend amounts and compare to the limit | Number of seconds
+groupTags | List of tags specific operations, ":tag" is appropriate is most circumstances | String Array
+excludeTags | Tags which define the group of wallet ids which, if spent to, will exclude that spend from the limit calculation. Also supports :tag to include current tag context | String Array
 
 ### Policy Type - transactionLimit
 
 A transactionLimit policy rule will trigger when a single transaction exceeds the specified amount.
+
+<aside class="warning">
+Transaction limits almost always want to have an amount of 0, which means every attempt to send from this wallet will
+trigger the policy. A transaction limit with an amount not equal to 0 provides very little security on its own, because an
+attacker can simply send an amount just under the policy rule's amount multiple times, without triggering the policy.
+</aside>
 
 Conditions for this include:
 
@@ -3743,8 +3781,8 @@ bitgo.pendingapprovals().list({
                        "condition": {
                            "amount": 300000000
                        },
-                       "id": "com.bitgo.limit.day",
-                       "type": "dailyLimit"
+                       "id": "com.bitgo.limit.velocity.day",
+                       "type": "velocityLimit"
                    }
                },
                "type": "policyRuleRequest"
@@ -3817,8 +3855,8 @@ bitgo.pendingapprovals().list({
                "condition": {
                    "amount": 300000000
                },
-               "id": "com.bitgo.limit.day",
-               "type": "dailyLimit"
+               "id": "com.bitgo.limit.velocity.day",
+               "type": "velocityLimit"
            }
        },
        "type": "policyRuleRequest"
@@ -4611,11 +4649,11 @@ bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
 });
 ```
 ```shell
-curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks=6
+curl -k https://www.bitgo.com/api/v1/tx/fee?numBlocks=6
 ```
 
 Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions.
-Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.
+Note: The estimation algorithm is only accurate in the production environment (www.bitgo.com) and for a minimum of 2 blocks ahead.
 
 ### HTTP Request
 
@@ -5163,9 +5201,14 @@ extended | boolean | NO | Set to true to return details on each transaction with
 {
     "chainWork": "60359949399610308617",
     "date": "2015-04-15T23:05:50.139Z",
+    "fees": 21226,
     "height": 326945,
     "id": "00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a",
+    "merkleRoot": "0b9c0bf5193fece523780bf92e3ad05025371a3d86987005a7316c35c507dcc3",
+    "nonce": 924308913,
     "previous": "00000000eecd159babde9b094c6dbf1f4f63028ba100f6f092cacb65f04afc46",
+    "value": 66640872300,
+    "version": 2,
     "transactions": [
         "e393422e5a0b4c011f511cf3c5911e9c09defdcadbcf16ceb12a47a80e257aaa",
         "fe429dd68ef56613a038238e81b19e2158ef3ad9d9535d1127018bb78ff83537",
@@ -5498,7 +5541,7 @@ BitGo has provided examples of how to perform several common wallet operations u
 
 <aside class="info">
 Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet.
-Do refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+Do refer to the <a href="#bitgo-api-endpoints">Test Environments</a> section for further details.
 </aside>
 
 The examples below (and more!) can be found in the `BitGoJS/examples` directory in our SDK repository.
