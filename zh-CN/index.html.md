@@ -29,9 +29,9 @@ BitGo SDK 能进行下列操作：
 
 ### 多重签名钱包
 
-多重签名钱包的首要好处是，使多台机器及人员可以协同工作一起批准交易。 Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
+多重签名钱包的首要好处是，使多台机器及人员可以协同工作一起批准交易。 交易没有多重签名，那么批准交易所需的全部凭据都将存储于某个人的一台机器。 若那个人，或那台机器被攻击者掌控，那你的所有比特币都将危在旦夕。
 
-Traditionally, it has been so difficult to secure these single person / single machine systems, that many vendors have opted to simply use "cold storage" and move Bitcoin offline entirely.
+通常来说，要保护某个人/某台机器系统十分困难，许多提供商都简单的选择“冷存储”并且将比特币全部移到线下。
 
 Multi-signature wallets offer all the flexibility you would expect from a modern Bitcoin address without having to take your bitcoin offline. The BitGo API enables you to use multi-signature features in your own applications so you can harness the full flexibility of multiple users, cosigners and state-of-the-art fraud detection services to protect against loss and theft.
 
