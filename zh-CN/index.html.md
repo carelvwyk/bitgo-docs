@@ -92,13 +92,13 @@ bitgo.ping({}, function(err, res) {
 | ------------- | -------------------- |
 | useproduction | 是否连接到生产环境。默认值 false. |
 
-The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
+本Javascript SDK同时支持Promise和Callback。如果你将callback最为最后一个参数传递，将会返回callback格式。反之，返回的将是promise格式。
 
-### Important notes on test environment
+### 测试环境的重要注意事项
 
-Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+我们BitGo测试环境中的SDK和范例默认是连接到Bitcoin TestNet。 请参考 [测试环境](#bitgo-api-endpoints) 章节以获取更多讯息。
 
-## BitGo API Endpoints
+## BitGo API 端点
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -122,7 +122,7 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
+BitGo 有 2 套独立的环境供开发和生产。出于安全原因，所有 BitGo API 请求均使用 TLS 通过 HTTPS 传输。
 
 All responses are of content-type `application/json`
 
