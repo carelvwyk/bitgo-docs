@@ -39,19 +39,19 @@ BitGo SDK 能进行下列操作：
 
 ### HD 钱包
 
-所有BitGo钱包均为分层确定性钱包（hierarchical deterministic wallet）——即“HD 钱包”。 HD 钱包使用比特币的<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 标准</a>实现。 As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
+所有BitGo钱包均为分层确定性钱包（hierarchical deterministic wallet）——即“HD 钱包”。 HD 钱包使用比特币的<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 标准</a>实现。 因此，BitGo 的 HD 钱包基于钥匙串建立，而非多个独立的密钥，并提供二种清晰的安全和隐私增强特性：
 
-* More secure backups
+* 更安全的备份
     
-    Because keychains can be backed up with a single secret, a wallet can use many public keys all of which are maintained by a single backup key.
+    因为钥匙串可由一个密钥进行备份，一个钱包可以使用许多由同一个备份密钥维护的公钥。
 
-* Blockchain Privacy
+* 区块链隐私
     
-    With HD Wallets, applications can create new keys with every transaction such that no two transactions ever appear to come from the same wallet. This protects the wallet holder from revealing the true size of the wallet.
+    使用HD钱包，应用程序可以在每次交易时创建新的密钥，因此交易不会显示来自同一个钱包。 此举可以保护钱包持有者避免揭露钱包的真实大小。
 
-## Software Development Kit
+## 软件开发套件（SDK）
 
-The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network. However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
+BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手段，在使用比特币网络时避免受政策所累。 However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
 
 For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs. In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.
 
