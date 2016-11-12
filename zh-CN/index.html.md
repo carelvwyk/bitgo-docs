@@ -198,11 +198,11 @@ BitGo Express 在你自己的数据中心中作为服务运行，用于处理用
 
 BitGo通过“Authorization”头进行验证，调用者可以指定访问令牌。
 
-Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths. Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
+访问令牌被用于维护会话，通过密码登录（需要一次性密码）或Oauth登录路径创建。 典型的访问令牌有效期为1个小时并且需要一次性密码进行解锁才可以花销资金。
 
-By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.
+默认情况下，令牌被绑定到单一IP地址有效期60分钟，过期后用户必须重新验证。
 
-For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code. A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
+对特定的API请求，有效的会话令牌也不行。 要访问这些API请求，会话必须使用解锁API进行解锁，使用附加的两部验证代码。 每个解锁请求允许用户进行一次任意大小的交易（仍然受钱包策略约束），或者任意数量的不超过BiGo管理的限额的交易。<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
 
 Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
 
