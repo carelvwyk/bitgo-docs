@@ -65,20 +65,20 @@ BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手�
 
 * <a href="https://github.com/BitGo/BitGoJS" target="_new">访问我们的开源SDK网页</a> 位于 Github。
 * 安装 git 和 nodejs/npm (为使用后续范例推荐安装)。
-* 用此命令clone我们的仓库到本地: `git clone git@github.com:BitGo/BitGoJS.git`
-* In the BitGoJS directory, install dependencies using: `npm install`
-* Check out the examples directory to see how you can use the SDK! In the example directory, run
+* 执行此命令clone我们的仓库到本地: `git clone git@github.com:BitGo/BitGoJS.git`
+* 在 BitGoJS 目录下执行: `npm install` 命令安装依赖。
+* 在examples目录下有关于本SDK的范例！在范例目录下，执行
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library
+### 导入并初始化程序库
 
 ```javascript
-// If importing via package
+// 若从包文件导入
 var BitGoJS = require('BitGoJS/src/index.js');
 var bitgo = new BitGoJS.BitGo();
 
-// If importing from npm install bitgo
+// 若从 npm install bitgo 导入
 // var bitgo = require('bitgo');
 
 bitgo.ping({}, function(err, res) {
@@ -86,9 +86,9 @@ bitgo.ping({}, function(err, res) {
 });
 ```
 
-To import the library, you simply require the `src/index.js` file. You can then initialize the SDK by doing `BitGoJS.BitGo()`.
+要导入程序库，你只需要 `src/index.js` 文件。 随后你可以使用 `BitGoJS.BitGo()` 进行SDK初始化。
 
-| Parameter     | Value                                                       |
+| 参数            | 值                                                           |
 | ------------- | ----------------------------------------------------------- |
 | useproduction | Whether or not to connect to production. Defaults to false. |
 
