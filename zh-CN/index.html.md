@@ -148,9 +148,9 @@ BitGo测试环境被我们的范例和SDK默认使用. 该环境完全独立于B
 * BitGo 测试站点: https://test.bitgo.com/
 * 测试环境 API: https://test.bitgo.com/api/v1
 
-On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
+在测试环境中，你可以在与BitGo进行验证时使用 `0000000` 作为一次性密码（OTP） (用于自动化测试用途).
 
-This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate. To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
+该环境与Bitcoin TestNet相连，你可以使用<a href="http://tbtc.blockr.io/" target="_new">Blockr</a> 进行导航。 获取测试币请使用 <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> 或与我们联系。
 
 ## BitGo Express REST API
 
@@ -163,11 +163,11 @@ BITGO_EXPRESS_HOST='localhost'
 curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 ```
 
-The BitGo Express REST API is a lightweight service for developers that want to take advantage of BitGo but are developing in a language without a native BitGo SDK.
+BitGo Express REST API 是一个轻量级服务，供想要使用 BitGo 所带来的益处，但使用的开发语言没有原生BitGo SDK的开发者。
 
-BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo. This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.
+BitGo Express 在你自己的数据中心中作为服务运行，用于处理用户端包含你自己的密钥的操作，比如将交易提交到BitGo之前进行部分签名。 这样可以确保你的密钥不会离开你的网络，对BitGo也不可见。 BitGo Express 也可代理标准的 BitGo REST API，通过单一REST API提供到BitGo的统一接口。
 
-To use BitGo Express:
+要使用 BitGo Express:
 
 * Install [BitGoJS](#software-development-kit)
 * Run the following command in the bin directory:
