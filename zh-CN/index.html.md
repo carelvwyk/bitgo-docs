@@ -1,20 +1,20 @@
 * * *
 
-title: BitGo API Reference
+title: BitGo API 参考
 
 language_tabs: - javascript - shell
 
-toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a> - <a href="http://bitgoinc.com/bitgo-services-agreement/" target="_new">Services Agreement</a> - <a href="/settings" target="_new">BitGo Settings (Get API Access Token)</a> - <a>Languages</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html)
+toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo 网站</a> - <a href="http://bitgoinc.com/bitgo-services-agreement/" target="_new">服务协议</a> - <a href="/settings" target="_new">BitGo 设置 (获取 API 访问令牌)</a> - <a>语言</a> - [- English](index.html) - [- Japanese 日本語](ja/index.html)
 
 * * *
 
-# Getting Started
+# 入门
 
 <aside class="info">
-Our developer platform is live. Visit the <a href="https://www.bitgo.com/platform">BitGo Platform Portal</a>  to sign up for integration support, access tokens and more information.
+我们的开发者平台已经上线。访问 <a href="https://www.bitgo.com/platform">BitGo 平台入口</a>  注册以获取集成支持、访问令牌和更多信息。
 </aside>
 
-### Overview
+### 概览
 
 BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
 
