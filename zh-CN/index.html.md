@@ -23,11 +23,11 @@ BitGo SDK 能进行下列操作：
 * 创建P2SH（多重签名）钱包
 * 分层确定性钱包（Hierarchical Deterministic Wallet） 的管理 (BIP32)
 * 创建交易
-* Transaction signing
-* Spending limits
-* Multi-signer wallet flow
+* 交易签名
+* 支出限额
+* 多签名者钱包流
 
-### Multi-Signature Wallets
+### 多重签名钱包
 
 The primary advantage of multi-signature wallets is the ability for multiple machines and people to work together to approve a given transaction. Without multiple signatures on a transaction, all credentials to approve a transaction must reside with a single person on a machine. If that person, or machine is compromised by an attacker, all of your bitcoin can be taken.
 
