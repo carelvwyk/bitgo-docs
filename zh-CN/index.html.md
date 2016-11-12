@@ -16,13 +16,13 @@ toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo 网站</a> -
 
 ### 概览
 
-BitGo provides a simple and robust REST-ful API as well as a simple client javascript SDK to integrate multi-signature technology into your existing bitcoin applications and services.
+BitGo 提供易用且强健的 REST-ful API 和易用的客户端 javascript SDK， 可用于集成多重签名技术到你现有的比特币（bitcoin）应用和服务。
 
-The BitGo SDK enables the following operations:
+BitGo SDK 能进行下列操作：
 
-* Creation of P2SH (multi-signature) wallets
-* Hierarchical Deterministic Wallet management (BIP32)
-* Transaction creation
+* 创建P2SH（多重签名）钱包
+* 分层确定性钱包（Hierarchical Deterministic Wallet） 的管理 (BIP32)
+* 创建交易
 * Transaction signing
 * Spending limits
 * Multi-signer wallet flow
