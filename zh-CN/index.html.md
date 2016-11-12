@@ -240,13 +240,13 @@ bitgo.session({}, function callback(err, session) {
 
 ### 令牌参数
 
-| 参数             | 说明                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label          | 标签用于识别令牌，使你在以后可以废除它。                                                                                                                              |
-| Duration       | Time in seconds which the token will be valid for.                                                                                                |
-| Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
-| IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
-| Permissions    | Auth Scope that the token will be created with                                                                                                    |
+| 参数             | 说明                                                |
+| -------------- | ------------------------------------------------- |
+| Label          | 标签用于识别令牌，使你在以后可以废除它。                              |
+| Duration       | 令牌的有效时间（秒）。                                       |
+| Spending Limit | 该令牌将在到达指定的BTC支出限额前保持解锁状态。不要尝试通过API解锁此令牌，否则限额将被重置。 |
+| IP Addresses   | 限制BitGo仅接受来自指定IP地址对于该令牌的使用。                       |
+| Permissions    | Auth Scope that the token will be created with    |
 
 ## Current User Profile
 
