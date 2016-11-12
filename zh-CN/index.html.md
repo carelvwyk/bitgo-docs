@@ -88,9 +88,9 @@ bitgo.ping({}, function(err, res) {
 
 要导入程序库，你只需要 `src/index.js` 文件。 随后你可以使用 `BitGoJS.BitGo()` 进行SDK初始化。
 
-| 参数            | 值                                                           |
-| ------------- | ----------------------------------------------------------- |
-| useproduction | Whether or not to connect to production. Defaults to false. |
+| 参数            | 值                    |
+| ------------- | -------------------- |
+| useproduction | 是否连接到生产环境。默认值 false. |
 
 The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
 
