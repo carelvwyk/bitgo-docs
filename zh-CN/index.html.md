@@ -208,7 +208,7 @@ BitGo通过“Authorization”头进行验证，调用者可以指定访问令�
 若会话当前为锁定或当前已解锁的会话交易余额不足，需要解锁的API在响应中会包含needsUnlock=true。
 </aside>
 
-另外，通过API用途创建的访问令牌可以在达到限额前一直保持解锁，但是必须在创建时被绑定到指定的作用域。
+另外，通过API用途创建的访问令牌可以在达到限额前一直保持解锁，但是必须在创建时被绑定到指定的作用范围。
 
 ## API 访问令牌
 
@@ -246,9 +246,9 @@ bitgo.session({}, function callback(err, session) {
 | Duration       | 令牌的有效时间（秒）。                                       |
 | Spending Limit | 该令牌将在到达指定的BTC支出限额前保持解锁状态。不要尝试通过API解锁此令牌，否则限额将被重置。 |
 | IP Addresses   | 限制BitGo仅接受来自指定IP地址对于该令牌的使用。                       |
-| Permissions    | Auth Scope that the token will be created with    |
+| Permissions    | 创建令牌的验证范围。                                        |
 
-## Current User Profile
+## 当前用户配置文件
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -258,19 +258,19 @@ https://test.bitgo.com/api/v1/user/me
 ```javascript
 bitgo.me({}, function callback(err, user) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-Get information about the current authenticated user.
+获取当前已验证用户的信息。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/me`
 
-> Example User Model response
+> 用户模型响应示例
 
 ```json
 {
@@ -287,13 +287,13 @@ Get information about the current authenticated user.
 }
 ```
 
-### Response
+### 响应
 
-Returns a User Model object for the currently authenticated user.
+返回一个当前已验证用户的用户模型对象。
 
-## Login
+## 登录
 
-Get a token for first-party access to the BitGo API. First-party access is only intended for users accessing their own BitGo accounts. For 3rd party access to the BitGo API on behalf of another user, please see **Partner Authentication**.
+获取供第三方访问BitGo API的令牌。 第一方访问仅适用于用户访问自己的BitGo账号。 要让另一个用户以第三方的身份访问BitGo API，请参见 **合作伙伴验证**。
 
 ```shell
 EMAIL="janedoe@bitgo.com"
