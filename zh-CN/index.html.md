@@ -305,7 +305,7 @@ curl -X POST \
 -d "{\"email\": \"$EMAIL\", \"password\": \"$HMAC\", \"otp\": \"0000000\"}" \
 https://test.bitgo.com/api/v1/user/login
 
-Note: The rest of the shell examples the share variable assume the shell variable ACCESS_TOKEN contains the access token.
+注: 在余下的 shell 示例中共享变量，假定 shell 变量 ACCESS_TOKEN 包含此访问令牌。
 ```
 
 ```javascript
@@ -313,28 +313,28 @@ var useTestnet = false;
 var bitgo = new Bitgo(useTestnet);
 bitgo.authenticate({ username: user, password: password, otp: otp }, function callback(err, response) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   var token = response.token;
   var user = response.user;
-  // etc
+  // 其他
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/login`
 
-### BODY Parameters
+### BODY参数
 
-| Parameter  | Type    | Required | Description                                                                  |
-| ---------- | ------- | -------- | ---------------------------------------------------------------------------- |
-| email      | string  | YES      | The email address of the user                                                |
-| password   | string  | YES      | The password of the user                                                     |
-| otp        | string  | YES      | The 2-factor-authentication token (Authy token).                             |
-| extensible | boolean | NO       | True if the session is supposed to be extensible beyond a one-hour duration. |
+| 参数         | 类型      | 必需  | 说明                     |
+| ---------- | ------- | --- | ---------------------- |
+| email      | string  | YES | 用户的电邮地址                |
+| password   | string  | YES | 用户的密码                  |
+| otp        | string  | YES | 两步验证令牌（Authy令牌）        |
+| extensible | boolean | NO  | 若此会话可被延长为大于1小时，则为True。 |
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -354,9 +354,9 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 }
 ```
 
-### Response
+### 响应
 
-Returns a token for use with the API.
+通过API返回可供使用的令牌。
 
 The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
 
