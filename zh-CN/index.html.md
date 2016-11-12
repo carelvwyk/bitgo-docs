@@ -450,18 +450,18 @@ bitgo.session({}, function callback(err, session) {
 
 ### 响应
 
-| 字段      | 说明                                                                                           |
-| ------- | -------------------------------------------------------------------------------------------- |
-| client  | 获取用户令牌的 OAuth 用户端ID                                                                          |
-| user    | BitGo 用户 ID                                                                                  |
-| expires | 登录的会话在此时间戳之前有效。                                                                              |
-| scope   | 列出这个会话令牌所允许的权限                                                                               |
-| origin  | 若会话是在浏览器中发起的，此处为创建令牌的源主机名                                                                    |
-| unlock  | Available if session is unlocked. Shows number of transactions and expiry time of the unlock |
+| 字段      | 说明                         |
+| ------- | -------------------------- |
+| client  | 获取用户令牌的 OAuth 用户端ID        |
+| user    | BitGo 用户 ID                |
+| expires | 登录的会话在此时间戳之前有效。            |
+| scope   | 列出这个会话令牌所允许的权限             |
+| origin  | 若会话是在浏览器中发起的，此处为创建令牌的源主机名  |
+| unlock  | 当会话已解锁时可用。显示此解锁的交易数量和过期时间。 |
 
-## Send OTP
+## 发送一次性密码（OTP）
 
-Sends the one time password (2nd Factor Auth) token to the user, which can be used for login / unlock.
+发送一次性密码（两步验证）令牌给用户，可被用于登录 / 解锁。
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -473,25 +473,25 @@ https://test.bitgo.com/api/v1/user/sendotp
 ```javascript
 bitgo.sendOTP({forceSMS: true}, function callback(err) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/sendotp`
 
-### BODY Parameters
+### BODY 参数
 
-| Name     | Type    | Required | Description                                                         |
-| -------- | ------- | -------- | ------------------------------------------------------------------- |
-| forceSMS | boolean | NO       | Use SMS to send the OTP to the user, even if they have Authy set up |
+| 名称       | 类型      | 必需 | 说明                             |
+| -------- | ------- | -- | ------------------------------ |
+| forceSMS | boolean | NO | 使用SMS将OTP发送给用户，即使用户已经设置过Authy。 |
 
-### Response
+### 响应
 
-None
+无
 
 ## Unlock
 
