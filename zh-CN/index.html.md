@@ -169,16 +169,16 @@ BitGo Express 在你自己的数据中心中作为服务运行，用于处理用
 
 要使用 BitGo Express:
 
-* Install [BitGoJS](#software-development-kit)
-* Run the following command in the bin directory:
+* 安装 [BitGoJS](#software-development-kit)
+* 在bin目录下执行下列命令:
 
 `./bitgo-express --debug --port 3080 --env test --bind localhost`
 
-* Make **ALL** BitGo REST API calls to the machine on which bitgo-express is running
+* 使 **全部** BitGo REST API 请求都指向运行 bitgo-express 的机器。
 
-## Error Handling
+## 错误处理
 
-> Example JSON Error
+> JSON错误示例
 
 ```json
 {
@@ -187,16 +187,16 @@ BitGo Express 在你自己的数据中心中作为服务运行，用于处理用
 }
 ```
 
-All errors follow general REST principles. Included in the body of any error response (e.g. non-200 status code) will be an error object of the form:
+所有错误均遵循通用REST原则。错误响应的主体（如非200的状态码）将包含如下格式的错误对象：
 
-| Parameter | Value                                 |
-| --------- | ------------------------------------- |
-| status    | The HTTP error status returned        |
-| error     | The detailed description of the error |
+| 参数     | 值           |
+| ------ | ----------- |
+| status | 返回的HTTP错误状态 |
+| error  | 详细错误信息      |
 
-# User Authentication
+# 用户验证
 
-BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
+BitGo通过“Authorization”头进行验证，调用者可以指定访问令牌。
 
 Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths. Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
 
