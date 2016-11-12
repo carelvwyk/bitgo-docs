@@ -358,20 +358,20 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 
 通过API返回可供使用的令牌。
 
-The token must be added as a HTTP header to all API calls in the HTTP "Authorization" header:
+该令牌必须作为 HTTP 头添加到所有 API 请求的HTTP "Authorization" header：
 
-`Authorization: Bearer <your token goes here>`
+`Authorization: Bearer <你的令牌>`
 
-### Errors
+### 错误
 
-| Response         | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 400 Bad Request  | The request parameters were missing or incorrect. |
-| 401 Unauthorized | The authentication parameters did not match.      |
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-## Logout
+## 登出
 
-Logout of the BitGo service.
+从 BitGo 服务登出。
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -381,27 +381,27 @@ https://test.bitgo.com/api/v1/user/logout
 ```javascript
 bitgo.logout({}, function callback(err) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // the user is now logged out.
+  // 该用户现已登出
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/logout`
 
-### BODY Parameters
+### BODY 参数
 
-None
+无
 
-### Response
+### 响应
 
-None
+无
 
-## Session Information
+## 会话信息
 
-Get information about the current session access token
+获取当前会话访问令牌的信息
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -413,13 +413,13 @@ https://test.bitgo.com/api/v1/user/session
 ```javascript
 bitgo.session({}, function callback(err, session) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(session);
 });
 ```
 
-> Example response
+> 响应示例
 
     { "client": "bitgo",
       "user": "5458141599f715232500000530a94fd2",
@@ -444,19 +444,19 @@ bitgo.session({}, function callback(err, session) {
     }
     
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/session`
 
-### Response
+### 响应
 
-| Field   | Description                                                                                  |
+| 字段      | 说明                                                                                           |
 | ------- | -------------------------------------------------------------------------------------------- |
-| client  | OAuth client ID where the user token was obtained                                            |
-| user    | BitGo user ID                                                                                |
-| expires | Timestamp which the login session is good until                                              |
-| scope   | List of allowed privileges for this session token                                            |
-| origin  | Origin hostname where token was created, if the session was initiated in the browser         |
+| client  | 获取用户令牌的 OAuth 用户端ID                                                                          |
+| user    | BitGo 用户 ID                                                                                  |
+| expires | 登录的会话在此时间戳之前有效。                                                                              |
+| scope   | 列出这个会话令牌所允许的权限                                                                               |
+| origin  | 若会话是在浏览器中发起的，此处为创建令牌的源主机名                                                                    |
 | unlock  | Available if session is unlocked. Shows number of transactions and expiry time of the unlock |
 
 ## Send OTP
