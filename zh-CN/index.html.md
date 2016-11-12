@@ -16,7 +16,7 @@ toc_footers: - <a href="https://www.bitgo.com/" target="_new">BitGo 网站</a> -
 
 ### 概览
 
-BitGo 提供易用且强健的 REST-ful API 和易用的客户端 javascript SDK， 可用于集成多重签名技术到你现有的比特币（bitcoin）应用和服务。
+BitGo 提供易用且强健的 REST-ful API 和易用的用户端 javascript SDK， 可用于集成多重签名技术到你现有的比特币（bitcoin）应用和服务。
 
 BitGo SDK 能进行下列操作：
 
@@ -51,21 +51,21 @@ BitGo SDK 能进行下列操作：
 
 ## 软件开发套件（SDK）
 
-BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手段，在使用比特币网络时避免受政策所累。 However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
+BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手段，在使用比特币网络时避免受政策所累。 不过，一些敏感操作，诸如创建用户私钥和对交易进行签名，必须在用户端进行操作。
 
-For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs. In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.
+因此，我们推荐使用由我们提供的 <a href="https://github.com/BitGo/BitGoJS" target="_new">软件开发套件 (SDK)</a>，使用我们的API实现这些用户端的钱包功能和接口。 事实上，开发者在使用BitGo API时，可能会同时使用BitGo用户端SDK和BitGo REST 服务。
 
-Currently, our SDK is available in Javascript and runs in either node.js or a browser. If you are using a non-supported programming language, see the "BitGo Express REST API" section of the documentation for how to setup BitGo Express, or contact us for further help.
+目前，我们提供Javascript语言的SDK，可运行于node.js或浏览器。 若你想要使用尚不支持的编程语言，请看本文的“BitGo Express REST API”章节，以了解如何设置BitGo Express，或联络我们获得进一步帮助。
 
-Installing the Javascript SDK (via npm)
+安装 Javascript SDK (通过 npm)
 
 `npm install bitgo --save`
 
-Installing the Javascript SDK (via Github)
+安装 Javascript SDK (通过 Github)
 
-* <a href="https://github.com/BitGo/BitGoJS" target="_new">Visit our open-source SDK page</a> on Github.
-* Install git and nodejs/npm (recommended to follow the examples).
-* Clone our repository locally by running the command: `git clone git@github.com:BitGo/BitGoJS.git`
+* <a href="https://github.com/BitGo/BitGoJS" target="_new">访问我们的开源SDK网页</a> 位于 Github。
+* 安装 git 和 nodejs/npm (为使用后续范例推荐安装)。
+* 用此命令clone我们的仓库到本地: `git clone git@github.com:BitGo/BitGoJS.git`
 * In the BitGoJS directory, install dependencies using: `npm install`
 * Check out the examples directory to see how you can use the SDK! In the example directory, run
 
