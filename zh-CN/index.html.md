@@ -33,14 +33,13 @@ BitGo SDK 能进行下列操作：
 
 通常来说，要保护某个人/某台机器系统十分困难，许多提供商都简单的选择“冷存储”并且将比特币全部移到线下。
 
-Multi-signature wallets offer all the flexibility you would expect from a modern Bitcoin address without having to take your bitcoin offline. The BitGo API enables you to use multi-signature features in your own applications so you can harness the full flexibility of multiple users, cosigners and state-of-the-art fraud detection services to protect against loss and theft.
+多重签名钱包提供了你所期待的现代比特币地址的灵活性，不需要将比特币下线。 BitGo API 使你可以在自己的应用程序中使用多重签名特性，让你可以充分利用多用户的灵活性，联署人和应用最先进技术的欺诈检测系统助你防御丢失和盗窃。
 
-For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.
+若要获取更多信息，请阅读 <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo 白皮书</a>.
 
-### HD Wallets
+### HD 钱包
 
-All BitGo wallets are hierarchical deterministic wallets - also known as "HD Wallets". HD Wallets are implemented using the bitcoin
-<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>. As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
+所有BitGo钱包均为分层确定性钱包（hierarchical deterministic wallet）——即“HD 钱包”。 HD 钱包使用比特币的<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 标准</a>实现。 As such, BitGo's HD Wallets are built from 'keychains' rather than from individual keys, and offer two distinct security and privacy enhancing features:
 
 * More secure backups
     
