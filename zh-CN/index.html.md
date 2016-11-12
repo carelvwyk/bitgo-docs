@@ -124,9 +124,9 @@ curl "$TEST_ENDPOINT/ping"
 
 BitGo 有 2 套独立的环境供开发和生产。出于安全原因，所有 BitGo API 请求均使用 TLS 通过 HTTPS 传输。
 
-All responses are of content-type `application/json`
+全部响应均为 content-type `application/json`
 
-> Example Response
+> 响应示例
 
     {
         "status": "service is ok!",
@@ -134,19 +134,19 @@ All responses are of content-type `application/json`
     }
     
 
-### Production Environment
+### 生产环境
 
-The BitGo production endpoint is live and used by partners and our own web application on www.bitgo.com.
+BitGo生产端点已上线，被我们的合作伙伴和我们自己位于www.bitgo.com的网页应用所使用。
 
-* Production Site: https://www.bitgo.com/
-* Production API: https://www.bitgo.com/api/v1
+* 生产站点: https://www.bitgo.com/
+* 生产 API: https://www.bitgo.com/api/v1
 
-### Test Environment
+### 测试环境
 
-The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts. You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
+BitGo测试环境被我们的范例和SDK默认使用. 该环境完全独立于BitGo生产环境，数据的账号没有重叠。 你需要前往 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> 创建账号。
 
-* BitGo Test Site: https://test.bitgo.com/
-* Test Environment API: https://test.bitgo.com/api/v1
+* BitGo 测试站点: https://test.bitgo.com/
+* 测试环境 API: https://test.bitgo.com/api/v1
 
 On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
 
