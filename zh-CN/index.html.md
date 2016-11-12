@@ -202,11 +202,15 @@ BitGo通过“Authorization”头进行验证，调用者可以指定访问令�
 
 默认情况下，令牌被绑定到单一IP地址有效期60分钟，过期后用户必须重新验证。
 
-对特定的API请求，有效的会话令牌也不行。 要访问这些API请求，会话必须使用解锁API进行解锁，使用附加的两部验证代码。 每个解锁请求允许用户进行一次任意大小的交易（仍然受钱包策略约束），或者任意数量的不超过BiGo管理的限额的交易。<aside class="info"> APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining. </aside> 
+对特定的API请求，有效的会话令牌也不行。 要访问这些API请求，会话必须使用解锁API进行解锁，使用附加的两部验证代码。 每个解锁请求允许用户进行一次任意大小的交易（仍然受钱包策略约束），或者任意数量的不超过BiGo管理的限额的交易。
 
-Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
+<aside class="info">
+若会话当前为锁定或当前已解锁的会话交易余额不足，需要解锁的API在响应中会包含needsUnlock=true。
+</aside>
 
-## API Access Tokens
+另外，通过API用途创建的访问令牌可以在达到限额前一直保持解锁，但是必须在创建时被绑定到指定的作用域。
+
+## API 访问令牌
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -220,25 +224,25 @@ https://test.bitgo.com/api/v1/user/session
 var bitgo = new BitGoJS.BitGo({accessToken:'DeveloperAccessToken'});
 bitgo.session({}, function callback(err, session) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(session);
 });
 ```
 
-For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
+出于自动化用途，开发者可以请求长期（long-lived）访问令牌，这种令牌不会在一小时后过期，在指定金额内一直有效。
 
-  1. Access the BitGo dashboard and head into the "Settings" page.
-  2. Click on the "Developer" tab.
-  3. You can now create a long-lived access token.
+  1. 访问BitGo仪表盘并转到“设置”页面。
+  2. 点击“开发者”标签。
+  3. 在此可以创建长期访问令牌。
 
-The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
+令牌默认在达到你设定的金额钱是已解锁状态。不要通过API解锁该令牌，否则该令牌将被重置。
 
-### Token Parameters
+### 令牌参数
 
-| Parameter      | Description                                                                                                                                       |
+| 参数             | 说明                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label          | A label used to identify the token so that you can choose to revoke it later.                                                                     |
+| Label          | 标签用于识别令牌，使你在以后可以废除它。                                                                                                                              |
 | Duration       | Time in seconds which the token will be valid for.                                                                                                |
 | Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit. |
 | IP Addresses   | Lock down the token such that BitGo will only accept it from certain IP addresses.                                                                |
