@@ -923,10 +923,6 @@ bitgo.keychains().get({xpub: xpub}, function callback(err, keychain) {
 
 Lookup a keychain by xpub
 
-<aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
-</aside>
-
 ### HTTP Request
 
 `POST /api/v1/keychain/:xpub`
@@ -3053,10 +3049,6 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-<aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
-</aside>
-
 Sharing a wallet involves giving another user permission to use the wallet through BitGo.
 
 In order for the receiver to use the wallet, we also need to share the private key with them.
@@ -3816,7 +3808,7 @@ Update the state of a pending approval to either 'approved' or 'rejected'.
 curl -X PUT \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $ACCESS_TOKEN_OTHERENTERPRISEUSER" \
--d '{ "state": "approved" }' \
+-d '{ "state": "approved", "otp": "0000000" }' \
 https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
 ```
 
@@ -3828,7 +3820,8 @@ bitgo.pendingapprovals().list({
   if (err) { throw err; }
   var pendingapproval = pendingapprovals[0];
   pendingapproval.approve({
-    "walletPassphrase": "pa55w0rd"
+    "walletPassphrase": "pa55w0rd",
+    "otp": "0000000"
   }, function(err, res) {
     if (err) { throw err; }
     console.dir(res);
@@ -3879,7 +3872,8 @@ bitgo.pendingapprovals().list({
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-state | string | YES | the new state of the pending approval: 'approved', 'rejected' 
+state | string | YES | the new state of the pending approval: 'approved', 'rejected'
+otp | string | YES | the 2-factor-authentication otp code
 
 ### Response
 
