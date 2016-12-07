@@ -1,133 +1,113 @@
 ---
-title: BitGo API Reference
+
+title: BitGo API 参考
 
 language_tabs:
-  - javascript
-  - shell
+- javascript
+- shell
 
 toc_footers:
- - <a href="https://www.bitgo.com/" target="_new">BitGo Website</a>
- - <a href="https://www.bitgo.com/terms" target="_new">Services Agreement</a>
- - <a href="https://www.bitgo.com/settings" target="_new">BitGo Settings (Get API Access Token)</a>
- - <a>Languages</a>
- - <a href="index.html">- English</a>
- - <a href="ja/index.html">- Japanese 日本語</a>
- - <a href="zh-CN/index.html">- Chinese (Simplified) 简体中文</a>
- 
+- <a href="https://www.bitgo.com/" target="_new">BitGo 网站</a>
+- <a href="https://www.bitgo.com/terms" target="_new">服务协议</a>
+- <a href="https://www.bitgo.com/settings" target="_new">BitGo 设置 (获取 API 访问令牌)</a>
+- <a>语言</a>
+- <a href="../index.html">- English</a>
+- <a href="../ja/index.html">- Japanese 日本語</a>
+- <a href="./index.html">- Chinese Simplified 简体中文</a>
+
 ---
 
-# Getting Started
+# 入门
 
 <aside class="info">
-Our developer platform is live. Visit the <a href="https://www.bitgo.com/platform">BitGo Platform Portal</a>  to sign up for integration support, access tokens and more information.
+我们的开发者平台已经上线。访问 <a href="https://www.bitgo.com/platform">BitGo 平台入口</a>  注册以获取集成支持、访问令牌和更多信息。
 </aside>
 
-### Overview
+### 概述
 
-BitGo provides a simple and robust REST-ful API as well as a simple
-client javascript SDK to integrate multi-signature technology into
-your existing bitcoin applications and services.
+BitGo 提供易用且强健的 REST-ful API 和易用的客户端 javascript SDK， 可用于集成多重签名技术到你现有的比特币（bitcoin）应用和服务。
 
-The BitGo SDK enables the following operations:
+BitGo SDK 能进行下列操作：
 
-* Creation of P2SH (multi-signature) wallets
-* Hierarchical Deterministic Wallet management (BIP32)
-* Transaction creation
-* Transaction signing
-* Spending limits
-* Multi-signer wallet flow
+* 创建P2SH（多重签名）钱包
+* 分层确定性钱包（Hierarchical Deterministic Wallet） 的管理 (BIP32)
+* 创建交易
+* 交易签名
+* 花费限额
+* 多签名者钱包流
 
-### Multi-Signature Wallets
+### 多重签名钱包
 
-The primary advantage of multi-signature wallets is the ability for multiple
-machines and people to work together to approve a given transaction.  Without
-multiple signatures on a transaction, all credentials to approve a
-transaction must reside with a single person on a machine.  If that person,
-or machine is compromised by an attacker, all of your bitcoin can be taken.
+多重签名钱包的首要好处是，使多台机器及人员可以协同工作一起批准交易。 交易没有多重签名，那么批准交易所需的全部凭据都将存储于某个人的一台机器。 若那个人，或那台机器被攻击者掌控，那你的所有比特币都将危在旦夕。
 
-Traditionally, it has been so difficult to secure these single person / single
-machine systems, that many vendors have opted to simply use "cold storage" and
-move Bitcoin offline entirely.
+通常来说，要保护某个人/某台机器系统十分困难，许多提供商都简单的选择“冷存储”并且将比特币全部移到线下。
 
-Multi-signature wallets offer all the flexibility you would expect from a modern
-Bitcoin address without having to take your bitcoin offline.  The BitGo API
-enables you to use multi-signature features in your own applications so you can harness
-the full flexibility of multiple users, cosigners and state-of-the-art
-fraud detection services to protect against loss and theft.
+多重签名钱包提供了你所期待的现代比特币地址的灵活性，不需要将比特币下线。 BitGo API 使你可以在自己的应用程序中使用多重签名特性，让你可以充分利用多用户的灵活性，联署人和应用最先进技术的欺诈检测系统助你防御丢失和盗窃。
 
-For more information, please read the <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo Whitepaper</a>.
+若要获取更多信息，请阅读 <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo 白皮书</a>.
 
-### HD Wallets
+### HD 钱包
 
-All BitGo wallets are hierarchical deterministic wallets - also known as
-"HD Wallets".  HD Wallets are implemented using the bitcoin
-<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 standard</a>.  As such, BitGo&#39;s HD Wallets are built from 'keychains' rather
-than from individual keys, and offer two distinct security and privacy
-enhancing features:
+所有BitGo钱包均为分层确定性钱包（hierarchical deterministic wallet）——即“HD 钱包”。 HD 钱包使用比特币的<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 标准</a>实现。 因此，BitGo 的 HD 钱包基于钥匙串建立，而非多个独立的密钥，并提供二种清晰的安全和隐私增强特性：
 
- *  More secure backups
+* 更安全的备份
+    
+    因为钥匙串可由一个密钥进行备份，一个钱包可以使用许多由同一个备份密钥维护的公钥。
 
-    Because keychains can be backed up with a single secret, a wallet can use
-    many public keys all of which are maintained by a single backup key.
+* 区块链隐私
+    
+    使用HD钱包，应用程序可以在每次交易时创建新的密钥，因此交易不会显示来自同一个钱包。 此举可以保护钱包持有者避免揭露钱包的真实大小。
 
- *  Blockchain Privacy
+## 软件开发套件（SDK）
 
-    With HD Wallets, applications can create new keys with every transaction
-    such that no two transactions ever appear to come from the same wallet.
-    This protects the wallet holder from revealing the true size of the wallet.
+BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手段，在使用比特币网络时避免受政策所累。 不过，一些敏感操作，诸如创建用户私钥和对交易进行签名，必须在客户端进行操作。
 
-## Software Development Kit
+因此，我们推荐使用由我们提供的 <a href="https://github.com/BitGo/BitGoJS" target="_new">软件开发套件 (SDK)</a>，使用我们的API实现这些客户端的钱包功能和接口。 事实上，开发者在使用BitGo API时，可能会同时使用BitGo客户端SDK和BitGo REST 服务。
 
-The BitGo API provides developers with a means to create and manage multi-signature wallets, manipulate their policies and interact with the Bitcoin network.
-However, several sensitive operations, such as the creation of user private keys and signing of transactions, are required to be performed client-side.
+目前，我们提供Javascript语言的SDK，可运行于node.js或浏览器。 若你想要使用尚不支持的编程语言，请看本文的“BitGo Express REST API”章节，以了解如何设置BitGo Express，或联络我们获得进一步帮助。
 
-For this reason, we provide and recommend the use of our <a href="https://github.com/BitGo/BitGoJS" target="_new">Software Development Kit (SDK)</a>, which implements these client side wallet features and interfaces with our APIs.
-In practice, developers contemplating use of the BitGo API will likely be using both the BitGo client-side SDK as well as the BitGo REST service.
-
-Currently, our SDK is available in Javascript and runs in either node.js or a browser. If you are using a non-supported programming language, see the "BitGo Express REST API" section of the documentation for how to setup BitGo Express, or contact us for further help.
-
-Installing the Javascript SDK (via npm)
+安装 Javascript SDK (通过 npm)
 
 `npm install bitgo --save`
 
-Installing the Javascript SDK (via Github)
+安装 Javascript SDK (通过 Github)
 
-* <a href="https://github.com/BitGo/BitGoJS" target="_new">Visit our open-source SDK page</a> on Github.
-* Install git and nodejs/npm (recommended to follow the examples).
-* Clone our repository locally by running the command: `git clone git@github.com:BitGo/BitGoJS.git`
-* In the BitGoJS directory, install dependencies using: `npm install`
-* Check out the examples directory to see how you can use the SDK! In the example directory, run
+* <a href="https://github.com/BitGo/BitGoJS" target="_new">访问我们的开源SDK网页</a> 位于 Github。
+* 安装 git 和 nodejs/npm (为使用后续范例推荐安装)。
+* 执行此命令clone我们的仓库到本地: `git clone git@github.com:BitGo/BitGoJS.git`
+* 在 BitGoJS 目录下执行: `npm install` 命令安装依赖。
+* 在examples目录下有关于本SDK的范例！在范例目录下，执行
 
 `node auth.js <testusername> <testpassword> 0000000`
 
-### Importing and initializing the library
+### 导入并初始化程序库
 
 ```javascript
-// If importing via package
+// 如果要从包文件导入
 var BitGoJS = require('BitGoJS/src/index.js');
 var bitgo = new BitGoJS.BitGo();
 
-// If importing from npm install bitgo
+// 如果要从 npm install bitgo 导入
 // var bitgo = require('bitgo');
 
 bitgo.ping({}, function(err, res) {
-    // do stuff here
+    // 代码
 });
 ```
 
-To import the library, you simply require the `src/index.js` file.
-You can then initialize the SDK by doing `BitGoJS.BitGo()`.
+要导入程序库，你只需要 `src/index.js` 文件。 随后你可以使用 `BitGoJS.BitGo()` 进行SDK初始化。
 
-Parameter | Value
---------- | -----
-useproduction | Whether or not to connect to production. Defaults to false.
+| 参数            | 值                    |
+| ------------- | -------------------- |
+| useproduction | 是否连接到生产环境。默认值 false. |
 
-The Javascript SDK supports both promises and callbacks. If you pass in a callback as the last argument, it will return callback-style. Otherwise, a promise will be returned.
+本Javascript SDK同时支持Promise和Callback。如果你将callback最为最后一个参数传递，将会返回callback格式。反之，返回的将是promise格式。
 
-### Important notes on test environment
-Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet. Please refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
+### 测试环境的重要注意事项
 
-## BitGo API Endpoints
+我们BitGo测试环境中的SDK和范例默认是连接到Bitcoin TestNet。 请参考 [测试环境](#bitgo-api-endpoints) 章节以获取更多讯息。
+
+## BitGo API 端点
 
 ```javascript
 var BitGoJS = require('BitGoJS/src/index.js');
@@ -143,6 +123,7 @@ bitgo.ping({}, function(err, res) {
   }
 });
 ```
+
 ```shell
 TEST_ENDPOINT='https://test.bitgo.com/api/v1'
 PROD_ENDPOINT='https://www.bitgo.com/api/v1'
@@ -150,63 +131,63 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
+BitGo 有 2 套独立的环境供开发和生产。出于安全原因，所有 BitGo API 请求均使用 TLS 通过 HTTPS 传输。
 
-All responses are of content-type `application/json`
+全部响应均为 content-type `application/json`
 
-> Example Response
+> 响应示例
 
-```
-{
-    "status": "service is ok!",
-    "environment": "BitGo Test"
-}
-```
+    {
+        "status": "service is ok!",
+        "environment": "BitGo Test"
+    }
+    
 
-### Production Environment
-The BitGo production endpoint is live and used by partners and our own web application on www.bitgo.com.
+### 生产环境
 
-* Production Site: https://www.bitgo.com/
-* Production API: https://www.bitgo.com/api/v1
+BitGo生产端点已上线，被我们的合作伙伴和我们自己位于www.bitgo.com的网页应用所使用。
 
-### Test Environment
-The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts.
-You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
+* 生产站点: https://www.bitgo.com/
+* 生产 API: https://www.bitgo.com/api/v1
 
-* BitGo Test Site: https://test.bitgo.com/
-* Test Environment API: https://test.bitgo.com/api/v1
+### 测试环境
 
-On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
+BitGo测试环境被我们的范例和SDK默认使用. 该环境完全独立于BitGo生产环境，数据的账号没有重叠。 你需要前往 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> 创建账号。
 
-This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate.
-To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
+* BitGo 测试站点: https://test.bitgo.com/
+* 测试环境 API: https://test.bitgo.com/api/v1
+
+在测试环境中，你可以在与BitGo进行验证时使用 `0000000` 作为一次性密码（OTP） (用于自动化测试用途).
+
+该环境与Bitcoin TestNet相连，你可以使用<a href="http://tbtc.blockr.io/" target="_new">Blockr</a> 进行导航。 获取测试币请使用 <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> 或与我们联系。
 
 ## BitGo Express REST API
+
 ```shell
 ./bitgo-express --debug --port 3080 --env test --bind localhost
 ```
+
 ```shell
 BITGO_EXPRESS_HOST='localhost'
 curl http://$BITGO_EXPRESS_HOST:3080/api/v1/ping
 ```
 
-The BitGo Express REST API is a lightweight service for developers that want to take advantage of BitGo but are developing in a language without a native BitGo SDK.
+BitGo Express REST API 是一个轻量级服务，供想要使用 BitGo 所带来的益处，但使用的开发语言没有原生BitGo SDK的开发者。
 
-BitGo Express runs as a service in your own datacenter, and handles the client-side operations involving your own keys, such as partially signing transactions before submitting to BitGo.
-This ensures your keys never leave your network, and are not seen by BitGo. BitGo Express can also proxy the standard BitGo REST APIs, providing a unified interface to BitGo through a single REST API.
+BitGo Express 在你自己的数据中心中作为服务运行，用于处理客户端包含你自己的密钥的操作，比如将交易提交到BitGo之前进行部分签名。 这样可以确保你的密钥不会离开你的网络，对BitGo也不可见。 BitGo Express 也可代理标准的 BitGo REST API，通过单一REST API提供到BitGo的统一接口。
 
-To use BitGo Express:
+要使用 BitGo Express:
 
-* Install [BitGoJS](#software-development-kit)
-* Run the following command in the bin directory:
+* 安装 [BitGoJS](#software-development-kit)
+* 在bin目录下执行下列命令:
 
 `./bitgo-express --debug --port 3080 --env test --bind localhost`
 
-* Make **ALL** BitGo REST API calls to the machine on which bitgo-express is running
+* 使 **全部** BitGo REST API 请求都指向运行 bitgo-express 的机器。
 
-## Error Handling
+## 错误处理
 
-> Example JSON Error
+> JSON错误示例
 
 ```json
 {
@@ -215,36 +196,30 @@ To use BitGo Express:
 }
 ```
 
-All errors follow general REST principles.  Included in the body of any
-error response (e.g. non-200 status code) will be an error object of the
-form:
+所有错误均遵循通用REST原则。错误响应的主体（如非200的状态码）将包含如下格式的错误对象：
 
-Parameter | Value
---------- | -----
-status|The HTTP error status returned
-error|The detailed description of the error
+| 参数     | 值           |
+| ------ | ----------- |
+| status | 返回的HTTP错误状态 |
+| error  | 详细错误信息      |
 
-# User Authentication
+# 用户验证
 
-BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
+BitGo通过“Authorization”头进行验证，调用者可以指定访问令牌。
 
-Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths.
-Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
+访问令牌被用于维护会话，通过密码登录（需要一次性密码）或Oauth登录路径创建。 典型的访问令牌有效期为1个小时并且需要一次性密码进行解锁才可以花费资金。
 
-By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.
+默认情况下，令牌被绑定到单一IP地址有效期60分钟，过期后用户必须重新验证。
 
-For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code.
-A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.
+对特定的API请求，有效的会话令牌也不行。 要访问这些API请求，会话必须使用解锁API进行解锁，使用附加的两部验证代码。 每个解锁请求允许用户进行一次任意大小的交易（仍然受钱包策略约束），或者任意数量的不超过BiGo管理的限额的交易。
 
 <aside class="info">
-APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or
-if the current unlock session has insufficient transaction quota remaining.
+若会话当前为锁定或当前已解锁的会话交易余额不足，需要解锁的API在响应中会包含needsUnlock=true。
 </aside>
 
-Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
+另外，通过API用途创建的访问令牌可以在达到限额前一直保持解锁，但是必须在创建时被绑定到指定的作用范围。
 
-## API Access Tokens
-
+## API 访问令牌
 
 ```shell
 ACCESS_TOKEN='DeveloperAccessToken'
@@ -253,34 +228,36 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 https://test.bitgo.com/api/v1/user/session
 ```
+
 ```javascript
 var bitgo = new BitGoJS.BitGo({accessToken:'DeveloperAccessToken'});
 bitgo.session({}, function callback(err, session) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(session);
 });
 ```
 
-For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
+出于自动化用途，开发者可以请求长期（long-lived）访问令牌，这种令牌不会在一小时后过期，在指定金额内一直有效。
 
-1. Access the BitGo dashboard and head into the "Settings" page.
-2. Click on the "Developer" tab.
-3. You can now create a long-lived access token.
+  1. 访问BitGo仪表盘并转到“设置”页面。
+  2. 点击“开发者”标签。
+  3. 在此可以创建长期访问令牌。
 
-The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
+令牌默认在达到你设定的金额钱是已解锁状态。不要通过API解锁该令牌，否则该令牌将被重置。
 
-### Token Parameters
-Parameter | Description
--------- | -----------
-Label | A label used to identify the token so that you can choose to revoke it later.
-Duration | Time in seconds which the token will be valid for.
-Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit.
-IP Addresses | Lock down the token such that BitGo will only accept it from certain IP addresses.
-Permissions | Auth Scope that the token will be created with
+### 令牌参数
 
-## Current User Profile
+| 参数             | 说明                                                |
+| -------------- | ------------------------------------------------- |
+| Label          | 标签用于识别令牌，使你在以后可以废除它。                              |
+| Duration       | 令牌的有效时间（秒）。                                       |
+| Spending Limit | 该令牌将在到达指定的BTC支出限额前保持解锁状态。不要尝试通过API解锁此令牌，否则限额将被重置。 |
+| IP Addresses   | 限制BitGo仅接受来自指定IP地址对于该令牌的使用。                       |
+| Permissions    | 创建令牌的验证范围。                                        |
+
+## 当前用户配置文件
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -290,19 +267,19 @@ https://test.bitgo.com/api/v1/user/me
 ```javascript
 bitgo.me({}, function callback(err, user) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-Get information about the current authenticated user.
+获取当前已验证用户的信息。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/me`
 
-> Example User Model response
+> 用户模型响应示例
 
 ```json
 {
@@ -319,17 +296,13 @@ Get information about the current authenticated user.
 }
 ```
 
-### Response
+### 响应
 
-Returns a User Model object for the currently authenticated user.
+返回一个当前已验证用户的用户模型对象。
 
+## 登录
 
-
-## Login
-
-Get a token for first-party access to the BitGo API.  First-party access is only intended for users
-accessing their own BitGo accounts.  For 3rd party access to the BitGo API on behalf of another
-user, please see **Partner Authentication**.
+获取供第三方访问BitGo API的令牌。 第一方访问仅适用于用户访问自己的BitGo账号。 要让另一个用户以第三方的身份访问BitGo API，请参见 **合作伙伴验证**。
 
 ```shell
 EMAIL="janedoe@bitgo.com"
@@ -341,35 +314,36 @@ curl -X POST \
 -d "{\"email\": \"$EMAIL\", \"password\": \"$HMAC\", \"otp\": \"0000000\"}" \
 https://test.bitgo.com/api/v1/user/login
 
-Note: The rest of the shell examples the share variable assume the shell variable ACCESS_TOKEN contains the access token.
+注: 在余下的 shell 示例中共享变量，假定 shell 变量 ACCESS_TOKEN 包含此访问令牌。
 ```
+
 ```javascript
 var useTestnet = false;
 var bitgo = new Bitgo(useTestnet);
 bitgo.authenticate({ username: user, password: password, otp: otp }, function callback(err, response) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   var token = response.token;
   var user = response.user;
-  // etc
+  // 其他
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/login`
 
-### BODY Parameters
+### BODY参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-email|string|YES|The email address of the user
-password|string|YES|The password of the user
-otp|string|YES|The 2-factor-authentication token (Authy token).
-extensible | boolean | NO | True if the session is supposed to be extensible beyond a one-hour duration.
+| 参数         | 类型      | 必需  | 说明                     |
+| ---------- | ------- | --- | ---------------------- |
+| email      | string  | YES | 用户的电邮地址                |
+| password   | string  | YES | 用户的密码                  |
+| otp        | string  | YES | 两步验证令牌（Authy令牌）        |
+| extensible | boolean | NO  | 若此会话可被延长为大于1小时，则为True。 |
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -389,53 +363,54 @@ extensible | boolean | NO | True if the session is supposed to be extensible bey
 }
 ```
 
-### Response
+### 响应
 
-Returns a token for use with the API.
+通过API返回可供使用的令牌。
 
-The token must be added as a HTTP header to all API calls in the HTTP
-"Authorization" header:
+该令牌必须作为 HTTP 头添加到所有 API 请求的HTTP "Authorization" header：
 
-`Authorization: Bearer <your token goes here>`
+`Authorization: Bearer <你的令牌>`
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
-## Logout
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-Logout of the BitGo service.
+## 登出
+
+从 BitGo 服务登出。
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
 https://test.bitgo.com/api/v1/user/logout
 ```
+
 ```javascript
 bitgo.logout({}, function callback(err) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // the user is now logged out.
+  // 该用户现已登出
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/logout`
 
-### BODY Parameters
+### BODY 参数
 
-None
+无
 
-### Response
+### 响应
 
-None
+无
 
-## Session Information
+## 会话信息
 
-Get information about the current session access token
+获取当前会话访问令牌的信息
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -443,59 +418,59 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 https://test.bitgo.com/api/v1/user/session
 ```
+
 ```javascript
 bitgo.session({}, function callback(err, session) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(session);
 });
 ```
 
-> Example response
+> 响应示例
 
-```
-{ "client": "bitgo",
-  "user": "5458141599f715232500000530a94fd2",
-  "scope":
-   [ "user_manage",
-     "openid",
-     "profile",
-     "wallet_create",
-     "wallet_manage_all",
-     "wallet_approve_all",
-     "wallet_spend_all",
-     "wallet_edit_all",
-     "wallet_view_all" ],
-  "expires": "2015-01-21T02:18:11.534Z",
-  "origin": "test.bitgo.com",
-  "unlock":
-      { "time": "2015-01-21T01:20:25.366Z",
-        "expires": "2015-01-21T01:30:25.366Z",
-        "txCount": 0,
-        "txValue": 0
-      }
-}
-```
+    { "client": "bitgo",
+      "user": "5458141599f715232500000530a94fd2",
+      "scope":
+       [ "user_manage",
+         "openid",
+         "profile",
+         "wallet_create",
+         "wallet_manage_all",
+         "wallet_approve_all",
+         "wallet_spend_all",
+         "wallet_edit_all",
+         "wallet_view_all" ],
+      "expires": "2015-01-21T02:18:11.534Z",
+      "origin": "test.bitgo.com",
+      "unlock":
+          { "time": "2015-01-21T01:20:25.366Z",
+            "expires": "2015-01-21T01:30:25.366Z",
+            "txCount": 0,
+            "txValue": 0
+          }
+    }
+    
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/user/session`
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-client | OAuth client ID where the user token was obtained
-user | BitGo user ID
-expires | Timestamp which the login session is good until
-scope | List of allowed privileges for this session token
-origin | Origin hostname where token was created, if the session was initiated in the browser
-unlock | Available if session is unlocked. Shows number of transactions and expiry time of the unlock
+| 字段      | 说明                         |
+| ------- | -------------------------- |
+| client  | 获取用户令牌的 OAuth 客户端ID        |
+| user    | BitGo 用户 ID                |
+| expires | 登录的会话在此时间戳之前有效。            |
+| scope   | 列出这个会话令牌所允许的权限             |
+| origin  | 若会话是在浏览器中发起的，此处为创建令牌的源主机名  |
+| unlock  | 当会话已解锁时可用。显示此解锁的交易数量和过期时间。 |
 
-## Send OTP
+## 发送一次性密码（OTP）
 
-Sends the one time password (2nd Factor Auth) token to the user, which can be used for login / unlock.
+发送一次性密码（两步验证）令牌给用户，可被用于登录 / 解锁。
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -503,33 +478,33 @@ curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 https://test.bitgo.com/api/v1/user/sendotp
 ```
+
 ```javascript
 bitgo.sendOTP({forceSMS: true}, function callback(err) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/sendotp`
 
-### BODY Parameters
+### BODY 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-forceSMS | boolean | NO | Use SMS to send the OTP to the user, even if they have Authy set up
+| 名称       | 类型      | 必需 | 说明                             |
+| -------- | ------- | -- | ------------------------------ |
+| forceSMS | boolean | NO | 使用SMS将OTP发送给用户，即使用户已经设置过Authy。 |
 
-### Response
+### 响应
 
-None
+无
 
-## Unlock
+## 解锁
 
-Unlock the current session, which is required for certain other
-sensitive API calls.
+解锁当前会话，适用于特定的敏感API调用。
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -537,39 +512,41 @@ curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 https://test.bitgo.com/api/v1/user/unlock
 ```
+
 ```javascript
 bitgo.unlock({otp: otp}, function callback(err) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/unlock`
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-otp | string | YES | An Authy OTP code for the account
-duration | number | NO | Desired duration of the unlock in seconds (default=600, max=3600)
+| 参数       | 类型     | 必需  | 说明                          |
+| -------- | ------ | --- | --------------------------- |
+| otp      | string | YES | 用于此帐户的Authy OTP 密码。         |
+| duration | number | NO  | 请求解锁的持续时间秒数（默认=600，最大=3600） |
 
-### Response
+### 响应
 
-None
+无
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect
-401 Unauthorized | The authentication parameters did not match, or OTP code was incorrect
+### 错误
 
-## Lock
+| 响应               | 说明             |
+| ---------------- | -------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。    |
+| 401 Unauthorized | 验证参数不符，或OTP错误。 |
 
-Re-lock the current session.
+## 锁定
+
+重新锁定当前会话
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -582,59 +559,52 @@ bitgo.lock({}, function callback(err) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/user/lock`
 
-### Response
+### 响应
 
-None
+无
 
-### Errors
-Response | Description
--------- | -----------
-401 Unauthorized | The authentication parameters did not match
+### 错误
 
-## Partner Authentication
+| 响应               | 说明     |
+| ---------------- | ------ |
+| 401 Unauthorized | 验证参数不符 |
 
-3rd party applications using the BitGo API use OAuth to authenticate through BitGo.
-Please contact BitGo for a partner ID and more information.
+## 合作伙伴验证
 
-# Keychains
+第三方使用 BitGo API 的应用程序使用 OAuth 通过 BitGo 进行验证。 请联络 BitGo 以获取合作伙伴 ID 和进一步信息。
 
-All BitGo wallets are created using keychains. A keychain is a standard
+# 钥匙串
+
+所有 BitGo 钱包均使用钥匙串创建。 钥匙串是一个标准的
 <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a>
-extended HD key.  Unlike traditional bitcoin keys, which represent a single
-<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair,
-a keychain can represent many key pairs, all derived from a common private key.
-This allows the user to retain a single private key, but generate an infinite
-number of public keys.  BitGo uses these extended keys to keep your bitcoin more private and secure.
+扩展HD密钥。 和传统比特币密钥不同，传统密钥代表单个
+<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> 密钥对， 一个钥匙串可代表多个密钥对，全部源于一个公用私钥。 这让用户可以在保留单个私钥的同时，生成无限数量的公钥。 BitGo 使用扩展密钥来保证你的比特币拥有更多隐私和安全。
 
-To make wallet creation simple, BitGo maintains a list of Keychains
-for each user.  Each keychain may be used in any number of BitGo Wallets.
+为了使创建钱包变得简单，BitGo 为每个用户维护钥匙串列表。每个钥匙串可被用在任意数量的 BitGo 钱包中。
 
-There are two types of keychains:
+有两种类型的钥匙串：
 
- *  Public Keychains
+* 公有钥匙串
+    
+    由单个 BIP32 扩展公钥（xpub）组成。
 
-    These are comprised of a single BIP32 extended public key (xpub).
+* 私有钥匙串
+    
+    由单个 BIP32 扩展私钥（xprv）组成，始终以加密形式储存。
 
- *  Private Keychains
+所有钥匙串均有各自的 xpub 进行区别。为方便起见，每个钥匙串均可设置标签。
 
-    These are comprised of a single BIP32 extended private key (xprv),
-    which is always stored in encrypted form.
-
-All keychains are identified by their xpub.  For convenience, each keychain may have a label.
-
-Before creating your first wallet, you must create keychains to use
-with that wallet.
+在创建你的第一个钱包前，你必须创建供钱包使用的钥匙串。
 
 <aside class="success">
-Note that accessing the private keychain (even in encrypted form) always requires
-2-factor-authentication.
+要注意的是私有钥匙串（即使已是加密格式）始终需要两步验证。
 </aside>
 
-## List Keychains
+## 列出钥匙串
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -645,23 +615,23 @@ https://test.bitgo.com/api/v1/keychain
 var keychains = bitgo.keychains();
 keychains.list({}, function callback(err, keychains) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(keychains);
 });
 ```
 
-Get the list of public keychains for the user
+获取此用户的公有钥匙串
 
 <aside class="success">
-This API only provides the public keys and never the private data for a keychain.
+本 API 仅返回公钥，不包括钥匙串的私有数据。
 </aside>
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/keychain`
 
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -686,31 +656,32 @@ This API only provides the public keys and never the private data for a keychain
 }
 ```
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=100, max=500)
+| 参数    | 类型     | 必需 | 说明                           |
+| ----- | ------ | -- | ---------------------------- |
+| skip  | number | NO | 列表的初始索引号。默认值为 0。             |
+| limit | number | NO | 单次调用返回结果的最大数量（默认=100，最大=500） |
 
-### Response
+### 响应
 
-Returns an array of Keychain Model objects.
+返回一个包含钥匙串模型对象的数组。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
+| 响应               | Required    |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-## Create Keychain
+## 创建钥匙串
 
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法时可用 (BitGo Express)
 
 curl -X POST http://$BITGO_EXPRESS_HOST:3080/api/v1/keychain/local
 ```
+
 ```javascript
 var keychains = bitgo.keychains();
 var keychain = keychains.create();
@@ -718,7 +689,7 @@ var keychain = keychains.create();
 console.dir(keychain);
 ```
 
-> Example response
+> 响应示例
 
 ```json
   {
@@ -728,22 +699,19 @@ console.dir(keychain);
   }
 ```
 
-Local client-side function to create a new keychain.
+本地客户端功能用以创建新的钥匙串。
 
-Optionally, a single parameter, 'seed', may be provided which uses a deterministic seed to create your keychain.  The seed should
-be an array of numbers at least 32 elements long.  Calling this function with the same seed will generate the same BIP32 keychain.
+根据需要，在使用确定性种子创建你的钥匙串时，可加上参数 'seed'。 种子必须 为一个包含不少于32个元素的数字数组。 使用同一个种子调用此函数将会生成相同的 BIP32 钥匙串。
 
 <aside class="warning">
-Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random
-number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it.
+创建你的钥匙串是一个保障你比特币安全的关键步骤。 当生成性钥匙串时，API 使用遵循工业标准的随机数生成器。 若你使用自己的种子，你必须在创建种子时极度小心。
 </aside>
 
-Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service.
-To use it with the BitGo service, use the Keychains.Add API.
+返回一个包含 xprv 和 xpub 的对象，以供新钥匙串使用。创建的钥匙串对 BitGo 服务而言是不可知的。 要在 BitGo 服务中使用，请使用 Keychains.Add API.
 
-For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original xprv immediately to prevent theft.
+处于安全原因，强烈建议你 [加密](#encrypt) 后立刻销毁原始 xprv 以防被盗。
 
-## Add Keychain
+## 添加钥匙串
 
 ```shell
 curl -X POST \
@@ -761,35 +729,28 @@ var data = {
 
 bitgo.keychains().add(data, function callback(err, keychain) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // etc
+  // 其他
 });
 ```
 
-Registers a new keychain for the user. You must supply at least the public key. An encrypted private key may be uploaded, but it will be treated as opaque to the server.
+为用户注册新的钥匙串。你必须至少提供公钥。加密的私钥亦可上传，但对服务器而言是不透明的。
 
-The purpose in providing an encrypted private key with the address is so users will be able to access their keys securely whenever they are connected to BitGo without the burden of storing it.
-It is highly recommended that you encrypt any private keys stored at the server with a strong password from the user. Encryption must be performed on the client.
-For convenience, you can use BitGo&#39;s [encrypt/decrypt functions](#encrypt), but you can use any encryption you wish.
+提供加密私钥和地址的目的是使用户在使用 BitGo 时可以安全的访问自己的密钥，不再有自己保存密钥的负担。 强烈建议你用强密码加密存储在服务器上的用户私钥。 加密操作必须在客户端完成。 为方便起见，你可以使用 BitGo 的 [加密/解密函数](#encrypt)，不过你也可以使用任何你想要的加密方式。<aside class="warning"> 若你自己提供加密的 xprv，那么钥匙串的安全强度将由你的加密方式决定。 加密由你全权负责。 </aside> 
 
-<aside class="warning">
-If you provide the encrypted xprv, the security of this keychain is only as good as your encryption.  Encryption is your responsibility.
-</aside>
-
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/keychain`
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-xpub | string | YES | The BIP32 xpub for this keychain
-encryptedXprv | string | NO | The encrypted, BIP32 xprv for this keychain
+| 参数            | 类型     | 必需  | 说明                   |
+| ------------- | ------ | --- | -------------------- |
+| xpub          | string | YES | 此钥匙串的 BIP32 xpub     |
+| encryptedXprv | string | NO  | 此钥匙串的 BIP32 xprv，已加密 |
 
-
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -800,17 +761,18 @@ encryptedXprv | string | NO | The encrypted, BIP32 xprv for this keychain
 }
 ```
 
-### Response
+### 响应
 
-Returns a Keychain Model object.
+返回一个钥匙串模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+### 错误
 
-## Create BitGo Keychain
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+
+## 创建 BitGo 钥匙串
 
 ```shell
 curl -X POST \
@@ -821,25 +783,23 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 ```javascript
 bitgo.keychains().createBitGo({}, function callback(err, keychain) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(keychain);
 });
 ```
 
-Creates a new keychain on BitGo's servers and returns the public keychain to
-the caller.
+在 BitGo 服务器上创建新钥匙串，并返回公有钥匙串给调用者。
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/keychain/bitgo`
 
-### BODY Parameters
+### BODY 参数
 
-None.
+无
 
-
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -850,17 +810,18 @@ None.
 }
 ```
 
-### Response
+### 响应
 
-Returns a Keychain Model object.
+返回一个钥匙串模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+### 错误
 
-## Create Backup Keychain
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+
+## 创建备份钥匙串
 
 ```shell
 curl -X POST \
@@ -876,22 +837,19 @@ bitgo.keychains().createBackup({ provider: 'lastkeysolutions' }, function callba
 });
 ```
 
-Creates a new backup keychain on a third party specializing in key recovery services.
-This keychain will be stored on the third party service and usable for recovery purposes only.
+使用第三方专业密钥恢复服务创建新的钥匙串备份。 该钥匙串将被保存在第三方服务中，仅可用于恢复用途。
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/keychain/backup`
 
+### BODY 参数
 
-### BODY Parameters
+| 参数       | 类型     | 必需  | 说明                  |
+| -------- | ------ | --- | ------------------- |
+| provider | string | YES | 使用的 KRS 或密钥备份提供者的名称 |
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-provider | string | YES | name of the KRS or backup key provider to use
-
-
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -901,12 +859,11 @@ provider | string | YES | name of the KRS or backup key provider to use
 }
 ```
 
-### Response
+### 响应
 
-Returns a Keychain Model object.
+返回一个钥匙串模型对象。
 
-
-## Get Keychain
+## 获取钥匙串
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
@@ -922,24 +879,23 @@ bitgo.keychains().get({xpub: xpub}, function callback(err, keychain) {
 });
 ```
 
-Lookup a keychain by xpub
+根据 xpub 查找钥匙串
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/keychain/:xpub`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-xpub | string | YES | The BIP32 xpub to lookup
+| 参数   | 类型     | 需要  | 说明               |
+| ---- | ------ | --- | ---------------- |
+| xpub | string | YES | 需要查找的 BIP32 xpub |
 
-
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -950,19 +906,19 @@ xpub | string | YES | The BIP32 xpub to lookup
 }
 ```
 
-### Response
+### 响应
 
-Returns a Keychain Model object.
+返回一个钥匙串模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
-404 Bad Request | The xpub was not found
+### 错误
 
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+| 404 Not found    | 未找到该 xpub     |
 
-## Update Keychain
+## 更新钥匙串
 
 ```shell
 XPUB=xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
@@ -973,7 +929,6 @@ curl -X PUT \
 -d '{"encryptedXprv": "my encrypted data"}' \
 https://test.bitgo.com/api/v1/keychain/$XPUB
 ```
-
 
 ```javascript
 var params = {
@@ -986,31 +941,25 @@ bitgo.keychains().update(params, function callback(err, keychain) {
 });
 ```
 
-Update a keychain.  This is used if you wish to store a new version of the
-xprv (for example, if you changed the password used to encrypt the xprv).
+更新钥匙串。用于当你需要储存一个新版本的 xprv （例如，你更改了用于加密 xprv 的密码）。
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-<aside class="warning">
-If you change the encryptedXprv, the existing value
-is overwritten.  If the new value is incorrect, or you forget the password
-to the new value, your ability to sign with this keychain will be lost forever.
-</aside>
+<aside class="warning"> 若你更改encryptedXprv，那么现有的值 将被覆盖。 若新的值是错误的，或你忘记了新的值的密码， 那你将永远不能使用此钥匙串进行签名。 </aside> 
 
-### HTTP Request
+### HTTP 请求
 
 `PUT /api/v1/keychain/:xpub`
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-encryptedXprv | string | NO | A new encrypted, BIP32 xprv for this keychain
+| 参数            | 类型     | 必需 | 说明                          |
+| ------------- | ------ | -- | --------------------------- |
+| encryptedXprv | string | NO | 用于此钥匙串的，一个新的已加密的 BIP32 xprv |
 
-
-> Example Keychain Model response
+> 钥匙串模型响应示例
 
 ```json
 {
@@ -1021,34 +970,27 @@ encryptedXprv | string | NO | A new encrypted, BIP32 xprv for this keychain
 }
 ```
 
-### Response
+### 响应
 
-Returns a Keychain Model object.
+返回一个钥匙串模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
-404 Not Found | The xpub was not found
+### 错误
 
-# Wallets
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+| 404 Not Found    | 未找到该 xpub     |
 
-All BitGo Wallets are multi-signature, hierarchical, deterministic wallets.
-Multi-signature wallets are comprised of *N* keys, and require *M* keys
-to sign a transaction before the transaction is valid.
-This is called an *M-of-N* wallet.
+# 钱包
 
-BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
+所有 BitGo 钱包均为多重签名的分层确定性钱包。 多重签名钱包由 *N* 个密钥组成，并且需要 *M* 个密钥 对交易进行签名使交易有效。 这称之为 *M-of-N* 钱包。
 
-To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last
-must be a BitGo keychain. While BitGo can see the public portion of the first
-two keys, BitGo never has access to the private portion of these keys and
-therefore cannot conduct transactions without the user.  BitGo's single
-key is not sufficient to sign transactions, and BitGo will only use this key
-in accordance with the policies set by the user.
+BitGo 目前仅支持 2-of-3 钱包。我们使用策略层支持 m-of-n 权限模型。
 
-## List Wallets
+要创建钱包，必需提供 3 个钥匙串。 第 1 和第 2 个钥匙串由用户提供；最后一个必须是 BitGo 的钥匙串。 前两个密钥的公有部分对 BitGo 可见，但 BitGo 对私有部分始终不会具有访问权限，因此没有用户操作是无法进行交易的。 单靠 BitGo 的密钥是无法对交易进行签名的，BitGo 仅依照用户设定的策略使用此密钥。
+
+## 列出钱包
 
 ```shell
 curl -X GET \
@@ -1059,7 +1001,7 @@ https://test.bitgo.com/api/v1/wallet
 ```javascript
 var wallets = bitgo.wallets();
 wallets.list({}, function callback(err, wallets) {
-// handle error, do something with wallets
+// 错误处理，钱包操作
 for (id in wallets) {
   var wallet = wallets[id].wallet;
   console.log(JSON.stringify(wallet, null, 4));
@@ -1067,13 +1009,13 @@ for (id in wallets) {
 });
 ```
 
-Get the list of wallets for the user
+获取用户的钱包列表
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -1086,7 +1028,7 @@ Get the list of wallets for the user
             "permissions": "admin,spend,view",
             "private": {
                 "keychains": [
-                    "... truncated for clarity ..."
+                    "... 略 ..."
                 ]
             },
             "spendingAccount": true,
@@ -1100,7 +1042,7 @@ Get the list of wallets for the user
             "permissions": "admin,spend,view",
             "private": {
                 "keychains": [
-                    "... truncated for clarity ..."
+                    "... 略 ..."
                 ]
             },
             "spendingAccount": true,
@@ -1114,30 +1056,29 @@ Get the list of wallets for the user
 }
 ```
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
+| 参数    | 类型     | 必需 | 说明                          |
+| ----- | ------ | -- | --------------------------- |
+| skip  | number | NO | 列表的初始索引号。默认值为 0。            |
+| limit | number | NO | 单次调用返回结果的最大数量（默认=25，最大=250） |
 
-### Response
+### 响应
 
-Returns an array of Wallet Model objects.
+返回一个包含钱包模型对象的数组。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-## Add Wallet
-
+## 添加钱包
 <aside class="warning">
-This method is for advanced API users and allows manual creation of keys and specification of user and backup key xPubs.
-For most scenarios in the SDK, <a href="#create-wallet-with-keychains">Create Wallet With Keychains</a> is the simpler and recommended SDK method to send bitcoins from a wallet.
-</aside>
+此功能供高级 API 用户使用，允许手动创建用户密钥和规格以及备份密钥的 xPubs。 在大部分 SDK 场景下，推荐使用较为方便的 
+<a href="#create-wallet-with-keychains">使用钥匙串创建钱包</a> SDK 方法从钱包发送比特币。 
+</aside> 
 
 ```shell
 XPUB_USER=xpub661MyMwAqRbcF8BFQAaLnkkDar6uHQZn9cvzPX5qdfUL42gyts7YeYHZgWvNVjcUDP8BEDMduMBhtKLnVAKaT3sW1g14xnv29w5D3ts8LVd
@@ -1166,45 +1107,36 @@ var data = {
 };
 bitgo.wallets().add(data, function callback(err, wallet) {
   if (err) {
-    // handle error
+    // 处理错误
   }
   console.dir(wallet);
 });
 ```
 
-This API creates a new wallet for the user.  The keychains to use with the
-new wallet must be registered with BitGo prior to using this API.
+本 API 为用户创建新的钱包。用于新钱包的钥匙串 必需事先使用 API 在 BitGo 进行注册。
 
-BitGo currently only supports 2-of-3 (e.g. m=2 and n=3) wallets. The third keychain, and
-**only** the third keychain, _must_ be a BitGo key.
-The first keychain is by convention the user key, with it's **encrypted** xpriv is stored on BitGo.
+BitGo 目前仅支持 2-of-3 （例如 m=2 且 n=3）钱包。 第三个钥匙串，并且 **只有**第三个钥匙串，*必须*是 BitGo 密钥。 按照约定第一个钥匙串是用户密钥，和它**加密的** xpriv 存储于 BitGo。
 
-BitGo wallets currently are hard-coded with their root at **m/0/0** across all
-3 keychains (however, older legacy wallets may use different key paths).
-Below the root, the wallet supports two chains of addresses, 0 and 1. The
-**0-chain** is for external receiving addresses, while the **1-chain** is for internal
-(change) addresses.
+目前 BitGo 钱包是硬编码的他们的根位于 **m/0/0** 用于全部三个钥匙串 (然而，老式钱包可能使用不同的密钥路径)。 在根之下，钱包支持两个地址链，0 和 1。 **0-链** 是外部接收地址， **1-链** 是内部 (变更) 地址。
 
-The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which
-is also the ID used to refer to a wallet in BitGo's system. The first change address of a wallet is at **m/0/0/1/0**.
-</aside>
+钱包的第一个接收地址位于路径 **m/0/0/0/0**， 此 ID 也是在 BitGo 系统中用于引用钱包的地址。 钱包的第一个变更地址位于 **m/0/0/1/0**. 
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/wallet`
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-label | string | YES | A label for this wallet
-m | number | YES | The number of signatures required to redeem (must be 2)
-n | number | YES | The number of keys in the wallet (must be 3)
-keychains | array | YES | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key
-enterprise | string | NO | Enterprise ID to create this wallet under.
-disableTransactionNotifications | boolean | NO | Set to true to prevent wallet transaction notifications.
+| 参数                              | 类型      | 必需  | 说明                                               |
+| ------------------------------- | ------- | --- | ------------------------------------------------ |
+| label                           | string  | YES | 钱包的标签                                            |
+| m                               | number  | YES | 赎回所需的签名数量（必需为 2）                                 |
+| n                               | number  | YES | 钱包中的密钥数量（必需为 3）                                  |
+| keychains                       | array   | YES | 用于此钱包的一个包含 **n** 个 xpub 钥匙串的数组；最后一个必须是 BitGo 密钥。 |
+| enterprise                      | string  | NO  | 创建此钱包时使用的企业 ID。                                  |
+| disableTransactionNotifications | boolean | NO  | 设为 true 以阻止钱包交易提醒。                               |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -1236,19 +1168,19 @@ disableTransactionNotifications | boolean | NO | Set to true to prevent wallet t
 }
 ```
 
-### Response
+### 响应
 
-Returns a Wallet Model object.
+返回一个钱包模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-406 Not acceptable | One of the keychains provided was not acceptable.
+### 错误
 
+| 响应                 | 说明              |
+| ------------------ | --------------- |
+| 400 Bad Request    | 请求参数缺失或有错误。     |
+| 401 Unauthorized   | 验证参数不符。         |
+| 406 Not acceptable | 提供的钥匙串中有一个不被接受。 |
 
-## Get Wallet
+## 获取钱包
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -1266,7 +1198,7 @@ var data = {
 };
 wallets.get(data, function callback(err, wallet) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(wallet);
 });
@@ -1278,130 +1210,149 @@ var data = {
 };
 wallets.get(data, function callback(err, wallet) {
   if (err) {
-    // handle error
+    // 错误处理
   }
-  // Use wallet object here
+  // 在此使用钱包对象
   console.dir(wallet);
   console.dir(wallet.balance());
 });
 
 ```
 
-Lookup wallet information, returning the wallet model including balances, permissions etc. The ID of a wallet is its first receiving address (/0/0)
+查找钱包信息，返回的钱包模型包括有余额，权限等信息。钱包的 ID 为它的第一个接收地址 (/0/0)
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:id`
 
-> Example response
+> 响应示例
 
 ```json
 {
-  "id":"2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb",
-  "label":"TestNet Wallet",
-  "isActive":true,
-  "type":"safehd",
-  "private":{
-    "keychains":[
+  "_id": "57bb66f07cf7c6da4f2956011df25aa6",
+  "id": "2N6GYGJQSLZyXSgviEmdhWd5jWHoDcSKAfJ",
+  "label": "TestNet Wallet",
+  "isActive": true,
+  "type": "safehd",
+  "freeze": {},
+  "adminCount": 1,
+  "disableTransactionNotifications": false,
+  "private": {
+    "keychains": [
       {
-        "xpub":"xpub681KE1ZbZM8UNecAGowRFH1vJfxrhzA3fMwKHB5yRs7YGU4FQUPJdbZdTaRuyweAXGDSrJt3AWDuDsoXh4CD4h43GPPzAq2H7Cb18xHGivZ",
-        "path":"/101",
-        "_id":"536d3cc573c8329a78000016"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGZp3eJrpEW1VzomFeDqs2nd9vdZhLFdazv2ekEznRZB2BTPVwrcacYTCvy7mPjxw3F9joMCji4WFgxsgd7J5SxkHuRbUNjx",
-        "path":"/102",
-        "_id":"536d3cc573c8329a78000015"
-      },
-      {
-        "xpub":"xpub661MyMwAqRbcGR4F5XxMfiHGPycWehJT9XA5KZJg4aBcNZogiWnrDMowki4ZsCtZdWFUtHRxMnhTnm9XMEyxSVV7Am9eG7xUnxL3aoAt88d",
-        "path":"/103",
-        "_id":"536d3cc573c8329a78000014"
-      }
-    ]
-  },
-  "permissions":"admin,spend,view",
-  "admin":{
-    "policy":[
-      {
-        "type":"transactionLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":10
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub661MyMwAqRbcGDNuXKbT5Uyeth3yNYQAJY4KksbDSLdHgXdh2q5bjH6aQzSRQ4nPjanfWrkE8LVa1Svet4Nh5EnvA7Rh52tfbC4RjFHAwMZ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "02b910dc08af71a28648e4e1efd3bb851587aad7b87fd0ba73ffc50467d0b85b75",
+          "chainCode": "a7e22c7bb28727f49ccf1c04b4371a8d79cf286ee6a018fb8ea4bc454023e498",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
         }
       },
       {
-        "type":"dailyLimit",
-        "condition":{
-          "currency":"BTC",
-          "amount":50
-        },
-        "action":{
-          "type":"getApproval"
+        "xpub": "xpub6GiRC55CRwu5aiyDHeGFdAqUJ5ieMFsEdJ3BrjufgZNarq1FdcB3uGcqYEAxdsiegXypW2RjfBCmcdwJhRbcCNHZFonmasetQdwUNZHbrus",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "03e21d7fc8383ab067771463b55991480d2b133c96233d6182e0fe779118762c3f",
+          "chainCode": "d4d37ed900e592dac8f5ac3ea546d4a37ed5fe6854526d482bde2109a6808b5c",
+          "depth": 5,
+          "index": 176980,
+          "parentFingerprint": 2966462100
         }
-      }
-    ],
-    "users":[
-      {
-        "user":"51f4a86305b9442c68000005c4666e34ff33aba3d78a2d3197e7b46b",
-        "permissions":"admin,spend,view"
       },
       {
-        "user":"53532a4b43fd69a42f000005f0a2ed87fd8b020040739beb513524b5",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"52e41fcec1a256b31c00001a5ba4eff09976d7278cbce93fcfeb8b25",
-        "permissions":"admin,spend,view"
-      },
-      {
-        "user":"53796821a75b0358c626a4ad16fa7fc4f824cbb58e4a88a5bbc04611",
-        "permissions":"spend,view"
+        "xpub": "xpub661MyMwAqRbcGLsjvczmhk2twZfwfhZx16ai3TXf32QcpMfApjKcaTEnLt4oCz4HTss6CQ8gQfQKSyr8ca4s1Xme8FrsPjsNwEo2XBVdJSQ",
+        "path": "/0/0",
+        "params": {
+          "pubKey": "0256002e463c6cde950d0f8319b8c3d98e85e49ea626fff60760db6ff6b8bade52",
+          "chainCode": "b4dddf8762d82896a1c8ee63ae2dcfed45037e73dcb8609bb0baba997fc7e2f1",
+          "depth": 0,
+          "index": 0,
+          "parentFingerprint": 0
+        }
       }
     ]
   },
-  "spendingAccount":true,
-  "confirmedBalance":39564772124,
-  "balance":39564772124,
-  "pendingApprovals":[ ],
-  "canSendInstant": true
+  "canSendInstant": true,
+  "permissions": "admin,spend,view",
+  "admin": {
+    "policy": {
+      "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+      "version": 2,
+      "date": "2016-09-13T00:08:30.661Z",
+      "rules": [
+        {
+          "id": "my velocity limit",
+          "type": "velocityLimit",
+          "action": {
+            "type": "getApproval"
+          },
+          "condition": {
+            "amount": 10000000,
+            "timeWindow": 86400,
+            "groupTags": [
+              ":tag"
+            ],
+            "excludeTags": []
+          }
+        }
+      ]
+    },
+    "users": [
+      {
+        "user": "5624ade20e86bd04483895223800a967",
+        "permissions": "admin,spend,view"
+      }
+    ]
+  },
+  "tags": [],
+  "approvalsRequired": 1,
+  "spendingAccount": true,
+  "pendingApprovals": [],
+  "balance": 39564772124,
+  "instantBalance": 39564772124,
+  "spendableConfirmedBalance": 39564772124,
+  "confirmedBalance": 39564772124,
+  "spendableBalance": 39564772124,
+  "sent": 0,
+  "received": 39564772124,
+  "unconfirmedSends": 0,
+  "unconfirmedReceives": 0
 }
 ```
 
-### Response
+### 响应
 
-Returns a Wallet Model object.
+返回一个钱包模型对象。
 
-Field | Description
------ | -----------
-id | id of the wallet (also the first receiving address)
-label | the wallet label, as shown in the UI
-index | the index of the address within the chain (0, 1, 2, ...)
-private | contains summarised version of keychains
-permissions | user's permissions on this wallet
-admin | policy information on the wallet's administrators
-pendingApprovals | pending transaction approvals on the wallet
-confirmedBalance | the confirmed balance
-balance | the balance, including transactions with 0 confirmations
-canSendInstant | boolean indicating if wallet is eligible to send instant transactions backed by BitGo's guarantee against double spends
+| 字段               | 说明                                          |
+| ---------------- | ------------------------------------------- |
+| id               | 钱包的 id （亦是第一个接收地址）                          |
+| label            | 钱包标签，显示于 UI                                 |
+| index            | 链中的地址索引 (0, 1, 2, ...)                      |
+| private          | 包含钥匙串的汇总                                    |
+| permissions      | 用户在此钱包上的权限                                  |
+| admin            | 钱包管理员的策略信息                                  |
+| pendingApprovals | 钱包上的未决待批准交易                                 |
+| confirmedBalance | 已确认余额                                       |
+| balance          | 余额，包括 0 确认的交易。                              |
+| canSendInstant   | boolean 表示钱包是否具备资格发送有 BitGo 支持保障的防双倍花费即时交易。 |
 
+### 错误
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-404 Not Found | The wallet was not found
-406 Not acceptable | One of the keychains provided were not acceptable.
+| 响应                 | 说明              |
+| ------------------ | --------------- |
+| 400 Bad Request    | 请求参数缺失或有错误。     |
+| 401 Unauthorized   | 验证参数不符。         |
+| 404 Not Found      | 该钱包未找到          |
+| 406 Not acceptable | 提供的钥匙串中有一个不被接受。 |
 
-## Create Wallet With Keychains
+## 使用钥匙串创建钱包
 
 ```shell
-Available only as a local method (BitGo Express)
-Advanced users should consider the Create Wallet API.
+仅作为本地方法可用 (BitGo Express)
+高级用户应该考虑创建钱包 API。
 
 WALLETPASSPHRASE='newverylongishsecretivepassword'
 LABEL='nicenewpurse'
@@ -1428,34 +1379,30 @@ bitgo.wallets().createWalletWithKeychains(data, function(err, result) {
 });
 ```
 
-This method is available on the client SDK as an easy way to create a wallet. It performs the following:
+本方法作为一个创建钱包的简易方法，在客户端 SDK 中可用。它的执行过程如下：
 
-1. Creates the user keychain and the backup keychain
-2. Encrypts the user keychain
-3. Uploads the encrypted user and backup keychains to BitGo
-4. Creates the BitGo key on the service
-5. Creates the wallet on BitGo with the 3 public keys above
+  1. 创建用户钥匙串和备份钥匙串
+  2. 加密用户钥匙串
+  3. 上传加密的用户钥匙串和备份钥匙串到 BitGo
+  4. 在服务上创建 BitGo 密钥
+  5. 在 BitGo 上使用上述的 3 个公钥创建钱包<aside class="warning"> **非常重要** 的是要让用户打印 / 备份他们的用户和备份密钥。 跳过这步可能会导致资金损失！ </aside> 
 
-<aside class="warning">
-It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys.
-Failure to do so can result in the loss of funds!
-</aside>
+### BitGo 即时钱包
 
-### BitGo Instant Wallets
-By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
+默认情况下，本方法将在本地创建备份钥匙串。 要创建可以使用 BitGo 即时服务的钱包，请使用 **backupXpubProvider** 参数指定 KRS，例如 "keyternal"。
 
-### Method Parameters
+### 方法参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-passphrase | string | YES | The passphrase that will be used to encrypt the user keys of the wallet before sending it to BitGo
-label | string | YES | A label for this wallet
-backupXpub | string | NO | Public key of a backup keychain, created on another device, such that no 2 private keys are ever on the same machine. See also backupXpubProvider as an option to have your key hosted remotely.
-backupXpubProvider | string | NO | Create a backup xPub on your KRS of choice, e.g. "keyternal". This will make the wallet BitGo Instant compatible.
-enterprise | string | NO | Enterprise ID to create this wallet under.
-disableTransactionNotifications | boolean | NO | Set to true to prevent wallet transaction notifications..
+| 名称                              | 类型      | 必须  | 说明                                                                               |
+| ------------------------------- | ------- | --- | -------------------------------------------------------------------------------- |
+| passphrase                      | string  | YES | 钱包的用户密钥在发送至 BitGo 之前使用此密码进行加密。                                                   |
+| label                           | string  | YES | 此钱包的标签                                                                           |
+| backupXpub                      | string  | NO  | 备份钥匙串的公钥，创建于另一台设备，如此不会出现 2 个私钥存放在同一台机器上的情况。可选的 backupXpubProvider 使你可以将你的密钥远程托管。 |
+| backupXpubProvider              | string  | NO  | 在你选择的 KRS 上创建一个备份 xPub，例如 "keyternal"。这将使钱包兼容 BitGo 即时服务。                        |
+| enterprise                      | string  | NO  | 创建此钱包时使用的企业 ID。                                                                  |
+| disableTransactionNotifications | boolean | NO  | 设为 true 以阻止钱包交易提醒。                                                               |
 
-> Example response
+> 响应示例
 
 ```json
 { "id": "2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf",
@@ -1470,37 +1417,34 @@ disableTransactionNotifications | boolean | NO | Set to true to prevent wallet t
  "balance": 0,
  "pendingApprovals": [] }
 ```
-```
-User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
-Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
-```
 
-### Response
-Response | Description
--------- | -----------
-wallet | the wallet model object
-userKeychain | the newly created user keychain, which has an encrypted xprv stored on BitGo - back this up
-backupKeychain | the newly created backup keychain - back this up
+    User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
+    Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
+    
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-406 Not acceptable | One of the keychains provided were not acceptable.
+### 响应
 
-# Wallet Operations - Basic
-Each wallet is comprised of many addresses, and each address can be used to receive Bitcoin.
-The Wallet API provides helpful interfaces for interacting with a user's wallets.
+| 响应             | 说明                                 |
+| -------------- | ---------------------------------- |
+| wallet         | 钱包模型对象                             |
+| userKeychain   | 新创建的用户钥匙串，加密的 xprv 被存储于 BitGo - 备份 |
+| backupKeychain | 新创建的备份钥匙串 - 备份                     |
 
-## Create Address
+### 错误
 
-Creates a new address for an existing wallet. BitGo wallets consist of
-two independent chains of addresses, designated 0 and 1. The 0-chain is
-typically used for receiving funds, while the 1-chain is used internally
-for creating change when spending from a wallet. It is considered best practice
-to generate a new receiving address for each new incoming transaction, in order
-to help maximize privacy.
+| 响应                 | 说明              |
+| ------------------ | --------------- |
+| 400 Bad Request    | 请求参数缺失或有错误。     |
+| 401 Unauthorized   | 验证参数不符。         |
+| 406 Not acceptable | 提供的钥匙串中有一个不被接受。 |
+
+# 钱包操作 - 基本
+
+每个钱包均由多个地址组成，每个地址都可被用于接收比特币。 钱包 API 提供了很有用的接口可以和用户的钱包进行交互。
+
+## 创建地址
+
+为现有钱包创建新的地址。 BitGo 钱包由 两组独立的地址链组成，指定为 0 和 1。 通常 0-链用于 接收资金，1-链为内部使用 用于在从钱包支取时创建变更。 为每次新的接收交易生成新地址， 被认为是最好的做法， 以便获得最大化的隐私。
 
 ```shell
 CHAIN=0
@@ -1521,18 +1465,18 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/wallet/:walletId/address/:chain`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletid | bitcoin address (string) | YES | The ID of the wallet
-chain  | number | YES | 0 or 1
+| 参数       | 类型             | 必须  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletid | 比特币地址 (string) | YES | 钱包的 ID |
+| chain    | number         | YES | 0 或 1  |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -1544,29 +1488,29 @@ chain  | number | YES | 0 or 1
 }
 ```
 
-### Response
+### 响应
 
-Returns a new bitcoin address which is associated with the wallet.
+返回一个新的比特币地址，该地址与钱包相关联。
 
-Field | Description
------ | -----------
-address | The chained address
-chain | the chain (0 or 1)
-index | the index of the address within the chain (0, 1, 2, ...)
-path | the BIP32 path of the address relative to the wallet root
-redeemScript | the redeemScript for the address
+| 字段           | 说明                     |
+| ------------ | ---------------------- |
+| address      | 地址链                    |
+| chain        | 链 （0 或 1）              |
+| index        | 链中的地址索引 (0, 1, 2, ...) |
+| path         | 地址的 BIP32 钱包根相对路径      |
+| redeemScript | 地址的 redeemScript       |
 
 ### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-403 Forbidden | The wallet is not a multi-sig BIP32 (SafeHD) wallet
-404 Not Found | The wallet was not found
-406 Not acceptable | One of the keychains provided were not acceptable.
 
+| 响应                 | 说明                          |
+| ------------------ | --------------------------- |
+| 400 Bad Request    | 请求参数缺失或有错误。                 |
+| 401 Unauthorized   | 验证参数不符。                     |
+| 403 Forbidden      | 该钱包不是多重签名 BIP32 (SafeHD) 钱包 |
+| 404 Not Found      | 该钱包未找到                      |
+| 406 Not acceptable | 提供的钥匙串中有一个不被接受。             |
 
-## Send Coins to Address
+## 发送比特币到地址
 
 ```javascript
 var destinationAddress = '2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD';
@@ -1584,9 +1528,10 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
   });
 });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
-Advanced users should consider the Send Transaction API.
+仅作为本地方法可用 (BitGo Express)
+高级用户应该考虑发送交易 API。
 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 DESTINATIONADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
@@ -1600,42 +1545,42 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 ```
 
-Easiest way to send coins from your BitGo wallet to a destination Bitcoin address.
+最简单的从你的 BitGo 钱包发送比特币到一个比特币地址的方法。
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-This method will perform the following on the client:
+本方法将在客户端进行以下操作：
 
-* Get the user keychain by polling the wallet on the server for a stored keychain (with encrypted private key)
-* Decrypt the user key
-* Create the transaction to the destination address, with change sent to a newly created chain address on the wallet (path of /1)
-* Sign the transaction with the decrypted user key
+* 通过查询在服务器上存储的指定钱包的钥匙串以获取用户钥匙串（使用加密的私钥）
+* 解密用户密钥
+* 创建发送至目标地址的交易，变更发送至钱包上新创建的链地址（路径为 /1）
+* 使用解密的用户密钥签名交易
 
-It will send the partially signed transaction to BitGo servers for processing, where we will:
+这将会发送部分签名的交易到 BitGo 服务器以供处理，我们将：
 
-* Potentially gather additional approvals from other wallet admins
-* Apply the final signature
-* Broadcast the transaction to the Bitcoin P2P network
+* 有可能从钱包管理员那里收集额外的批准
+* 应用最终签名
+* 广播此交易到比特币 P2P 网络
 
-### Parameters
+### 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-address | string | YES | Destination bitcoin address
-amount | number | YES | Amount to be sent (in Satoshis), e.g. 0.1 * 1e8 for a tenth of a Bitcoin
-walletPassphrase | string | YES | Passphrase for the wallet, used to decrypt the encrypted user key (on client)
-fee | number | NO | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
-message | String | NO | User-provided string (this does not hit the blockchain)
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. Set to true to require a minConfirms (explain in the line above) number of confirmations for unspents originating from the wallet's change addresses. If set to false then the minConfirms will only be enforced for unspents originating from wallets other than this user's wallet (i.e. non-change addresses).
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+| 名称                           | 类型      | 必需  | 说明                                                                                                                            |
+| ---------------------------- | ------- | --- | ----------------------------------------------------------------------------------------------------------------------------- |
+| address                      | string  | YES | 目标比特币地址                                                                                                                       |
+| amount                       | number  | YES | 要发送的金额，单位：聪(Satoshi)，例如 0.1 * 1e8 为十分之一个比特币。                                                                                  |
+| walletPassphrase             | string  | YES | 钱包的密码，用于在客户端上解密已加密的用户密钥。                                                                                                      |
+| fee                          | number  | NO  | 费用（单位：聪），保留空白以供自动生成。除非你知道确实的费用，否则不要指定这个值。                                                                                     |
+| message                      | String  | NO  | 用户输入的字符串（此字符串不会到达区块链）                                                                                                         |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                                                      |
+| minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且 使用 enforceMinConfirmsForChange。                                                          |
+| enforceMinConfirms ForChange | boolean | NO  | 默认值为 false。 设为 true 以要求由钱包变更地址发起的未花费币拥有 minConfirms (前文已有说明) 数量的确认。 若设为 false 则 minConfirms 将仅被强制用户在源自非此用户钱包的未花费币上（也就是未变更地址）。 |
+| sequenceId                   | String  | NO  | 用户输入的自定义字符串，可用于识别签名前后的交易。                                                                                                     |
+| instant                      | boolean | NO  | 设为 true 以要求此交易使用具有 BitGo 防双倍花费保障的即时服务发送（可能会有费用）。                                                                              |
+| otp                          | String  | NO  | 7 位数密码用于绕开带有 “getOTP” 动作类型的策略。详见 [钱包策略](#wallet-policy) 。                                                                     |
 
-> Example Response
+> 响应示例
 
 ```json
 { "tx": "0100000001a366332472cebceabdd541beb582d5dbaaecccdbec639b0a2d2b...",
@@ -1647,44 +1592,44 @@ otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" act
 }
 ```
 
-> Example Response (pending approval required because of wallet policy)
+> 响应示例（由于钱包策略的原因，需要等待批准）
 
 ```json
 {
-  "error": "exceeds daily limit",
+  "error": "exceeds a spending limit",
   "pendingApproval": "56050b1368217cde3667fcfe0157556b",
   "triggeredPolicy": "5578defa5e44dbcb20c0caf98b297ad7",
   "status": "pendingApproval"
 }
 ```
 
-### Success Response
+### 成功响应
 
-Field | Description
------ | -----------
-tx | hex-encoded form of the signed transaction
-hash | the transaction id
-fee | amount in satoshis sent to the Bitcoin miners as part of this transaction
-feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction
+| 字段      | 说明                          |
+| ------- | --------------------------- |
+| tx      | 十六进制格式编码的已签名交易              |
+| hash    | 交易 id                       |
+| fee     | 作为本次交易的一部分发送给比特币矿工，金额为聪     |
+| feeRate | 作为本次交易的一部分发送给比特币矿工，金额为每千字节聪 |
 
-### Policy/Failure Response
+### 策略/失败响应
 
-Field | Description
------ | -----------
-error | the message from the policy that triggered this pending approval
-pendingApproval | the pending approval id, which will need to be approved by another user
-otp | set to true if the policy that fired was a "getOTP" type
-triggeredPolicy | id of the policy that triggered this pending approval
-status | the transaction status
+| 字段              | 说明                       |
+| --------------- | ------------------------ |
+| error           | 来自触发本次待批准交易的策略的消息        |
+| pendingApproval | 待批准的 id，需要另一名用户进行批准      |
+| otp             | 触发的策略是 "getOTP"类型时为 true |
+| triggeredPolicy | 触发本次待批准交易的策略 id          |
+| status          | 交易状态                     |
 
-## Send Coins to Multiple Addresses
+## 发送比特币到多个地址
 
 ```javascript
 var recipients = [];
 recipients.push({address: '2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD', amount: 0.1 * 1e8});
 recipients.push({address: '2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu', amount: 0.2 * 1e8});
 
-var walletPassphrase = 'incorrect horse battery stable' // replace with wallet passphrase
+var walletPassphrase = 'incorrect horse battery stable' // 此处替换为钱包密码
 
 bitgo.wallets().get({id: walletId}, function(err, wallet) {
   if (err) { console.log("Error getting wallet!"); console.dir(err); return process.exit(-1); }
@@ -1697,9 +1642,10 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
   });
 });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
-Advanced users should consider the Send Transaction API.
+仅作为本地方法可用 (BitGo Express)
+高级用户应该考虑发送交易 API。
 
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 WALLETPASSPHRASE='watashinobitcoin'
@@ -1711,26 +1657,26 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 ```
 
-Convenience function to send Bitcoin to multiple destination addresses in a single transaction.
+这个方便的函数，用于在单次交易中发送比特币到多个目标地址。
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-### Parameters
+### 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-recipients | string | YES | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
-message | string | NO | Notes about the transaction
-fee | number | NO | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+| 名称                           | 类型      | 必需  | 说明                                                                                            |
+| ---------------------------- | ------- | --- | --------------------------------------------------------------------------------------------- |
+| recipients                   | string  | YES | 数组包含有接收者对象和发送给每个接收者的金额，例如 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
+| message                      | string  | NO  | 交易备注                                                                                          |
+| fee                          | number  | NO  | 费用（单位：聪），保留空白以供自动生成。除非你知道确实的费用，否则不要指定这个值。                                                     |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                      |
+| minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且 使用 enforceMinConfirmsForChange。                          |
+| enforceMinConfirms ForChange | boolean | NO  | 默认为 false。当创建交易时，minConfirms 将仅被强制用于不是来自这个钱包的未花费币。                                            |
+| sequenceId                   | String  | NO  | 用户输入的自定义字符串，可用于识别签名前后的交易。                                                                     |
+| otp                          | String  | NO  | 7 位数密码用于绕开带有 “getOTP” 动作类型的策略。详见 [钱包策略](#wallet-policy) 。                                     |
 
-> Example Response
+> 响应示例
 
 ```json
 { "tx": "0100000001c69d05d3897a25c611324a935d0c688669dc416cb8d8e9ebb36e364fa79547c8000..",
@@ -1738,26 +1684,26 @@ otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" act
   "fee": 10000 }
 ```
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-tx | hex-encoded form of the signed transaction
-hash | the transaction id
-fee | amount in satoshis sent to the Bitcoin miners as part of this transaction
-feeRate | amount in satoshis per kilobyte sent to the Bitcoin miners as part of this transaction
+| 字段      | 说明                          |
+| ------- | --------------------------- |
+| tx      | 十六进制格式编码的已签名交易              |
+| hash    | 交易 id                       |
+| fee     | 作为本次交易的一部分发送给比特币矿工，金额为聪     |
+| feeRate | 作为本次交易的一部分发送给比特币矿工，金额为每千字节聪 |
 
-### Policy/Failure Response
+### 策略/失败响应
 
-Field | Description
------ | -----------
-error | the message from the policy that triggered this pending approval
-pendingApproval | the pending approval id, which will need to be approved by another user
-otp | set to true if the policy that fired was a "getOTP" type
-triggeredPolicy | id of the policy that triggered this pending approval
-status | the transaction status
+| 字段              | 说明                       |
+| --------------- | ------------------------ |
+| error           | 来自触发本次待批准交易的策略的消息        |
+| pendingApproval | 待批准的 id，需要另一名用户进行批准      |
+| otp             | 触发的策略是 "getOTP"类型时为 true |
+| triggeredPolicy | 触发本次待批准交易的策略 id          |
+| status          | 交易状态                     |
 
-## List Wallet Transactions
+## 列出钱包的交易
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1773,13 +1719,13 @@ var walletId = '2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov';
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
   if (err) { throw err; }
   wallet.transactions({}, function callback(err, transactions) {
-    // handle transactions
+    // 处理交易
     console.log(JSON.stringify(transactions, null, 4));
   });
 });
 ```
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -1881,39 +1827,38 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get transactions for a given wallet, ordered by reverse block height (unconfirmed transactions first).
+获取给定钱包的交易，按照反向区块高度排序（未确认的交易在先）。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/tx`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+| 参数       | 类型             | 必需  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID |
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
-compact | boolean | NO | Omit inputs and outputs in the transaction results
+| 参数      | 类型      | 必需 | 说明                          |
+| ------- | ------- | -- | --------------------------- |
+| skip    | number  | NO | 列表的初始索引号。默认值为 0。            |
+| limit   | number  | NO | 单次调用返回结果的最大数量（默认=25，最大=250） |
+| compact | boolean | NO | 略去交易结果中的输入和输出               |
 
-### Response
+### 响应
 
-Returns an array of Transaction objects.  Each transaction contains summary
-information about how that transaction affected any wallet or bitcoin address involved
-in the transaction.
+返回一个交易对象数组。每个交易的汇总信息 包含有涉及此交易的任何钱包或比特币地址。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+### 错误
 
-## Get Wallet Transaction
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+
+## 获取钱包的交易
 
 ```shell
 WALLET=2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
@@ -1937,7 +1882,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -1985,51 +1930,51 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get information about a transaction on a wallet.
+获取钱包中某笔交易信息
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/tx/:txId`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-txId | transaction hash (string) | YES | The hash of the transaction to fetch
+| 参数       | 类型              | 必需  | 说明          |
+| -------- | --------------- | --- | ----------- |
+| walletId | 比特币地址 (string)  | YES | 钱包的 ID      |
+| txId     | 交易的散列值 (string) | YES | 要获取的交易 hash |
 
-### Response
+### 响应
 
-Returns a Transaction object
+返回一个交易对象
 
-Parameter | Type | Description
---------- | ---- | -----------
-id | String | Hash of the transaction
-hex | String | Raw hex of the transaction
-date | DateTime | Date this transaction was first seen
-blockhash | String | Hash of the block, if this transaction has been confirmed
-height | Number | Height of the block this transaction was seen in
-confirmations | Number | Number of blocks this transaction has been part of the blockchain
-entries | Array | Consolidated entries of the transaction, taking into account net inputs/outputs
-outputs | Array | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss)
-fee | Number | Amount in Satoshis paid to the miners for this transaction
-pending | Boolean | Set to true if the transaction has not yet been confirmed on the blockchain
-instant | Boolean | Set to true if this transaction was sent using BitGo instant
-instantId | String | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo
-sequenceId | String | The sequenceId (unique custom data provided when the transaction was sent)
-comment | String | The comment as set on the transaction
+| 参数            | 类型       | 说明                                                  |
+| ------------- | -------- | --------------------------------------------------- |
+| id            | String   | 交易的散列值                                              |
+| hex           | String   | 交易的原始十六进制值                                          |
+| date          | DateTime | 首次见到此交易的日期                                          |
+| blockhash     | String   | 若此交易已被确认，则此处为区块的散列值                                 |
+| height        | Number   | 曾出现过此交易的区块高度                                        |
+| confirmations | Number   | 交易中曾经属于区块链的区块数量                                     |
+| entries       | Array    | 此交易的合并记录，包含账号的净输入/输出                                |
+| outputs       | Array    | 此交易的输出信息，包括钱包账号，值，vout 索引，isMine，链（0 为普通地址，1 为变更地址） |
+| fee           | Number   | 单位为聪的金额支付给矿工的本次交易                                   |
+| pending       | Boolean  | 交易尚未在区块链上被确认，则此值为 true                              |
+| instant       | Boolean  | 若交易由 BitGo 即时服务发送，则为 true                           |
+| instantId     | String   | 即时服务交易的识别 Id，用以使用/获取 BitGo 的保障                      |
+| sequenceId    | String   | sequenceId (唯一的自定义数据当发送交易时提供)                       |
+| comment       | String   | 交易的注释                                               |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
-404 Not Found | The transaction was not found on the wallet
+### 错误
 
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+| 404 Not Found    | 钱包里未找到此交易。    |
 
-## List Wallet Addresses
+## 列出钱包的地址
 
-Gets a list of addresses which have been instantiated for a wallet using the New Address API.
+使用新地址 API 获取钱包的地址列表，这些地址已实例化。
 
 ```shell
 WALLET=2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -2050,25 +1995,25 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/addresses`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+| 参数       | 类型             | 必需  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID |
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-chain | number | NO | Optionally restrict to chain 0 or chain 1
-skip | number | NO | Skip this number of results
-limit | number | NO | Limit number of results to this number (default=25, max=500)
+| 参数    | 类型     | 必需 | 说明                      |
+| ----- | ------ | -- | ----------------------- |
+| chain | number | NO | 可选择仅包括 0 链或 1 链         |
+| skip  | number | NO | 跳过给定数量的结果               |
+| limit | number | NO | 限制返回结果的数量（默认=25，最大=500） |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -2099,27 +2044,27 @@ limit | number | NO | Limit number of results to this number (default=25, max=50
 }
 ```
 
-### Response
+### 响应
 
-Returns an array of Wallet Address objects.
+返回一个包含钱包地址对象的数组。
 
-Field | Description
------ | -----------
-chain | Which chain is the address on (0 or 1, currently)
-index | BIP32 index on the chain
-path | BIP32 path from wallet
-address | the bitcoin address
+| 字段      | 说明                 |
+| ------- | ------------------ |
+| chain   | 链锁在的地址 (0 或 1, 当前) |
+| index   | 链上的 BIP32 索引       |
+| path    | 钱包的 BIP32 路径       |
+| address | 比特币地址              |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-## Get Single Wallet Address
+## 获取单个钱包地址
 
-Gets information about an address on a wallet. Can also be used to check if an address exists on a wallet.
+获取钱包中一个地址的信息。亦可被用于检查钱包中是否存在某个地址。
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2142,18 +2087,18 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/addresses/:address`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-address | bitcoin address (string) | YES | The address on the wallet to get information of
+| 参数       | 类型             | 必需  | 说明          |
+| -------- | -------------- | --- | ----------- |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID      |
+| address  | 比特币地址 (string) | YES | 要获取信息的钱包的地址 |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -2169,27 +2114,27 @@ address | bitcoin address (string) | YES | The address on the wallet to get info
 }
 ```
 
-### Response
+### 响应
 
-Returns a wallet address object
+返回一个钱包地址对象
 
-Field | Description
------ | -----------
-address | The bitcoin address being looked up
-balance | Current balance (satoshis) in this address
-chain | The HD chain used to generate this address (0 for user-generated, 1 for change)
-index | The index in the HD chain used to generate this address
-path | The HD path of the address on the wallet
-received | Total amount (satoshis) received on this address
-sent | Total amount (satoshis) sent on this address
-txCount | Total number of transactions on this address
-redeemScript | The redeemScript that may be used to spend funds from this P2SH address
+| 字段           | 说明                                |
+| ------------ | --------------------------------- |
+| address      | 要查找的比特币地址                         |
+| balance      | 此地址上当前的余额（聪）                      |
+| chain        | 用于生成此地址的 HD 链（0 为用户生成的，1 为变更的）    |
+| index        | HD 链中用于生成此地址的索引                   |
+| path         | 钱包上地址的 HD 路径                      |
+| received     | 此地址上已接收的总额（聪）                     |
+| sent         | 此地址上已发送的总额（聪）                     |
+| txCount      | 此地址上的交易总笔数                        |
+| redeemScript | 此 redeemScript 可被用于花费此 P2SH 地址的资金 |
 
-# Wallet Operations - Advanced
-These features are available and recommended for advanced developers.
-Using these APIs will provide expanded (but potentially complex) functionality and greater control of the transaction creation process.
+# 钱包操作 - 高级
 
-## Get Transaction By Sequence Id
+这些功能建议高级用户使用。 使用这些 API 可获得扩充的（也可能更复杂）功能性以及更好的控制交易创建流程。
+
+## 通过流水号获取交易
 
 ```shell
 WALLET=2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2213,7 +2158,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -2250,34 +2195,34 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Get the transaction on a wallet sequence ID that was passed in when sending an outgoing transaction (via sendCoins or sendTransaction).
-This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.
+在向外部发送交易时，通过传入的钱包流水号（sequence ID）获取交易（通过 sendCoins 或 sendTransaction）。 此举有助于通过你自己的唯一 ID 跟踪未签名/未确认的交易，因为比特币交易 ID 在共同签名前是未定义的而且在确认前是可锻的。
 
-A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.
+BitGo 中在等待状态且尚未被共同签名的交易仍然具有流水号。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/tx/sequence/:sequenceId`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-sequenceId | custom user-provided string | YES | The unique id previously sent with an outgoing transaction.
+| 参数         | 类型             | 必需  | 说明                   |
+| ---------- | -------------- | --- | -------------------- |
+| walletId   | 比特币地址 (string) | YES | 钱包的 ID               |
+| sequenceId | 自定义用户提供的字符串    | YES | 之前和发往外部的交易一起发送的唯一 Id |
 
-### Response
+### 响应
 
-Returns a WalletTx object, containing the history and state of the transaction on the Bitcoin network.
+返回一个 WalletTx 对象，包含此交易在比特币网络上的历史和状态。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
-404 Not Found | The transaction was not found on the wallet
+### 错误
 
-## List Wallet Unspents
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
+| 404 Not Found    | 钱包里未找到此交易。    |
+
+## 列出钱包的未花费
 
 ```shell
 WALLET=2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr
@@ -2295,38 +2240,35 @@ https://test.bitgo.com/api/v1/wallet/$WALLET/unspents
       throw err;
     }
     wallet.unspents({limit: 4.2}, function callback(err, wallet) {
-      // handle error, use unspents
+      // 处理错误，使用未花费币
       console.dir(wallet);
     });
   });
 ```
 
-Gets a list of unspent input transactions for a wallet.
+获取钱包的未花费输入交易的列表
 
-In order to create a bitcoin transaction, the creator of the transaction
-will need to accumulate a set of bitcoin 'inputs' for use in creation of
-that transaction.
+为了创建比特币交易，交易的创建者需要累积一组比特币“输入(input)”用于创建交易。
 
-
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/unspents`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+| 参数       | 类型             | 必需  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID |
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-target | number | NO | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis).
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=100, max=250)
+| 参数     | 类型     | 必需 | 说明                               |
+| ------ | ------ | -- | -------------------------------- |
+| target | number | NO | API 将尝试返回足够的未花费币以累积到至少这个值（单位：聪）。 |
+| skip   | number | NO | 列表的初始索引号。默认值为 0。                 |
+| limit  | number | NO | 单次调用返回结果的最大数量（默认=100，最大=250）     |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -2369,29 +2311,30 @@ limit | number | NO | Max number of results to return in a single call (default=
 }
 ```
 
-### Response
+### 响应
 
-Returns an array of Unspent Input objects.
+返回一个未花费输入对象数组。
 
-Field | Description
------ | -----------
-tx_hash | The hash of the unspent input
-tx_output_n | The index of the unspent input from *tx_hash*
-value | The value, in satoshis of the unspent input
-script | Output script hash (in hex format)
-redeemScript | The redeem script
-chainPath | The BIP32 path of the unspent output relative to the wallet
-confirmations | Number of blocks seen on and after the unspent transaction was included in a block
-isChange | Boolean indicating this is an output from a previous spend originating on this wallet, and may be safe to spend even with 0 confirmations
-instant | Boolean indicating if this unspent can be used to create a BitGo Instant transaction guaranteed against double spends
+| 字段            | 说明                                                     |
+| ------------- | ------------------------------------------------------ |
+| tx_hash       | 未花费输入的散列值                                              |
+| tx_output_n | 未花费输入的索引来自 *tx_hash*                                   |
+| value         | 未花费输入的值（单位：聪）                                          |
+| script        | 输出脚本散列值（十六进制格式）                                        |
+| redeemScript  | 赎回脚本                                                   |
+| chainPath     | 相对于此钱包的未花费输出的 BIP32 路径                                 |
+| confirmations | 在未花费交易包含进区块后所见到的区块数量                                   |
+| isChange      | Boolean 值，表示这是一个来自之前支出的输出，源自这个钱包，而且也许可以在 0 确认情况下安全的支出。 |
+| instant       | Boolean 值，表示这个未花费是否可以被用于创建有双倍花费保障的 BitGo 即时交易。         |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
-## Consolidate Unspents
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
+
+## 合并未花费币
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2404,14 +2347,15 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
     },
     function (err, consolidationTransactions) {
       if (err) { throw err; }
-      // All the transactions used for consolidation, by reverse block height
+      // 全部用于合并的交易，按区块高度逆序
       console.dir(consolidationTransactions);
     }
   );
 });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
 WALLETPASSPHRASE="mypassword"
 
@@ -2422,20 +2366,19 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/consolidateunspents
 ```
 
-Coalesce the unspents currently held in a wallet to a smaller number. This is an iterative process, largely due to
-transaction size limits and signing speed. Each iteration requires its own transaction fees.
+合并钱包中当前的未花费币以减少数量。 这是一个迭代操作，很大程度上取决于 交易大小限制和签名速度。 每次迭代都需要交易费。
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-target | number | NO | desired number of unspents after running the function
-maxInputCountPerConsolidation | number | NO | maximum number of unspents to be used for each iteration. Defaults to 85.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations
-walletPassphrase | string | NO | Passphrase of the wallet
-progressCallback | function | NO | Closure to be called after each iteration. It can be used for monitoring the progress.
+| 参数                            | 类型       | 必需 | 说明                      |
+| ----------------------------- | -------- | -- | ----------------------- |
+| target                        | number   | NO | 期望在运行此函数后得到的未花费币数量      |
+| maxInputCountPerConsolidation | number   | NO | 每次迭代使用未花费币的最大数量。默认值 85。 |
+| minConfirms                   | number   | NO | 仅选择拥有指定数量确认的未花费币输入。     |
+| walletPassphrase              | string   | NO | 钱包密码                    |
+| progressCallback              | function | NO | 于每次迭代末端调用的函数。可用于监视进度。   |
 
-## Fan Out Unspents
+## 分散未花费币
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
@@ -2448,12 +2391,13 @@ bitgo.wallets().get({ "id": walletId }, function callback (err, wallet) {
     },
     function (err, fanoutTransaction) {
       if (err) { throw err; }
-      // Transaction used to fan out unspents
+      // 用于分散未花费币的交易
       console.dir(fanoutTransaction);
     }
   );
 });
 ```
+
 ```shell
 Available only as a local method (BitGo Express)
 WALLETID="2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"
@@ -2466,17 +2410,17 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/fanoutunspents
 ```
 
-Take all the wallet's unspents (that match the selection criteria, such as minimum confirm count) and spread them into a higher number of unspents.
+取出钱包的所有未花费币（需要满足选择条件，比如最小确认数）并且将它们分散成更多数量的未花费币。
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-target | number | YES | desired number of unspents after running the function
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations
-walletPassphrase | string | NO | Passphrase of the wallet
+| 参数               | 类型     | 必需  | 说明                       |
+| ---------------- | ------ | --- | ------------------------ |
+| target           | number | YES | 期望在运行此函数后得到的未花费币数量       |
+| minConfirms      | number | NO  | 仅选择拥有指定数量确认的未花费币输入。      |
+| walletPassphrase | string | NO  | Passphrase of the wallet |
 
-## Create Transaction
+## 创建交易
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
@@ -2489,14 +2433,15 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
       fee: fee
     },
     function(err, transaction) {
-      // The transaction with selected unspents, ready to be signed with signTransaction
+      // 含有已选择未花费币的交易，准备好使用 signTransaction 进行签名
       console.dir(transaction);
     });
   });
 });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 curl -X POST \
@@ -2507,18 +2452,16 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 ```
 
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+此方法供高级 API 用户使用。在大多数情况下，推荐使用<a href="#send-coins-to-address">发送比特币到地址</a>方法从钱包发送比特币。
 </aside>
 
-Create a transaction with multiple recipients from a wallet using unspents from addresses on that wallet. This is client-side functionality only in the SDK.
+使用钱包中地址上的未花费币创建具有多个接收者的交易。这是仅包含于 SDK 中的客户端功能。
 
-Typically used before signTransaction, which signs a created transaction. Change will be sent to a newly created change address (path of /1) on the wallet.
+通常在 signTransaction 对交易签名之前使用。变更将被发送至钱包中新创建的变更地址（路径 /1）。
 
-This is an advanced method that allows you to manually specify the miner fee (could be 0) and decrypted keychain.
+这个高级方法让你可以手动指定矿工费用（可以为 0）并且销毁钥匙串。<b>警告</b>: 如果你指定的费用不足，你的交易可能无法被确认并且你的未花费币可能会有一段时间不可使用。
 
-<b>WARNING</b>: If you provide an insufficient fee, your transaction may not get confirmed and your unspents may be unusable for some time.
-
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -2546,20 +2489,20 @@ This is an advanced method that allows you to manually specify the miner fee (co
 }
 ```
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-recipients | string | YES | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
-fee | number | NO | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.
-feeRate | number | NO | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
-minUnspentSize | number | NO | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
+| 参数                           | 类型      | 必需  | 说明                                                                                            |
+| ---------------------------- | ------- | --- | --------------------------------------------------------------------------------------------- |
+| recipients                   | string  | YES | 数组包含有接收者对象和发送给每个接收者的金额，例如 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
+| fee                          | number  | NO  | 将会付给比特币矿工的绝对费用，单位为聪。设为 'undefined' 以供自动生成。                                                    |
+| feeRate                      | number  | NO  | 将会按照交易大小付给比特币矿工的每 KB 费用，单位为聪。设为 'undefined' 以供自动生成。                                           |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                      |
+| minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且使用 enforceMinConfirmsForChange。                           |
+| enforceMinConfirms ForChange | boolean | NO  | 默认为 false。当创建交易时，minConfirms 将仅被强制用于不是来自这个钱包的未花费币。                                            |
+| minUnspentSize               | number  | NO  | 至少达到这个数字（单位为聪）的未花费币被视作可用。默认值 5460（为了对抗 tx dust spam）。                                         |
+| instant                      | boolean | NO  | 设为 true 以要求此交易使用具有 BitGo 防双倍花费保障的即时服务发送（可能会有费用）。                                              |
 
-## Sign Transaction
+## 签名交易
 
 ```javascript
 bitgo.wallets().get({id: walletId}, function(err, wallet) {
@@ -2587,8 +2530,9 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
   });
 });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 WALLETID='2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'
 
 UNSPENTS='[
@@ -2621,30 +2565,30 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/signtransaction
 ```
 
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+此方法供高级 API 用户使用。在大多数情况下，推荐使用<a href="#send-coins-to-address">发送比特币到地址</a>方法从钱包发送比特币。
 </aside>
 
-Sign a multi-sig transaction using a created transaction hex, keychain and unspent information (derivation paths and redeem scripts). Typically used with the output from createTransaction.
+使用已创建交易的十六进制码、钥匙串和未花费币信息（派生路径和赎回脚本）进行多重签名交易的签名。
 
-Can be performed offline.
+可进行离线操作。
 
-This is client-side functionality only in the SDK.
+这是仅包含于 SDK 中的客户端功能。
 
-> Example Response
+> 响应示例
 
 ```json
 {"tx":"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."}
 ```
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-transactionHex | string | YES | The unsigned transaction, in hex string form
-unspents | array | YES | Array of unspents objects, which contain the chainpath and redeemScript.
-keychain | keychain object | YES | The decrypted keychain (object), with available xprv property.
+| 参数             | 类型     | 必需  | 说明                      |
+| -------------- | ------ | --- | ----------------------- |
+| transactionHex | string | YES | 未签名的交易，十六进制字符串格式        |
+| unspents       | array  | YES | 未花费币对象数组，包含链路径和赎回脚本。    |
+| keychain       | 钥匙串对象  | YES | 已解密的钥匙串（对象），和可用的 xprv 。 |
 
-## Send Transaction
+## 发送交易
 
 ```shell
 TX={raw hex transaction}
@@ -2667,10 +2611,10 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
     }
     console.log("Got encrypted user keychain");
 
-    // Decrypt the user key with a passphrase
+    // 使用密码解密用户密钥
     keychain.xprv = bitgo.decrypt({ password: walletPassphrase, input: keychain.encryptedXprv });
 
-    // Set recipients
+    // 设置接收者
     var recipients = {};
     recipients[destinationAddress] = amountSatoshis;
     console.log("Creating transaction");
@@ -2710,25 +2654,18 @@ bitgo.wallets().get({id: walletId}, function(err, wallet) {
   });
 });
 ```
+
 <aside class="warning">
-This method is for advanced API users. For most scenarios, [sendCoins](#send-coins-to-address) is the recommended method to send bitcoins from a wallet.
+此方法供高级 API 用户使用。在大多数情况下，推荐使用<a href="#send-coins-to-address">发送比特币到地址</a>方法从钱包发送比特币。
 </aside>
 
-Send a partially-signed transaction. The server will do one of the following:
-* reject the transaction
-* gather additional approvals from other wallet admins
-* apply the final signature, and submit to the Bitcoin P2P network
+发送一个部分签名的交易。 服务器将进行下列操作之一： * 拒绝交易 * 从其他钱包管理员处获取附加批准 * 应用最终签名，并且提交到比特币 P2P 网络<aside class="info"> 此 API 需要使用解锁 API 解锁会话。 单个解锁 API 调用允许任意的单个交易，或者多个不超过内部设定 BitGo 配额的交易（当前设定为 50 BTC）。 </aside> 
 
-<aside class="info">
-This API requires the session to be unlocked using the Unlock API
-A single call to the Unlock API allows any single transaction, or multiple transactions up
-to an internally-set BitGo quota (currently set at 50 BTC).
-</aside>
+### HTTP 请求
 
-### HTTP Request
 `POST /api/v1/tx/send`
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -2740,39 +2677,39 @@ to an internally-set BitGo quota (currently set at 50 BTC).
 }
 ```
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-tx | Transaction Object | YES | The transaction, in hex string form
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-message | String | NO | User-provided string (this does not hit the blockchain)
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+| 参数         | 类型      | 必需  | 说明                                                        |
+| ---------- | ------- | --- | --------------------------------------------------------- |
+| tx         | 交易对象    | YES | 交易，十六进制字符串格式。                                             |
+| sequenceId | String  | NO  | 用户输入的自定义字符串，可用于识别签名前后的交易。                                 |
+| message    | String  | NO  | 用户输入的字符串（此字符串不会到达区块链）                                     |
+| instant    | boolean | NO  | 设为 true 以要求此交易使用具有 BitGo 防双倍花费保障的即时服务发送（可能会有费用）。          |
+| otp        | String  | NO  | 7 位数密码用于绕开带有 “getOTP” 动作类型的策略。详见 [钱包策略](#wallet-policy) 。 |
 
-### Response
+### 响应
 
-Returns the sent transaction and its hash in hex-encoded form.
+以十六进制编码格式，返回已发送的交易和它的散列值。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
-402 Payment Required | The transaction fee in this request seems too low.
+### 错误
 
-### Policy/Failure Response
+| 响应                   | 说明             |
+| -------------------- | -------------- |
+| 400 Bad Request      | 请求参数缺失或有错误。    |
+| 401 Unauthorized     | 验证参数不符，或需要解锁。  |
+| 402 Payment Required | 这个请求中的交易费似乎过低。 |
 
-Field | Description
------ | -----------
-error | the message from the policy that triggered this pending approval
-pendingApproval | the pending approval id, which will need to be approved by another user
-otp | set to true if the policy that fired was a "getOTP" type
-triggeredPolicy | id of the policy that triggered this pending approval
-status | the transaction status
+### 策略/失败响应
 
+| 字段              | 说明                       |
+| --------------- | ------------------------ |
+| error           | 来自触发本次待批准交易的策略的消息        |
+| pendingApproval | 待批准的 id，需要另一名用户进行批准      |
+| otp             | 触发的策略是 "getOTP"类型时为 true |
+| triggeredPolicy | 触发本次待批准交易的策略 id          |
+| status          | 交易状态                     |
 
-## Get Instant Guarantee
+## 获取即时交易保障
 
 ```shell
 INSTANTID=564ea1fa95f4344c6db00773d1277160
@@ -2793,18 +2730,18 @@ bitgo.instantGuarantee({ id: '56562ee923ab7f3a28d638085ba6955a' }, function(err,
   console.dir(result);
 });
 ```
-BitGo Instant is built on top of our wallet platform, as a guarantee by BitGo against double spends.
-As a co-signer on a multi-sig wallet, BitGo will never double-spend an output.
-We back our promise with a cryptographically signed guarantee on each transaction, enabling receivers to accept funds without the need for any block confirmations.
+
+BitGo 即时交易服务位于我们的钱包平台顶端，作为 BitGo 防止双倍花费的保障。 作为多重签名钱包上的共同签名者，BitGo 将决不会双重花费输出。 作为承诺我们在每笔交易上使用加密签名保障，使接收者不需要任何区块确认就可以接受资金。
 
 <aside class="info">
-Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet.
+任何人都可以接受即时交易。发送即时交易需要即时交易兼容 / KRS BitGo 钱包。
 </aside>
 
-### HTTP Request
+### HTTP 请求
+
 `GET /api/v1/instant/<id>`
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -2818,43 +2755,42 @@ Anyone can receive instant transactions. Sending an instant transaction requires
     "transactionId": "8ba08ef2a745246f309ec4eaff5d7652c4fc01e61eebd9aabc1c58996355acd7"
 }
 ```
-### Response
 
-Returns the instant guarantee message, including the amount and Transaction ID.
+### 响应
 
-Parameter | Type | Description
---------- | ---- | -----------
-amount | Number | Amount in Satoshis of the instant guarantee
-createTime | DateTime | The time at which the transaction was created
-guarantee | String | The message by BitGo to guarantee the instant transaction
-id | String | The instant guarantee ID on BitGo
-transactionId | String | The hash of the guaranteed transaction
-normalizedHash | String | The hash of the guaranteed transaction without signatures
-signature | String | Cryptographically signed guarantee, to provide an audit record in cases of a dispute
-state | String | The state of a transaction as monitored by BitGo (you do not need to take any action on this)
+返回即时交易保障消息，包含金额和交易 ID。
 
-### Verifying BitGo's Guarantee
+| 参数             | 类型       | 说明                          |
+| -------------- | -------- | --------------------------- |
+| amount         | Number   | 即时交易保障的金额，单位为聪              |
+| createTime     | DateTime | 交易创建的时间                     |
+| guarantee      | String   | BitGo 的即时交易保障消息             |
+| id             | String   | BitGo 上的即时交易保障 ID           |
+| transactionId  | String   | 受保障交易的散列值                   |
+| normalizedHash | String   | 受保障交易不含签名的散列值               |
+| signature      | String   | 加密签名的保障，作为审计记录以防万一出现纠纷      |
+| state          | String   | 受 BitGo 监控交易的状态（你不需要对此进行操作） |
 
-BitGo’s guarantee is signed using our corporate signing key, which corresponds to the public Bitcoin address 1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja.
+### 验证 BitGo 的保障
 
-To confirm, verify the guarantee with our signature. Example:
+BitGo 的保障使用我们公司的签名密钥进行签名，与公有的比特币地址 1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja 相关联。
+
+要确认这一点，使用我们的签名验证保障。例：
 
 `assert(bitcoin.Message.verify('1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja', signature, guarantee, process.config.bitcoin.network));`
 
-If the signature is valid, you may accept the transaction instantly without the need for any block information.
-You can save the guarantee & signature locally to provide an audit record in case of a dispute.
+若签名有效，你可以立即接受交易不需要任何区块信息。 你可以在本地保存保障签名作为审计记录以防万一出现纠纷。
 
+### 错误
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
 
-## Get Wallet by Address
+## 按地址获取钱包
 
-Given an address, returns the address information (including balances) and wallet the address is associated with.
-Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.
+提供一个地址，返回该地址的信息（包括余额）和此地址关联的钱包。 当某人拥有多个地址 / 钱包，但不知道地址属于哪个钱包时很有用。
 
 ```shell
 ADDRESS=2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
@@ -2873,17 +2809,17 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/walletaddress/:address`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The address to look up information on
+| 参数      | 类型             | 必需  | 说明        |
+| ------- | -------------- | --- | --------- |
+| address | 比特币地址 (string) | YES | 需要获取信息的地址 |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -2900,24 +2836,24 @@ address | bitcoin address (string) | YES | The address to look up information on
 }
 ```
 
-### Response
+### 响应
 
-Returns a wallet address object
+返回一个钱包地址对象
 
-Field | Description
------ | -----------
-address | The bitcoin address being looked up
-balance | Current balance (satoshis) in this address
-chain | The HD chain used to generate this address (0 for user-generated, 1 for change)
-index | The index in the HD chain used to generate this address
-path | The HD path of the address on the wallet
-received | Total amount (satoshis) received on this address
-sent | Total amount (satoshis) sent on this address
-txCount | Total number of transactions on this address
-redeemScript | The redeemScript that may be used to spend funds from this P2SH address
-wallet | The base address (wallet ID) of the wallet this address is on
+| 字段           | 说明                                |
+| ------------ | --------------------------------- |
+| address      | 要查找的比特币地址                         |
+| balance      | 此地址上当前的余额（聪）                      |
+| chain        | 用于生成此地址的 HD 链（0 为用户生成的，1 为变更的）    |
+| index        | HD 链中用于生成此地址的索引                   |
+| path         | 钱包上地址的 HD 路径                      |
+| received     | 此地址上已接收的总额（聪）                     |
+| sent         | 此地址上已发送的总额（聪）                     |
+| txCount      | 此地址上的交易总笔数                        |
+| redeemScript | 此 redeemScript 可被用于花费此 P2SH 地址的资金 |
+| wallet       | 该地址所在钱包的基础地址（钱包 ID）               |
 
-## Freeze Wallet
+## 冻结钱包
 
 ```shell
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
@@ -2943,7 +2879,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -2952,48 +2888,46 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Prevent all spend activity on a wallet. This call is designed to be used in cases of emergency, and prevent spends
-for a default of 1 hour.
+阻止钱包上的任何花费动作。此调用设计目的是为了万一发生紧急情况时阻止花费，默认值 1 小时。
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-duration | number | NO | length of time in seconds to freeze spend activity. Defaults to 1 hour.
+| 参数       | 类型     | 必需 | 说明                     |
+| -------- | ------ | -- | ---------------------- |
+| duration | number | NO | 冻结花费动作的时长秒数。默认值为 1 小时。 |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-time | The date the freeze command was called
-expires | The date after which spend activity will be allowed
+| 字段      | 说明             |
+| ------- | -------------- |
+| time    | 调用冻结命令的时间      |
+| expires | 在此时间之后花费动作将被允许 |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+### 错误
 
-# Wallet Sharing
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
 
-A BitGo wallet may be shared between multiple users.
-All users on a wallet share the same private key (although each individual user may encrypt it separately).
+# 钱包共享
 
-Security on a shared wallet is enforced by BitGo, which requires that users log in and authenticate before co-signing.
-Wallet permission levels define what an individual user is able to do on a wallet.
+一个 BitGo 钱包可以被共享给多个用户。 钱包上的所有用户共享同一个私钥（每个用户可以选择单独加密此私钥）。
 
-### Wallet Permissions
+BitGo 对共享钱包强制启用安全功能，要求用户们在共同签名前必须登录且进行验证。 钱包权限级别定义了单个用户可以在钱包上进行的操作。
 
-Permission | Description
---------- | ----
-View | View transactions on the wallet
-Spend | Initiate transactions on the wallet, which are subject to wallet policy
-Admin | Change policy and manage users and settings on the wallet
+### 钱包权限
 
-## Sharing a wallet
+| 权限    | 说明                |
+| ----- | ----------------- |
+| View  | 查看钱包上的交易          |
+| Spend | 在钱包上发起交易，受制于钱包策略。 |
+| Admin | 修改钱包策略且管理用户和设置    |
+
+## 共享一个钱包
 
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 
 WALLETID='2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'
 PASSPHRASE='walletpassphrase'
@@ -3014,7 +2948,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -3036,44 +2970,43 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 ```
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-Sharing a wallet involves giving another user permission to use the wallet through BitGo.
+共享一个钱包涉及到给予另一个用户权限通过 BitGo 使用此钱包。
 
-In order for the receiver to use the wallet, we also need to share the private key with them.
-Each user on BitGo creates a public-private keypair for this purpose during their signup process.
+为了使接收者可以使用该钱包，我们同样须要和他共享私钥。 为了这个目的，在注册过程中每个 BitGo 用户会创建一个公有-私有密钥对。
 
-The BitGo SDK does the following client-side to create a new wallet share:
+BitGo SDK 在客户端进行如下操作以创建一个新的钱包共享：
 
-* Get the receiving user's sharing key (a derived path of the receiver's public key)
-* Decrypt the wallet to be shared locally.
-* Re-encrypt the wallet against the public key above, so that only the receiver may decrypt it.
-* Upload the encrypted keys to the BitGo service, which informs the receiver they have a pending share.
+* 获取接收用户的共享密钥（由此接收者的公钥派生出的路径）
+* 解密钱包以在本地共享
+* 使用上述公钥重新加密钱包，使接收者可以解密。
+* 上传加密的密钥到 BitGo 服务，以通知接收者他们有一个待处理的共享。
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-email | string | YES | Email of the user to share the wallet with
-permissions | string | YES | Comma-separated list of permissions, e.g. view,spend,admin
-walletPassphrase | string | NO | Passphrase on the wallet being shared
-skipKeychain | boolean | NO | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band
-disableEmail | boolean | NO | Set to true to prevent a notification email sent to the user added
+| 参数               | 类型      | 必需  | 说明                                 |
+| ---------------- | ------- | --- | ---------------------------------- |
+| email            | string  | YES | 要与其进行钱包共享的用户的电子邮件                  |
+| permissions      | string  | YES | 用逗号分隔的权限列表，例如 view,spend,admin     |
+| walletPassphrase | string  | NO  | 要共享的钱包的密码                          |
+| skipKeychain     | boolean | NO  | 设为 true 表示要与其进行钱包共享的用户将通过其它方式接收钥匙串 |
+| disableEmail     | boolean | NO  | 设为 true 以阻止发送电子邮件给添加的用户            |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-id | The id of the walletShare, used to accept it
-walletId | The id of the wallet being shared
-walletLabel | Label of the wallet to present to the user
-fromUser | BitGo ID of the user sharing the wallet
-toUser | BitGo ID of the user receiving the wallet
-permissions | Comma-separated list of permissions that the wallet share will give to the receiving user
-keychain | The encrypted keychain for the receiver to decrypt (to obtain the private key)
+| 字段          | 说明                       |
+| ----------- | ------------------------ |
+| id          | walletShare的 id，用于接受共享   |
+| walletId    | 要共享的钱包的 id               |
+| walletLabel | 显示给用户的钱包标签               |
+| fromUser    | 共享钱包用户的 BitGo ID         |
+| toUser      | 接收钱包用户的 BitGo ID         |
+| permissions | 用逗号分隔的权限列表，将由钱包共享发送给接收用户 |
+| keychain    | 已加密的钥匙串供接收者进行解密（用于获取私钥）  |
 
-## List Wallet Shares
+## 列出钱包共享
 
 ```shell
 curl -X GET \
@@ -3091,13 +3024,13 @@ https://test.bitgo.com/api/v1/walletShare
   });
 ```
 
-Gets lists of incoming and outgoing wallet shares for the logged-on account.
+获取已登录帐号的传入和传出钱包共享列表。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/walletShare`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -3122,23 +3055,23 @@ Gets lists of incoming and outgoing wallet shares for the logged-on account.
 }
 ```
 
-### Response
+### 响应
 
-Each wallet share object returned contains the following fields:
+返回的每个钱包共享对象包含下列字段：
 
-Field | Description
------ | -----------
-id | The id of the walletShare, used to accept it
-walletId | The id of the wallet being shared
-walletLabel | Label of the wallet to present to the user
-fromUser | BitGo ID of the user sharing the wallet
-toUser | BitGo ID of the user receiving the wallet
-permissions | Comma-separated list of permissions that the wallet share will give to the receiving user
+| 字段          | 说明                       |
+| ----------- | ------------------------ |
+| id          | walletShare的 id，用于接受共享   |
+| walletId    | 共享的钱包的 id                |
+| walletLabel | 显示给用户的钱包标签               |
+| fromUser    | 共享钱包用户的 BitGo ID         |
+| toUser      | 接收钱包用户的 BitGo ID         |
+| permissions | 用逗号分隔的权限列表，将由钱包共享发送给接收用户 |
 
-## Accept Wallet Share
+## 接受钱包共享
 
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 
 SHAREID='54c594802ebe8510790092958f526f47'
 NEWPASSPHRASE='receiverpassphrase'
@@ -3162,40 +3095,40 @@ bitgo.wallets().acceptShare(
 )
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 { "state": "accepted", "changed": "true" }
 ```
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-Client-side operation to accept a wallet share. Performs the following steps:
+客户端操作用于接受钱包共享。操作步骤如下：
 
-* Get the incoming wallet share, including the encrypted private keychain.
-* Using the user's sharing private key and the wallet share xPub, derive the key to decrypt the private keychain.
-* Re-encrypt the wallet with the user's chosen passphrase for future use.
-* Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.
+* 获取传入的钱包共享，包括已加密的私有钥匙串。
+* 使用该用户的共享私钥和钱包共享 xPub，派生出密钥对私有钥匙串进行解密。
+* 使用该用户选择的密码重新加密钱包供日后使用。
+* 上传已加密的密钥到 BitGo 服务并设置共享为已接受（accepted），给予该用户权限在 BitGo 上访问该钱包。
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletShareId | bitcoin address (string) | YES | The incoming wallet share ID to accept
-newWalletPassphrase | string | NO | the passphrase to set on the wallet, for use during future spends
-userPassword | string | NO | the user's password to decrypt the shared private key
-overrideEncryptedXprv | string | NO | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band
+| 参数                    | 类型             | 必需  | 说明                                    |
+| --------------------- | -------------- | --- | ------------------------------------- |
+| walletShareId         | 比特币地址 (string) | YES | 传入的钱包共享 ID 用以接受                       |
+| newWalletPassphrase   | string         | NO  | 要设置到钱包上的密码，供将来花费使用。                   |
+| userPassword          | string         | NO  | 用户密码用于解密共享的私钥                         |
+| overrideEncryptedXprv | string         | NO  | 设置到另一个加密的 xprv，若你希望保存一个从其他途径接收的 xprv。 |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-state | end state of walletShare (should be 'accepted')
-changed | true if successful
+| 字段      | 说明                              |
+| ------- | ------------------------------- |
+| state   | walletShare的最终状态（应为 'accepted'） |
+| changed | 若成功则为 true                      |
 
-## Cancel Wallet Share
+## 取消钱包共享
 
 ```shell
 SHAREID='54c594802ebe8510790092958f526f47'
@@ -3213,33 +3146,32 @@ bitgo.wallets().cancelShare({ walletShareId: cancelledWalletShareId }, function(
 )
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 { "state": "canceled", "changed": "true" }
 ```
 
-Can be used to cancel a pending outgoing wallet share, or reject an incoming share. The share should not have been accepted yet.
+可被用于取消一个等待中的传出钱包共享，或者拒绝一个传入共享。该共享必须尚未被接受。
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE/api/v1/walletshare/:SHAREID`
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-state | new state of walletShare
-changed | true if successful
+| 字段      | 说明              |
+| ------- | --------------- |
+| state   | walletShare的新状态 |
+| changed | 若成功则为 true      |
 
+## 移除钱包用户
 
-## Remove Wallet User
+在用户接受了钱包共享后，他们将成为钱包的一份子并且钱包共享被视作“完成”。
 
-After a user has accepted a wallet share, they become a party on a wallet and the wallet share is considered "complete".
+要在用户接受后撤销对其共享，你可以从钱包中移除该用户。
 
-In order to revoke the share after they have accepted, you can remove the user from the wallet.
-
-This may require approval by another wallet administrator if there is more than a single administrator on a wallet.
+当钱包上有多个管理员时，需要得到其他钱包管理员批准。
 
 ```javascript
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
@@ -3249,9 +3181,9 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
   wallet.removeUser({ "user": userId }, function callback(err, wallet) {
     if (err) {
-      // handle error
+      // 处理错误
     }
-    // etc
+    // 其他
   });
 });
 ```
@@ -3265,50 +3197,41 @@ curl -X DELETE \
 https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE /api/v1/wallet/:wallet/user/:userId`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Required | Description
---------- | -------- | -----------
-wallet | YES | The ID of the wallet
-userId | YES | The user id of the user to remove (can be found on the wallet object)
+| 参数     | 必需  | 说明                      |
+| ------ | --- | ----------------------- |
+| wallet | YES | 钱包的 ID                  |
+| userId | YES | 需要移除的用户的 id （可在钱包对象中找到） |
 
-### Response
+### 响应
 
-Returns the updated Wallet Model for this wallet, or a Pending Approval object (if approval is required).
+返回该钱包更新后的钱包模型，或者待批准对象（若需要批准的话）。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match, or unlock is required.
+### 错误
 
-# Wallet Policy
-BitGo wallets feature advanced security features such as multi-user or 2FA approval of transactions and spending limits.
-To take advantage of this, a user/developer may add and modify policy rules on a wallet. Rules will triggered an associated action (set by the user).
-The policy engine will collect all triggered rule results, and perform any triggered actions in the order of deny, get approval (from another user), get OTP (sent via SMS to another user) or allow (the default).
+| 响应               | 说明            |
+| ---------------- | ------------- |
+| 400 Bad Request  | 请求参数缺失或有错误。   |
+| 401 Unauthorized | 验证参数不符，或需要解锁。 |
 
-If a wallet carries a balance and there are more than two "admin" users associated with a Wallet,
-any policy change will require approval by another administrator before it will take effect (if there are no additional "admin" users, this will not be necessary).
-It is thus highly recommended to create wallets with at least 2 administrators by [performing a wallet share](#wallet-sharing).
-This way, policy can be effective even if a single user is compromised.
+# 钱包策略
 
-For policies with the "getOTP" action type, successfully sending a transaction will require a 7 digit OTP code before the
-transaction is signed and sent. This policy effectively lets you offer a 2FA security option for your own service, without implementing it yourself.
-The first attempt to send a transaction will fail and send out the code to the phone specified on the policy. Once you acquire
-the code from the user, make another send transaction call with the otp code included as a parameter in the API call
-and the transaction will successfully send. See the "otp" parameter at <a href="#send-coins-to-address">Sends Coins to Address</a> for further details.
+BitGo 钱包具有高级安全特性如多用户、短消息交易批准和花费限制。 要好好利用这些特性，用户/开发者需要添加且修改钱包上的策略规则。 规则会触发一个关联的动作（由用户设置）。 策略引擎会搜集所有已触发规则的结果，并且执行触发动作顺序为`deny`, `getApproval` (从另一个用户处), 或 `getOTP` (发送短消息到指定用户)。
 
-This documentation provides API and SDK coverage of basic BitGo policy involving a single wallet.
-Further custom policy may be implemented using the [webhook policy type](#set-policy-rule),
-which causes BitGo to call out to a URL endpoint capable of evaluating any custom policy behavior involving external state.
+如果钱包有余额且有超过二名“admin”（管理员）用户与此钱包有关联， 任何策略修改在生效前都需要另一位管理员批准（如果没有额外的“admin”用户， 则无需这一步）。 因此强烈推荐在使用[钱包共享操作](#wallet-sharing)创建钱包共享时，使用有至少 2 名管理员的钱包。 这样一来，即使有一名用户出问题策略仍将保持生效。
 
-Advanced policy involving multiple wallets may be implemented by contacting BitGo directly.
+对带有 `getOTP` 动作类型的策略，要成功发送一笔交易需要在交易被签名和发送前，提供一个 7 位数的一次性密码（OTP）。 此动作类型可以让你对自己的服务启用两步验证，不用自己写这个功能。 第一次尝试发送交易会失败，并向规则中指定的手机发送密码。 当你从用户处获取密码后， 再次使用 API 进行发送交易调用，一次性密码作为参数， 交易将被成功发送。 要了解详情，请查看[发送比特币到地址](#send-coins-to-address)中的 `otp` 参数。
 
-## Get Policy
+本文档提供的 API 和 SDK 覆盖了涉及单个钱包的基本 BitGo 策略。 进一步的自定义策略可使用 [webhook 策略类型](#set-policy-rule)实现， 这将使 BitGo 调用外部 URL 端点，可以评估任何含有外部状态的自定义策略动作。
+
+要实现含有多个钱包的高级策略，请直接联络 BitGo。
+
+## 获取策略
 
 ```shell
 WALLET=2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
@@ -3327,66 +3250,72 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
   wallet.getPolicy({}, function callback(err, policy) {
     if (err) {
-      // handle error
+      // 处理错误
     }
     console.dir(policy);
   });
 });
 ```
 
-> Example response
+> 响应示例
 
 ```json
 {
-    "date": "2015-04-29T19:03:37.189Z",
-    "id": "55380d34d0d3b00364a52285f09e23a4",
-    "rules": [
-        {
-            "action": {
-                "type": "getApproval"
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.day",
-            "type": "dailyLimit"
-        },
-        {
-            "action": {
-                "type": "getOTP"
-                "actionParams": {
-                    "otpType": "sms",
-                    "phone": "+15417543010",
-                    "duration": "3600"
-                }
-            },
-            "condition": {
-                "amount": 200000000
-            },
-            "id": "com.bitgo.limit.tx",
-            "type": "transactionLimit"
+  "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+  "version": 0,
+  "date": "2016-09-12T23:44:45.462Z",
+  "rules": [
+    {
+      "id": "my velocity limit",
+      "type": "velocityLimit",
+      "action": {
+        "type": "getOTP",
+        "actionParams": {
+          "otpType": "sms",
+          "phone": "+15417543010",
+          "duration": "3600"
         }
-    ],
-    "version": 4
+      },
+      "condition": {
+        "amount": 10000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    },
+    {
+      "action": {
+          "type": "getApproval"
+      },
+      "condition": {
+        "amount": 200000000
+      },
+      "id": "com.bitgo.limit.velocity.day",
+      "type": "velocityLimit"
+    }
+  ]
 }
 ```
-Gets the policy rules in operation on a wallet.
 
-### HTTP Request
+获取钱包上生效的策略规则。
+
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/policy`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+| 参数       | 类型             | 必需  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID |
 
-### Response
+### 响应
 
-Returns a Wallet Policy object, containing the rules set up on it
+返回一个钱包策略对象，包含设置在上面的规则。
 
-## Get Policy Status
+## 获取策略状态
 
 ```shell
 WALLET=2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
@@ -3412,14 +3341,14 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example response
+> 响应示例
 
 ```json
 {
     "statusResults": [
         {
             "policy": "55380d34d0d3b00364a52285f09e23a4",
-            "ruleId": "com.bitgo.limit.day",
+            "ruleId": "com.bitgo.limit.velocity.day",
             "status": {
                 "remaining": 94982419
             }
@@ -3435,34 +3364,52 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/policy/status`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+| 参数       | 类型             | 必需  | 说明     |
+| -------- | -------------- | --- | ------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 ID |
 
-### Response
+### 响应
 
-Returns status results as generated by rules active on the wallet policy, including information about the limit usage.
+返回由钱包策略中活动的规则生成的状态结果，包含使用限量信息。
 
-## Set Policy Rule
+## 设置策略规则
 
-Set the policy on a wallet. A wallet policy controls the conditions under which BitGo will use its single key to sign a transaction.
+添加或更新钱包策略的规则。 钱包策略规则控制在何种情况下 BitGo 将使用自己的单独密钥对交易签名。 当策略更新时电子邮件通知会被发送给所有钱包用户。 首次添加策略时不会发送电子邮件。
+
+```shell
+WALLETID=2NFj9CHyY8cLKH4UXsivpRa5xkdvAXqqai9
+
+curl -X PUT \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
+-d '{ "action" : { "type" : "getApproval" }, "condition": {"type": "velocity", "amount": 10100000000, "timeWindow": 86400, "groupTags": [":tag"], "excludeTags": [] }, "id": "my velocity limit", "type": "velocityLimit" }' \
+https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
+```
 
 ```javascript
 var walletId = '2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2';
 bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
   if (err) { throw err; }
-  // Sets the policy
+  // 设置策略
   var rule = {
     id: "test1",
-    type: "dailyLimit"
+    type: "velocityLimit"
     action: { type: "getApproval" },
-    condition: { "amount": 101*1e8 },
+    condition: {
+      "type": "velocity",
+      "amount": 101*1e8,
+      "timeWindow": 24 * 60 * 60,
+      "groupTags": [
+        ":tag"
+      ],
+      "excludeTags": []
+    }
   };
   wallet.setPolicyRule(rule, function callback(err, wallet) {
     if (err) { throw err; }
@@ -3471,118 +3418,113 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-```shell
-curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $ACCESS_TOKEN" \
--d '{ "action" : { "type" : "getApproval" }, "condition": { "amount" : 100000000 }, "id": "com.bitgo.limit.tx", "type": "transactionLimit", "default":true}' \
-https://test.bitgo.com/api/v1/wallet/$WALLETID/policy/rule
-```
-
-### HTTP Request
+### HTTP 请求
 
 `PUT /api/v1/wallet/:wallet/policy/rule`
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-### BODY Parameters
+### BODY 参数
 
-Policy rule objects have a type, a condition, and an action. The type of policy often dictates the condition values.
+策略规则对象具有类型（type）、条件（condition）和动作（action）。策略的类型通常决定了条件的价值。
 
-Parameter | Type | Required | Example
---------- | ---- | -------- | -----------
-id | the id of the policy | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"
-type | The type of policy | *See Policy Types*
-condition | The condition for this policy | *See Policy Types*
-action | The action to take when the condition is false |  *See Policy Action Object*
+| 参数        | 类型                | 必需                           | 范例 |
+| --------- | ----------------- | ---------------------------- | -- |
+| id        | 策略的 id            | "custom1", "anyUniqueRuleId" |    |
+| type      | 策略的类型             | *见策略类型*                      |    |
+| condition | 策略的条件             | *见策略类型*                      |    |
+| action    | 当条件为 false 时采取的动作 | *见策略动作对象*                    |    |
 
-> Example response
+> 响应示例
 
 ```json
 {
-  "date": "2015-10-29T23:33:20.166Z",
-  "id": "5631d2f48cad5fab2c6abe16682372bb",
-  "rules": [
-    {
+  "policy": {
+    "id": "57d73dedd1187a4a7b2bdeebedddcd6b",
+    "version": 0,
+    "date": "2016-09-13T00:08:30.661Z",
+    "rules": [{
+      "id": "my velocity limit",
+      "type": "velocityLimit",
       "action": {
         "type": "getApproval"
       },
       "condition": {
-        "amount": 100000000
-      },
-      "id": "com.bitgo.limit.tx",
-      "type": "transactionLimit"
-    },
-    {
-      "action": {
-        "type": "getApproval"
-      },
-      "condition": {
-        "addresses": [
-          "muDjD4YdVzi1vyqKtYVbAkLi2J84GkKj5h"
-        ]
-      },
-      "id": "com.bitgo.whitelist.address",
-      "type": "bitcoinAddressWhitelist"
-    }
-  ],
-  "version": 4
+        "amount": 10100000000,
+        "timeWindow": 86400,
+        "groupTags": [
+          ":tag"
+        ],
+        "excludeTags": []
+      }
+    }]
+  }
 }
 ```
 
-### Response
+### 响应
 
 Returns the updated Wallet Model object.
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
-### Policy Object
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
 
-The aggregate Wallet Policy is an array of Policy Rule Objects. Policy rule objects have a type, a condition, and an action.
+### 策略对象
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-id | the id of the policy | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"
-type | The type of policy | "transactionLimit", "dailyLimit", "bitcoinAddressWhitelist", "webhook"
-condition | The condition for this policy | *Depends on policy rule type used*
-action | The action to take when the condition is false |  *See policy action object*
+总体上的钱包策略是一个包含策略规则对象的数组。策略规则对象有类型（type）、条件（condition）和动作（action）。
 
-### Policy Type - dailyLimit
+| 字段        | 说明                | 可能值                                                                       |
+| --------- | ----------------- | ------------------------------------------------------------------------- |
+| id        | 策略的 id            | "com.bitgo.limit.tx", "custom1", "anyUniqueRuleId"                        |
+| type      | 策略的类型             | "transactionLimit", "velocityLimit", "bitcoinAddressWhitelist", "webhook" |
+| condition | 策略的条件             | *取决于所使用的策略规则类型*                                                           |
+| action    | 当条件为 false 时采取的动作 | *见策略动作对象*                                                                 |
 
-A dailyLimit policy rule will trigger when the amount of Bitcoin within the last rolling 24 hours exceeds the specified amount.
+### 策略类型 - velocityLimit（速率限制）
 
-Conditions for this include:
+velocityLimit 策略规则：当花费的比特币金额在指定的时间窗口内超过指定额度时，会被触发。
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-amount | The maximum allowed value of all transactions per day| Number of satoshis
+本规则的条件包括有：
 
-### Policy Type - transactionLimit
+| 字段          | 说明                                                      | 可能值     |
+| ----------- | ------------------------------------------------------- | ------- |
+| amount      | 在时间窗口内允许发出的交易最大值                                        | 单位为聪的数值 |
+| timeWindow  | 用于汇总此时间段内的交易花费金额并与限额相比较                                 | 秒数      |
+| groupTags   | 标记指定操作列表， ":tag" 适用于大部分情况                               | 字符串数组   |
+| excludeTags | 标记用于定义钱包 id 组，若有花费至所定义的钱包，则花费不计入限额。同样支持用 :tag 包含当前标记上下文 | 字符串数组   |
 
-A transactionLimit policy rule will trigger when a single transaction exceeds the specified amount.
+### 策略类型 - transactionLimit（交易限额）
 
-Conditions for this include:
+transactionLimit 策略规则：当单笔交易超过指定金额时触发。
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-amount | The maximum allowed value of each transaction on the wallet | Number of satoshis
+<aside class="warning">
+交易限额几乎总要设定金额为 0，这样意味着每次尝试从钱包发出交易都将触发策略。 交易限额若不是设定为 0 会非常不安全，因为攻击者只需多次发送低于策略规则金额的交易，即可避开策略。
+</aside>
 
-### Policy Type - bitcoinAddressWhitelist
+本规则的条件包括有：
 
-When active, a Bitcoin address whitelist rule will be triggered whenever any destination Bitcoin address (non-change) of an outgoing transaction is not in the white list.
+| 字段     | 说明              | 可能值     |
+| ------ | --------------- | ------- |
+| amount | 钱包上每笔交易所允许的最大限额 | 单位为聪的数值 |
 
-Conditions for this include:
+### 策略类型 - bitcoinAddressWhitelist（比特币地址白名单）
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-add | The bitcoin address to add to the whitelist | Bitcoin address
-remove | The bitcoin address to remove from the whitelist | Bitcoin address
+比特币地址白名单规则被激活时，当传出交易的任何目标比特币地址（未变更）不在白名单中时将被触发。
 
-> Example webhook callback (sent to your server, any non-200 response will trigger the policy rule action)
+本规则的条件包括有：
+
+| 字段     | 说明          | 可能值   |
+| ------ | ----------- | ----- |
+| add    | 添加比特币地址到白名单 | 比特币地址 |
+| remove | 从白名单移除比特币地址 | 比特币地址 |
+
+> Webhook 调用示例（发送至你的服务器，任何非 200 响应都将激活策略规则动作）
 
 ```json
 {
@@ -3607,44 +3549,41 @@ remove | The bitcoin address to remove from the whitelist | Bitcoin address
 }
 ```
 
-### Policy Type - webhook
+### 策略类型 - webhook
 
-When active, a webhook rule will issue a callback to the HTTPS endpoint specified in the condition.
-The rule will trigger an action if the HTTPS endpoint returns a non-200 (status) response.
+当激活时，webhook 规则将向条件中指定的 HTTPS 端点发起调用。 若 HTTPS 端点返回非 200 （状态）响应本规则将触发一个动作。
 
-Conditions for this rule:
+本规则的条件：
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-url | The URL to issue the callback to | HTTPs endpoint
+| 字段  | 说明         | 可能值      |
+| --- | ---------- | -------- |
+| url | URL 用于发起调用 | HTTPS 端点 |
 
-Body parameters sent in the callback:
+在调用中发送的 BODY 参数：
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-walletId | The ID of the wallet from which the transaction is originating | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"
-ruleId | The ID of the wallet from which the transaction is originating | "webhookPolicy1"
-outputs | Array of output objects containing outputAddress and value | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}]
-spendAmount | The net spend amount from the wallet, less change (includes fees) | 10009060
-approvalCount | The number of user approvals on the wallet thus far | 0
-unsignedRawTx | The hex string of the half-signed raw transaction | "0100000001... 0794c5382a38700000000"
-sequenceId | The custom sequence ID provided by the sender when creating a transaction | "custom1"
+| 字段            | 说明                        | 可能值                                                                          |
+| ------------- | ------------------------- | ---------------------------------------------------------------------------- |
+| walletId      | 发起交易钱包的钱包 ID              | "2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe"                                        |
+| ruleId        | 当创建策略规则时由用户提供的自定义规则 ID    | "webhookPolicy1"                                                             |
+| outputs       | 输出对象数组包含 outputAddress 和值 | [{ "outputAddress":"2N9kNR8iS46WuwekvQVaTUa74w2fbvAXHQn", "value":24885327}] |
+| spendAmount   | 从钱包花费的净额，变动较少（包含费用）       | 10009060                                                                     |
+| approvalCount | 钱包上至今为止的用户批准数量            |                                                                              |
+| unsignedRawTx | 半签名原始交易的十六进制字符串           | "0100000001... 0794c5382a38700000000"                                        |
+| sequenceId    | 由发送者创建交易时提供的自定义流水号        | "custom1"                                                                    |
 
-### Policy Action Object
+### 策略动作对象
 
-An action is the action to take when the condition is not met by a
-transaction.
+在交易不符合条件时将触发的动作。
 
-Field | Description | Possible Values
------ | ----------- | ---------------
-type | The type of action | "deny", "getApproval", "getOTP"
-actionParams | JSON object containing phone/otpType/duration | *See below*
-otpType | Determines how the code should be sent (must set type === "getOTP") | "sms"
-phone | The phone number that will receive the code (must set type === "getOTP") | "541-754-3010", "+498963648018"
-duration | The time in seconds the OTP should be valid for (must set type === "getOTP") | 3600
+| 字段           | 说明                                         | 可能值                             |
+| ------------ | ------------------------------------------ | ------------------------------- |
+| type         | 动作类型                                       | "deny", "getApproval", "getOTP" |
+| actionParams | JSON 对象包含有 phone/otpType/duration          | *参见下文*                          |
+| otpType      | 规定了如何发送密码 (必须设置 type === "getOTP")         | "sms"                           |
+| phone        | 接收密码的电话号码 (必须设置 type === "getOTP")         | "541-754-3010", "+498963648018" |
+| duration     | 一次性密码（OTP）的有效时间秒数 (必须设置 type === "getOTP") | 3600                            |
 
-
-## Remove Policy Rule
+## 移除策略规则
 
 ```shell
 RULEID='test1'
@@ -3668,7 +3607,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -3679,31 +3618,31 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 }
 ```
 
-Removes a policy rule with the id specified. This may require a secondary approval if there is more than 1 administrator on the wallet.
+根据指定的 id 移除策略规则。若钱包有超过 1 名管理员时，需要第二批准。
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE /api/v1/wallet/:WALLETID/policy/rule`
 
 <aside class="info">
-This operation requires the session to be unlocked using the Unlock API.
+此操作需要使用解锁 API 解锁会话。
 </aside>
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-id | string | YES | the id of the policy rule to remove
+| 参数 | 类型     | 必需  | 说明          |
+| -- | ------ | --- | ----------- |
+| id | string | YES | 要移除的策略规则 id |
 
-### Response
+### 响应
 
-Returns the updated Wallet Model object.
+返回更新后的钱包模型对象
 
-# Pending Approvals
+# 待批准
 
-## List Pending Approvals
+## 列出待批准
 
-List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.  
+列出一个钱包或企业上的待批准项，通过提供钱包 id 或 企业 url。默认情况下，该请求将返回用户下的所有待批准项。
 
 ```shell
 curl -X GET \
@@ -3722,7 +3661,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -3743,8 +3682,8 @@ bitgo.pendingapprovals().list({
                        "condition": {
                            "amount": 300000000
                        },
-                       "id": "com.bitgo.limit.day",
-                       "type": "dailyLimit"
+                       "id": "com.bitgo.limit.velocity.day",
+                       "type": "velocityLimit"
                    }
                },
                "type": "policyRuleRequest"
@@ -3755,24 +3694,24 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/pendingapprovals`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | address (string) | NO | The base address of the wallet 
-enterprise | string | NO | The public ID of the enterprise
+| 参数         | 类型         | 必需 | 说明       |
+| ---------- | ---------- | -- | -------- |
+| walletId   | 地址（string） | NO | 钱包的基础地址  |
+| enterprise | string     | NO | 企业的公有 ID |
 
-### Response
+### 响应
 
-Returns a list of pending approvals.
+返回待批准列表
 
-## Update Pending Approval
+## 更新待批准
 
-Update the state of a pending approval to either 'approved' or 'rejected'.
+更新待批准项的状态为 'approved'（已批准） 或 'rejected'（已拒绝）。
 
 ```shell
 curl -X PUT \
@@ -3798,7 +3737,7 @@ bitgo.pendingapprovals().list({
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -3817,8 +3756,8 @@ bitgo.pendingapprovals().list({
                "condition": {
                    "amount": 300000000
                },
-               "id": "com.bitgo.limit.day",
-               "type": "dailyLimit"
+               "id": "com.bitgo.limit.velocity.day",
+               "type": "velocityLimit"
            }
        },
        "type": "policyRuleRequest"
@@ -3833,29 +3772,25 @@ bitgo.pendingapprovals().list({
 }
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `PUT /api/v1/pendingapprovals/:pendingApprovalId`
 
-### BODY Parameters
+### BODY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-state | string | YES | the new state of the pending approval: 'approved', 'rejected' 
+| 参数    | 类型     | 必需  | 说明                                          |
+| ----- | ------ | --- | ------------------------------------------- |
+| state | string | YES | 待批准项目的新状态: 'approved'（已批准）, 'rejected'（已拒绝） |
 
-### Response
+### 响应
 
-Returns the updated pending approvals with the new state.
+返回含有新状态的已更新的待批准项。
 
-# Address Labels
+# 地址标签
 
-Labels allow you to keep track of addresses with human readable notes.
-You can add a label to any valid address; the address does not need to be
-one controlled by the wallet. Address labels are distinct from wallet labels,
-but they are tied to a wallet so that when you share the wallet with other users
-they will be also able to view the labels.
+标签可以让你以可读的注释追踪地址。 你可以对任何有效地址添加标签；地址不一定需要受钱包控制。 地址标签和钱包标签不同， 不过他们都和钱包相关联，因此当你与他人共享钱包时 他们也能查看标签。
 
-## List Labels For All Wallets
+## 列出所有钱包的标签
 
 ```shell
 curl -X GET \
@@ -3866,20 +3801,20 @@ https://test.bitgo.com/api/v1/labels
 ```javascript
 bitgo.labels({}, function callback(err, labels) {
   if (err) {
-    // handle error
+    // 处理错误
   }
-  // do something with labels
+  // 标签操作
   console.dir(labels);
 });
 ```
 
-Get the list of labels for the user
+获取用户的标签列表
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/labels`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -3898,23 +3833,24 @@ Get the list of labels for the user
 }
 ```
 
-### Response
+### 响应
 
-Returns an array of Label Model objects.
+返回一个标签模型数组。
 
-Field | Description
------ | -----------
-walletId | id of the wallet (also the first receiving address)
-address | the bitcoin address being labeled
-label | the address label
+| 字段       | 说明                 |
+| -------- | ------------------ |
+| walletId | 钱包的 id （亦是第一个接收地址） |
+| address  | 要加上标签的比特币地址        |
+| label    | 地址标签               |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
+### 错误
 
-## List Labels For Specific Wallet
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
+
+## 列出指定钱包的标签
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -3931,9 +3867,9 @@ var data = {
 };
 wallets.get(data, function callback(err, wallet) {
   if (err) {
-    // handle error
+    // 处理钱包
   }
-  // do something with labels
+  // 标签相关操作
   wallet.labels({}, function (err, labels) {
     if (err) {
       console.log(err);
@@ -3944,13 +3880,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-Get the list of labels for the wallet
+获取钱包的标签列表
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/labels/:walletId`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -3964,24 +3900,25 @@ Get the list of labels for the wallet
 }
 ```
 
-### Response
+### 响应
 
-Returns an array of Label Model objects.
+返回一个标签模型数组。
 
-Field | Description
------ | -----------
-walletId | id of the wallet (also the first receiving address)
-address | the bitcoin address being labeled
-label | the address label
+| 字段       | 说明                 |
+| -------- | ------------------ |
+| walletId | 钱包的 id （亦是第一个接收地址） |
+| address  | 要加上标签的比特币地址        |
+| label    | 地址标签               |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-404 Not Found | The wallet could not be found.
+### 错误
 
-## Set Label
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
+| 404 Not Found    | 未能找到指定的钱包。  |
+
+## 设置标签
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -4014,15 +3951,13 @@ wallets.get(data, function callback(err, wallet) {
 });
 ```
 
-Set a label on a specific address and associate it with a specific wallet.
-Labels are limited to 250 characters in length. Labels cannot be set on a wallet's first receiving address
-because it reserved for the wallet's label.
+对指定地址设置一个标签并且将其和指定钱包关联。 标签的长度限制为 250 个字符。 标签不能被设置在钱包的第一个接收地址上 因为它被保留用做钱包的标签。
 
-### HTTP Request
+### HTTP 请求
 
 `PUT /api/v1/labels/:walletId/:address`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -4031,37 +3966,39 @@ because it reserved for the wallet's label.
   "label": "A Noteworthy Label"
 }
 ```
-### URL Parameters
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
-address | bitcoin address (string) | YES | the bitcoin address being labeled
+### URL 参数
 
-### PUT Parameters
+| 名称       | 类型             | 必需  | 说明                 |
+| -------- | -------------- | --- | ------------------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 id （亦是第一个接收地址） |
+| address  | 比特币地址 (string) | YES | 要加上标签的比特币地址        |
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-label | string | YES | the address label
+### PUT 参数
 
-### Response
+| 名称    | 类型     | 必需  | 说明   |
+| ----- | ------ | --- | ---- |
+| label | string | YES | 地址标签 |
 
-Returns a Label Model object.
+### 响应
 
-Field | Description
------ | -----------
-walletId | id of the wallet (also the first receiving address)
-address | the bitcoin address being labeled
-label | the address label
+返回一个标签模型对象。
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-404 Not Found | The wallet could not be found.
+| 字段       | 说明                 |
+| -------- | ------------------ |
+| walletId | 钱包的 id （亦是第一个接收地址） |
+| address  | 要加上标签的比特币地址        |
+| label    | 地址标签               |
 
-## Delete Label
+### 错误
+
+| 响应               | 说明          |
+| ---------------- | ----------- |
+| 400 Bad Request  | 请求参数缺失或有错误。 |
+| 401 Unauthorized | 验证参数不符。     |
+| 404 Not Found    | 未能找到指定的钱包。  |
+
+## 删除标签
 
 ```shell
 WALLET=2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
@@ -4074,19 +4011,19 @@ https://test.bitgo.com/api/v1/labels/$WALLET/$ADDRESS
 ```javascript
 wallet.deleteLabel({address: "2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"}, function (err, label) {
   if (err) {
-    // handle error
+    // 错误处理
   }
   console.dir(label);
 });
 ```
 
-Delete a label from a specific address and wallet.
+从指定的地址和钱包上删除标签。
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE /api/v1/labels/:walletId/:address`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -4096,54 +4033,55 @@ Delete a label from a specific address and wallet.
 }
 ```
 
-### URL Parameters
+### URL 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
-address | bitcoin address (string) | YES | the bitcoin address being labeled
+| 名称       | 类型             | 必需  | 说明                 |
+| -------- | -------------- | --- | ------------------ |
+| walletId | 比特币地址 (string) | YES | 钱包的 id （亦是第一个接收地址） |
+| address  | 比特币地址 (string) | YES | 要加上标签的比特币地址        |
 
-### Response
+### 响应
 
-Returns a Label Model object of the label that was deleted.
+返回一个已被删除的标签模型对象。
 
-Field | Description
------ | -----------
-walletId | id of the wallet (also the first receiving address)
-address | the bitcoin address being labeled
-label | the address label
+| 字段       | 说明                 |
+| -------- | ------------------ |
+| walletId | 钱包的 id （亦是第一个接收地址） |
+| address  | 要加上标签的比特币地址        |
+| label    | 地址标签               |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-401 Unauthorized | The authentication parameters did not match.
-404 Not Found | The wallet or label could not be found.
+### 错误
 
-# Tags
+| 响应               | 说明           |
+| ---------------- | ------------ |
+| 400 Bad Request  | 请求参数缺失或有错误。  |
+| 401 Unauthorized | 验证参数不符。      |
+| 404 Not Found    | 未找到指定的钱包或标签。 |
 
-Tags are an advanced policy feature for enterprise clients.
+# 标记
 
-## Create a tag
+标记是企业客户的高级策略功能。
 
-### HTTP Request
+## 创建标记
+
+### HTTP 请求
 
 `POST /api/v1/tag`
 
-### BODY Parameters
+### BODY 参数
 
-The tag must have a name and exactly one of either a user, wallet, or enterprise.
+标记必须有一个名称并且正确的设置用户、钱包或企业三个参数之一。
 
-Parameter | Type | Required | Description | Possible Values
---------- | ---- | -------- | ----------- | ---------------
-name | string | YES |  The name of the tag. |
-user | id | NO |  The user id of the user who owns the tag, which can only be the id of the user adding the tag. |
-wallet | id | NO |  The id, not bitcoin address, of the wallet to own the tag. |
-enterprise | id | NO |  The id of the enterprise to own the tag. |
+| 参数         | 类型     | 必需  | 说明                             | 可能值 |
+| ---------- | ------ | --- | ------------------------------ | --- |
+| name       | string | YES | 标记的名称                          |     |
+| user       | id     | NO  | 拥有标记的用户之用户 id，仅可设为添加此标记用户之 id。 |     |
+| wallet     | id     | NO  | 拥有此标记的钱包之 id，不是比特币地址           |     |
+| enterprise | id     | NO  | 拥有此标记的企业之 id。                  |     |
 
-### Response
+### 响应
 
-Returns the tag.
+返回此标记。
 
 ```json
 {
@@ -4153,29 +4091,29 @@ Returns the tag.
 }
 ```
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
+### 错误
 
-## Add a tag to a wallet
+| 响应              | 说明          |
+| --------------- | ----------- |
+| 400 Bad Request | 请求参数缺失或有错误。 |
 
-### HTTP Request
+## 为钱包添加标记
+
+### HTTP 请求
 
 `POST /api/v1/wallet/:wallet/tag`
 
-### BODY Parameters
+### BODY 参数
 
-You must specify the id of the tag you are adding to the wallet, and no other parameters
-are required.
+你必需指定添加到钱包的标记 id，不需要其他参数。
 
-Parameter | Type | Required | Description | Possible Values
---------- | ---- | -------- | ----------- | ---------------
-tag | id | YES |  The id of the tag. |
+| 参数  | 类型 | 必需  | 说明     | 可能值 |
+| --- | -- | --- | ------ | --- |
+| tag | id | YES | 标记的 id |     |
 
-### Response
+### 响应
 
-Returns the wallet, tag, and number of wallettxs affected.
+返回钱包、标记和受影响的 wallettxs 数量。
 
 ```json
 {
@@ -4185,70 +4123,66 @@ Returns the wallet, tag, and number of wallettxs affected.
 }
 ```
 
-### Errors
-Response | Description
--------- | -----------
-404 Not Found | The tag was not found
+### 错误
 
-# Webhook Notifications
+| 响应            | 说明     |
+| ------------- | ------ |
+| 404 Not Found | 未找到该标记 |
 
-> Example transaction Webhook callback
+# Webhook 通知
 
-```
-POST http://your.server.com/webhook
-{
-  "type": "transaction",
-  "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
-  "hash": "c9a55f32d4b63d02a617eea58873227e4f011d0dfc836cb2e9cab531c4db0c4a"
-}
-```
+> 交易 Webhook 回调示例
 
-> Example pending approval Webhook callback
+    POST http://your.server.com/webhook
+    {
+      "type": "transaction",
+      "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
+      "hash": "c9a55f32d4b63d02a617eea58873227e4f011d0dfc836cb2e9cab531c4db0c4a"
+    }
+    
 
-```
-POST http://your.server.com/webhook
-{
-  "type": "pendingapproval",
-  "pendingApprovalId": "55e79a1b5f9a20da1d3fe5b988a71c93",
-  "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
-  "state": "accepted"
-}
-```
+> 待批准 webhook 回调示例
 
-Webhooks may be setup up to programmatically receive callbacks from BitGo. These may be attached to wallets (in the case of transactions), or to a user (for block notifications).
-Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
+    POST http://your.server.com/webhook
+    {
+      "type": "pendingapproval",
+      "pendingApprovalId": "55e79a1b5f9a20da1d3fe5b988a71c93",
+      "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
+      "state": "accepted"
+    }
+    
 
-BitGo servers will make a POST http request to the URL defined with a JSON payload, and expect a `HTTP 200 OK`.
-If a successful response is not received, BitGo will attempt to retry the webhook with an increasing delay between each retry.
+Webhook 可以已编程方式接收来自 BitGo 的回调（callback）。 这些可以被附加到钱包（在发生交易的情况下），或用户（用于区块通知）。 在指定的事件发生时会触发 Webhook 通知，如有传入交易。
 
-Developers should take care to ensure that their application succeeds even in the cases of transient network error, or if receive the same webhook twice due to an improper acknowledgement.
+BitGo 服务器会根据 JSON payload 中所定义的 URL 发起一个 POST http 请求，以期得到 `HTTP 200 OK` 响应。 若未能接收到成功响应，BitGo 将重试此 webhook 并将逐步延长每次重试之间的延迟。
 
-### Request Schema
+开发者必须注意要确保自己的应用程序即使在网络传输发生错误时仍可继续，要不然会由于有问题的确认而二次都收到相同的 webhook 。
 
-The Webhook URL will be called with the following JSON-encoded fields in the HTTP body.
+### 请求结构
 
-Field | Description
------ | -----------
-type | type of Webhook: 'transaction', 'transactionExpire', 'transactionRemoved', 'block', and 'pendingapproval'.
-walletId | ID of the wallet associated with the webhook event, if this is a wallet webhook.
-hash | transaction ID, if this is a transaction webhook
-pendingApprovalId | pending approval ID, if this is a pending approval webhook
-state | the state of the pending approval (pending, approved, or rejected), if this is a pending approval webhook
+下列 JSON 编码的参数位于 HTTP body中，将通过 Webhook URL 调用进行传输。
 
+| 字段                | 说明                                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| type              | Webhook 的类型: 'transaction' (交易), 'transactionExpire' (交易过期), 'transactionRemoved' (交易已移除), 'block' (区块), 和 'pendingapproval' (待批准). |
+| walletId          | 与 webhook 事件关联的钱包 ID，当这个为钱包 webhook 时适用。                                                                                            |
+| hash              | 交易 ID，当这个是交易 webhook 时适用。                                                                                                           |
+| pendingApprovalId | 待批准 ID，当这个是待批准 webhook 时适用。                                                                                                         |
+| state             | 待批准的状态 (pending, approved, 或 rejected), 当这个是待批准 webhook 时适用。                                                                        |
 
-### Webhook Types
+### Webhook 类型
 
-BitGo is currently actively working on webhooks. Please get in touch with us to request more webhook types.
+BitGo 目前正致力于 webhook 方面开发。请联络我们以获取更多 webhook 类型。
 
-Type | Description
------ | -----------
-transaction | Activates when a transaction is seen/confirmed on any receive address of a wallet
-transactionRemoved | Activates when a transaction is removed from a user's wallet
-transactionExpire | Activates when a transaction is about to expire
-pendingapproval | Activates when a pending approval pertaining to a user's wallet is created, approved, or rejected
-block | Activates when a new block is seen on the Bitcoin network
+| 类型                 | 说明                          |
+| ------------------ | --------------------------- |
+| transaction        | 当钱包的接收地址上有交易出现 / 已确认时激活。    |
+| transactionRemoved | 当交易从用户的钱包被移除时激活。            |
+| transactionExpire  | 当交易即将过期时激活。                 |
+| pendingapproval    | 当与用户钱包有关的待批准交易被创建、批准或拒绝时激活。 |
+| block              | 当比特币网络上有新区块出现时激活。           |
 
-## List Wallet Webhooks
+## 列出钱包的 Webhook
 
 ```shell
 curl -X GET \
@@ -4265,7 +4199,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 [
@@ -4283,24 +4217,23 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 ]
 ```
 
-Gets list of webhooks set up on the wallet.
-Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.
+获取钱包上设置的 webhook 列表。 目前，只有交易（transaction）和待批准（pendingapproval）webhook 类型通知可被附加到钱包上。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/wallet/:walletId/webhooks`
 
-### Response
+### 响应
 
-An array of Webhook objects
+Webhook 对象数组
 
-Field | Description
------ | -----------
-walletId | id of the wallet
-type | type of Webhook, e.g. transaction
-url | http/https url for callback requests
+| 字段       | 说明                         |
+| -------- | -------------------------- |
+| walletId | 钱包的 id                     |
+| type     | Webhook 的类型， 如：transaction |
+| url      | 回调请求使用的 http/https url     |
 
-## Add Wallet Webhooks
+## 为钱包添加 Webhook
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4321,7 +4254,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -4331,35 +4264,31 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Adds a Webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered.
-There is a limit of 10 Webhooks of each type per wallet.
+添加 webhook 后当事件被触发时 BitGo 将对指定 URL 发起 HTTP 回调。 每个钱包的同类型 webhook 上限为 10 个。
 
-There are 2 types of wallet webhooks available:
-1. Transaction webhooks will fire on any transaction on the wallet.
-2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.
+有 2 种类型的钱包 webhook 可用： 1. 会被钱包上任意交易触发的交易（transaction）webhook。 2. 当传出交易触发钱包政策时会触发待批准（pending approval） webhook。
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/wallet/:walletId/webhooks`
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction or pendingapproval
-url | string | YES | valid http/https url for callback requests
-numConfirmations | integer | NO | number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed.
+| 参数               | 类型      | 必需  | 说明                                                                   |
+| ---------------- | ------- | --- | -------------------------------------------------------------------- |
+| type             | string  | YES | Webhook 的类型，例如 transaction 或 pendingapproval                         |
+| url              | string  | YES | 有效的 http/https url 供回调请求使用                                           |
+| numConfirmations | integer | NO  | 在触发交易 webhook 前需要的确认数量。 若为 0 或未指定，则将在第一次见到此交易以及当此交易被确认时，对回调端点发出调用请求。 |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-walletId | id of the wallet
-type | type of Webhook, e.g. transaction
-url | http/https url for callback requests
+| 字段       | 必需                         |
+| -------- | -------------------------- |
+| walletId | 钱包的 id                     |
+| type     | Webhook 的类型， 如：transaction |
+| url      | 回调请求使用的 http/https url     |
 
-
-## Remove Wallet Webhooks
+## 移除钱包 Webhook
 
 ```shell
 WALLETID=2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
@@ -4380,7 +4309,7 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -4388,28 +4317,28 @@ bitgo.wallets().get({ "id": walletId }, function(err, wallet) {
 }
 ```
 
-Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
+移除 Webhook 后，当发生指定类型的新事件时将不会再对你的 URL 发起 HTTP 回调。
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE /api/v1/wallet/:walletId/webhooks`
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction
-url | string | YES | valid http/https url for callback requests to be made at
+| 参数   | 类型     | 必需  | 说明                          |
+| ---- | ------ | --- | --------------------------- |
+| type | string | YES | Webhook 的类型， 如：transaction  |
+| url  | string | YES | 有效的 http/https url 以供回调请求使用 |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-walletId | id of the wallet
-type | type of Webhook, e.g. transaction
-url | http/https url for callback requests
+| 字段       | 说明                         |
+| -------- | -------------------------- |
+| walletId | 钱包的 id                     |
+| type     | Webhook 的类型， 如：transaction |
+| url      | 回调请求使用的 http/https url     |
 
-## List User Webhooks
+## 列出用户 Webhook
 
 ```shell
 curl -X GET \
@@ -4424,7 +4353,7 @@ bitgo.listWebhooks({}, function callback(err, result) {
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 [
@@ -4441,23 +4370,23 @@ bitgo.listWebhooks({}, function callback(err, result) {
 ]
 ```
 
-Gets list of webhooks attached to the user. Currently, the only type of webhook that can be attached to a user is a block notification.
+获取附加于指定用户的 webhook 列表。目前，只有区块通知（block notification）webhook 类型可以被附加到用户上。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/webhooks`
 
-### Response
+### 响应
 
-An array of Webhook objects
+Webhook 对象数组
 
-Field | Description
------ | -----------
-type | type of Webhook, e.g. block
-coin | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
-url | http/https url for callback requests
+| 字段   | 说明                                                    |
+| ---- | ----------------------------------------------------- |
+| type | Webhook 的类型，例如 block                                  |
+| coin | string | NO | 网络令牌 例如 "bitcoin" 或 "eth" (默认为 bitcoin) |
+| url  | 回调请求使用的 http/https url                                |
 
-## Add User Webhooks
+## 为用户添加 Webhook
 
 ```shell
 URL='https://303fe960.ngrok.com'
@@ -4476,7 +4405,7 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -4486,29 +4415,28 @@ bitgo.addWebhook({ url: url, type: 'block', coin: 'bitcoin' }, function callback
 }
 ```
 
-Adds a webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. The webhook record is attached to the user account.
+添加 webhook 后，当事件被触发时 BitGo 将对指定 URL 发起 HTTP 回调。Webhook 记录会被附加到用户账号。
 
-### HTTP Request
+### HTTP 请求
 
 `POST /api/v1/webhooks`
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. block
-coin | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
-url | string | YES | valid http/https url for callback requests
+| 参数   | 类型     | 必需  | 说明                                      |
+| ---- | ------ | --- | --------------------------------------- |
+| type | string | YES | Webhook 的类型，例如 block                    |
+| coin | string | NO  | 网络令牌 例如 "bitcoin" 或 "eth" (默认为 bitcoin) |
+| url  | string | YES | 有效的 http/https url 供回调请求使用              |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-type | type of Webhook, e.g. block
-url | http/https url for callback requests
+| 字段   | 说明                     |
+| ---- | ---------------------- |
+| type | Webhook 的类型，例如 block   |
+| url  | 回调请求使用的 http/https url |
 
-
-## Remove User Webhooks
+## 移除用户 Webhook
 
 ```shell
 URL='http://www.yoursite.com/partner/webhooks'
@@ -4526,7 +4454,7 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 });
 ```
 
-> Example Response
+> 响应示例
 
 ```json
 {
@@ -4534,39 +4462,40 @@ bitgo.removeWebhook({ url: url, type: 'block' }, function callback(err, result) 
 }
 ```
 
-Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.
+移除 Webhook 后，当发生指定类型的新事件时将不会再对你的 URL 发起 HTTP 回调。
 
-### HTTP Request
+### HTTP 请求
 
 `DELETE /api/v1/webhooks`
 
-### Parameters
+### 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction
-url | string | YES | valid http/https url for callback requests to be made at
+| 参数   | 类型     | 必需  | 说明                          |
+| ---- | ------ | --- | --------------------------- |
+| type | string | YES | Webhook 的类型， 如：transaction  |
+| url  | string | YES | 有效的 http/https url 以供回调请求使用 |
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-type | type of Webhook, e.g. transaction
-url | http/https url for callback requests
+| 字段   | 说明                         |
+| ---- | -------------------------- |
+| type | Webhook 的类型， 如：transaction |
+| url  | 回调请求使用的 http/https url     |
 
-# Utilities
+# 实用程序
 
-This section describes utility services provided as part of the BitGo API.
+本节将介绍作为 BitGo API 一部分的实用程序服务。
 
-## Decrypt
+## 解密
 
 ```javascript
 var encryptedString = '{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}';
 var decryptedString = bitgo.decrypt({ password: "password", input: encryptedString });
 // decryptedString = "this is a secret"
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 
 PASSWORD='password'
 INPUT='{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}'
@@ -4579,16 +4508,17 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/decrypt
 { "decrypted" : "this is a secret" }
 ```
 
-Client-side function to decrypt an encrypted blob from the BitGo API.
+客户端函数，用于解密 BitGo API 加密的数据使用。
 
-## Encrypt
+## 加密
 
 ```javascript
 var encryptedString = bitgo.encrypt({ password: "password", input: "this is a secret" });
 // encyrptedString = "{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}"
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 
 PASSWORD='password'
 INPUT='this is a secret'
@@ -4601,27 +4531,27 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/encrypt
 { "encrypted" : "{\"iv\":\"U4uRz85ytmlCeTe2P3iOmg==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"/tRnUh9LUyI7L5e5LPqpvnPR7RD1CdUi\"}" }
 ```
 
-Client-side function to encrypt a string.  All data stored with BitGo is encrypted using this API.
+客户端函数用于加密一个字符串。所有存放于 BitGo 的数据均由此 API 进行加密。
 
-## Estimate Transaction Fees
+## 预估交易费用
 
 ```javascript
 bitgo.estimateFee({ numBlocks: 6 }, function callback(err, res) {
   console.dir(res);
 });
 ```
+
 ```shell
-curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks=6
+curl -k https://www.bitgo.com/api/v1/tx/fee?numBlocks=6
 ```
 
-Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions.
-Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.
+返回建议的每千字节费率以确认目标区块数量的交易。 本功能可在创建交易时使用。 注意：预估算法仅在生产环境（www.bitgo.com）中准确并且需要至少 2 个区块在前。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/tx/fee?numBlocks=6`
 
-> Example response
+> 响应示例
 
 ```json
 { "feePerKb": 21949,
@@ -4643,36 +4573,37 @@ Note: The estimation algorithm is only accurate for a minimum of 2 blocks ahead.
 }
 ```
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-confidence | confidence of the estimation as used by BitGo. do not use estimation if this value is less than 85.
-feePerKb | fee (in satoshis) per kilobyte to use
-multiplier | multiplier amount used by BitGo to compute the feePerKb. informational only - do not use.
-numBlocks | the target number of blocks requested for the estimate
+| 字段         | 说明                                     |
+| ---------- | -------------------------------------- |
+| confidence | BitGo 对此预估的信心。这个值低于 85 时不要使用预估结果。      |
+| feePerKb   | 要使用的每千字节费率（单位：聪）                       |
+| multiplier | BitGo 用于计算 feePerKb 的倍数值。仅作为信息 - 请勿使用。 |
+| numBlocks  | 请求此次预估的目标区块数量                          |
 
-## Market Price Data
+## 市场价格数据
 
 ```javascript
 bitgo.markets().latest({}, function callback(err, market) {
   if (err) {
-    // handle error
+    // 处理错误
   }
-  // etc
+  // 其他
 });
 ```
+
 ```shell
 curl -k https://test.bitgo.com/api/v1/market/latest
 ```
 
-Get information about the current market
+获取当前市场的信息。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/market/latest`
 
-> Example Market Model response
+> 市场模型响应示例
 
 ```json
 {
@@ -4716,42 +4647,37 @@ Get information about the current market
 }
 ```
 
-### Response
+### 响应
 
-Returns a Market Model object. All prices are denominated in the user's set currency.
+返回一个市场模型对象。所有价格均以用户设置的货币计价。
 
-Field | Description
------ | -----------
-last | Latest market price
-bid | Highest current bid price
-ask | Lowest current ask price
-volume | 24 hour volume of bitcoins exchanged
-high | Highest market price today
-low | Lowest market price today
-monthlyHigh | Highest market price this month
-monthlyLow | Lowest market price this month
-marketcap | Bitcoin market cap
-updateTime | Datetime of when this data was updated
-yesterday | An object containing the prior listed fields, but for yesterday's market data
+| 字段          | 说明                |
+| ----------- | ----------------- |
+| last        | 最新市场价格            |
+| bid         | 当前最高买盘价           |
+| ask         | 当前最高卖盘价           |
+| volume      | 24 小时内交易的比特币数量    |
+| high        | 今日最高市场价           |
+| low         | 今日最低市场价           |
+| monthlyHigh | 本月最高市场价           |
+| monthlyLow  | 本月最低市场价           |
+| marketcap   | 比特币市场额度           |
+| updateTime  | 该数据的更新日期时间        |
+| yesterday   | 包含上列字段的对象，为昨日市场数据 |
 
-
-## Malware Address List
+## 恶意软件地址列表
 
 ```shell
 curl https://www.bitgo.com/api/v1/malware/bitcoin
 ```
 
-BitGo maintains a list of addresses known to be used by address-swapping malware. BitGo will refuse to
-co-sign transactions to these addresses. This API provides the list of addresses which are currently
-blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain
-your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your
-customers is infected and requests a withdrawal.
+BitGo 维护的一个地址列表包含有已知被用于地址交换恶意软件的地址。 BitGo 将拒绝 联合签名发往这些地址的交易。 本 API 将返回当前被 BitGo 屏蔽的地址。 我们建议定期获取这个列表（比如每天一次），用于维护 你自己的屏蔽列表。 不然你可能会意外提交有问题的交易到 BitGo，比如你的 某个用户被恶意软件感染且请求提款。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/malware/bitcoin`
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -4767,20 +4693,21 @@ customers is infected and requests a withdrawal.
 }
 ```
 
-### Response
+### 响应
 
-Field | Description
------ | -----------
-readme | Human-readable explanation of this list
-addresses | List of { address: xxx } objects
+| 字段        | 说明                    |
+| --------- | --------------------- |
+| readme    | 本列表的说明以供阅读            |
+| addresses | { address: xxx } 对象列表 |
 
-## Verify Bitcoin Address
+## 验证比特币地址
 
 ```javascript
 var isValid = bitgo.verifyAddress({ address: "1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F" });
 ```
+
 ```shell
-Available only as a local method (BitGo Express)
+仅作为本地方法可用 (BitGo Express)
 
 curl -X POST \
 -H "Content-Type: application/json" \
@@ -4788,37 +4715,29 @@ curl -X POST \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/verifyaddress
 ```
 
-Client-side function to verify that a given string is a valid Bitcoin Address.  Supports both v1 addresses (e.g. "1...")
-and P2SH addresses (e.g. "3...").
+客户端函数用于验证给定的字符串是否为有效的比特币地址。同时支持 v1 地址 (例如 "1...") 和 P2SH 地址 (例如 "3...").
 
-Returns true if the address is valid.
+若地址有效返回 true。
 
-## BitGo Client Version
+## BitGo 客户端版本
 
 ```javascript
 var version = bitgo.version();
 ```
 
-Client-side function to get the version of this BitGo SDK.
+客户端函数用于获取 BitGo SDK 之版本。
 
-Returns a string.
+返回一个字符串。
 
+# 区块链数据
 
-# Blockchain Data
+BitGo 提供的公开 API 用于获取地址和交易上的区块链数据。 这些 API 与 BitGo 用户或钱包的概念没有关联。 本 API 端点的用途在于允许 API 客户获取非 BitGo 地址和交易的数据（类似于 Satoshi 客户端中 txindex 和 watchonly 的概念）。
 
-BitGo provides a public API for getting blockchain data on addresses and transactions. These APIs do not relate to the concept of BitGo users or wallets.
-The purpose of this API endpoint is to allow API consumers to get data on non-BitGo addresses and transactions (similar to the concept of txindex and watchonly in the Satoshi client).
+对大部分钱包用例而言，开发者会去使用钱包和区块链 API。 它们支持更多的操作，诸如检查多个 HD 钱包的合并余额，创建地址，发送交易等等。<aside class="success"> 由于仅返回公开的区块链数据，因此本区块链数据 API 不需要验证身份。 不过仍然建议在头部发送访问令牌，以获得更高的频率限制。 </aside> 
 
-For most wallet use cases, developers will want to use the Wallet and Keychain APIs. They support many more operations, such as checking the combined balances of HD wallets, creating addresses, sending transactions, etc.
+## 获取地址
 
-<aside class="success">
-The Blockchain Data API does not require authentication, since it returns only public blockchain data.
-It is still recommended to send the access token in the header to achieve a higher rate limit allowance from our service.
-</aside>
-
-## Get Address
-
-Lookup an address with balance info.
+查找地址的余额信息。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4833,18 +4752,17 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/address/:address`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+| 参数      | 类型             | 必需  | 说明    |
+| ------- | -------------- | --- | ----- |
+| address | 比特币地址 (string) | YES | 比特币地址 |
 
-
-> Example response
+> 响应示例
 
 ```json
 {
@@ -4854,26 +4772,26 @@ address | bitcoin address (string) | YES | The bitcoin address
 }
 ```
 
-### Response
+### 响应
 
-Returns address summary information.
+返回地址的汇总信息。
 
-Field | Description
------ | -----------
-address | The address
-balance | the balance, including transactions with 0 confirmations
-confirmedBalance | the confirmed balance
+| 字段               | 说明             |
+| ---------------- | -------------- |
+| address          | 地址             |
+| balance          | 余额，包括 0 确认的交易。 |
+| confirmedBalance | 已确认余额          |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
-404 Not Found | The address was not found
+### 错误
 
+| 响应              | 说明          |
+| --------------- | ----------- |
+| 400 Bad Request | 请求参数缺失或有错误。 |
+| 404 Not Found   | 指定的地址未找到。   |
 
-## Get Address Transactions
+## 获取地址的交易
 
-Get transactions for a given address, ordered by reverse block height.
+获取指定地址的交易，按区块高度逆序排列。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4888,24 +4806,24 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/address/:address/tx`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+| 参数      | 类型             | 必需  | 说明    |
+| ------- | -------------- | --- | ----- |
+| address | 比特币地址 (string) | YES | 比特币地址 |
 
-### QUERY Parameters
+### QUERY 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
+| 参数    | 类型     | 必需 | 说明                          |
+| ----- | ------ | -- | --------------------------- |
+| skip  | number | NO | 列表的初始索引号。默认值为 0。            |
+| limit | number | NO | 单次调用返回结果的最大数量（默认=25，最大=250） |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -4955,21 +4873,20 @@ limit | number | NO | Max number of results to return in a single call (default=
     "total": 2
 }
 ```
-### Response
 
-Returns an array of Transaction objects.  Each transaction contains summary
-information about how that transaction affected the net balance of any
-bitcoin address involved in the transaction.
+### 响应
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
+返回一个交易对象数组。每个交易的汇总信息 包含有本交易所涉及的任何比特币地址的净余额产生的影响。
 
+### 错误
 
-## Get Address Unspent Outputs
+| 响应              | 说明          |
+| --------------- | ----------- |
+| 400 Bad Request | 请求参数缺失或有错误。 |
 
-Get unspent outputs going into a given address. Ordered by descending block height (unconfirmed transactions first).
+## 获取地址的未花费输出
+
+获取指定目标地址上的未花费输出。按区块高度降序排列（未确认的交易在先）。
 
 ```shell
 ADDRESS=2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -4984,17 +4901,17 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 });
 ```
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/address/:address/unspents`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+| 参数      | 类型             | 必需  | 说明    |
+| ------- | -------------- | --- | ----- |
+| address | 比特币地址 (string) | YES | 比特币地址 |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -5023,29 +4940,29 @@ address | bitcoin address (string) | YES | The bitcoin address
     ]
 }
 ```
-### Response
 
-Returns an array of unspent Transaction objects.  Each transaction contains the following information
+### 响应
 
-Name | Type | Description
--------- | ----------- | --------------
-address | string | The address with the unspent output
-tx_hash | number | Amount in satoshis of the output unspent
-tx_output_n | number | Amount in satoshis of the output unspent
-value | number | Amount in satoshis of the output unspent
-blockheight | number | The height in which the transaction was seen
-confirmations | number | The number of confirmations for this transaction
-date | date | The datetime the transaction was seen on the network
-script | string | The output bitcoin script in hex format
+返回一个未花费交易对象数组。每笔交易包含下列信息
 
+| 名称            | 类型     | 说明              |
+| ------------- | ------ | --------------- |
+| address       | string | 有未花费输出的地址       |
+| tx_hash       | number | 未花费输出的金额（单位：聪）  |
+| tx_output_n | number | 未花费输出的金额（单位：聪）  |
+| value         | number | 未花费输出的金额（单位：聪）  |
+| blockheight   | number | 这个交易出现的高度       |
+| confirmations | number | 这个交易的确认数量       |
+| date          | date   | 这个交易出现在网络上的日期时间 |
+| script        | string | 输出比特币脚本的十六进制格式  |
 
-### Errors
-Response | Description
--------- | -----------
-400 Bad Request | The request parameters were missing or incorrect.
+### 错误
 
+| 响应              | 说明          |
+| --------------- | ----------- |
+| 400 Bad Request | 请求参数缺失或有错误。 |
 
-## Get Transaction Details
+## 获取交易详细信息
 
 ```shell
 TX=af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
@@ -5060,19 +4977,19 @@ bitgo.blockchain().getTransaction({id: txId}, function(err, response) {
 });
 ```
 
-Gets details for a transaction hash
+获取指定交易散列值的详细信息
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/tx/:txid`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-txid | string | YES | The transaction ID (hash)
+| 参数   | 类型     | 必需  | 说明          |
+| ---- | ------ | --- | ----------- |
+| txid | string | YES | 交易 ID （散列值） |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -5119,13 +5036,11 @@ txid | string | YES | The transaction ID (hash)
 }
 ```
 
+### 响应
 
-### Response
+返回交易的详细信息，包括此交易所涉及的所有比特币地址的净值。
 
-Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.
-
-
-## Get Block
+## 获取区块
 
 ```shell
 BLOCK=00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
@@ -5140,9 +5055,9 @@ bitgo.blockchain().getBlock({id: blockId}, function(err, response) {
 });
 ```
 
-Gets a Bitcoin block and the transactions within it. You can use 'latest' to get the latest block on the bitcoin network.
+获取比特币区块和该区块的交易。你可以使用 'latest' 以获取比特币网络上最新的区块。
 
-### HTTP Request
+### HTTP 请求
 
 `GET /api/v1/block/latest`
 
@@ -5150,22 +5065,27 @@ Gets a Bitcoin block and the transactions within it. You can use 'latest' to get
 
 `GET /api/v1/block/:blockHash`
 
-### URL Parameters
+### URL 参数
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-id | variable | YES | The block hash (string), height (number) or 'latest' for the latest block
-extended | boolean | NO | Set to true to return details on each transaction within the block
+| 参数       | 类型           | 必需  | 说明                                               |
+| -------- | ------------ | --- | ------------------------------------------------ |
+| id       | variable（多种） | YES | 区块散列值 (string), 高度 (number) 或 'latest' 以获取最新的区块。 |
+| extended | boolean      | NO  | 设为 true 以返回区块内每笔交易的详细信息。                         |
 
-> Example response
+> 响应示例
 
 ```json
 {
     "chainWork": "60359949399610308617",
     "date": "2015-04-15T23:05:50.139Z",
+    "fees": 21226,
     "height": 326945,
     "id": "00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a",
+    "merkleRoot": "0b9c0bf5193fece523780bf92e3ad05025371a3d86987005a7316c35c507dcc3",
+    "nonce": 924308913,
     "previous": "00000000eecd159babde9b094c6dbf1f4f63028ba100f6f092cacb65f04afc46",
+    "value": 66640872300,
+    "version": 2,
     "transactions": [
         "e393422e5a0b4c011f511cf3c5911e9c09defdcadbcf16ceb12a47a80e257aaa",
         "fe429dd68ef56613a038238e81b19e2158ef3ad9d9535d1127018bb78ff83537",
@@ -5176,141 +5096,119 @@ extended | boolean | NO | Set to true to return details on each transaction with
 }
 ```
 
+### 响应
 
-### Response
+| 名称           | 类型       | 说明                    |
+| ------------ | -------- | --------------------- |
+| date         | datetime | 在网络上见到此区块时的时间戳。       |
+| id           | string   | 区块的散列值                |
+| previous     | string   | 区块链中前一个区块的散列值         |
+| transactions | array    | 区块里的交易散列值数组 (strings) |
 
-Name | Type | Description
--------- | ----------- | --------------
-date | datetime | The timestamp the block was seen on the network
-id | string | Hash of the block
-previous | string | Hash of the previous block in the chain
-transactions | array | Array of transaction hashes (strings) that are in the block
+# BitGo 即时交易
 
-# BitGo Instant
+通过 BitGo 即时交易发送链上交易可以即时存入接收者账户，带有 BitGo 的防止双重花费财务保障。 任何人均可接收 BitGo 即时交易。 要发送 BitGo 即时 交易，你需要 BitGo KRS 钱包，或者与 BitGo 签署担保协议。
 
-BitGo Instant allows sending on-chain transactions which can be credited instantly by recipients, due to a financial
-guarantee by BitGo against double-spending. Anyone can receive BitGo Instant transactions. In order to send BitGo Instant
-transactions, you will need either a BitGo KRS wallet, or will need to arrange a collateral agreement with BitGo.
+## 接收
 
-## Receiving
+要使 BitGo 即时交易即时到帐，你需要遵守从 [列出钱包的交易](#list-wallet-transactions) 和 [获取钱包的交易](#get-wallet-transaction) API 返回的交易对象中的 **instant: true** 属性。 即时交易亦会有一个字段 **instantId** 可被用于在交易中 [获取即时交易保障](#get-instant-guarantee)。
 
-In order to credit BitGo Instant transactions instantly, you will need to respect the **instant: true** property on the
-transaction objects returned from the [List Wallet Transactions](#list-wallet-transactions) and
-[Get Wallet Transaction](#get-wallet-transaction) APIs. Instant transactions will also have a field **instantId** which
-can be used to [Get the Instant Guarantee](#get-instant-guarantee) on a transaction.
+## 发送
 
-## Sending
+首先你需要一个兼容 BitGo 即时交易服务的钱包。 可以通过在网页界面中创建 KRS 钱包 ，或使用 [创建钱包 API](#create-wallet-with-keychains) 并指定 **backupXpubProvider** 参数。 若你已有非 KRS 钱包，可通过与 BitGo 签署担保协议以升级为支持 BitGo 即时服务。
 
-You will first need a BitGo Instant-compatible wallet. This can be done by creating a KRS-enabled wallet in
-the web interface, or using the [Create Wallet API](#create-wallet-with-keychains) with a **backupXpubProvider** specified.
-If you have an existing non-KRS wallet, it can be upgraded to BitGo Instant-capable by arranging a
-collateral agreement with BitGo.
+要发送 BitGo 即时交易，使用任何交易 API 中的 **instant: true** 标识， 比如 [发送比特币到地址](#send-coins-to-address) 或 [创建交易](#create-transaction). BitGoD 也具有通过自身的 JSON 接口发送 BitGo 即时交易的能力。
 
-In order to send a BitGo Instant transaction, use the **instant: true** flag on any of the transaction APIs,
-such as [Send Coins to Address](#send-coins-to-address) or [Create Transaction](#create-transaction). BitGoD
-also has the capability to send BitGo Instant transactions through its JSON interface.
+BitGo 即时交易对将要花费的传入深度有更为严格的要求。 也就是说钱包可以被用于发送 BitGo 即时交易的余额可能会低于钱包的总余额。 通过 [获取钱包 API](#get-wallet) 返回的钱包对象的 **instantBalance** 属性会告诉你可用于发送 BitGo 即时交易的可用余额。
 
-BitGo Instant transactions have stricter requirements about the depths of the inputs being spent. This means
-that the balance of a wallet available for sending a BitGo Instant transaction may be less than the total
-balance of the wallet. The **instantBalance** property on the wallet object returned by
-the [Get Wallet API](#get-wallet) will tell you the available balance for sending a BitGo Instant transaction.
+当发送 BitGo 即时交易时，若你的钱包中没有足够的已确认未花费币或者此交易将超过你钱包支持的风险限额，则交易可能会失败。 风险限额由担保抵押数额或 BitGo 应用到所有特定 KRS 钱包上的风险限额决定。 当发送 BitGo 即时交易时，你需要自行管理可能发生的失败，也许需要以标准交易进行重试。 
 
-When sending a BitGo Instant transaction, the transaction may fail if you do not have enough confirmed
-unspents in your wallet, or if the transaction would cause you to exceed the risk limits supported
-for your wallet. The risk limit is determined by the amount of collateral pledged, or by a risk limit
-BitGo applies to all wallets served by a particular KRS. You will need to handle potential failures
-when sending a BitGo Instant transaction, and possibly retry as a standard transaction.
+对我们的标准事务性计划用户，包括批量折扣计划用户 BitGo 即时交易无需任何附加费用。
 
-BitGo Instant transactions are provided at no additional cost to any customer on our standard transactional
-pricing plans, including volume discount plans.
+# 合作伙伴 OAuth
 
-# Partner OAuth
+BitGo 的合作伙伴可以通过使用我们的 OAuth 端点以获取访问授权并以第三方 BitGo 账号的身份进行操作。 BitGo 遵循 OAuth 标准以允许安全的访问客户账号同时保证密码的安全。
 
-BitGo partners may utilize our OAuth endpoints to obtain authorized access and perform actions on behalf of 3rd party BitGo accounts.
-BitGo complies with the OAuth standard to allow secure access to customer accounts while keeping their passwords safe.
+要使用此功能，合作伙伴必须联络我们以取得 OAuth 应用程序参数。典型的 OAuth 流程如下：
 
-To begin, partners should obtain OAuth application parameters by getting in touch with us. The OAuth flow typically goes as follows:
+  1. 你将用户重定向到我们的 OAuth 入口 `https://www.bitgo.com/oauth/authorize` 并进行登录。该请求的参数中，由你指定客户端 ID、重定向 uri 和范围。
+  2. 用户到达 BitGo OAuth 入口。我们将询问他们是否同意允许你获取所请求范围的访问权限。他们使用自己的密码和两步验证登录并确认。
+  3. 我们重定向用户到你的重定向 Uri，并带有代码参数。此验证代码仅由你的客户端 ID 使用时有效。
+  4. 你回传验证代码到你的服务器并使用此代码、客户端 ID 和 密钥对 BitGo 服务器发起请求。我们将用此交换访问令牌。
+  5. 你在 Authorization 头中使用此访问令牌以该 BitGo 用户的身份进行 API 调用。
 
-1. You redirect users to log into BitGo via our OAuth gateway at `https://www.bitgo.com/oauth/authorize`. In the parameters of this request, you specify the client id, redirect uri and scope.
-2. The user reaches the BitGo OAuth gateway. We ask them if it's ok for you to gain access to the requested scope. They log in with their password and 2FA to confirm.
-3. We redirect the user back to your redirect Uri, with a code parameter. This authorization code is valid for use by your client ID only.
-4. You send the authorization code back to your servers and create a request to BitGo servers with the code, client id and secret. We exchange this for an access token.
-5. You use the access token in the Authorization header to make API calls on behalf of the BitGo user.
+### OAuth 变量
 
-### OAuth Variables
+| 名称            | 说明                                                                       |
+| ------------- | ------------------------------------------------------------------------ |
+| Client Id     | 需要获取第三方账户访问的 OAuth 应用程序的字符串（名称）。这个是公开的。                                  |
+| Client Secret | 一个加密字符串，存储在 OAuth 客户的服务器上，用于转换用户 ID 的验证代码以获取访问令牌。                        |
+| Redirect Uris | 一个可被接受的重定向 URI 列表。当你将用户导向到我们的 OAuth 入口进行验证后，我们将把他们重定向回到你网站的 URI 并带有验证代码。 |
+| Scope         | OAuth 范围列表。这是你的应用程序将被允许请求的用户权限。                                          |
 
-Name | Description
--------- | -----------
-Client Id | A string (name) of the OAuth application seeking access to 3rd party accounts. This will be public.
-Client Secret | A secret string, stored on the server of the OAuth consumer, used to convert authorization codes for the client id to access tokens.
-Redirect Uris | A list of acceptable redirect URIs. When you send users to our OAuth gateway for authorization, we send them back to a Uri on your site with the authorization code.
-Scope | A list of OAuth scopes. These are the scopes that your application will be allowed to request for from the user.
+### 范围取值
 
-### Scope Values
-The scope values define the allowed operations within an OAuth session.
-These scopes should be provided to the BitGo OAuth gateway such that BitGo may inform the user of your intent and assign you an appropriate authentication code with the requested scope.
+范围取值定义了 OAuth 会话中允许的操作。 这些范围将被提供给 BitGo OAuth 入口，因此 BitGo 会告知用户你的目的并指派给你带有所请求范围的合适的验证代码。
 
-Please specify scopes separated using spaces, e.g. "openid profile wallet_view_enterprise wallet_spend_enterprise".
+指定范围请使用空格分隔，例如 "openid profile wallet_view_enterprise wallet_spend_enterprise"。
 
-Note that more powerful scopes do not encompass basic ones, ie. wallet_spend does not encompass wallet_view, so you should request for both.
+注意更强大的范围不包含基本的范围，也就是说 wallet_spend 不包含 wallet_view，所以你可能要同时请求这两个。
 
-OAuth Scope Value | Description of Allowed Actions
--------- | -----------
-openid | Verify the user is logged in and get their User ID
-profile | Get the user's profile, including email and phone number
-wallet_create | Create wallets on behalf of the user
-wallet_view_enterprise | View wallets created under their enterprise
-wallet_spend_enterprise | Spend Bitcoin from wallets created under their enterprise
-wallet_manage_enterprise | Manage and modify settings from wallets created under their enterprise
-wallet_view:#WALLETID | View a wallet's transactions and addresses
-wallet_spend:#WALLETID | Spend Bitcoin from the specific wallet
-wallet_manage:#WALLETID | Manage and modify settings on the specific wallet
-wallet_view_all | View all the transactions and addresses for all wallets the user has access to
-wallet_freeze_#WALLETID | Freeze all spend activity on a specific wallet for a given duration (defaults to 1 hour)
-wallet_freeze_all | Freeze all spend activity on all of the user's wallets
+| OAuth 范围值                  | 允许的动作说明                      |
+| -------------------------- | ---------------------------- |
+| openid                     | 验证用户是否已登录并获取其用户 ID           |
+| profile                    | 获取用户配置文件，包括电子邮件和电话号码         |
+| wallet_create              | 以用户的身份创建钱包                   |
+| wallet_view_enterprise   | 查看由你的企业创建的钱包                 |
+| wallet_spend_enterprise  | 从你的企业创建的钱包中花费比特币             |
+| wallet_manage_enterprise | 管理和修改你的企业创建的钱包的设置            |
+| wallet_view:#WALLETID      | 查看钱包的交易和地址                   |
+| wallet_spend:#WALLETID     | 从指定钱包花费比特币                   |
+| wallet_manage:#WALLETID    | 管理和修改指定钱包的设置                 |
+| wallet_view_all          | 查看该用户有权访问的所有钱包的交易和地址         |
+| wallet_freeze_#WALLETID  | 冻结指定钱包的全部花费动作一段时间（默认值为 1 小时） |
+| wallet_freeze_all        | 冻结该用户所有钱包的全部花费动作             |
 
-## 3rd Party BitGo Login
+## 第三方 BitGo 登录
 
-> Example OAuth gateway redirect to send your users to BitGo OAuth
+> OAuth 入口重定向示例以引导你的用户到 BitGo OAuth
 
-```
-https://test.bitgo.com/oauth/authorize?client_id=FBExchange&redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&scope=openid%20profile%20wallet_view_enterprise&email=test@bitgo.com&signup=false
-```
+    https://test.bitgo.com/oauth/authorize?client_id=FBExchange&redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&scope=openid%20profile%20wallet_view_enterprise&email=test@bitgo.com&signup=false
+    
 
-The first step in the OAuth flow is to redirect your users to the BitGo OAuth gateway with the Client ID, Scope and Redirect Uri parameters.
+OAuth 流程的第一步是使用客户端 ID 、范围和重定向 Uri 把你的用户重定向到 BitGo OAuth 入口。
 
-* Test Endpoint: https://test.bitgo.com/oauth/authorize
-* Production Endpoint: https://www.bitgo.com/oauth/authorize
+* 测试端点： https://test.bitgo.com/oauth/authorize
+* 生产环境端点： https://www.bitgo.com/oauth/authorize
 
-Parameters may be sent via GET or POST.
+参数可通过 GET 或 POST 进行发送。
 
-### OAuth Request Parameters
+### OAuth 请求参数
 
-> Example redirect URL from BitGo sending users back to your site
+> 示例将你的用户重定向回你的网站
 
-```
-https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
-```
+    https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
+    
 
-Parameter | Required | Description
--------- | -------- | -----------
-client_id | YES | Name of the OAuth application seeking access to 3rd party accounts
-redirect_uri | YES | Redirect Uri for BitGo to send users back to your site after they have authenticated on BitGo
-scope | YES | List of requested OAuth scopes, separated by spaces. Your access to the user's information will be dependent on these scopes
-state | NO | opaque string that you contain any custom information you wish to provide. Send back as a parameter in the redirect Uri
-signup | NO | boolean value to be used to control if the user defaults to login or sign up when they land on the OAuth gateway at BitGo
-email | NO | string value of the email username, used to pre-populate the value
-force_email | NO | if set to true, the email field (set above) will be readonly on the user's client
+| 参数           | 必需  | 说明                                        |
+| ------------ | --- | ----------------------------------------- |
+| client_id    | YES | 需要请求第三方帐号访问权限的 OAuth 应用程序的名称              |
+| redirect_uri | YES | 重定向 Uri 供 BitGo 在用户验证后将其跳转回你的网站           |
+| scope        | YES | 请求的 OAuth 范围之列表，用空格分隔。你对用户信息的访问权限取决于这些范围。 |
+| state        | NO  | 掩码包含有任何你想要提供的自定义信息。返回时作为重定向 Uri 的参数发送。    |
+| signup       | NO  | 二进制值用于控制用户访问 BitGo OAuth 入口时的默认值是登录或注册。   |
+| email        | NO  | 电子邮件用户名的字符串值，用于预设                         |
+| force_email  | NO  | 若设为 true，email 字段（见上方）将对用户的客户端为只读。        |
 
-### Our server will redirect
+### 我们的服务器将重定向
 
-After the user has authorized your application, we will redirect back them to your URL. The redirect will contain the URL parameters:
+当用户验证了你的应用程序后，我们将重定向他们回你的 URL。此重定向将包含 URL 参数：
 
-Parameter | Description
--------- | -----------
-code | Authorizing code string which you can use (together with your secret) to exchange for an access token
+| 参数   | 说明                            |
+| ---- | ----------------------------- |
+| code | 验证代码字符串你可用于（和你的密钥一起）换取一个访问令牌。 |
 
-## Obtaining Access Tokens
+## 获取访问令牌
 
 ```javascript
 var bitgo = new BitGoJS.BitGo({clientId:clientId, clientSecret:clientSecret});
@@ -5330,6 +5228,7 @@ if (err) {
   });
 });
 ```
+
 ```shell
 AUTHORIZATION_CODE='440261e26512877b7ebe86e2740da3030d81e88e'
 CLIENT_ID='FBExchange'
@@ -5337,29 +5236,29 @@ CLIENT_SECRET='testclientsecret'
 curl -X POST https://test.bitgo.com/oauth/token \
 -H "Content-Type: application/json" \
 -d  "{ \"client_id\": \"$CLIENT_ID\",
-	   \"client_secret\": \"$CLIENT_SECRET\",
-	   \"grant_type\": \"authorization_code\",
-	   \"code\":\"$AUTHORIZATION_CODE\"
-	}"
+       \"client_secret\": \"$CLIENT_SECRET\",
+       \"grant_type\": \"authorization_code\",
+       \"code\":\"$AUTHORIZATION_CODE\"
+    }"
 ```
 
-When your user receives the authorization code, send it to the service backend you wish to use to perform actions on behalf of the user.
+当你的用户收到验证代码后，将其发送到你的服务后端用于以该用户身份进行操作。
 
-You then need to exchange the authentication code for an access token that you can use as you would the rest of the api.
+然后你需要用验证代码换取访问令牌，这样你便可以使用 Api 的其他部分。
 
-* Test Endpoint: https://test.bitgo.com/oauth/token
-* Production Endpoint: https://www.bitgo.com/oauth/token
+* 测试端点：https://test.bitgo.com/oauth/token
+* 生产环境端点：https://www.bitgo.com/oauth/token
 
-### OAuth Token Request Parameters
+### OAuth 令牌请求参数
 
-Parameter | Description
--------- | -----------
-client_id | A string (name) of the OAuth application seeking access to 3rd party accounts
-client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo
-grant_type | should be 'authorization_code'
-code | The authentication code you received in the redirect from the above user login step
+| 参数            | 说明                                     |
+| ------------- | -------------------------------------- |
+| client_id     | 需要请求第三方帐号访问权限的 OAuth 应用程序的字符串（名称）      |
+| client_secret | 加密字符串，存于 OAuth 应用程序的服务器上，由 BitGo 签发给你。 |
+| grant_type    | 应为 'authorization_code'                |
+| code          | 你从前述的用户登录步骤中获得的验证代码                    |
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -5372,36 +5271,30 @@ code | The authentication code you received in the redirect from the above user 
 }
 ```
 
+### OAuth 响应
 
-### OAuth Response
+使用此 API 我们的服务器将返回一个访问令牌。
 
-Our server will return an access token for use with the API.
+该令牌必须作为 HTTP 头添加到所有 API 请求的HTTP "Authorization" header：
 
-The token must be added as a HTTP header to all API calls in the HTTP
-"Authorization" header:
+`Authorization: Bearer <你的令牌>`
 
-`Authorization: Bearer <your token goes here>`
+| 参数            | 说明                                                 |
+| ------------- | -------------------------------------------------- |
+| token_type    | 令牌的类型 如“bearer”                                    |
+| access_token  | 将被用于 Authorization header 中的令牌供随后的 API 请求使用以代表用户身份 |
+| expires_in    | 令牌有效的秒数                                            |
+| expires_at    | 令牌的过期时间，从 1970 年起的秒数。                              |
+| refresh_token | 若你的会话将要过期时，可被用于获取另一个访问令牌                           |
+| id_token      | openid jwt 令牌包含有用户配置文件信息，若这个是作为范围请求的。              |
 
-Parameter | Description
--------- | -----------
-token_type | The type of token e.g. 'bearer'
-access_token | The token to be used in the Authorization header for subsequent authorized API requests on behalf of the user
-expires_in | Number of seconds the token is valid
-expires_at | Time which the token will expire, in seconds since 1970.
-refresh_token | Can be used to obtain another access token, if your session is due to expire
-id_token | openid jwt token containing user profile information, if requested as a scope
+## OpenID JSON Web 令牌
 
+若合作伙伴验证请求有 openid 配置文件空间，则返回的 id_token 将会是 base64 编码格式的 JSON Web 令牌（JWT），以回应之前的 OAuth 访问令牌请求。 你应该使用你的客户端密钥验证这个 JSON web 令牌是否是使用 HS256 算法签名的（以确保其来自 BitGo）。
 
-## OpenID JSON Web Token
+此令牌将含有用户配置文件信息。你需要确保安全的存放此信息以防被诈欺或网络钓鱼者利用。
 
-If the partner authentication request had an openid profile scope, a id_token in JSON Web Token (JWT) base64-encoded
-format will be returned in the response to the OAuth access token request above.
-You should validate the JSON web token is signed with the HS256 algorithm using your client secret (to prove it came from BitGo).
-
-This token will contain user profile information. You should take care to store this information securely so as not to
- expose your users to scammers or phishing.
-
-> Example decrypted id_token (from the above access token response)
+> 解密的 id_token 示例（来自上文中的访问令牌响应）
 
 ```json
 {
@@ -5419,26 +5312,26 @@ This token will contain user profile information. You should take care to store 
 }
 ```
 
-### ID Token Claims
+### ID 令牌索取
 
-Parameter | Format | Description
--------- | ------- | -----------
-iat | seconds since utc | time this token was created, in seconds since 1970.
-exp | seconds since utc | expiry time of the token (when to accept it until), in seconds since 1970.
-aud | string | the client id
-iss | uri string | the issue identifier
-sub | string | BitGo unique user id
-access_token | string | access token you received from this request, for verification purposes
-email | string | user email
-email_verified | boolean | if the user email has been verified
-phone_number | string | user phone number
-phone_number_verified | boolean | if the phone number has been verified
-zoneinfo | TZ | time zone information, e.g. US/pacific
+| 参数                      | 格式         | 说明                             |
+| ----------------------- | ---------- | ------------------------------ |
+| iat                     | UTC 秒数     | 此令牌创建的时间，从 1970 年起的秒数。         |
+| exp                     | UTC 秒数     | 令牌的过期时间（到此时间前有效），从 1970 年起的秒数。 |
+| aud                     | string     | 客户端 ID                         |
+| iss                     | uri string | 签发识别器                          |
+| sub                     | string     | BitGo 的唯一用户 id                 |
+| access_token            | string     | 从这个请求接收到的访问令牌，用于验证用途。          |
+| email                   | string     | 用户的电子邮件                        |
+| email_verified          | boolean    | 用户的电子邮件是否已验证                   |
+| phone_number            | string     | 用户电话号码                         |
+| phone_number_verified | boolean    | 用户的电话号码是否已验证                   |
+| zoneinfo                | TZ         | 时区信息，如 US/pacific              |
 
-## Refreshing Access Tokens
+## 刷新访问令牌
 
 ```javascript
-// var refreshToken = 'undefined'; // if unset, uses the refresh token saved from a previous authentication request.
+// var refreshToken = 'undefined'; // 若未设置，使用上次验证请求中保存的刷新令牌。
 var refreshToken = '3f8aa90479b4e3f0ea4544ed302e3bfe91968581' // from above auth request
 bitgo.refreshToken({ refreshToken: refreshToken }, function(err, result) {
   if (err) {
@@ -5448,6 +5341,7 @@ bitgo.refreshToken({ refreshToken: refreshToken }, function(err, result) {
   console.dir(result);
 });
 ```
+
 ```shell
 REFRESH_TOKEN='3f8aa90479b4e3f0ea4544ed302e3bfe91968581' #from above request
 CLIENT_ID='FBExchange'
@@ -5455,17 +5349,17 @@ CLIENT_SECRET='testclientsecret'
 curl -X POST https://test.bitgo.com/oauth/token \
 -H "Content-Type: application/json" \
 -d  "{ \"client_id\": \"$CLIENT_ID\",
-	   \"client_secret\": \"$CLIENT_SECRET\",
-	   \"grant_type\": \"refresh_token\",
-	   \"refresh_token\":\"$REFRESH_TOKEN\"
-	}"
+       \"client_secret\": \"$CLIENT_SECRET\",
+       \"grant_type\": \"refresh_token\",
+       \"refresh_token\":\"$REFRESH_TOKEN\"
+    }"
 ```
 
-The access token obtained in the previous step is typically good for an hour.
+从之前步骤获取的访问令牌的典型时间为 1 小时。
 
-To extend a user session, you can request another access token using the request token also sent in the previous step.
+要延长用户会话，你可以使用之前步骤中的请求令牌请求另一个访问令牌。
 
-> Example response
+> 响应示例
 
 ```json
 {
@@ -5477,94 +5371,87 @@ To extend a user session, you can request another access token using the request
 }
 ```
 
-* Test Endpoint: https://test.bitgo.com/oauth/token
-* Production Endpoint: https://www.bitgo.com/oauth/token
+* 测试端点：https://test.bitgo.com/oauth/token
+* 生产环境端点：https://www.bitgo.com/oauth/token
 
-Refresh tokens have a lifetime of 2 weeks from creation and are valid for a *single use only*. A new refresh token is assigned to you each time one is used.
+刷新令牌从创建起有 2 周生命周期，仅在*单次使用*有效。每次使用后会签发给你一个新的刷新令牌。
 
-### OAuth Token Request Parameters
+### OAuth 令牌请求参数
 
-Parameter | Description
--------- | -----------
-client_id | A string (name) of the OAuth application seeking access to 3rd party accounts
-client_secret | A secret string, stored on the server of the OAuth application, issued to you by BitGo
-grant_type | should be 'refresh_token'
-refresh_token | The refresh token received when you exchanged the authorization code for the access token
+| 参数            | 说明                                     |
+| ------------- | -------------------------------------- |
+| client_id     | 需要请求第三方帐号访问权限的 OAuth 应用程序的字符串（名称）      |
+| client_secret | 加密字符串，存于 OAuth 应用程序的服务器上，由 BitGo 签发给你。 |
+| grant_type    | 应为 'refresh_token'                     |
+| refresh_token | 当你使用验证代码换取访问令牌时收到的刷新令牌。                |
 
+# 范例
 
-# Examples
+BitGo 提供了关于如何使用我们的 SDK 进行多个常用钱包操作的范例。此处详述的为重点。<aside class="info"> 我们的 SDK 和范例默认为连接到 Bitcoin TestNet 的 BitGo 测试环境。 欲知详情请查阅 
 
-BitGo has provided examples of how to perform several common wallet operations using our SDK. The more important ones are covered here.
+<a href="#bitgo-api-endpoints">测试环境</a> 章节。 </aside> 
 
-<aside class="info">
-Our SDK and examples default to the BitGo test environment which is connected to the Bitcoin TestNet.
-Do refer to the [Test Environments](#bitgo-api-endpoints) section for further details.
-</aside>
+下文中的范例（还有更多）可在我们 SDK 仓库的 `BitGoJS/examples` 目录中找到。 若范例有问题请通过电子邮件或 Git issues 提交。
 
-The examples below (and more!) can be found in the `BitGoJS/examples` directory in our SDK repository.
-Please report problems with the examples via email or Git issues.
+### 获取钱包 ID
 
-### Obtaining the Wallet ID
-When you create your wallet on the BitGo test website, the wallet id is the first receiving address. It is also in the URI when you click on it from the main menu.
+当你在 BitGo 测试网站上创建钱包时，钱包 id 为第一个接收地址。当你从主菜单点击它时的 URI 中也包含 id。
 
-## Get Wallet Balance
+## 获取钱包余额
 
-
-> Code Snippet
+> 代码片段
 
 ```javascript
 var bitgo = new BitGoJS.BitGo();
 
-// First, Authenticate
+// 首先，进行验证
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
   console.log("Logged in!" );
 
-  // Get the Balance
+  // 获取余额
   bitgo.wallets().get({type: 'bitcoin', id: id}, function(err, wallet) {
     console.log("Balance is: " + (wallet.balance() / 1e8).toFixed(4));
   });
 });
 ```
-```
-$ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
-```
 
-> Example output
+    $ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+    
 
-```
-Logged in!
-Balance is: 0.6274
-```
+> 输出示例
 
-This simple example shows how to authenticate and get the wallet.
-The balance in bitcoins can be found on the wallet model.
+    Logged in!
+    Balance is: 0.6274
+    
 
-### Usage
+此简单范例演示了如何进行验证并获取钱包。 比特币余额可在钱包模型中找到。
 
-  `node getWalletBalance.js <user> <pass> <otp> <walletId>`
+### 用法
 
-### Parameters
+`node getWalletBalance.js <user> <pass> <otp> <walletId>`
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | string | YES | id of the wallet (also the first receiving address)
+### 参数
 
-## List Wallet Transactions
+| 名称       | 类型     | 必需  | 说明                         |
+| -------- | ------ | --- | -------------------------- |
+| user     | string | YES | 用户名（你在测试环境中的电子邮件）          |
+| pass     | string | YES | BitGo 密码                   |
+| otp      | number | YES | 一次性密码（在测试环境中你可以使用 0000000） |
+| walletId | string | YES | 钱包的 id （亦是第一个接收地址）         |
 
-> Code Snippet
+## 列出钱包的交易
+
+> 代码片段
 
 ```javascript
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
   console.log("Logged in!" );
 
-  // Get the wallet
+  // 获取钱包
   bitgo.wallets().get({type: 'bitcoin', id: id}, function(err, wallet) {
     console.log("Balance is: " + (wallet.balance() / 1e8).toFixed(4));
 
-    // Get the transactions
+    // 获取交易
     wallet.transactions({}, function(err, result) {
       for (var index = 0; index < result.transactions.length; ++index) {
         var tx = result.transactions[index];
@@ -5581,70 +5468,67 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
   });
 });
 ```
-```
-$ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
-```
 
-> Example output
+    $ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+    
 
-```
-Logged in!
-Balance is: 0.6274
-b9573e0e1d8f22fbfe314760b9abd0b6942132cfb2bd7f9fee9713b545a62689: Received 0.56000000BTC on 2014-11-17T21:20:59.000Z
-b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d84631a0acc67b: Received 0.00010000BTC on 2014-11-17T21:00:58.000Z
-7f5d6a27ea832b2d0a9b63ecdbccecaadbd582b5be41d5bdeabcce72243366a3: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
-690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
-```
+> 输出示例
 
-This example shows how to get the list of transactions on a wallet. This may be useful for verifying received transaction IDs.
+    Logged in!
+    Balance is: 0.6274
+    b9573e0e1d8f22fbfe314760b9abd0b6942132cfb2bd7f9fee9713b545a62689: Received 0.56000000BTC on 2014-11-17T21:20:59.000Z
+    b3bd8ac76de2340c1159337acdfcaabf08a9470e8157870bd1d84631a0acc67b: Received 0.00010000BTC on 2014-11-17T21:00:58.000Z
+    7f5d6a27ea832b2d0a9b63ecdbccecaadbd582b5be41d5bdeabcce72243366a3: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
+    690b8a83e1685869f6138d9a74776f5f868ffc1121fa22f2086e65400f14ef78: Received 0.00010000BTC on 2014-11-17T19:57:18.000Z
+    
 
-### Usage
+本范例演示了如何获取一个钱包的交易列表。这在校验收到的交易 ID 时很有用。
 
-  `node listWalletTransactions.js <user> <pass> <otp> <walletId>`
+### 用法
 
-### Parameters
+`node listWalletTransactions.js <user> <pass> <otp> <walletId>`
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
+### 参数
 
-## Address Labels
+| 名称       | 类型             | 必需  | 说明                         |
+| -------- | -------------- | --- | -------------------------- |
+| user     | string         | YES | 用户名（你在测试环境中的电子邮件）          |
+| pass     | string         | YES | BitGo 密码                   |
+| otp      | number         | YES | 一次性密码（在测试环境中你可以使用 0000000） |
+| walletId | 比特币地址 (string) | YES | 钱包的 id （亦是第一个接收地址）         |
 
-```
-$ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
-```
+## 地址标签
 
-> Example output
+    $ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
+    
 
-```
-Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
-Which label action do you wish to perform? [list, set, delete]: list
- muYhgJrYZHffyGUmuzETjMcBQZJqFo9Vkg    Secret Stash
- 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD   another label
- 2MzjET9tYPPZQtsahFvabhaaPWuDdKn3Dh6   descriptive text
- n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address
-```
+> 输出示例
 
-This example shows how to list, set, and delete labels on addresses.
+    Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
+    Which label action do you wish to perform? [list, set, delete]: list
+     muYhgJrYZHffyGUmuzETjMcBQZJqFo9Vkg    Secret Stash
+     2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD   another label
+     2MzjET9tYPPZQtsahFvabhaaPWuDdKn3Dh6   descriptive text
+     n1wbb1HeZULZwvtcYMLeFz8J9QD7HkG1pa    watch only address
+    
 
-### Usage
+本范例演示了如何列出、设置以及删除地址上的标签。
 
-  `node addressLabels.js <user> <pass> <otp>`
+### 用法
 
-### Parameters
+`node addressLabels.js <user> <pass> <otp>`
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
+### 参数
 
-## Create Wallet
+| 名称   | 类型     | 必需  | 说明                         |
+| ---- | ------ | --- | -------------------------- |
+| user | string | YES | 用户名（你在测试环境中的电子邮件）          |
+| pass | string | YES | BitGo 密码                   |
+| otp  | number | YES | 一次性密码（在测试环境中你可以使用 0000000） |
 
-> Code Snippet
+## 创建钱包
+
+> 代码片段
 
 ```javascript
   bitgo.wallets().createWalletWithKeychains({"passphrase": password, "label": label, "backupXpubProvider": "keyternal"}, function(err, result) {
@@ -5658,15 +5542,14 @@ otp | number | YES | the one-time-password (you can use 0000000 in the test envi
 });
 ```
 
-```
-$ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
-```
+    $ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
+    
 
-> Example output
+> 输出示例
 
-```
-New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
-```
+    New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
+    
+
 ```json
 { "id": "2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf",
  "label": "testwallet",
@@ -5680,99 +5563,93 @@ New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
  "balance": 0,
  "pendingApprovals": [] }
 ```
-```
-BACK THIS UP:
-User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
-Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
-```
 
-Creates a wallet on BitGo. The example performs the following steps:
+    BACK THIS UP:
+    User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
+    Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
+    
 
-1. Authenticates with BitGo
-2. Unlocks the account
-3. Creates the user keychain on the client, encrypts it with the password and sends it to the server.
-4. Creates the backup keychain on the client.
-5. Creates the BitGo keychain on the BitGo server.
-6. Creates the wallet with the corresponding public keys to the keychains above.
+在 BitGo 上创建钱包。本范例演示了如下步骤：
 
-<aside class="warning">
-It is **VERY IMPORTANT** to have the user print out / back up their user and backup keys.
-Failure to do so can result in the loss of funds!
-</aside>
+  1. 与 BitGo 进行验证
+  2. 解锁账号
+  3. 在客户端上创建用户的钥匙串，使用密码加密后发送到服务器。
+  4. 在客户端上创建备份钥匙串。
+  5. 在 BitGo 服务器上创建 BitGo 钥匙串。
+  6. 使用与上述钥匙串对应的公钥创建钱包。<aside class="warning"> **非常重要** 的是要让用户打印 / 备份他们的用户和备份密钥。 跳过这步可能会导致资金损失！ </aside> 
 
-### Usage
+### 用法
 
-  `node createWallet.js <user> <pass> <otp> <label>`
+`node createWallet.js <user> <pass> <otp> <label>`
 
-### Parameters
+### 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-label | string | YES | the wallet name as shown in the BitGo UI
+| 名称    | 类型     | 必需  | 说明                         |
+| ----- | ------ | --- | -------------------------- |
+| user  | string | YES | 用户名（你在测试环境中的电子邮件）          |
+| pass  | string | YES | BitGo 密码                   |
+| otp   | number | YES | 一次性密码（在测试环境中你可以使用 0000000） |
+| label | string | YES | 在 BitGo 界面显示的钱包名称          |
 
-## Send Bitcoins to an Address
+## 发送比特币到某个地址 
 
-> Code Snippet
+> 代码片段
 
 ```javascript
 var sendBitcoin = function() {
-  // Get the wallet
+  // 获取钱包
   bitgo.wallets().get({id: walletId}, function(err, wallet) {
-    // Send coins
+    // 发送比特币
     wallet.sendCoins({ address: destinationAddress, amount: amountSatoshis, walletPassphrase: walletPassphrase }, function(err, result) {
       console.dir(result);
     });
   });
 };
 
-// Authenticate and unlock account to enable sending
+// 验证并解锁账号以便发送比特币
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
   bitgo.unlock({otp: otp}, function(err) {
     sendBitcoin();
   });
 });
 ```
-```
-$ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
-```
 
-> Example output
+    $ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
+    
 
-```
-{ "tx": "01000000017bc6aca03146d8d10b875781...",
-  "hash": "101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7",
-  "fee": 10000 }
-```
+> 输出示例
 
-Sends Bitcoin to another bitcoin address. The example uses the following steps:
+    { "tx": "01000000017bc6aca03146d8d10b875781...",
+      "hash": "101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7",
+      "fee": 10000 }
+    
 
-1. Authenticates with BitGo
-2. Unlocks the account to make it possible to spend coins
-3. Gets the wallet from the server by the provided walletId.
-4. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
+发送比特币到另一个比特币地址。本范例使用如下步骤：
 
-### Usage
+  1. 与 BitGo 进行验证
+  2. 解锁账号以便可以发送比特币
+  3. 使用钱包 ID （walletId）从服务器获取钱包
+  4. 调用 wallet.sendCoins 方法，将会查找用户密钥，进行解密，创建交易并签名然后发送至 BitGo 以供签名。
 
-  `node sendBitcoin <user> <pass> <otp> <walletId> <walletPassphrase> <destinationAddress> <amountSatoshis>`
+### 用法
 
-### Parameters
+`node sendBitcoin <user> <pass> <otp> <walletId> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI
-walletPassphrase | string | YES | the passphrase used to encrypt the user's private key
-destinationAddress | bitcoin address (string) | YES | the destination address of the wallet
-amountSatoshis | string | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
+### 参数
 
-## Webhook Oracle Policy
+| 名称                 | 类型             | 必需  | 说明                               |
+| ------------------ | -------------- | --- | -------------------------------- |
+| user               | string         | YES | 用户名（你在测试环境中的电子邮件）                |
+| pass               | string         | YES | BitGo 密码                         |
+| otp                | number         | YES | 一次性密码（在测试环境中你可以使用 0000000）       |
+| walletId           | 比特币地址 (string) | YES | 在 BitGo 界面显示的钱包名称                |
+| walletPassphrase   | string         | YES | 用于加密用户私钥的密码                      |
+| destinationAddress | 比特币地址 (string) | YES | 钱包的目标地址                          |
+| amountSatoshis     | string         | YES | 要发送的单位为聪的金额, 如 0.1*1e8 即 0.1 比特币 |
 
-> Code Snippet
+## Webhook Oracle 策略
+
+> 代码片段
 
 ```javascript
 var setUpPolicyAndSendBitcoin = function() {
@@ -5780,7 +5657,7 @@ var setUpPolicyAndSendBitcoin = function() {
   bitgo.wallets().get({id: walletId}, function(err, wallet) {
     if (err) { console.log("Error getting wallet!"); console.dir(err); return process.exit(-1); }
     console.log("Balance is: " + (wallet.balance() / 1e8).toFixed(4));
-    // Sets the policy
+    // 设置策略
     var rule = {
       id: "webhookRule1",
       type: "webhook",
@@ -5795,7 +5672,7 @@ var setUpPolicyAndSendBitcoin = function() {
       console.dir(walletAfterPolicyChange.admin.policy);
       wallet.sendCoins({ address: destinationAddress, amount: amountSatoshis, walletPassphrase: walletPassphrase },
       function(err, result) {
-        // removing the rule
+        // 移除规则
         wallet.removePolicyRule({id: "webhookRule1"}, function(err, res) { console.log("Removed policy rule"); });
         if (err) { console.log("Error sending coins!"); console.dir(err); }
         if (result) {
@@ -5806,40 +5683,40 @@ var setUpPolicyAndSendBitcoin = function() {
   });
 };
 
-// Authenticate and unlock account to enable sending
+// 验证并解锁账号以供发送比特币
 bitgo.authenticate({ username: user, password: password, otp: otp }, function(err, result) {
   bitgo.unlock({otp: otp}, function(err) {
     setUpPolicyAndSendBitcoin();
   });
 });
 ```
+
 ```shell
 $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 0000000 2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2 https://486d7844.ngrok.com/ walletpasw0rd 2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe 1380000
 ```
 
-> Example output
+> 输出示例
 
-```
-Getting wallet..
-Balance is: 1.2582
-{ id: 'webhookRule1',
-  type: 'webhook',
-  action: { type: 'deny' },
-  condition: { url: 'https://486d7844.ngrok.com/' } }
-Setting webhook policy rule..
-New policy:
-{ id: '5632aa4039cccac60913ea0ed44276c0',
-  rules:
-   [ { id: 'webhookRule1',
-       type: 'webhook',
-       action: [Object],
-       condition: [Object] } ] }
-{ status: 'accepted',
-  tx: '0100000001a89f36c0b714878cdd4cddf5...' }
-Removed policy rule
-```
+    Getting wallet..
+    Balance is: 1.2582
+    { id: 'webhookRule1',
+      type: 'webhook',
+      action: { type: 'deny' },
+      condition: { url: 'https://486d7844.ngrok.com/' } }
+    Setting webhook policy rule..
+    New policy:
+    { id: '5632aa4039cccac60913ea0ed44276c0',
+      rules:
+       [ { id: 'webhookRule1',
+           type: 'webhook',
+           action: [Object],
+           condition: [Object] } ] }
+    { status: 'accepted',
+      tx: '0100000001a89f36c0b714878cdd4cddf5...' }
+    Removed policy rule
+    
 
-> Example webhook callback (sent to the URL provided, any non-200 response will trigger the policy denial)
+> Webhook 回调示例（发送至之前提供的 URL，任何非 200 响应将触发策略拒绝）
 
 ```json
 {
@@ -5864,63 +5741,56 @@ Removed policy rule
 }
 ```
 
-This example demonstrates how to set up a webhook policy on a wallet capable of executing any custom external logic via a URL endpoint (potentially a script or other program) on the Internet.
-This allows external state to be mapped into a contract where various users share a single wallet (the URL acts as the "oracle").
+本范例演示了如何在钱包上设置一个 webhook 策略以通过 URL 端点（脚本或其他程序）运行任意自定义外部逻辑。 这将允许外部状态被映射到一个多名用户共享单个钱包约束（该 URL 即为 “oracle”）。
 
-When a transaction is made, the URL provided is hit. If it returns a 200 status, then the transaction will be allowed. If not, then the policy rule is fired and the transaction denied.
+当交易被使用，所提供的 URL 会被访问。若返回 200 状态，则交易将被允许。否则，策略规则将被触发交易也将被拒绝。
 
-1. Authenticates with BitGo
-2. Unlocks the account to make it possible to spend coins and set policy
-3. Gets the wallet from the server by the provided walletId
-4. Sets up the policy which will cause the URL provided to be hit.
-5. Calls the wallet.sendCoins method, which finds the user key, decrypts it, creates and signs the transaction and sends it to BitGo for signing.
-6. Removes the policy and returns the result.
+  1. 与 BitGo 进行验证
+  2. 解锁账号使其可以花费比特币并设置策略。
+  3. 使用钱包 ID （walletId）从服务器获取钱包
+  4. 设置策略使所提供的 URL 会被访问。
+  5. 调用 wallet.sendCoins 方法，将会查找用户密钥，进行解密，创建交易并签名然后发送至 BitGo 以供签名。
+  6. 移除策略并返回结果。
 
-When testing locally, one can create a URL by first setting up a local server (express or any http server will work), and then running a tool such as ngrok to get a public facing url.
+当在本地测试时，在创建 URL 前可以先设置一个本地服务器（express 或任何 http 服务器都可以）， 然后运行工具比如 ngrok 以获取公开的 facing url。
 
-### Usage
+### 用法
 
-  `node addPolicyWebhookAndSendCoins <user> <pass> <otp> <walletId> <url> <walletPassphrase> <destinationAddress> <amountSatoshis>`
+`node addPolicyWebhookAndSendCoins <user> <pass> <otp> <walletId> <url> <walletPassphrase> <destinationAddress> <amountSatoshis>`
 
-### Parameters
+### 参数
 
-Name | Type | Required | Description
---------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI
-url | http endpoint (string) | YES | the URL to set up the policy with
-walletPassphrase | string | YES | the passphrase used to encrypt the user's private key
-destinationAddress | bitcoin address (string) | YES | the destination address of the wallet
-amountSatoshis | string | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
+| 名称                 | 类型               | 必需  | 说明                               |
+| ------------------ | ---------------- | --- | -------------------------------- |
+| user               | string           | YES | 用户名（你在测试环境中的电子邮件）                |
+| pass               | string           | YES | BitGo 密码                         |
+| otp                | number           | YES | 一次性密码（在测试环境中你可以使用 0000000）       |
+| walletId           | 比特币地址 (string)   | YES | 在 BitGo 界面显示的钱包名称                |
+| url                | http 端点 (string) | YES | 设置策略使用的 URL                      |
+| walletPassphrase   | string           | YES | 用于加密用户私钥的密码                      |
+| destinationAddress | 比特币地址 (string)   | YES | 钱包的目标地址                          |
+| amountSatoshis     | string           | YES | 要发送的单位为聪的金额, 如 0.1*1e8 即 0.1 比特币 |
 
-## Recover Wallet
+## 恢复钱包
 
-RecoverWallet is a tool that can recover funds from a BitGo wallet without using the BitGo service.
-It is provided for demonstration purposes and to prove that BitGo wallets are 100% recoverable
-even if the BitGo Service is unavailable.  It is not expected that this tool would be used for
-production environments.
+RecoverWallet （恢复钱包）是一个工具可以用于恢复 BitGo 钱包中的资金无需使用 BitGo 服务。 这个工具作为演示用途提供以证明 BitGo 钱包是 100% 可恢复的即使在 BitGo 服务不可用的情形下。 我们没有期望这个工具会被用在生产环境。
 
-Given only the information on a wallet&#39;s keycard, the tool constructs a transaction
-which moves all of the funds within that wallet to a new account of the user&#39;s choice.  This is done
-without using any BitGo Service APIs.
+只需提供钱包钥匙卡的信息，这个工具将创建一个交易移动钱包内的全部资金到用户选择的新账号。 完成此项操作不需要使用任何 BitGo 服务 API.
 
-The RecoverWallet tool is interactive or command line driven.
+这个 RecoverWallet 工具是交互形式或命令行形式。
 
-### Usage
+### 用法
 
-  node recoverwallet.js --userKey <UserKey from Keycard> --backupKey <BackupKey from Keycard> --bitgoKey <BitGo public key from Keycard>
+node recoverwallet.js --userKey <userkey from keycard> --backupKey <backupkey from keycard> --bitgoKey <bitgo public key from keycard>
 
-### Parameters
+### 参数
 
-Name | Meaning
---------- | -----
-userKey|The user extended private key for the wallet. (Box A from the Wallet KeyCard)
-backupKey|The backup extended private key for the wallet.  (Box B from the Wallet KeyCard)
-bitgoKey|The bitgo extended public key for the wallet. (Box C from the Wallet KeyCard)
-testnet|Flag to use testnet instead of the production bitcoin network
-nosend|Flag to create the transaction but not send it
-password|The password to use to decrypt the userKey and backupKey
-destination|The bitcoin address to which you want to send the recovered funds
-
+| 名称          | 含义                            |
+| ----------- | ----------------------------- |
+| userKey     | 钱包的用户扩展私钥。（钱包钥匙卡的 Box A）      |
+| backupKey   | 钱包的备份扩展私钥。（钱包钥匙卡的 Box B）      |
+| bitgoKey    | 钱包的 BitGo 扩展公钥。（钱包钥匙卡的 Box C） |
+| testnet     | 标示，使用 testnet 而不是生产环境的比特币网络   |
+| nosend      | 标示，创建交易但不发送                   |
+| password    | 密码用于解密 userKey 和 backupKey    |
+| destination | 发送恢复的资金的目标比特币地址               |
