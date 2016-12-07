@@ -14,11 +14,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -27,45 +27,45 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -77,13 +77,13 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
     <link href="../stylesheets/screen.css" rel="stylesheet" media="screen" />
@@ -95,11 +95,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="../images/navbar.png" />
+        <img src="../images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="../images/logo.png" />
+      <img src="../images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="shell">shell</a>
@@ -198,7 +198,6 @@
     <span class="c1">// ここでやりたいことをやる</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>ライブラリをインポートするには、<code class="prettyprint">src/index.js</code>ファイルが必要なだけです。 そうしたら <code class="prettyprint">BitGoJS.BitGo()</code> を実行することによりSDKを初期化できます。</p>
 
 <table><thead>
@@ -232,13 +231,11 @@
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="nv">TEST_ENDPOINT</span><span class="o">=</span><span class="s1">'https://test.bitgo.com/api/v1'</span>
+</code></pre><pre class="highlight shell"><code><span class="nv">TEST_ENDPOINT</span><span class="o">=</span><span class="s1">'https://test.bitgo.com/api/v1'</span>
 <span class="nv">PROD_ENDPOINT</span><span class="o">=</span><span class="s1">'https://www.bitgo.com/api/v1'</span>
 
 curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class="s2">/ping"</span>
 </code></pre>
-
 <p>BitGoは開発とプロダクション向けに2つの個別の環境を利用可能にしています。</p>
 
 <p>すべての応答は、<code class="prettyprint">application/json</code>コンテンツタイプです</p>
@@ -276,11 +273,9 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 
 <h2 id="bitgo-express-rest-api">BitGo Express REST API</h2>
 <pre class="highlight shell"><code>./bitgo-express --debug --port 3080 --env <span class="nb">test</span> --bind localhost
-</code></pre>
-<pre class="highlight shell"><code><span class="nv">BITGO_EXPRESS_HOST</span><span class="o">=</span><span class="s1">'localhost'</span>
+</code></pre><pre class="highlight shell"><code><span class="nv">BITGO_EXPRESS_HOST</span><span class="o">=</span><span class="s1">'localhost'</span>
 curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 </code></pre>
-
 <p>BitGo Express REST APIは、BitGoを利用したいがネイティブのBitGo SDKのない言語環境で開発している開発者向けのライトウェイトサービスです。</p>
 
 <p>BitGo Expressはあなたのデータセンターのサービスとして稼働し、BitGoに送信する前の部分的なトランザクションの署名など、あなた自身の鍵を伴うクライアントサイドの操作を処理します。 これにより、あなたの鍵は決してネットワーク外に出ることなく、BitGoの方で表示されることはありません。 BitGo Expressは、標準のBitGo REST APのプロクシとして振舞うことも出来、単一のREST APIを通じBitGoへの統一インターフェースを提供します。</p>
@@ -308,7 +303,6 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing user name"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>全てのエラーは一般的なRESTの原則に従います。エラー応答の本文(例えば非200ステータスコード)に含まれるのは次の形式のエラーオブジェクトになります：</p>
 
 <table><thead>
@@ -345,8 +339,7 @@ curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$
 -d <span class="s1">'{}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/session
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BitGoJS</span><span class="p">.</span><span class="nx">BitGo</span><span class="p">({</span><span class="na">accessToken</span><span class="p">:</span><span class="s1">'DeveloperAccessToken'</span><span class="p">});</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BitGoJS</span><span class="p">.</span><span class="nx">BitGo</span><span class="p">({</span><span class="na">accessToken</span><span class="p">:</span><span class="s1">'DeveloperAccessToken'</span><span class="p">});</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">session</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
@@ -354,7 +347,6 @@ https://test.bitgo.com/api/v1/user/session
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>自動化の目的で、開発者は、1時間で期限が切れない一定額の資金について、アンロックされた長寿命のアクセストークンをリクエストすることができます。</p>
 
 <ol>
@@ -398,15 +390,13 @@ https://test.bitgo.com/api/v1/user/session
 <h2 id="current-user-profile">現在のユーザープロファイル Current User Profile</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/me
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">me</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">me</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="c1">// etc</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>現在認証されているユーザーについて情報を得ます。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -429,7 +419,6 @@ https://test.bitgo.com/api/v1/user/me
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>現在認証されているユーザーのユーザモデルのオブジェクトを返す。</p>
@@ -447,8 +436,7 @@ curl -X POST <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/login
 
 注意 : 以降のシェルの例では、シェル変数ACCESS_TOKENがアクセストークンを含んでいることを前提とします。
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">useTestnet</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">useTestnet</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bitgo</span><span class="p">(</span><span class="nx">useTestnet</span><span class="p">);</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">user</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="nx">password</span><span class="p">,</span> <span class="na">otp</span><span class="p">:</span> <span class="nx">otp</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -459,7 +447,6 @@ https://test.bitgo.com/api/v1/user/login
   <span class="c1">// etc</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/login</code></p>
@@ -519,7 +506,6 @@ https://test.bitgo.com/api/v1/user/login
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>APIで使用するトークンを返す。</p>
@@ -551,15 +537,13 @@ https://test.bitgo.com/api/v1/user/login
 <p>BitGoサービスからのログアウト。</p>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/logout
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">logout</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">logout</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="c1">// the user is now logged out.</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/logout</code></p>
@@ -579,15 +563,13 @@ https://test.bitgo.com/api/v1/user/logout
 -d <span class="s1">'{}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/session
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">session</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">session</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -659,15 +641,13 @@ https://test.bitgo.com/api/v1/user/session
 -d <span class="s1">'{}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/sendotp
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">sendOTP</span><span class="p">({</span><span class="na">forceSMS</span><span class="p">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">sendOTP</span><span class="p">({</span><span class="na">forceSMS</span><span class="p">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="c1">// etc</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/sendotp</code></p>
@@ -701,15 +681,13 @@ https://test.bitgo.com/api/v1/user/sendotp
 -d <span class="s1">'{"otp": "0000000"}'</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/unlock
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">unlock</span><span class="p">({</span><span class="na">otp</span><span class="p">:</span> <span class="nx">otp</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">unlock</span><span class="p">({</span><span class="na">otp</span><span class="p">:</span> <span class="nx">otp</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="c1">// etc</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/unlock</code></p>
@@ -765,12 +743,10 @@ https://test.bitgo.com/api/v1/user/unlock
 <p>現在のセッションを再ロックします</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/lock
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">lock</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">lock</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/lock</code></p>
@@ -821,8 +797,7 @@ https://test.bitgo.com/api/v1/user/lock
 <h2 id="list-keychains">キーチェーンの一覧を取得する List Keychains</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">keychains</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">keychains</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">();</span>
 <span class="nx">keychains</span><span class="p">.</span><span class="nx">list</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychains</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
@@ -830,7 +805,6 @@ https://test.bitgo.com/api/v1/keychain
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychains</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>そのユーザーのパブリックキーチェーンの一覧を取得します<aside class="success"> このAPIは公開鍵だけを提供し、キーチェーンのプライベートデータを決して提供しません。 </aside> </p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -861,7 +835,6 @@ https://test.bitgo.com/api/v1/keychain
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="query-parameters">クエリ パラメーター QUERY Parameters</h3>
 
 <p>| パラメーター | 種類 | 必須か | 説明                                      |
@@ -895,13 +868,11 @@ https://test.bitgo.com/api/v1/keychain
 <pre class="highlight shell"><code>ローカルメソッドとしてのみ利用可能 <span class="o">(</span>BitGo Express<span class="o">)</span>
 
 curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keychain/local
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">keychains</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">keychains</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">keychain</span> <span class="o">=</span> <span class="nx">keychains</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychain</span><span class="p">);</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -911,7 +882,6 @@ curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keyc
     </span><span class="nt">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>新しいキーチェーン作成のためのローカルクライアントサイド関数。</p>
 
 <p>オプションで、キーチェーンを作成するのに決定性シードを用いる単一のパラメーター、&#39;seed&#39;が提供されることができます。 このシードは最低32要素の長さの数字の配列であるべきです。 同じシードでこの関数を呼び出すと、同一のBIP32キーチェーンが生成されます。<aside class="warning"> キーチェーンの作成は、あなたのビットコインを安全に保護するために不可欠のステップです。 新しいキーチェーンを生成する時、このAPIは業界標準に準拠した乱数ジェネレーターをを用います。 自身でシードを提供する場合、作成する際、細心の注意を払わなければいけません。 </aside> </p>
@@ -926,8 +896,7 @@ curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keyc
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{"xpub": "xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC"}'</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"xpub"</span><span class="p">:</span> <span class="s2">"xpub....."</span><span class="p">,</span>
   <span class="s2">"encryptedXprv"</span><span class="p">:</span> <span class="s2">"&lt;encrypted xprv goes here&gt;"</span> <span class="c1">// optional, provide it for the user key</span>
 <span class="p">};</span>
@@ -939,7 +908,6 @@ https://test.bitgo.com/api/v1/keychain
   <span class="c1">// etc</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>ユーザーの新しいキーチェーンを登録します。少なくとも公開鍵を指定する必要があります。暗号化された秘密鍵はアップロードされることができますが、サーバに対して不透明として扱われます。</p>
 
 <p>アドレスとともに暗号化された秘密鍵を提供する目的は、 BitGoに接続している時ユーザーが、自ら格納する負担なしに彼らの鍵に安全にアクセスできるためです。 ユーザーからの強いパスワードで、サーバに格納された全ての秘密鍵を暗号化することを強くお勧めします。 暗号化はクライアントで実行する必要があります。 便宜のため、BitGoの&rsquo;s<a href="#encrypt">暗号化/復号化関数</a>を使用できますが、あなたの望む任意の暗号化を使用することができます。<aside class="warning"> あながた暗号化されたxprvを提供する場合、このキーチェーンのセキュリティはあなたの暗号化と同程度です。暗号化はあなたの責任です。 </aside> </p>
@@ -982,7 +950,6 @@ https://test.bitgo.com/api/v1/keychain
   </span><span class="nt">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>キーチェーンモデルオブジェクトを返します。</p>
@@ -1009,15 +976,13 @@ https://test.bitgo.com/api/v1/keychain
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain/bitgo
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">createBitGo</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">createBitGo</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychain</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>BitGoのサーバに新しいキーチェーンを作成し、呼び出し元にパブリックキーチェーンを返します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1038,7 +1003,6 @@ https://test.bitgo.com/api/v1/keychain/bitgo
   </span><span class="nt">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>キーチェーンモデルオブジェクトを返します。</p>
@@ -1067,12 +1031,10 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">provider</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">lastkeysolutions</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain/backup
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">createBackup</span><span class="p">({</span> <span class="na">provider</span><span class="p">:</span> <span class="s1">'lastkeysolutions'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">createBackup</span><span class="p">({</span> <span class="na">provider</span><span class="p">:</span> <span class="s1">'lastkeysolutions'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychain</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>鍵のリカバリーのサービスに特化したサードパーティに、新しいバックアップキーチェーンを作成します。 このキーチェーンはサードパーティサービスに保存され、リカバリーの目的だけで使用されます。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1106,7 +1068,6 @@ https://test.bitgo.com/api/v1/keychain/backup
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>キーチェーンモデルオブジェクトを返します。</p>
@@ -1117,12 +1078,10 @@ https://test.bitgo.com/api/v1/keychain/backup
 curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">xpub</span><span class="p">:</span> <span class="nx">xpub</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">xpub</span><span class="p">:</span> <span class="nx">xpub</span><span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychain</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>xpubでキーチェーンをルックアップする<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> </p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1157,7 +1116,6 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>キーチェーンモデルオブジェクトを返します。</p>
@@ -1192,8 +1150,7 @@ curl -X PUT <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{"encryptedXprv": "my encrypted data"}'</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">xpub</span><span class="p">:</span> <span class="nx">xpub</span><span class="p">,</span>
   <span class="na">encryptedXprv</span><span class="p">:</span> <span class="s2">"&lt;encrypted xprv goes here&gt;"</span>
 <span class="p">};</span>
@@ -1202,7 +1159,6 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">keychain</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>キーチェーンを更新します。xprvの新しいバージョンを保存したい場合（例えばxprvを暗号化するのに使用したパスワードを変更した場合）に使用されます。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> <aside class="warning"> encryptedXprvを変更すると、既存の値が上書きされます。 新しい値が正しくない、あるいは新しい値へのパスワードを忘れた場合、このキーチェーンで署名するあなたの能力は永遠に失われます。 </aside> </p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1237,7 +1193,6 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>キーチェーンモデルオブジェクトを返します。</p>
@@ -1276,8 +1231,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
 <span class="nx">wallets</span><span class="p">.</span><span class="nx">list</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallets</span><span class="p">)</span> <span class="p">{</span>
 <span class="c1">// handle error, do something with wallets</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">id</span> <span class="k">in</span> <span class="nx">wallets</span><span class="p">)</span> <span class="p">{</span>
@@ -1286,7 +1240,6 @@ https://test.bitgo.com/api/v1/wallet
 <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>そのユーザーのウォレットの一覧を取得します</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1333,7 +1286,6 @@ https://test.bitgo.com/api/v1/wallet
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="query-parameters">クエリ パラメーター QUERY Parameters</h3>
 
 <p>| パラメーター | 種類 | 必須か | 説明                                     |
@@ -1378,8 +1330,7 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">My Test Wallet</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">m</span><span class="se">\"</span><span class="s2">: 2, </span><span class="se">\"</span><span class="s2">n</span><span class="se">\"</span><span class="s2">: 3, </span><span class="se">\"</span><span class="s2">keychains</span><span class="se">\"</span><span class="s2">: [{</span><span class="se">\"</span><span class="s2">xpub</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$XPUB_USER</span><span class="se">\"</span><span class="s2">}, {</span><span class="se">\"</span><span class="s2">xpub</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$XPUB_BACKUP</span><span class="se">\"</span><span class="s2">}, {</span><span class="se">\"</span><span class="s2">xpub</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$XPUB_BITGO</span><span class="se">\"</span><span class="s2">}] }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"My Wallet"</span><span class="p">,</span>
   <span class="s2">"m"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="s2">"n"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -1396,7 +1347,6 @@ https://test.bitgo.com/api/v1/wallet
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">wallet</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>このAPIはユーザーの新しいウォレットを作成します。新しいウォレットとともに利用するキーチェーンは、このAPIを利用するのに先立ってBitGoに登録する必要があります。</p>
 
 <p>BitGoは現在、2-of-3 (例： m=2 and n=3) ウォレットのみをサポートしています。 3つ目のキーチェーン、そして3番目のキーチェーン<strong>だけ</strong>は、<em>BitGoキーでなければなりません</em>。 1つめのキーチェーンは慣例的にユーザーキーで、その<strong>暗号化された</strong>xprivはBitGoに保管されます。</p>
@@ -1488,7 +1438,6 @@ https://test.bitgo.com/api/v1/wallet
   </span><span class="nt">"pendingApprovals"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットモデルオブジェクトを返します。</p>
@@ -1521,8 +1470,7 @@ https://test.bitgo.com/api/v1/wallet
 curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"bitcoin"</span><span class="p">,</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb"</span><span class="p">,</span>
@@ -1549,7 +1497,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 <span class="p">});</span>
 
 </code></pre>
-
 <p>ウォレット情報をルックアップし、残高、アクセス許可等を含むウォレットモデルを返します。ウォレットのIDはその最初の受信アドレスです(/0/0)。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -1633,7 +1580,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
   </span><span class="nt">"canSendInstant"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットモデルオブジェクトを返します。</p>
@@ -1724,8 +1670,7 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">passphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$LABEL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">backupXpub</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$BACKUPXPUB</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecreate
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"passphrase"</span><span class="p">:</span> <span class="nx">password</span><span class="p">,</span>
   <span class="s2">"label"</span><span class="p">:</span> <span class="nx">label</span><span class="p">,</span>
   <span class="s2">"backupXpubProvider"</span><span class="p">:</span> <span class="s2">"keyternal"</span>
@@ -1738,7 +1683,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Backup keychain xPub: "</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">backupKeychain</span><span class="p">.</span><span class="nx">xPub</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>このメソッドはウォレットを作成する簡単な方法として、クライアントSDKで利用可能です。メソッドは次のことを行います。</p>
 
 <ol>
@@ -1816,7 +1760,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
  </span><span class="nt">"pendingApprovals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>User keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;v2aVEG5A8VwnI+ewS&hellip;&rdquo;}
     Backup keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;vNOUQpzUmHNPwKt&hellip;&rdquo;}</p>
 
@@ -1875,8 +1818,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s2">"3GonoRKFSzcqJCktZPA2NHDd3jJoH4154o"</span>
 curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<span class="nv">$CHAIN</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2My4uGbvFoBvBtLpADVTTai1w6roxQafJki'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2My4uGbvFoBvBtLpADVTTai1w6roxQafJki'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">id</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
@@ -1886,7 +1828,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/wallet/:walletId/address/:chain</code></p>
@@ -1926,7 +1867,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
   </span><span class="nt">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522102d83bba35a8022c247b645eed6f81ac41b7c1580de550e7e82c75ad63ee9ac2fd2103aeb681df5ac19e449a872b9e9347f1db5a0394d2ec5caf2a9c143f86e232b0d92103d728ad6758d4784effea04d47baafa216cf474866c2d4dc99b1e8e3eb936e73053ae"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットと紐付けられる新しいビットコインアドレスを返す。</p>
@@ -2004,8 +1944,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 上級ユーザーはSend Transaction API を検討してください。
 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span>
@@ -2019,7 +1958,6 @@ curl -X POST <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$DESTINATIONADDRESS</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$AMOUNT</span><span class="s2">, </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/sendcoins
 </code></pre>
-
 <p>コインをBitGoウォレットから指定のビットコインアドレスへ送る最も簡単な方法。<aside class="info"> この操作では、Unlock APIを使用してセッションをアンロックする必要があります。 </aside> </p>
 
 <p>このメソッドはクライアント側で次を行います：</p>
@@ -2128,7 +2066,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
   </span><span class="nt">"instantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <blockquote>
 <p>応答の例(ウォレットポリシーのため保留中の承認が必要)</p>
 </blockquote>
@@ -2139,7 +2076,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pendingApproval"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="success-response">成功レスポンス Success Response</h3>
 
 <table><thead>
@@ -2209,8 +2145,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">sendMany</span><span class="p">({</span> <span class="na">recipients</span><span class="p">:</span> <span class="nx">recipients</span><span class="p">,</span> <span class="na">walletPassphrase</span><span class="p">:</span> <span class="nx">walletPassphrase</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error sending coins!"</span><span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="k">return</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 上級ユーザーはSend Transaction API を検討してください。
 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span>
@@ -2222,7 +2157,6 @@ curl -X POST <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">recipients</span><span class="se">\"</span><span class="s2">: [{ </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 1500000}, { </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 2500000 }], </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/sendmany
 </code></pre>
-
 <p>ビットコインを、一回のトランザクションで複数の宛先アドレスに送信するのに便利な関数。<aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> </p>
 
 <h3 id="parameters">パラメーター Parameters</h3>
@@ -2292,7 +2226,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
   </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27374a97df2cd8a63640dd7a40fce9a1d8dfeec3cf7a8b2fbf1ef609f4a5370d"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <table><thead>
@@ -2356,8 +2289,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">transactions</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">transactions</span><span class="p">)</span> <span class="p">{</span>
@@ -2366,7 +2298,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -2468,7 +2399,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
   </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>該当するウォレットのトランザクションを、ブロックの高さ順（逆から）で取得する（未確認のトランザクションを最初に）。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -2553,8 +2483,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span class="nv">$TXID</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">transactionId</span> <span class="o">=</span> <span class="s1">'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648'</span><span class="p">;</span>
 
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
@@ -2564,7 +2493,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -2612,7 +2540,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
     </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test transaction"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>ウォレットのトランザクションに関する情報を取得します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -2757,8 +2684,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">id</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">addresses</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">walletAddress</span><span class="p">)</span> <span class="p">{</span>
@@ -2766,7 +2692,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/addresses</code></p>
@@ -2827,7 +2752,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
   </span><span class="nt">"hasMore"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットアドレスオブジェクトの配列を返します。</p>
@@ -2884,8 +2808,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<span class="nv">$ADDRESS</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">id</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
@@ -2894,7 +2817,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/addresses/:address</code></p>
@@ -2938,7 +2860,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
     </span><span class="nt">"txCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットアドレスオブジェクトを返します。</p>
@@ -2999,8 +2920,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence/<span class="nv">$SEQUENCEID</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">sequenceId</span> <span class="o">=</span> <span class="s1">'hello123'</span><span class="p">;</span>
 
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
@@ -3010,7 +2930,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -3047,7 +2966,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>送信トランザクションを送信する時に渡されたウォレットシーケンスIDのトランザクションを取得します（sendCoinsまたはsendTransaction経由で） これは、自分の一意のIDを通じて、署名されていない/確認されていないトランザクションをトラッキングするのに役立ちます。ビットコイントランザクションIDは共同署名の前に定義されず、確認前改変されうるため。</p>
 
 <p>BitGoによってまだ共同署名されていない保留中のトランザクションは、依然としてシーケンスidを持ちます。</p>
@@ -3113,8 +3031,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
-</code></pre>
-<pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code>  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr'</span><span class="p">;</span>
   <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
@@ -3125,7 +3042,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
     <span class="p">});</span>
   <span class="p">});</span>
 </code></pre>
-
 <p>ウォレットについて、未使用の入力トランザクションのリストを取得します。</p>
 
 <p>ビットコイントランザクションを作成するには、トランザクションの作成者は、そのトランザクションの作成に使用する一連のビットコイン「インプット」を蓄積することが必要になります。</p>
@@ -3202,7 +3118,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>未使用分のインプットのオブジェクトの配列を返します。</p>
@@ -3285,8 +3200,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
     <span class="p">}</span>
   <span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s2">"2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"</span>
 <span class="nv">WALLETPASSPHRASE</span><span class="o">=</span><span class="s2">"mypassword"</span>
 
@@ -3296,7 +3210,6 @@ curl -X PUT <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">target</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">minConfirms</span><span class="se">\"</span><span class="s2">: 1 }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/consolidateunspents
 </code></pre>
-
 <p>現在ウォレットに保持されている未使用分を、より小さい数へ合体（統合）します。 これは反復的（イタレーション）プロセスで、主にトランザクションサイズの制限と署名の速さによるものです。 各イタレーションごとにトランザクション手数料が必要です。</p>
 
 <h3 id="parameters">パラメーター Parameters</h3>
@@ -3357,8 +3270,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
     <span class="p">}</span>
   <span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s2">"2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa"</span>
 <span class="nv">WALLETPASSPHRASE</span><span class="o">=</span><span class="s2">"mypassword"</span>
 
@@ -3368,7 +3280,6 @@ curl -X PUT <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">target</span><span class="se">\"</span><span class="s2">: 85, </span><span class="se">\"</span><span class="s2">minConfirms</span><span class="se">\"</span><span class="s2">: 1 }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/fanoutunspents
 </code></pre>
-
 <p>（最小確認カウント等の選択基準と一致する）ウォレットの未使用分を取って、より大きい数の未使用分に広げます。</p>
 
 <h3 id="parameters">パラメーター Parameters</h3>
@@ -3417,8 +3328,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
     <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span>
 
 curl -X POST <span class="se">\</span>
@@ -3427,7 +3337,6 @@ curl -X POST <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">recipients</span><span class="se">\"</span><span class="s2">: [{ </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 1500000}, { </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">: 2500000 }] }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/createtransaction
 </code></pre>
-
 <aside class="warning">
 このメソッドは上級APIユーザー向けです。ほとんどの場合、 <a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 
 </aside> 
@@ -3467,7 +3376,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
@@ -3553,8 +3461,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
     <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa'</span>
 
 <span class="nv">UNSPENTS</span><span class="o">=</span><span class="s1">'[
@@ -3585,7 +3492,6 @@ curl -X POST <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">transactionHex</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$TRANSACTIONHEX</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">unspents</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$UNSPENTS</span><span class="s2">, </span><span class="se">\"</span><span class="s2">keychain</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$KEYCHAIN</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/signtransaction
 </code></pre>
-
 <aside class="warning"> このメソッドは上級APIユーザー向けです。ほとんどの場合、 <a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 </aside> 
 
 <p>作成されたトランザクションの16進数、キーチェーンそして未使用分の情報を使用してマルチシグトランザクションに署名します(導出パスと交換スクリプト)。通常createTransactionからの出力と使用します。</p>
@@ -3599,7 +3505,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="nt">"tx"</span><span class="p">:</span><span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."</span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="parameters">パラメーター Parameters</h3>
 
 <table><thead>
@@ -3638,8 +3543,7 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">tx</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$TX</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">otp</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">0000000</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/tx/send
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">walletId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">walletId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Balance is: "</span> <span class="o">+</span> <span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">getEncryptedUserKeychain</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -3692,7 +3596,6 @@ https://test.bitgo.com/api/v1/tx/send
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <aside class="warning">
 このメソッドは上級APIユーザー向けです。ほとんどの場合、<a href="#send-coins-to-address">sendCoins</a>がウォレットからのビットコインの送信に推奨されるメソッドです。 
 </aside> 
@@ -3715,7 +3618,6 @@ https://test.bitgo.com/api/v1/tx/send
   </span><span class="nt">"instantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="body-body-parameters">BODYパラメーター BODY Parameters</h3>
 
 <table><thead>
@@ -3821,8 +3723,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">instantGuarantee</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="s1">'56562ee923ab7f3a28d638085ba6955a'</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">instantGuarantee</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="s1">'56562ee923ab7f3a28d638085ba6955a'</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error getting guarantee!"</span><span class="p">);</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
@@ -3831,7 +3732,6 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>BitGo Instantは、私達による二重支払いに対する保証として、ウォレットプラットフォームの上に構築されています。 マルチシグウォレットの共同署名者として、BitGoがアウトプットを二重支払いすることは決してありません。 私達の約束は各トランザクションごとに暗号署名された保証によって裏付けられており、受信者がブロック確認の必要なしに資金を受け入れるのを可能にします。<aside class="info"> 誰でも即座のトランザクションを受け取ることができます。インスタントトランザクションの送信にはinstantと互換性がある / 暗号鍵リカバリーシステム（KRS）のBitGoウォレットが必要です。 </aside> </p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -3852,7 +3752,6 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
     </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ba08ef2a745246f309ec4eaff5d7652c4fc01e61eebd9aabc1c58996355acd7"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>金額とトランザクションIDを含む、instant保証のメッセージを返します。</p>
@@ -3943,14 +3842,12 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">getWalletAddress</span><span class="p">({</span> <span class="na">address</span><span class="p">:</span> <span class="nx">address</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/walletaddress/:address</code></p>
@@ -3989,7 +3886,6 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
     </span><span class="nt">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32uFQgny5bgj24nywQPo5cgEUGX6a1PuAp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ウォレットアドレスオブジェクトを返します。</p>
@@ -4050,8 +3946,7 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">duration</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$DURATION</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">bitgo</span><span class="p">.</span><span class="nx">unlock</span><span class="p">({</span> <span class="na">otp</span><span class="p">:</span> <span class="nx">otp</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
@@ -4063,7 +3958,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -4072,7 +3966,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
   </span><span class="nt">"expires"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-01T04:58:19.779Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>ウォレットでの全ての使用活動を防止します。このコールは緊急時に使用されるように設計されており、デフォルトで一時間使用を防止します。</p>
 
 <h3 id="parameters">パラメーター Parameters</h3>
@@ -4157,14 +4050,12 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$PASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">email</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$RECEIVEREMAIL</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/simpleshare
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">wallet</span><span class="p">.</span><span class="nx">shareWallet</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="nx">receiverUser</span><span class="p">,</span> <span class="na">walletPassphrase</span><span class="p">:</span> <span class="nx">senderPassword</span><span class="p">,</span> <span class="na">permissions</span><span class="p">:</span> <span class="s1">'view,spend'</span><span class="p">,</span> <span class="na">skipKeychain</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -4185,7 +4076,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
 <p>ウォレットの共有は、もう一人のユーザーにウォレットを使用する許可をBitGoを通じ与えることを伴います。</p>
@@ -4286,15 +4176,13 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/walletShare
-</code></pre>
-<pre class="highlight javascript"><code>  <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">listShares</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code>  <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">listShares</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
   <span class="p">});</span>
 </code></pre>
-
 <p>ログオン中のアカウントについて着信及び発信したウォレット共有の一覧を取得します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -4325,7 +4213,6 @@ https://test.bitgo.com/api/v1/walletShare
    </span><span class="nt">"outgoing"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>各ウォレット共有オブジェクトは、次のフィールドを含みます：</p>
@@ -4374,8 +4261,7 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">newWalletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$NEWPASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">userPassword</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$PASSWORD</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span class="nv">$SHAREID</span>/acceptShare
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">acceptShare</span><span class="p">(</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">acceptShare</span><span class="p">(</span>
     <span class="p">{</span> <span class="na">walletShareId</span><span class="p">:</span> <span class="nx">shareId</span><span class="p">,</span>
       <span class="na">newWalletPassphrase</span><span class="p">:</span> <span class="s1">'receiverpassphrase'</span><span class="p">,</span>
       <span class="na">userPassword</span><span class="p">:</span> <span class="s1">'receiverpassword'</span>
@@ -4384,13 +4270,11 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
     <span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w"> </span><span class="nt">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> 
 
 <p>ウォレット共有を受け入れるためのクライアント側の操作です。次の手順を実行します：</p>
@@ -4463,19 +4347,16 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">cancelShare</span><span class="p">({</span> <span class="na">walletShareId</span><span class="p">:</span> <span class="nx">cancelledWalletShareId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">cancelShare</span><span class="p">({</span> <span class="na">walletShareId</span><span class="p">:</span> <span class="nx">cancelledWalletShareId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">)</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"canceled"</span><span class="p">,</span><span class="w"> </span><span class="nt">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>保留中の発信したウォレット共有をキャンセルする、または着信した共有を拒否するのに使用できる。共有はまだ受け入れられているべきでない。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -4519,15 +4400,13 @@ https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
     <span class="c1">// etc</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span>2MvPJ8GMoFFWdUTh6p42FJV6XpmJEVjxv92
+</code></pre><pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span>2MvPJ8GMoFFWdUTh6p42FJV6XpmJEVjxv92
 <span class="nv">USERID</span><span class="o">=</span>5479ac2bfb1d3e5e71000005d4dc49e3
 curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<span class="nv">$USERID</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/wallet/:wallet/user/:userId</code></p>
@@ -4594,8 +4473,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
   <span class="p">}</span>
@@ -4608,7 +4486,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -4645,7 +4522,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
     </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>ウォレットの操作に関するポリシールールを取得します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -4681,8 +4557,7 @@ curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/status
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
   <span class="p">}</span>
@@ -4695,7 +4570,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -4718,7 +4592,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/policy/status</code></p>
@@ -4763,12 +4636,10 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">admin</span><span class="p">.</span><span class="nx">policy</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>curl -X PUT -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+</code></pre><pre class="highlight shell"><code>curl -X PUT -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{ "action" : { "type" : "getApproval" }, "condition": { "amount" : 100000000 }, "id": "com.bitgo.limit.tx", "type": "transactionLimit", "default":true}'</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/rule
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/wallet/:wallet/policy/rule</code><aside class="info"> この操作では、Unlock APIを使ってセッションをアンロックすることが必要です。 </aside> </p>
@@ -4817,7 +4688,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>更新されたウォレットモデルオブジェクトを返します。</p>
@@ -4962,7 +4832,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
     </span><span class="nt">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="webhook-policy-type-webhook">ポリシータイプ - webhook Policy Type - webhook</h3>
 
 <p>有効な時、webhookルールは条件で指定されたHTTPSエンドポイントへコールバックを発行します。 HTTPエンドポイントが非200(ステータス) 応答を返す場合、ルールはアクションをトリガーします。</p>
@@ -5076,8 +4945,7 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$RULEID</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/rule
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">walletId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">removePolicyRule</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">ruleId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
@@ -5086,7 +4954,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -5097,7 +4964,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>指定されたidを持つポリシールールを削除する。ウォレットに複数の管理者がいる場合は、セカンダリー承認を必要とする場合があります。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -5135,8 +5001,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span><span class="nv">$ENTID</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">enterpriseId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">enterpriseId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">pendingapprovals</span><span class="p">().</span><span class="nx">list</span><span class="p">({</span>
   <span class="s2">"enterpriseId"</span><span class="p">:</span> <span class="nx">enterpriseId</span>
 <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">pendingapprovals</span><span class="p">)</span> <span class="p">{</span>
@@ -5144,7 +5009,6 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">pendingapprovals</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -5177,7 +5041,6 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/pendingapprovals</code></p>
@@ -5218,8 +5081,7 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN_OTHERENTERPRISEUSER</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{ "state": "approved" }'</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">enterpriseId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">enterpriseId</span> <span class="o">=</span> <span class="s1">'2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">pendingapprovals</span><span class="p">().</span><span class="nx">list</span><span class="p">({</span>
   <span class="s2">"enterpriseId"</span><span class="p">:</span> <span class="nx">enterpriseId</span>
 <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">pendingapprovals</span><span class="p">)</span> <span class="p">{</span>
@@ -5233,7 +5095,6 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -5268,7 +5129,6 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"approved"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/pendingapprovals/:pendingApprovalId</code></p>
@@ -5303,8 +5163,7 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/labels
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">labels</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">labels</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">labels</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">labels</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
@@ -5312,7 +5171,6 @@ https://test.bitgo.com/api/v1/labels
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">labels</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>そのユーザーのウォレットの一覧を取得します</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -5337,7 +5195,6 @@ https://test.bitgo.com/api/v1/labels
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ラベルモデルオブジェクトの配列を返します。</p>
@@ -5385,8 +5242,7 @@ https://test.bitgo.com/api/v1/labels
 curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"bitcoin"</span><span class="p">,</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf"</span><span class="p">,</span>
@@ -5405,7 +5261,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>そのウォレットのラベルの一覧を取得します</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -5425,7 +5280,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>ラベルモデルオブジェクトの配列を返します。</p>
@@ -5480,8 +5334,7 @@ curl -X PUT <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">A Noteworthy Label</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class="nv">$ADDRESS</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">wallets</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"bitcoin"</span><span class="p">,</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf"</span><span class="p">,</span>
@@ -5500,7 +5353,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>特定のアドレスにラベルを設定し、特定のウォレットに関連付けます。 ラベルの長さは最大で250文字に制限されています。 ウォレットのラベルとして予約されているため、ウォレットの最初の受取アドレスにラベルは設定できません。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -5516,7 +5368,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="url-url-parameters">URLパラメーター URL Parameters</h3>
 
 <table><thead>
@@ -5611,15 +5462,13 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class="nv">$ADDRESS</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">wallet</span><span class="p">.</span><span class="nx">deleteLabel</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">label</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">wallet</span><span class="p">.</span><span class="nx">deleteLabel</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">label</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error</span>
   <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>特定のアドレスやウォレットからラベルを削除します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -5635,7 +5484,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="url-url-parameters">URLパラメーター URL Parameters</h3>
 
 <table><thead>
@@ -5837,7 +5685,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[id]"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="errors">エラー Errors</h3>
 
 <table><thead>
@@ -5916,7 +5763,6 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"walletTxsAffected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="errors">エラー Errors</h3>
 
 <table><thead>
@@ -6032,14 +5878,12 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">wallet</span><span class="p">.</span><span class="nx">listWebhooks</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6057,7 +5901,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-
 <p>ウォレットで設定されているwehookの一覧を取得します。 現在、ウォレットに添付できるwebhookの種類はtransactionとpendingapprovalの通知のみです。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6097,14 +5940,12 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">url</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$URL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">transaction</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">wallet</span><span class="p">.</span><span class="nx">addWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'transaction'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6114,7 +5955,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
   </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.yoursite.com/partner/webhooks"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 ウォレット毎に各種類ごとに10 webhook上限があります。</p>
 
 <p>2種類のウォレットwebhookが利用可能となっています： 1. ウォレット上の任意のトランザクションについて、トランザクションwebhookが発射します。 2。 送信トランザクションがウォレットのポリシーをトリガーした時、保留中の承認 webhookが発射します。</p>
@@ -6184,14 +6024,12 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">url</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$URL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">transaction</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">wallet</span><span class="p">.</span><span class="nx">removeWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'transaction'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6199,7 +6037,6 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
   </span><span class="nt">"removed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6257,12 +6094,10 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">listWebhooks</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">listWebhooks</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6279,7 +6114,6 @@ https://test.bitgo.com/api/v1/webhooks
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-
 <p>ユーザーに添付されるwebhookの一覧を取得します。現在、ユーザーに添付できるwebhookの種類はブロック通知だけです。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6318,13 +6152,11 @@ curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">url</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$URL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">block</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">coin</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">bitcoin</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">addWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'block'</span><span class="p">,</span> <span class="na">coin</span><span class="p">:</span> <span class="s1">'bitcoin'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">addWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'block'</span><span class="p">,</span> <span class="na">coin</span><span class="p">:</span> <span class="s1">'bitcoin'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6334,7 +6166,6 @@ https://test.bitgo.com/api/v1/webhooks
   </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.yoursite.com/partner/webhooks"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>イベントがトリガーされた時に、BitGoからの特定のURLでHTTPコールバックの結果となるWebhookをを追加します。 Webhookの記録はユーザーアカウントに添付されます。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6397,12 +6228,10 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">url</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$URL</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">block</span><span class="se">\"</span><span class="s2"> }"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/webhooks
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">removeWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'block'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">removeWebhook</span><span class="p">({</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'block'</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <blockquote>
 <p>応答の例</p>
 </blockquote>
@@ -6410,7 +6239,6 @@ https://test.bitgo.com/api/v1/webhooks
   </span><span class="nt">"removed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>Webhookを削除した場合、新規の特定のタイプのイベントがHTTPコールバックをあなたの各URLへトリガーしなくなる原因になります。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6467,8 +6295,7 @@ https://test.bitgo.com/api/v1/webhooks
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="s1">'{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">decryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">decrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="nx">encryptedString</span> <span class="p">});</span>
 <span class="c1">// decryptedString = "this is a secret"</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span>
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span>
 
 <span class="nv">PASSWORD</span><span class="o">=</span><span class="s1">'password'</span>
 <span class="nv">INPUT</span><span class="o">=</span><span class="s1">'{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}'</span>
@@ -6480,14 +6307,12 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/decrypt
 
 <span class="o">{</span> <span class="s2">"decrypted"</span> : <span class="s2">"this is a secret"</span> <span class="o">}</span>
 </code></pre>
-
 <p>BitGo APIから暗号化されたblobを復号化するクライアント側関数</p>
 
 <h2 id="encrypt">暗号化 Encrypt</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="s2">"this is a secret"</span> <span class="p">});</span>
 <span class="c1">// encyrptedString = "{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}"</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 
 <span class="nv">PASSWORD</span><span class="o">=</span><span class="s1">'password'</span>
 <span class="nv">INPUT</span><span class="o">=</span><span class="s1">'this is a secret'</span>
@@ -6499,17 +6324,14 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <span class="o">{</span> <span class="s2">"encrypted"</span> : <span class="s2">"{</span><span class="se">\"</span><span class="s2">iv</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">U4uRz85ytmlCeTe2P3iOmg==</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">v</span><span class="se">\"</span><span class="s2">:1,</span><span class="se">\"</span><span class="s2">iter</span><span class="se">\"</span><span class="s2">:10000,</span><span class="se">\"</span><span class="s2">ks</span><span class="se">\"</span><span class="s2">:256,</span><span class="se">\"</span><span class="s2">ts</span><span class="se">\"</span><span class="s2">:64,</span><span class="se">\"</span><span class="s2">mode</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">ccm</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">adata</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">cipher</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">aes</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">salt</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">zvLyve+4AJU=</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">ct</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">/tRnUh9LUyI7L5e5LPqpvnPR7RD1CdUi</span><span class="se">\"</span><span class="s2">}"</span> <span class="o">}</span>
 </code></pre>
-
 <p>文字列を暗号化するクライアント側関数です。BitGoで保管される全てのデータは、このAPIを用いて暗号化されます。</p>
 
 <h2 id="estimate-transaction-fees">トランザクションフィーを見積もる Estimate Transaction Fees</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">estimateFee</span><span class="p">({</span> <span class="na">numBlocks</span><span class="p">:</span> <span class="mi">6</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre><pre class="highlight shell"><code>curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks<span class="o">=</span>6
 </code></pre>
-<pre class="highlight shell"><code>curl -k https://test.bitgo.com/api/v1/tx/fee?numBlocks<span class="o">=</span>6
-</code></pre>
-
 <p>目標となるブロックの数内でトランザクションを確認するための、キロバイトあたりの推奨手数料のレートを返します。 トランザクションの作成に使用できます。 注意：見積もりアルゴリズムは最低2ブロック先まで正確なものです。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6537,7 +6359,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <table><thead>
@@ -6571,10 +6392,8 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
   <span class="p">}</span>
   <span class="c1">// etc</span>
 <span class="p">});</span>
+</code></pre><pre class="highlight shell"><code>curl -k https://test.bitgo.com/api/v1/market/latest
 </code></pre>
-<pre class="highlight shell"><code>curl -k https://test.bitgo.com/api/v1/market/latest
-</code></pre>
-
 <p>現在の市場についての情報を得ます。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6624,7 +6443,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>マーケットモデルオブジェクトを返します。全ての価格はユーザーが設定した通貨の単位建てです。</p>
@@ -6684,7 +6502,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 <h2 id="malware-address-list">マルウェアアドレスのリスト Malware Address List</h2>
 <pre class="highlight shell"><code>curl https://www.bitgo.com/api/v1/malware/bitcoin
 </code></pre>
-
 <p>BitGoはアドレススワッピングマルウェアによって使用されていることが知られたアドレスのリストを保持しています。 BitGoはこれらのアドレスに対しトランザクションの共同署名を行うことを拒否します。 このAPIは現在BitGoによってブロックされているアドレスのリストを提供します。 自身のブロックリストをメンテナンスするために、このリストを定期的にポーリング（一日一回など）することを推奨します。 さもなくばあなたの顧客が感染していて引出しをリクエストした場合、間違って「悪い」トランザクションを提出してしまう可能性があります。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -6706,7 +6523,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <table><thead>
@@ -6727,15 +6543,13 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 
 <h2 id="verify-bitcoin-address">ビットコインアドレスを確認する Verify Bitcoin Address</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">verifyAddress</span><span class="p">({</span> <span class="na">address</span><span class="p">:</span> <span class="s2">"1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F"</span> <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
+</code></pre><pre class="highlight shell"><code>ローカル メソッドとしてのみ使用できます <span class="o">(</span>BitGo Express<span class="o">)</span> 
 
 curl -X POST <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s1">'{ "address": "2NFasKP9nqHHUBvVHvEGkuHpNA3hjdkUhAV" }'</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 </code></pre>
-
 <p>与えられた文字列が有効なビットコインアドレスであることを確認するクライアント側関数 v1 アドレス (例: &ldquo;1&hellip;&rdquo;) とP2SH アドレス (例: &ldquo;3&hellip;&rdquo;)の両方がサポートされています。</p>
 
 <p>アドレスが有効な場合は true を返します。</p>
@@ -6743,7 +6557,6 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 <h2 id="bitgo-bitgo-client-version">BitGoクライアントバージョン BitGo Client Version</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">version</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">version</span><span class="p">();</span>
 </code></pre>
-
 <p>このBitGo SDKのバージョンを取得するクライアント側関数です。</p>
 
 <p>文字列を返します。</p>
@@ -6759,14 +6572,12 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 <p>残高情報を持つアドレスをルックアップします。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getAddress</span><span class="p">({</span> <span class="na">address</span><span class="p">:</span> <span class="nx">address</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address</code></p>
@@ -6798,7 +6609,6 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
   </span><span class="nt">"confirmedBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">6900000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>アドレスの概要情報を返します。</p>
@@ -6846,14 +6656,12 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
 <p>指定されたアドレスについて、逆のブロックの高さの順でトランザクションを取得します。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getAddressTransactions</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="nx">address</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address/tx</code></p>
@@ -6933,7 +6741,6 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>トランザクションオブジェクトの配列を返す。そのトランザクションがそのトランザクションが関わった任意のビットコインアドレスの正味残高にどのように影響したかの概要情報を、各トランザクションは含みます。</p>
@@ -6957,14 +6764,12 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
 <p>特定のアドレスへ行く未使用分のアウトプットを取得します。ブロックの高さの降順に並びます(確認されていないトランザクションの順)。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unspents
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getAddressUnspents</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="nx">address</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address/unspents</code></p>
@@ -7016,7 +6821,6 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>未使用分のトランザクションオブジェクトの配列を返します。各トランザクションには次の情報が含まれています：</p>
@@ -7087,14 +6891,12 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
 <h2 id="get-transaction-details">トランザクションの詳細を取得する Get Transaction Details</h2>
 <pre class="highlight shell"><code><span class="nv">TX</span><span class="o">=</span>af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
 curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">txId</span> <span class="o">=</span> <span class="s1">'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">txId</span> <span class="o">=</span> <span class="s1">'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getTransaction</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">txId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>トランザクション・ハッシュの詳細を取得します。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -7165,7 +6967,6 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
   </span><span class="nt">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <p>トランザクションに関連する全てのビットコインアドレスへの実質的影響を含む、トランザクションの詳細な情報を返します。</p>
@@ -7173,14 +6974,12 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
 <h2 id="get-block">ブロックを取得する Get Block</h2>
 <pre class="highlight shell"><code><span class="nv">BLOCK</span><span class="o">=</span>00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
 curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">blockId</span> <span class="o">=</span> <span class="s1">'00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">blockId</span> <span class="o">=</span> <span class="s1">'00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getBlock</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">blockId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>ビットコインブロックとその中の各トランザクションを取得します。&#39;latest&#39;を利用することで、ビットコインネットワークの最新ブロックを取得できます。</p>
 
 <h3 id="http-http-request">HTTPリクエスト HTTP Request</h3>
@@ -7233,7 +7032,6 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="response">応答 Response</h3>
 
 <table><thead>
@@ -7491,8 +7289,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="nv">AUTHORIZATION_CODE</span><span class="o">=</span><span class="s1">'440261e26512877b7ebe86e2740da3030d81e88e'</span>
+</code></pre><pre class="highlight shell"><code><span class="nv">AUTHORIZATION_CODE</span><span class="o">=</span><span class="s1">'440261e26512877b7ebe86e2740da3030d81e88e'</span>
 <span class="nv">CLIENT_ID</span><span class="o">=</span><span class="s1">'FBExchange'</span>
 <span class="nv">CLIENT_SECRET</span><span class="o">=</span><span class="s1">'testclientsecret'</span>
 curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
@@ -7503,7 +7300,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
        </span><span class="se">\"</span><span class="s2">code</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="nv">$AUTHORIZATION_CODE</span><span class="se">\"</span><span class="s2">
     }"</span>
 </code></pre>
-
 <p>ユーザーが認証コードを受け取った時、ユーザーに代わりアクションを実行するため使用したいサービスのバックエンドに送って下さい。</p>
 
 <p>次に認証コードを、apiの残りにおいて使用できるアクセストークンと交換する必要があります。</p>
@@ -7551,7 +7347,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"id_token"</span><span class="p">:</span><span class="s2">"eyJ0eXAiOiJIUzI1NiJ96js46Ngvk-uC10YjYcEa4CqIAe-1hX2hYgXq6my...."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="oauth-oauth-response">OAuth 応答 OAuth Response</h3>
 
 <p>私達のサーバがAPIと使用するためのアクセストークンを返します。</p>
@@ -7615,7 +7410,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TESTCLIENTID"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <h3 id="id-id-token-claims">IDトークンの要求 ID Token Claims</h3>
 
 <table><thead>
@@ -7692,8 +7486,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="nv">REFRESH_TOKEN</span><span class="o">=</span><span class="s1">'3f8aa90479b4e3f0ea4544ed302e3bfe91968581'</span> <span class="c">#from above request</span>
+</code></pre><pre class="highlight shell"><code><span class="nv">REFRESH_TOKEN</span><span class="o">=</span><span class="s1">'3f8aa90479b4e3f0ea4544ed302e3bfe91968581'</span> <span class="c">#from above request</span>
 <span class="nv">CLIENT_ID</span><span class="o">=</span><span class="s1">'FBExchange'</span>
 <span class="nv">CLIENT_SECRET</span><span class="o">=</span><span class="s1">'testclientsecret'</span>
 curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
@@ -7704,7 +7497,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
        </span><span class="se">\"</span><span class="s2">refresh_token</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="nv">$REFRESH_TOKEN</span><span class="se">\"</span><span class="s2">
     }"</span>
 </code></pre>
-
 <p>前のステップで取得されたアクセストークンは通常一時間利用可能です。</p>
 
 <p>ユーザーセッションを延長するには、これも前のステップで送信したリクエストトークンを使用して、もう一つのアクセストークンを要求することができます。</p>
@@ -7720,7 +7512,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"refresh_token"</span><span class="p">:</span><span class="s2">"3f8aa90479b4e3f0ea4544ed302e3bfe91968581"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <ul>
 <li>テストエンドポイント： https://test.bitgo.com/oauth/token</li>
 <li>プロダクションエンドポイント：https://www.bitgo.com/oauth/token</li>
@@ -7784,7 +7575,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>$ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</p>
 
 <blockquote>
@@ -7865,7 +7655,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>$ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD</p>
 
 <blockquote>
@@ -7987,7 +7776,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Backup keychain xPub: "</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">backupKeychain</span><span class="p">.</span><span class="nx">xpub</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>$ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 &#39;My API wallet&rsquo;</p>
 
 <blockquote>
@@ -8007,7 +7795,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
  </span><span class="nt">"pendingApprovals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>BACK THIS UP:
     User keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;v2aVEG5A8VwnI+ewS&hellip;&rdquo;}
     Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5</p>
@@ -8085,7 +7872,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-
 <p>$ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000</p>
 
 <blockquote>
@@ -8205,10 +7991,8 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     <span class="nx">setUpPolicyAndSendBitcoin</span><span class="p">();</span>
   <span class="p">});</span>
 <span class="p">});</span>
+</code></pre><pre class="highlight shell"><code><span class="gp">$ </span>node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 0000000 2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2 https://486d7844.ngrok.com/ walletpasw0rd 2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe 1380000
 </code></pre>
-<pre class="highlight shell"><code><span class="gp">$ </span>node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 0000000 2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2 https://486d7844.ngrok.com/ walletpasw0rd 2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe 1380000
-</code></pre>
-
 <blockquote>
 <p>アウトプット例</p>
 </blockquote>
@@ -8255,7 +8039,6 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>この例は、インターネット上のURLエンドポイント(スクリプトまたは他のプログラムの可能性も)を通じあらゆるカスタム外部ロジックを実行する能力を持つウォレットでwebhookポリシーを設定する方法を示します。 これにより、外部の状態をさまざまなユーザーが単一のウォレットを共有するをコントラクトにマップすることが可能になります（URLは「オラクル」として機能します）。</p>
 
 <p>トランザクションが発生すると、提供されたURLがヒットされます。それが200ステータスを返す場合、トランザクションは許可されます。そうでなければ、ポリシールールが発生し、トランザクションは拒否されます。</p>
