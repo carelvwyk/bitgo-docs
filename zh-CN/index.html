@@ -119,13 +119,13 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id=">入门</h1>
+        <h1 id="getting-started">入门 Getting Started</h1>
 
 <aside class="info">
 我们的开发者平台已经上线。访问 <a href="https://www.bitgo.com/platform">BitGo 平台入口</a>  注册以获取集成支持、访问令牌和更多信息。
 </aside>
 
-<h3 id=">概述</h3>
+<h3 id="overview">概述 Overview</h3>
 
 <p>BitGo 提供易用且强健的 REST-ful API 和易用的客户端 javascript SDK， 可用于集成多重签名技术到你现有的比特币（bitcoin）应用和服务。</p>
 
@@ -140,7 +140,7 @@
 <li>多签名者钱包流</li>
 </ul>
 
-<h3 id=">多重签名钱包</h3>
+<h3 id="multi-signature-wallets">多重签名钱包 Multi-Signature Wallets</h3>
 
 <p>多重签名钱包的首要好处是，使多台机器及人员可以协同工作一起批准交易。 交易没有多重签名，那么批准交易所需的全部凭据都将存储于某个人的一台机器。 若那个人，或那台机器被攻击者掌控，那你的所有比特币都将危在旦夕。</p>
 
@@ -150,7 +150,7 @@
 
 <p>若要获取更多信息，请阅读 <a href="https://www.bitgo.com/p2sh_safe_address" target="_new">BitGo 白皮书</a>.</p>
 
-<h3 id="hd">HD 钱包</h3>
+<h3 id="hd-hd-wallets">HD 钱包 HD Wallets</h3>
 
 <p>所有BitGo钱包均为分层确定性钱包（hierarchical deterministic wallet）——即“HD 钱包”。 HD 钱包使用比特币的<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32 标准</a>实现。 因此，BitGo 的 HD 钱包基于钥匙串建立，而非多个独立的密钥，并提供二种清晰的安全和隐私增强特性：</p>
 
@@ -163,7 +163,7 @@
 <p>使用HD钱包，应用程序可以在每次交易时创建新的密钥，因此交易不会显示来自同一个钱包。 此举可以保护钱包持有者避免揭露钱包的真实大小。</p></li>
 </ul>
 
-<h2 id="sdk">软件开发套件（SDK）</h2>
+<h2 id="software-development-kit">软件开发套件 Software Development Kit</h2>
 
 <p>BitGo API 提供给开发者一种可以创建并管理多重签名钱包的手段，在使用比特币网络时避免受政策所累。 不过，一些敏感操作，诸如创建用户私钥和对交易进行签名，必须在客户端进行操作。</p>
 
@@ -187,7 +187,7 @@
 
 <p><code class="prettyprint">node auth.js &lt;testusername&gt; &lt;testpassword&gt; 0000000</code></p>
 
-<h3 id=">导入并初始化程序库</h3>
+<h3 id="importing-and-initializing-the-library">导入并初始化程序库 Importing and initializing the library</h3>
 <pre class="highlight javascript"><code><span class="c1">// 如果要从包文件导入</span>
 <span class="kd">var</span> <span class="nx">BitGoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'BitGoJS/src/index.js'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BitGoJS</span><span class="p">.</span><span class="nx">BitGo</span><span class="p">();</span>
@@ -215,11 +215,11 @@
 
 <p>本Javascript SDK同时支持Promise和Callback。如果你将callback最为最后一个参数传递，将会返回callback格式。反之，返回的将是promise格式。</p>
 
-<h3 id=">测试环境的重要注意事项</h3>
+<h3 id="important-notes-on-test-environment">测试环境的重要注意事项 Important notes on test environment</h3>
 
 <p>我们BitGo测试环境中的SDK和范例默认是连接到Bitcoin TestNet。 请参考 <a href="#bitgo-api-endpoints">测试环境</a> 章节以获取更多讯息。</p>
 
-<h2 id="bitgo-api">BitGo API 端点</h2>
+<h2 id="bitgo-api-bitgo-api-endpoints">BitGo API 端点 BitGo API Endpoints</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">BitGoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'BitGoJS/src/index.js'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">useProduction</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -250,7 +250,7 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
         &ldquo;environment&rdquo;: &ldquo;BitGo Test&rdquo;
     }</p>
 
-<h3 id=">生产环境</h3>
+<h3 id="production-environment">生产环境 Production Environment</h3>
 
 <p>BitGo生产端点已上线，被我们的合作伙伴和我们自己位于www.bitgo.com的网页应用所使用。</p>
 
@@ -259,7 +259,7 @@ curl <span class="s2">"</span><span class="nv">$TEST_ENDPOINT</span><span class=
 <li>生产 API: https://www.bitgo.com/api/v1</li>
 </ul>
 
-<h3 id=">测试环境</h3>
+<h3 id="test-environment">测试环境 Test Environment</h3>
 
 <p>BitGo测试环境被我们的范例和SDK默认使用. 该环境完全独立于BitGo生产环境，数据的账号没有重叠。 你需要前往 <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a> 创建账号。</p>
 
@@ -294,7 +294,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 <li>使 <strong>全部</strong> BitGo REST API 请求都指向运行 bitgo-express 的机器。</li>
 </ul>
 
-<h2 id=">错误处理</h2>
+<h2 id="error-handling">错误处理 Error Handling</h2>
 
 <blockquote>
 <p>JSON错误示例</p>
@@ -322,7 +322,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 </tr>
 </tbody></table>
 
-<h1 id=">用户验证</h1>
+<h1 id="user-authentication">用户验证 User Authentication</h1>
 
 <p>BitGo通过“Authorization”头进行验证，调用者可以指定访问令牌。</p>
 
@@ -338,7 +338,7 @@ curl http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/ping
 
 <p>另外，通过API用途创建的访问令牌可以在达到限额前一直保持解锁，但是必须在创建时被绑定到指定的作用范围。</p>
 
-<h2 id="api">API 访问令牌</h2>
+<h2 id="api-api-access-tokens">API 访问令牌 API Access Tokens</h2>
 <pre class="highlight shell"><code><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="s1">'DeveloperAccessToken'</span>
 curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -d <span class="s1">'{}'</span> <span class="se">\</span>
@@ -362,7 +362,7 @@ https://test.bitgo.com/api/v1/user/session
 
 <p>令牌默认在达到你设定的金额钱是已解锁状态。不要通过API解锁该令牌，否则该令牌将被重置。</p>
 
-<h3 id=">令牌参数</h3>
+<h3 id="token-parameters">令牌参数 Token Parameters</h3>
 
 <table><thead>
 <tr>
@@ -392,7 +392,7 @@ https://test.bitgo.com/api/v1/user/session
 </tr>
 </tbody></table>
 
-<h2 id=">当前用户配置文件</h2>
+<h2 id="current-user-profile">当前用户配置文件 Current User Profile</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/user/me
 </code></pre><pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">me</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
@@ -404,7 +404,7 @@ https://test.bitgo.com/api/v1/user/me
 </code></pre>
 <p>获取当前已验证用户的信息。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/me</code></p>
 
@@ -424,11 +424,11 @@ https://test.bitgo.com/api/v1/user/me
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个当前已验证用户的用户模型对象。</p>
 
-<h2 id=">登录</h2>
+<h2 id="login">登录 Login</h2>
 
 <p>获取供第三方访问BitGo API的令牌。 第一方访问仅适用于用户访问自己的BitGo账号。 要让另一个用户以第三方的身份访问BitGo API，请参见 <strong>合作伙伴验证</strong>。</p>
 <pre class="highlight shell"><code><span class="nv">EMAIL</span><span class="o">=</span><span class="s2">"janedoe@bitgo.com"</span>
@@ -452,11 +452,11 @@ https://test.bitgo.com/api/v1/user/login
   <span class="c1">// 其他</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/login</code></p>
 
-<h3 id="body">BODY参数</h3>
+<h3 id="body-body-parameters-body-parameters">BODY 参数 BODY Parameters BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -511,7 +511,7 @@ https://test.bitgo.com/api/v1/user/login
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>通过API返回可供使用的令牌。</p>
 
@@ -519,7 +519,7 @@ https://test.bitgo.com/api/v1/user/login
 
 <p><code class="prettyprint">Authorization: Bearer &lt;你的令牌&gt;</code></p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -537,7 +537,7 @@ https://test.bitgo.com/api/v1/user/login
 </tr>
 </tbody></table>
 
-<h2 id=">登出</h2>
+<h2 id="logout">登出 Logout</h2>
 
 <p>从 BitGo 服务登出。</p>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -549,19 +549,19 @@ https://test.bitgo.com/api/v1/user/logout
   <span class="c1">// 该用户现已登出</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/logout</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>无</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>无</p>
 
-<h2 id=">会话信息</h2>
+<h2 id="session-information">会话信息 Session Information</h2>
 
 <p>获取当前会话访问令牌的信息</p>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -601,11 +601,11 @@ https://test.bitgo.com/api/v1/user/session
           }
     }</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/user/session</code></p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -639,7 +639,7 @@ https://test.bitgo.com/api/v1/user/session
 </tr>
 </tbody></table>
 
-<h2 id="otp">发送一次性密码（OTP）</h2>
+<h2 id="send-otp">发送一次性密码 Send OTP</h2>
 
 <p>发送一次性密码（两步验证）令牌给用户，可被用于登录 / 解锁。</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -653,21 +653,21 @@ https://test.bitgo.com/api/v1/user/sendotp
   <span class="c1">// 其他</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/sendotp</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>| 名称       | 类型      | 必需 | 说明                             |
 | &mdash;&mdash;&ndash; | &mdash;&mdash;- | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
 | forceSMS | boolean | NO | 使用SMS将OTP发送给用户，即使用户已经设置过Authy。 |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>无</p>
 
-<h2 id=">解锁</h2>
+<h2 id="unlock">解锁 Unlock</h2>
 
 <p>解锁当前会话，适用于特定的敏感API调用。</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -681,11 +681,11 @@ https://test.bitgo.com/api/v1/user/unlock
   <span class="c1">// 其他</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/unlock</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -709,11 +709,11 @@ https://test.bitgo.com/api/v1/user/unlock
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>无</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -731,7 +731,7 @@ https://test.bitgo.com/api/v1/user/unlock
 </tr>
 </tbody></table>
 
-<h2 id=">锁定</h2>
+<h2 id="lock">锁定 Lock</h2>
 
 <p>重新锁定当前会话</p>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -740,15 +740,15 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/user/lock</code></p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>无</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -762,11 +762,11 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">合作伙伴验证</h2>
+<h2 id="partner-authentication">合作伙伴验证 Partner Authentication</h2>
 
 <p>第三方使用 BitGo API 的应用程序使用 OAuth 通过 BitGo 进行验证。 请联络 BitGo 以获取合作伙伴 ID 和进一步信息。</p>
 
-<h1 id=">钥匙串</h1>
+<h1 id="keychains">钥匙串 Keychains</h1>
 
 <p>所有 BitGo 钱包均使用钥匙串创建。 钥匙串是一个标准的
 <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a>
@@ -794,7 +794,7 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
 要注意的是私有钥匙串（即使已是加密格式）始终需要两步验证。
 </aside>
 
-<h2 id=">列出钥匙串</h2>
+<h2 id="list-keychains">列出钥匙串 List Keychains</h2>
 <pre class="highlight shell"><code>curl -X GET -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain
 </code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">keychains</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">keychains</span><span class="p">();</span>
@@ -811,7 +811,7 @@ https://test.bitgo.com/api/v1/keychain
 本 API 仅返回公钥，不包括钥匙串的私有数据。
 </aside>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/keychain</code></p>
 
@@ -839,18 +839,18 @@ https://test.bitgo.com/api/v1/keychain
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数    | 类型     | 必需 | 说明                           |
 | &mdash;&ndash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- |
 | skip  | number | NO | 列表的初始索引号。默认值为 0。             |
 | limit | number | NO | 单次调用返回结果的最大数量（默认=100，最大=500） |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个包含钥匙串模型对象的数组。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -868,7 +868,7 @@ https://test.bitgo.com/api/v1/keychain
 </tr>
 </tbody></table>
 
-<h2 id=">创建钥匙串</h2>
+<h2 id="create-keychain">创建钥匙串 Create Keychain</h2>
 <pre class="highlight shell"><code>仅作为本地方法时可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
 
 curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keychain/local
@@ -898,7 +898,7 @@ curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keyc
 
 <p>处于安全原因，强烈建议你 <a href="#encrypt">加密</a> 后立刻销毁原始 xprv 以防被盗。</p>
 
-<h2 id=">添加钥匙串</h2>
+<h2 id="add-keychain">添加钥匙串 Add Keychain</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -920,11 +920,11 @@ https://test.bitgo.com/api/v1/keychain
 
 <p>提供加密私钥和地址的目的是使用户在使用 BitGo 时可以安全的访问自己的密钥，不再有自己保存密钥的负担。 强烈建议你用强密码加密存储在服务器上的用户私钥。 加密操作必须在客户端完成。 为方便起见，你可以使用 BitGo 的 <a href="#encrypt">加密/解密函数</a>，不过你也可以使用任何你想要的加密方式。<aside class="warning"> 若你自己提供加密的 xprv，那么钥匙串的安全强度将由你的加密方式决定。 加密由你全权负责。 </aside> </p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/keychain</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -958,11 +958,11 @@ https://test.bitgo.com/api/v1/keychain
   </span><span class="nt">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钥匙串模型对象。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -980,7 +980,7 @@ https://test.bitgo.com/api/v1/keychain
 </tr>
 </tbody></table>
 
-<h2 id="bitgo">创建 BitGo 钥匙串</h2>
+<h2 id="bitgo-create-bitgo-keychain">创建 BitGo 钥匙串 Create BitGo Keychain</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/keychain/bitgo
@@ -993,11 +993,11 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 </code></pre>
 <p>在 BitGo 服务器上创建新钥匙串，并返回公有钥匙串给调用者。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/keychain/bitgo</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>无</p>
 
@@ -1011,11 +1011,11 @@ https://test.bitgo.com/api/v1/keychain/bitgo
   </span><span class="nt">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钥匙串模型对象。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1033,7 +1033,7 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 </tr>
 </tbody></table>
 
-<h2 id=">创建备份钥匙串</h2>
+<h2 id="create-backup-keychain">创建备份钥匙串 Create Backup Keychain</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -1045,11 +1045,11 @@ https://test.bitgo.com/api/v1/keychain/backup
 </code></pre>
 <p>使用第三方专业密钥恢复服务创建新的钥匙串备份。 该钥匙串将被保存在第三方服务中，仅可用于恢复用途。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/keychain/backup</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1076,11 +1076,11 @@ https://test.bitgo.com/api/v1/keychain/backup
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钥匙串模型对象。</p>
 
-<h2 id=">获取钥匙串</h2>
+<h2 id="get-keychain">获取钥匙串 Get Keychain</h2>
 <pre class="highlight shell"><code><span class="nv">XPUB</span><span class="o">=</span>xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
 
 curl -X POST <span class="se">\</span>
@@ -1096,11 +1096,11 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 此操作需要使用解锁 API 解锁会话。
 </aside>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/keychain/:xpub</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1128,11 +1128,11 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钥匙串模型对象。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1154,7 +1154,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 </tr>
 </tbody></table>
 
-<h2 id=">更新钥匙串</h2>
+<h2 id="update-keychain">更新钥匙串 Update Keychain</h2>
 <pre class="highlight shell"><code><span class="nv">XPUB</span><span class="o">=</span>xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
 
 curl -X PUT <span class="se">\</span>
@@ -1179,11 +1179,11 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 
 <aside class="warning"> 若你更改encryptedXprv，那么现有的值 将被覆盖。 若新的值是错误的，或你忘记了新的值的密码， 那你将永远不能使用此钥匙串进行签名。 </aside> 
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/keychain/:xpub</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>| 参数            | 类型     | 必需 | 说明                          |
 | &mdash;&mdash;&mdash;&mdash;- | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
@@ -1199,11 +1199,11 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钥匙串模型对象。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1225,7 +1225,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 </tr>
 </tbody></table>
 
-<h1 id=">钱包</h1>
+<h1 id="wallets">钱包 Wallets</h1>
 
 <p>所有 BitGo 钱包均为多重签名的分层确定性钱包。 多重签名钱包由 <em>N</em> 个密钥组成，并且需要 <em>M</em> 个密钥 对交易进行签名使交易有效。 这称之为 <em>M-of-N</em> 钱包。</p>
 
@@ -1233,7 +1233,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 
 <p>要创建钱包，必需提供 3 个钥匙串。 第 1 和第 2 个钥匙串由用户提供；最后一个必须是 BitGo 的钥匙串。 前两个密钥的公有部分对 BitGo 可见，但 BitGo 对私有部分始终不会具有访问权限，因此没有用户操作是无法进行交易的。 单靠 BitGo 的密钥是无法对交易进行签名的，BitGo 仅依照用户设定的策略使用此密钥。</p>
 
-<h2 id=">列出钱包</h2>
+<h2 id="list-wallets">列出钱包 List Wallets</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet
@@ -1248,7 +1248,7 @@ https://test.bitgo.com/api/v1/wallet
 </code></pre>
 <p>获取用户的钱包列表</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet</code></p>
 
@@ -1292,18 +1292,18 @@ https://test.bitgo.com/api/v1/wallet
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数    | 类型     | 必需 | 说明                          |
 | &mdash;&ndash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
 | skip  | number | NO | 列表的初始索引号。默认值为 0。            |
 | limit | number | NO | 单次调用返回结果的最大数量（默认=25，最大=250） |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个包含钱包模型对象的数组。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1321,7 +1321,7 @@ https://test.bitgo.com/api/v1/wallet
 </tr>
 </tbody></table>
 
-<h2 id=">添加钱包</h2>
+<h2 id="add-wallet">添加钱包 Add Wallet</h2>
 
 <aside class="warning">
 此功能供高级 API 用户使用，允许手动创建用户密钥和规格以及备份密钥的 xPubs。 在大部分 SDK 场景下，推荐使用较为方便的 
@@ -1363,11 +1363,11 @@ https://test.bitgo.com/api/v1/wallet
 
 <p>钱包的第一个接收地址位于路径 <strong>m/0/0/0/0</strong>， 此 ID 也是在 BitGo 系统中用于引用钱包的地址。 钱包的第一个变更地址位于 <strong>m/0/0/1/0</strong>. </p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/wallet</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1446,11 +1446,11 @@ https://test.bitgo.com/api/v1/wallet
   </span><span class="nt">"pendingApprovals"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钱包模型对象。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1472,7 +1472,7 @@ https://test.bitgo.com/api/v1/wallet
 </tr>
 </tbody></table>
 
-<h2 id=">获取钱包</h2>
+<h2 id="get-wallet">获取钱包 Get Wallet</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
 
 curl -X GET <span class="se">\</span>
@@ -1507,7 +1507,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 </code></pre>
 <p>查找钱包信息，返回的钱包模型包括有余额，权限等信息。钱包的 ID 为它的第一个接收地址 (/0/0)</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:id</code></p>
 
@@ -1607,7 +1607,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
   </span><span class="nt">"unconfirmedReceives"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钱包模型对象。</p>
 
@@ -1659,7 +1659,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1685,7 +1685,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 </tr>
 </tbody></table>
 
-<h2 id=">使用钥匙串创建钱包</h2>
+<h2 id="create-wallet-with-keychains">使用钥匙串创建钱包 Create Wallet With Keychains</h2>
 <pre class="highlight shell"><code>仅作为本地方法可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
 高级用户应该考虑创建钱包 API。
 
@@ -1720,11 +1720,11 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 <li>在 BitGo 上使用上述的 3 个公钥创建钱包<aside class="warning"> <strong>非常重要</strong> 的是要让用户打印 / 备份他们的用户和备份密钥。 跳过这步可能会导致资金损失！ </aside> </li>
 </ol>
 
-<h3 id="bitgo">BitGo 即时钱包</h3>
+<h3 id="bitgo-instant-bitgo-instant-wallets">BitGo Instant 钱包 BitGo Instant Wallets</h3>
 
 <p>默认情况下，本方法将在本地创建备份钥匙串。 要创建可以使用 BitGo 即时服务的钱包，请使用 <strong>backupXpubProvider</strong> 参数指定 KRS，例如 &ldquo;keyternal&quot;。</p>
 
-<h3 id=">方法参数</h3>
+<h3 id="method-parameters">方法参数 Method Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1790,7 +1790,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 <p>User keychain encrypted xPrv: {&quot;iv&rdquo;:&ldquo;v2aVEG5A8VwnI+ewS&hellip;&rdquo;}
     Backup keychain encrypted xPrv: {&ldquo;iv&rdquo;:&ldquo;vNOUQpzUmHNPwKt&hellip;&rdquo;}</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -1812,7 +1812,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1834,11 +1834,11 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallets/simplecre
 </tr>
 </tbody></table>
 
-<h1 id=">钱包操作 - 基本</h1>
+<h1 id="wallet-operations-basic">钱包操作 - 基本 Wallet Operations - Basic</h1>
 
 <p>每个钱包均由多个地址组成，每个地址都可被用于接收比特币。 钱包 API 提供了很有用的接口可以和用户的钱包进行交互。</p>
 
-<h2 id=">创建地址</h2>
+<h2 id="create-address">创建地址 Create Address</h2>
 
 <p>为现有钱包创建新的地址。 BitGo 钱包由 两组独立的地址链组成，指定为 0 和 1。 通常 0-链用于 接收资金，1-链为内部使用 用于在从钱包支取时创建变更。 为每次新的接收交易生成新地址， 被认为是最好的做法， 以便获得最大化的隐私。</p>
 <pre class="highlight shell"><code><span class="nv">CHAIN</span><span class="o">=</span>0
@@ -1855,11 +1855,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/wallet/:walletId/address/:chain</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1894,7 +1894,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
   </span><span class="nt">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522102d83bba35a8022c247b645eed6f81ac41b7c1580de550e7e82c75ad63ee9ac2fd2103aeb681df5ac19e449a872b9e9347f1db5a0394d2ec5caf2a9c143f86e232b0d92103d728ad6758d4784effea04d47baafa216cf474866c2d4dc99b1e8e3eb936e73053ae"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个新的比特币地址，该地址与钱包相关联。</p>
 
@@ -1926,7 +1926,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
 </tr>
 </tbody></table>
 
-<h3 id="errors">Errors</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -1956,7 +1956,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
 </tr>
 </tbody></table>
 
-<h2 id=">发送比特币到地址</h2>
+<h2 id="send-coins-to-address">发送比特币到地址 Send Coins to Address</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">destinationAddress</span> <span class="o">=</span> <span class="s1">'2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">amountSatoshis</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">;</span> <span class="c1">// send 0.1 bitcoins</span>
 <span class="kd">var</span> <span class="nx">walletPassphrase</span> <span class="o">=</span> <span class="s1">'incorrect horse battery stable'</span> <span class="c1">// replace with wallet passphrase</span>
@@ -2008,7 +2008,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 <li>广播此交易到比特币 P2P 网络</li>
 </ul>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2107,7 +2107,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pendingApproval"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">成功响应</h3>
+<h3 id="success-response">成功响应 Success Response</h3>
 
 <table><thead>
 <tr>
@@ -2133,7 +2133,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h3 id=">策略/失败响应</h3>
+<h3 id="policy-failure-response">策略/失败响应 Policy/Failure Response</h3>
 
 <table><thead>
 <tr>
@@ -2163,7 +2163,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">发送比特币到多个地址</h2>
+<h2 id="send-coins-to-multiple-addresses">发送比特币到多个地址 Send Coins to Multiple Addresses</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">recipients</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="nx">recipients</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="s1">'2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD'</span><span class="p">,</span> <span class="na">amount</span><span class="p">:</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">});</span>
 <span class="nx">recipients</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">address</span><span class="p">:</span> <span class="s1">'2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu'</span><span class="p">,</span> <span class="na">amount</span><span class="p">:</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">});</span>
@@ -2198,7 +2198,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 此操作需要使用解锁 API 解锁会话。
 </aside>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2265,7 +2265,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
   </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27374a97df2cd8a63640dd7a40fce9a1d8dfeec3cf7a8b2fbf1ef609f4a5370d"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -2291,7 +2291,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h3 id=">策略/失败响应</h3>
+<h3 id="policy-failure-response">策略/失败响应 Policy/Failure Response</h3>
 
 <table><thead>
 <tr>
@@ -2321,7 +2321,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">列出钱包的交易</h2>
+<h2 id="list-wallet-transactions">列出钱包的交易 List Wallet Transactions</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
 
 curl -X GET <span class="se">\</span>
@@ -2440,11 +2440,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 </span></code></pre>
 <p>获取给定钱包的交易，按照反向区块高度排序（未确认的交易在先）。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/tx</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2462,7 +2462,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 </tr>
 </tbody></table>
 
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数      | 类型      | 必需 | 说明                          |
 | &mdash;&mdash;- | &mdash;&mdash;- | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
@@ -2470,11 +2470,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 | limit   | number  | NO | 单次调用返回结果的最大数量（默认=25，最大=250） |
 | compact | boolean | NO | 略去交易结果中的输入和输出               |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个交易对象数组。每个交易的汇总信息 包含有涉及此交易的任何钱包或比特币地址。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -2492,7 +2492,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 </tr>
 </tbody></table>
 
-<h2 id=">获取钱包的交易</h2>
+<h2 id="get-wallet-transaction">获取钱包的交易 Get Wallet Transaction</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov
 <span class="nv">TXID</span><span class="o">=</span>af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
 
@@ -2559,11 +2559,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </span></code></pre>
 <p>获取钱包中某笔交易信息</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/tx/:txId</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2587,7 +2587,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个交易对象</p>
 
@@ -2670,7 +2670,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -2692,7 +2692,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </tr>
 </tbody></table>
 
-<h2 id=">列出钱包的地址</h2>
+<h2 id="list-wallet-addresses">列出钱包的地址 List Wallet Addresses</h2>
 
 <p>使用新地址 API 获取钱包的地址列表，这些地址已实例化。</p>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2N76BgbTnLJz9WWbXw15gp6K9mE5wrP4JFb
@@ -2709,11 +2709,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/addresses</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2731,7 +2731,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
 </tr>
 </tbody></table>
 
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数    | 类型     | 必需 | 说明                      |
 | &mdash;&ndash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; |
@@ -2769,7 +2769,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
   </span><span class="nt">"hasMore"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个包含钱包地址对象的数组。</p>
 
@@ -2797,7 +2797,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -2815,7 +2815,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
 </tr>
 </tbody></table>
 
-<h2 id=">获取单个钱包地址</h2>
+<h2 id="get-single-wallet-address">获取单个钱包地址 Get Single Wallet Address</h2>
 
 <p>获取钱包中一个地址的信息。亦可被用于检查钱包中是否存在某个地址。</p>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
@@ -2834,11 +2834,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/addresses/:address</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2877,7 +2877,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
     </span><span class="nt">"txCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钱包地址对象</p>
 
@@ -2925,11 +2925,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
 </tr>
 </tbody></table>
 
-<h1 id=">钱包操作 - 高级</h1>
+<h1 id="wallet-operations-advanced">钱包操作 - 高级 Wallet Operations - Advanced</h1>
 
 <p>这些功能建议高级用户使用。 使用这些 API 可获得扩充的（也可能更复杂）功能性以及更好的控制交易创建流程。</p>
 
-<h2 id=">通过流水号获取交易</h2>
+<h2 id="get-transaction-by-sequence-id">通过流水号获取交易 Get Transaction By Sequence Id</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NB5G2jmqSswk7C427ZiHuwuAt1GPs5WeGa
 <span class="nv">SEQUENCEID</span><span class="o">=</span>hello123
 
@@ -2987,11 +2987,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
 
 <p>BitGo 中在等待状态且尚未被共同签名的交易仍然具有流水号。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/tx/sequence/:sequenceId</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3015,11 +3015,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个 WalletTx 对象，包含此交易在比特币网络上的历史和状态。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -3041,7 +3041,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
 </tr>
 </tbody></table>
 
-<h2 id=">列出钱包的未花费</h2>
+<h2 id="list-wallet-unspents">列出钱包的未花费 List Wallet Unspents</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr
 
 curl -X GET <span class="se">\</span>
@@ -3063,11 +3063,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 
 <p>为了创建比特币交易，交易的创建者需要累积一组比特币“输入(input)”用于创建交易。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/unspents</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3085,7 +3085,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 </tr>
 </tbody></table>
 
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数     | 类型     | 必需 | 说明                               |
 | &mdash;&mdash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; |
@@ -3135,7 +3135,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个未花费输入对象数组。</p>
 
@@ -3183,7 +3183,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -3201,7 +3201,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 </tr>
 </tbody></table>
 
-<h2 id=">合并未花费币</h2>
+<h2 id="consolidate-unspents">合并未花费币 Consolidate Unspents</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">consolidateUnspents</span><span class="p">(</span>
@@ -3229,7 +3229,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </code></pre>
 <p>合并钱包中当前的未花费币以减少数量。 这是一个迭代操作，很大程度上取决于 交易大小限制和签名速度。 每次迭代都需要交易费。</p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <p>| 参数                            | 类型       | 必需 | 说明                      |
 | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&ndash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; |
@@ -3239,7 +3239,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 | walletPassphrase              | string   | NO | 钱包密码                    |
 | progressCallback              | function | NO | 于每次迭代末端调用的函数。可用于监视进度。   |</p>
 
-<h2 id=">分散未花费币</h2>
+<h2 id="fan-out-unspents">分散未花费币 Fan Out Unspents</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">fanOutUnspents</span><span class="p">(</span>
@@ -3267,7 +3267,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </code></pre>
 <p>取出钱包的所有未花费币（需要满足选择条件，比如最小确认数）并且将它们分散成更多数量的未花费币。</p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3297,7 +3297,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">创建交易</h2>
+<h2 id="create-transaction">创建交易 Create Transaction</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
   <span class="kd">var</span> <span class="nx">recipients</span> <span class="o">=</span> <span class="p">[];</span>
@@ -3359,7 +3359,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3419,7 +3419,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">签名交易</h2>
+<h2 id="sign-transaction">签名交易 Sign Transaction</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">walletId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">wallet</span><span class="p">.</span><span class="nx">getEncryptedUserKeychain</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">keychain</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Got encrypted user keychain"</span><span class="p">);</span>
@@ -3490,7 +3490,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="nt">"tx"</span><span class="p">:</span><span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3520,7 +3520,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">发送交易</h2>
+<h2 id="send-transaction">发送交易 Send Transaction</h2>
 <pre class="highlight shell"><code><span class="nv">TX</span><span class="o">={</span>raw hex transaction<span class="o">}</span>
 
 curl -X POST <span class="se">\</span>
@@ -3587,7 +3587,7 @@ https://test.bitgo.com/api/v1/tx/send
 
 <p>发送一个部分签名的交易。 服务器将进行下列操作之一： * 拒绝交易 * 从其他钱包管理员处获取附加批准 * 应用最终签名，并且提交到比特币 P2P 网络<aside class="info"> 此 API 需要使用解锁 API 解锁会话。 单个解锁 API 调用允许任意的单个交易，或者多个不超过内部设定 BitGo 配额的交易（当前设定为 50 BTC）。 </aside> </p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/tx/send</code></p>
 
@@ -3602,7 +3602,7 @@ https://test.bitgo.com/api/v1/tx/send
   </span><span class="nt">"instantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3644,11 +3644,11 @@ https://test.bitgo.com/api/v1/tx/send
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>以十六进制编码格式，返回已发送的交易和它的散列值。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -3670,7 +3670,7 @@ https://test.bitgo.com/api/v1/tx/send
 </tr>
 </tbody></table>
 
-<h3 id=">策略/失败响应</h3>
+<h3 id="policy-failure-response">策略/失败响应 Policy/Failure Response</h3>
 
 <table><thead>
 <tr>
@@ -3700,7 +3700,7 @@ https://test.bitgo.com/api/v1/tx/send
 </tr>
 </tbody></table>
 
-<h2 id=">获取即时交易保障</h2>
+<h2 id="get-instant-guarantee">获取即时交易保障 Get Instant Guarantee</h2>
 <pre class="highlight shell"><code><span class="nv">INSTANTID</span><span class="o">=</span>564ea1fa95f4344c6db00773d1277160
 
 curl -X GET <span class="se">\</span>
@@ -3722,7 +3722,7 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 任何人都可以接受即时交易。发送即时交易需要即时交易兼容 / KRS BitGo 钱包。
 </aside>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/instant/&lt;id&gt;</code></p>
 
@@ -3740,7 +3740,7 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
     </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ba08ef2a745246f309ec4eaff5d7652c4fc01e61eebd9aabc1c58996355acd7"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回即时交易保障消息，包含金额和交易 ID。</p>
 
@@ -3793,7 +3793,7 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 </tr>
 </tbody></table>
 
-<h3 id="bitgo">验证 BitGo 的保障</h3>
+<h3 id="bitgo-verifying-bitgo-39-s-guarantee">验证 BitGo 的保障 Verifying BitGo&rsquo;s Guarantee</h3>
 
 <p>BitGo 的保障使用我们公司的签名密钥进行签名，与公有的比特币地址 1BitGo3gxRZ6mQSEH52dvCKSUgVCAH4Rja 相关联。</p>
 
@@ -3803,7 +3803,7 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 
 <p>若签名有效，你可以立即接受交易不需要任何区块信息。 你可以在本地保存保障签名作为审计记录以防万一出现纠纷。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -3821,7 +3821,7 @@ https://test.bitgo.com/api/v1/instant/<span class="nv">$INSTANTID</span>
 </tr>
 </tbody></table>
 
-<h2 id=">按地址获取钱包</h2>
+<h2 id="get-wallet-by-address">按地址获取钱包 Get Wallet by Address</h2>
 
 <p>提供一个地址，返回该地址的信息（包括余额）和此地址关联的钱包。 当某人拥有多个地址 / 钱包，但不知道地址属于哪个钱包时很有用。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
@@ -3836,11 +3836,11 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/walletaddress/:address</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3874,7 +3874,7 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
     </span><span class="nt">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32uFQgny5bgj24nywQPo5cgEUGX6a1PuAp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钱包地址对象</p>
 
@@ -3926,7 +3926,7 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
 </tr>
 </tbody></table>
 
-<h2 id=">冻结钱包</h2>
+<h2 id="freeze-wallet">冻结钱包 Freeze Wallet</h2>
 <pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'</span>
 <span class="nv">DURATION</span><span class="o">=</span><span class="s1">'4000'</span>
 curl -X POST <span class="se">\</span>
@@ -3956,13 +3956,13 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 </span></code></pre>
 <p>阻止钱包上的任何花费动作。此调用设计目的是为了万一发生紧急情况时阻止花费，默认值 1 小时。</p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <p>| 参数       | 类型     | 必需 | 说明                     |
 | &mdash;&mdash;&ndash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- |
 | duration | number | NO | 冻结花费动作的时长秒数。默认值为 1 小时。 |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -3980,7 +3980,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -3998,13 +3998,13 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 </tr>
 </tbody></table>
 
-<h1 id=">钱包共享</h1>
+<h1 id="wallet-sharing">钱包共享 Wallet Sharing</h1>
 
 <p>一个 BitGo 钱包可以被共享给多个用户。 钱包上的所有用户共享同一个私钥（每个用户可以选择单独加密此私钥）。</p>
 
 <p>BitGo 对共享钱包强制启用安全功能，要求用户们在共同签名前必须登录且进行验证。 钱包权限级别定义了单个用户可以在钱包上进行的操作。</p>
 
-<h3 id=">钱包权限</h3>
+<h3 id="wallet-permissions">钱包权限 Wallet Permissions</h3>
 
 <table><thead>
 <tr>
@@ -4026,7 +4026,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/freeze
 </tr>
 </tbody></table>
 
-<h2 id=">共享一个钱包</h2>
+<h2 id="sharing-a-wallet">共享一个钱包 Sharing a wallet</h2>
 <pre class="highlight shell"><code>仅作为本地方法可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
 
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2N8ryDAob6Qn8uCsWvkkQDhyeCQTqybGUFe'</span>
@@ -4081,7 +4081,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 <li>上传加密的密钥到 BitGo 服务，以通知接收者他们有一个待处理的共享。</li>
 </ul>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4123,7 +4123,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -4161,7 +4161,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span clas
 </tr>
 </tbody></table>
 
-<h2 id=">列出钱包共享</h2>
+<h2 id="list-wallet-shares">列出钱包共享 List Wallet Shares</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -4175,7 +4175,7 @@ https://test.bitgo.com/api/v1/walletShare
 </code></pre>
 <p>获取已登录帐号的传入和传出钱包共享列表。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/walletShare</code></p>
 
@@ -4203,7 +4203,7 @@ https://test.bitgo.com/api/v1/walletShare
    </span><span class="nt">"outgoing"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回的每个钱包共享对象包含下列字段：</p>
 
@@ -4239,7 +4239,7 @@ https://test.bitgo.com/api/v1/walletShare
 </tr>
 </tbody></table>
 
-<h2 id=">接受钱包共享</h2>
+<h2 id="accept-wallet-share">接受钱包共享 Accept Wallet Share</h2>
 <pre class="highlight shell"><code>仅作为本地方法可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
 
 <span class="nv">SHAREID</span><span class="o">=</span><span class="s1">'54c594802ebe8510790092958f526f47'</span>
@@ -4278,7 +4278,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
 <li>上传已加密的密钥到 BitGo 服务并设置共享为已接受（accepted），给予该用户权限在 BitGo 上访问该钱包。</li>
 </ul>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4314,7 +4314,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -4332,7 +4332,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/walletshare/<span
 </tr>
 </tbody></table>
 
-<h2 id=">取消钱包共享</h2>
+<h2 id="cancel-wallet-share">取消钱包共享 Cancel Wallet Share</h2>
 <pre class="highlight shell"><code><span class="nv">SHAREID</span><span class="o">=</span><span class="s1">'54c594802ebe8510790092958f526f47'</span>
 
 curl -X DELETE <span class="se">\</span>
@@ -4351,11 +4351,11 @@ https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
 </span></code></pre>
 <p>可被用于取消一个等待中的传出钱包共享，或者拒绝一个传入共享。该共享必须尚未被接受。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE/api/v1/walletshare/:SHAREID</code></p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -4373,7 +4373,7 @@ https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
 </tr>
 </tbody></table>
 
-<h2 id=">移除钱包用户</h2>
+<h2 id="remove-wallet-user">移除钱包用户 Remove Wallet User</h2>
 
 <p>在用户接受了钱包共享后，他们将成为钱包的一份子并且钱包共享被视作“完成”。</p>
 
@@ -4399,11 +4399,11 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<span class="nv">$USERID</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/wallet/:wallet/user/:userId</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4424,11 +4424,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回该钱包更新后的钱包模型，或者待批准对象（若需要批准的话）。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -4446,7 +4446,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 </tr>
 </tbody></table>
 
-<h1 id=">钱包策略</h1>
+<h1 id="wallet-policy">钱包策略 Wallet Policy</h1>
 
 <p>BitGo 钱包具有高级安全特性如多用户、短消息交易批准和花费限制。 要好好利用这些特性，用户/开发者需要添加且修改钱包上的策略规则。 规则会触发一个关联的动作（由用户设置）。 策略引擎会搜集所有已触发规则的结果，并且执行触发动作顺序为<code class="prettyprint">deny</code>, <code class="prettyprint">getApproval</code> (从另一个用户处), 或 <code class="prettyprint">getOTP</code> (发送短消息到指定用户)。</p>
 
@@ -4458,7 +4458,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 
 <p>要实现含有多个钱包的高级策略，请直接联络 BitGo。</p>
 
-<h2 id=">获取策略</h2>
+<h2 id="get-policy">获取策略 Get Policy</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
 
 curl -X GET <span class="se">\</span>
@@ -4521,11 +4521,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
 </span></code></pre>
 <p>获取钱包上生效的策略规则。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/policy</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4543,11 +4543,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个钱包策略对象，包含设置在上面的规则。</p>
 
-<h2 id=">获取策略状态</h2>
+<h2 id="get-policy-status">获取策略状态 Get Policy Status</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
 
 curl -X GET <span class="se">\</span>
@@ -4589,11 +4589,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/policy/status</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4611,11 +4611,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回由钱包策略中活动的规则生成的状态结果，包含使用限量信息。</p>
 
-<h2 id=">设置策略规则</h2>
+<h2 id="set-policy-rule">设置策略规则 Set Policy Rule</h2>
 
 <p>添加或更新钱包策略的规则。 钱包策略规则控制在何种情况下 BitGo 将使用自己的单独密钥对交易签名。 当策略更新时电子邮件通知会被发送给所有钱包用户。 首次添加策略时不会发送电子邮件。</p>
 <pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span>2NFj9CHyY8cLKH4UXsivpRa5xkdvAXqqai9
@@ -4649,7 +4649,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/wallet/:wallet/policy/rule</code></p>
 
@@ -4657,7 +4657,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 此操作需要使用解锁 API 解锁会话。
 </aside>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>策略规则对象具有类型（type）、条件（condition）和动作（action）。策略的类型通常决定了条件的价值。</p>
 
@@ -4694,11 +4694,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>Returns the updated Wallet Model object.</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -4716,7 +4716,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h3 id=">策略对象</h3>
+<h3 id="policy-object">策略对象 Policy Object</h3>
 
 <p>总体上的钱包策略是一个包含策略规则对象的数组。策略规则对象有类型（type）、条件（condition）和动作（action）。</p>
 
@@ -4749,7 +4749,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h3 id="velocitylimit">策略类型 - velocityLimit（速率限制）</h3>
+<h3 id="velocitylimit-policy-type-dailylimit">策略类型 - velocityLimit（速率限制）, Policy Type - dailyLimit</h3>
 
 <p>velocityLimit 策略规则：当花费的比特币金额在指定的时间窗口内超过指定额度时，会被触发。</p>
 
@@ -4784,7 +4784,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h3 id="transactionlimit">策略类型 - transactionLimit（交易限额）</h3>
+<h3 id="transactionlimit-policy-type-transactionlimit">策略类型 - transactionLimit（交易限额）, Policy Type - transactionLimit</h3>
 
 <p>transactionLimit 策略规则：当单笔交易超过指定金额时触发。</p>
 
@@ -4808,7 +4808,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h3 id="bitcoinaddresswhitelist">策略类型 - bitcoinAddressWhitelist（比特币地址白名单）</h3>
+<h3 id="bitcoinaddresswhitelist-policy-type-bitcoinaddresswhitelist">策略类型 - bitcoinAddressWhitelist（比特币地址白名单）, Policy Type - bitcoinAddressWhitelist</h3>
 
 <p>比特币地址白名单规则被激活时，当传出交易的任何目标比特币地址（未变更）不在白名单中时将被触发。</p>
 
@@ -4857,7 +4857,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
     </span><span class="nt">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MufYDkh6iwNDtyREBeAXcrRDDAopG1RNc2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="webhook">策略类型 - webhook</h3>
+<h3 id="webhook-policy-type-webhook">策略类型 - webhook, Policy Type - webhook</h3>
 
 <p>当激活时，webhook 规则将向条件中指定的 HTTPS 端点发起调用。 若 HTTPS 端点返回非 200 （状态）响应本规则将触发一个动作。</p>
 
@@ -4923,7 +4923,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h3 id=">策略动作对象</h3>
+<h3 id="policy-action-object">策略动作对象 Policy Action Object</h3>
 
 <p>在交易不符合条件时将触发的动作。</p>
 
@@ -4961,7 +4961,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </tr>
 </tbody></table>
 
-<h2 id=">移除策略规则</h2>
+<h2 id="remove-policy-rule">移除策略规则 Remove Policy Rule</h2>
 <pre class="highlight shell"><code><span class="nv">RULEID</span><span class="o">=</span><span class="s1">'test1'</span>
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s1">'2MvPJ8GMoFFWdUTh6p42FJV6XpmJEVjxv92'</span>
 
@@ -4991,7 +4991,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </span></code></pre>
 <p>根据指定的 id 移除策略规则。若钱包有超过 1 名管理员时，需要第二批准。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/wallet/:WALLETID/policy/rule</code></p>
 
@@ -4999,19 +4999,19 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 此操作需要使用解锁 API 解锁会话。
 </aside>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>| 参数 | 类型     | 必需  | 说明          |
 | &ndash; | &mdash;&mdash; | &mdash; | &mdash;&mdash;&mdash;&ndash; |
 | id | string | YES | 要移除的策略规则 id |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回更新后的钱包模型对象</p>
 
-<h1 id=">待批准</h1>
+<h1 id="pending-approvals">待批准 Pending Approvals</h1>
 
-<h2 id=">列出待批准</h2>
+<h2 id="list-pending-approvals">列出待批准 List Pending Approvals</h2>
 
 <p>列出一个钱包或企业上的待批准项，通过提供钱包 id 或 企业 url。默认情况下，该请求将返回用户下的所有待批准项。</p>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
@@ -5058,22 +5058,22 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/pendingapprovals</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <p>| 参数         | 类型         | 必需 | 说明       |
 | &mdash;&mdash;&mdash;- | &mdash;&mdash;&mdash;- | &ndash; | &mdash;&mdash;&ndash; |
 | walletId   | 地址（string） | NO | 钱包的基础地址  |
 | enterprise | string     | NO | 企业的公有 ID |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回待批准列表</p>
 
-<h2 id=">更新待批准</h2>
+<h2 id="update-pending-approval">更新待批准 Update Pending Approval</h2>
 
 <p>更新待批准项的状态为 &#39;approved&#39;（已批准） 或 &#39;rejected&#39;（已拒绝）。</p>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
@@ -5129,11 +5129,11 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"approved"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/pendingapprovals/:pendingApprovalId</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5151,15 +5151,15 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回含有新状态的已更新的待批准项。</p>
 
-<h1 id=">地址标签</h1>
+<h1 id="address-labels">地址标签 Address Labels</h1>
 
 <p>标签可以让你以可读的注释追踪地址。 你可以对任何有效地址添加标签；地址不一定需要受钱包控制。 地址标签和钱包标签不同， 不过他们都和钱包相关联，因此当你与他人共享钱包时 他们也能查看标签。</p>
 
-<h2 id=">列出所有钱包的标签</h2>
+<h2 id="list-labels-for-all-wallets">列出所有钱包的标签 List Labels For All Wallets</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/labels
@@ -5173,7 +5173,7 @@ https://test.bitgo.com/api/v1/labels
 </code></pre>
 <p>获取用户的标签列表</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/labels</code></p>
 
@@ -5195,7 +5195,7 @@ https://test.bitgo.com/api/v1/labels
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个标签模型数组。</p>
 
@@ -5219,7 +5219,7 @@ https://test.bitgo.com/api/v1/labels
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5237,7 +5237,7 @@ https://test.bitgo.com/api/v1/labels
 </tr>
 </tbody></table>
 
-<h2 id=">列出指定钱包的标签</h2>
+<h2 id="list-labels-for-specific-wallet">列出指定钱包的标签 List Labels For Specific Wallet</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
 curl -X GET <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -5263,7 +5263,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
 </code></pre>
 <p>获取钱包的标签列表</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/labels/:walletId</code></p>
 
@@ -5280,7 +5280,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个标签模型数组。</p>
 
@@ -5304,7 +5304,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5326,7 +5326,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
 </tr>
 </tbody></table>
 
-<h2 id=">设置标签</h2>
+<h2 id="set-label">设置标签 Set Label</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
 <span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 curl -X PUT <span class="se">\</span>
@@ -5355,7 +5355,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </code></pre>
 <p>对指定地址设置一个标签并且将其和指定钱包关联。 标签的长度限制为 250 个字符。 标签不能被设置在钱包的第一个接收地址上 因为它被保留用做钱包的标签。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">PUT /api/v1/labels/:walletId/:address</code></p>
 
@@ -5368,7 +5368,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5392,7 +5392,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id="put">PUT 参数</h3>
+<h3 id="put-put-parameters">PUT 参数 PUT Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5410,7 +5410,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个标签模型对象。</p>
 
@@ -5434,7 +5434,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5456,7 +5456,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h2 id=">删除标签</h2>
+<h2 id="delete-label">删除标签 Delete Label</h2>
 <pre class="highlight shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
 <span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 curl -X DELETE <span class="se">\</span>
@@ -5471,7 +5471,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </code></pre>
 <p>从指定的地址和钱包上删除标签。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/labels/:walletId/:address</code></p>
 
@@ -5484,7 +5484,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5508,7 +5508,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个已被删除的标签模型对象。</p>
 
@@ -5532,7 +5532,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5554,17 +5554,17 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h1 id=">标记</h1>
+<h1 id="tags">标记 Tags</h1>
 
 <p>标记是企业客户的高级策略功能。</p>
 
-<h2 id=">创建标记</h2>
+<h2 id="create-a-tag">创建标记 Create a tag</h2>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/tag</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>标记必须有一个名称并且正确的设置用户、钱包或企业三个参数之一。</p>
 
@@ -5607,7 +5607,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回此标记。</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -5616,7 +5616,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[id]"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5630,13 +5630,13 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h2 id=">为钱包添加标记</h2>
+<h2 id="add-a-tag-to-a-wallet">为钱包添加标记 Add a tag to a wallet</h2>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/wallet/:wallet/tag</code></p>
 
-<h3 id="body">BODY 参数</h3>
+<h3 id="body-body-parameters">BODY 参数 BODY Parameters</h3>
 
 <p>你必需指定添加到钱包的标记 id，不需要其他参数。</p>
 
@@ -5644,7 +5644,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 | &mdash; | &ndash; | &mdash; | &mdash;&mdash; | &mdash; |
 | tag | id | YES | 标记的 id |     |</p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回钱包、标记和受影响的 wallettxs 数量。</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -5653,7 +5653,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="nt">"walletTxsAffected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -5667,7 +5667,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h1 id="webhook">Webhook 通知</h1>
+<h1 id="webhook-webhook-notifications">Webhook 通知 Webhook Notifications</h1>
 
 <blockquote>
 <p>交易 Webhook 回调示例</p>
@@ -5698,7 +5698,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 
 <p>开发者必须注意要确保自己的应用程序即使在网络传输发生错误时仍可继续，要不然会由于有问题的确认而二次都收到相同的 webhook 。</p>
 
-<h3 id=">请求结构</h3>
+<h3 id="request-schema">请求结构 Request Schema</h3>
 
 <p>下列 JSON 编码的参数位于 HTTP body中，将通过 Webhook URL 调用进行传输。</p>
 
@@ -5730,7 +5730,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h3 id="webhook">Webhook 类型</h3>
+<h3 id="webhook-webhook-types">Webhook 类型 Webhook Types</h3>
 
 <p>BitGo 目前正致力于 webhook 方面开发。请联络我们以获取更多 webhook 类型。</p>
 
@@ -5762,7 +5762,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tr>
 </tbody></table>
 
-<h2 id="webhook">列出钱包的 Webhook</h2>
+<h2 id="webhook-list-wallet-webhooks">列出钱包的 Webhook List Wallet Webhooks</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -5792,11 +5792,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span></code></pre>
 <p>获取钱包上设置的 webhook 列表。 目前，只有交易（transaction）和待批准（pendingapproval）webhook 类型通知可被附加到钱包上。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/wallet/:walletId/webhooks</code></p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>Webhook 对象数组</p>
 
@@ -5820,7 +5820,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">为钱包添加 Webhook</h2>
+<h2 id="webhook-add-wallet-webhooks">为钱包添加 Webhook Add Wallet Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span>2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
 <span class="nv">URL</span><span class="o">=</span><span class="s1">'http://www.yoursite.com/partner/webhooks'</span>
 
@@ -5848,11 +5848,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 
 <p>有 2 种类型的钱包 webhook 可用： 1. 会被钱包上任意交易触发的交易（transaction）webhook。 2. 当传出交易触发钱包政策时会触发待批准（pending approval） webhook。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/wallet/:walletId/webhooks</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5882,7 +5882,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -5904,7 +5904,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">移除钱包 Webhook</h2>
+<h2 id="webhook-remove-wallet-webhooks">移除钱包 Webhook Remove Wallet Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">WALLETID</span><span class="o">=</span>2NGJP7z9DZwyVjtY32YSoPqgU6cG2QXpjHu
 <span class="nv">URL</span><span class="o">=</span><span class="s1">'http://www.yoursite.com/partner/webhooks'</span>
 
@@ -5928,11 +5928,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span></code></pre>
 <p>移除 Webhook 后，当发生指定类型的新事件时将不会再对你的 URL 发起 HTTP 回调。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/wallet/:walletId/webhooks</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -5956,7 +5956,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -5978,7 +5978,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">列出用户 Webhook</h2>
+<h2 id="webhook-list-user-webhooks">列出用户 Webhook List User Webhooks</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -6005,11 +6005,11 @@ https://test.bitgo.com/api/v1/webhooks
 </span></code></pre>
 <p>获取附加于指定用户的 webhook 列表。目前，只有区块通知（block notification）webhook 类型可以被附加到用户上。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/webhooks</code></p>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>Webhook 对象数组</p>
 
@@ -6033,7 +6033,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">为用户添加 Webhook</h2>
+<h2 id="webhook-add-user-webhooks">为用户添加 Webhook Add User Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">URL</span><span class="o">=</span><span class="s1">'https://303fe960.ngrok.com'</span>
 
 curl -X POST <span class="se">\</span>
@@ -6057,11 +6057,11 @@ https://test.bitgo.com/api/v1/webhooks
 </span></code></pre>
 <p>添加 webhook 后，当事件被触发时 BitGo 将对指定 URL 发起 HTTP 回调。Webhook 记录会被附加到用户账号。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/v1/webhooks</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6091,7 +6091,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -6109,7 +6109,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h2 id="webhook">移除用户 Webhook</h2>
+<h2 id="webhook-remove-user-webhooks">移除用户 Webhook Remove User Webhooks</h2>
 <pre class="highlight shell"><code><span class="nv">URL</span><span class="o">=</span><span class="s1">'http://www.yoursite.com/partner/webhooks'</span>
 
 curl -X DELETE <span class="se">\</span>
@@ -6130,11 +6130,11 @@ https://test.bitgo.com/api/v1/webhooks
 </span></code></pre>
 <p>移除 Webhook 后，当发生指定类型的新事件时将不会再对你的 URL 发起 HTTP 回调。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE /api/v1/webhooks</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6158,7 +6158,7 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -6176,11 +6176,11 @@ https://test.bitgo.com/api/v1/webhooks
 </tr>
 </tbody></table>
 
-<h1 id=">实用程序</h1>
+<h1 id="utilities">实用程序 Utilities</h1>
 
 <p>本节将介绍作为 BitGo API 一部分的实用程序服务。</p>
 
-<h2 id=">解密</h2>
+<h2 id="decrypt">解密 Decrypt</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="s1">'{"iv":"n4zHXVTi/Go/riCP8fNs/A==","v":1,"iter":10000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zvLyve+4AJU=","ct":"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l"}'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">decryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">decrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="nx">encryptedString</span> <span class="p">});</span>
 <span class="c1">// decryptedString = "this is a secret"</span>
@@ -6198,7 +6198,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/decrypt
 </code></pre>
 <p>客户端函数，用于解密 BitGo API 加密的数据使用。</p>
 
-<h2 id=">加密</h2>
+<h2 id="encrypt">加密 Encrypt</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">encryptedString</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">({</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">,</span> <span class="na">input</span><span class="p">:</span> <span class="s2">"this is a secret"</span> <span class="p">});</span>
 <span class="c1">// encyrptedString = "{\"iv\":\"n4zHXVTi/Go/riCP8fNs/A==\",\"v\":1,\"iter\":10000,\"ks\":256,\"ts\":64,\"mode\":\"ccm\",\"adata\":\"\",\"cipher\":\"aes\",\"salt\":\"zvLyve+4AJU=\",\"ct\":\"gNMqheicMoD8ZmNzRwuQfWGAh+HA933l\"}"</span>
 </code></pre><pre class="highlight shell"><code>仅作为本地方法可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
@@ -6215,7 +6215,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </code></pre>
 <p>客户端函数用于加密一个字符串。所有存放于 BitGo 的数据均由此 API 进行加密。</p>
 
-<h2 id=">预估交易费用</h2>
+<h2 id="estimate-transaction-fees">预估交易费用 Estimate Transaction Fees</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">estimateFee</span><span class="p">({</span> <span class="na">numBlocks</span><span class="p">:</span> <span class="mi">6</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
@@ -6223,7 +6223,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </code></pre>
 <p>返回建议的每千字节费率以确认目标区块数量的交易。 本功能可在创建交易时使用。 注意：预估算法仅在生产环境（www.bitgo.com）中准确并且需要至少 2 个区块在前。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/tx/fee?numBlocks=6</code></p>
 
@@ -6248,7 +6248,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -6274,7 +6274,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </tr>
 </tbody></table>
 
-<h2 id=">市场价格数据</h2>
+<h2 id="market-price-data">市场价格数据 Market Price Data</h2>
 <pre class="highlight javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">markets</span><span class="p">().</span><span class="nx">latest</span><span class="p">({},</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">market</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 处理错误</span>
@@ -6285,7 +6285,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </code></pre>
 <p>获取当前市场的信息。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/market/latest</code></p>
 
@@ -6332,7 +6332,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个市场模型对象。所有价格均以用户设置的货币计价。</p>
 
@@ -6388,12 +6388,12 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </tr>
 </tbody></table>
 
-<h2 id=">恶意软件地址列表</h2>
+<h2 id="malware-address-list">恶意软件地址列表 Malware Address List</h2>
 <pre class="highlight shell"><code>curl https://www.bitgo.com/api/v1/malware/bitcoin
 </code></pre>
 <p>BitGo 维护的一个地址列表包含有已知被用于地址交换恶意软件的地址。 BitGo 将拒绝 联合签名发往这些地址的交易。 本 API 将返回当前被 BitGo 屏蔽的地址。 我们建议定期获取这个列表（比如每天一次），用于维护 你自己的屏蔽列表。 不然你可能会意外提交有问题的交易到 BitGo，比如你的 某个用户被恶意软件感染且请求提款。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/malware/bitcoin</code></p>
 
@@ -6412,7 +6412,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -6430,7 +6430,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </tr>
 </tbody></table>
 
-<h2 id=">验证比特币地址</h2>
+<h2 id="verify-bitcoin-address">验证比特币地址 Verify Bitcoin Address</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">verifyAddress</span><span class="p">({</span> <span class="na">address</span><span class="p">:</span> <span class="s2">"1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F"</span> <span class="p">});</span>
 </code></pre><pre class="highlight shell"><code>仅作为本地方法可用 <span class="o">(</span>BitGo Express<span class="o">)</span>
 
@@ -6443,20 +6443,20 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/verifyaddress
 
 <p>若地址有效返回 true。</p>
 
-<h2 id="bitgo">BitGo 客户端版本</h2>
+<h2 id="bitgo-bitgo-client-version">BitGo 客户端版本 BitGo Client Version</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">version</span> <span class="o">=</span> <span class="nx">bitgo</span><span class="p">.</span><span class="nx">version</span><span class="p">();</span>
 </code></pre>
 <p>客户端函数用于获取 BitGo SDK 之版本。</p>
 
 <p>返回一个字符串。</p>
 
-<h1 id=">区块链数据</h1>
+<h1 id="blockchain-data">区块链数据 Blockchain Data</h1>
 
 <p>BitGo 提供的公开 API 用于获取地址和交易上的区块链数据。 这些 API 与 BitGo 用户或钱包的概念没有关联。 本 API 端点的用途在于允许 API 客户获取非 BitGo 地址和交易的数据（类似于 Satoshi 客户端中 txindex 和 watchonly 的概念）。</p>
 
 <p>对大部分钱包用例而言，开发者会去使用钱包和区块链 API。 它们支持更多的操作，诸如检查多个 HD 钱包的合并余额，创建地址，发送交易等等。<aside class="success"> 由于仅返回公开的区块链数据，因此本区块链数据 API 不需要验证身份。 不过仍然建议在头部发送访问令牌，以获得更高的频率限制。 </aside> </p>
 
-<h2 id=">获取地址</h2>
+<h2 id="get-address">获取地址 Get Address</h2>
 
 <p>查找地址的余额信息。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -6467,11 +6467,11 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6498,7 +6498,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
   </span><span class="nt">"confirmedBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">6900000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回地址的汇总信息。</p>
 
@@ -6522,7 +6522,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -6540,7 +6540,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
 </tr>
 </tbody></table>
 
-<h2 id=">获取地址的交易</h2>
+<h2 id="get-address-transactions">获取地址的交易 Get Address Transactions</h2>
 
 <p>获取指定地址的交易，按区块高度逆序排列。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -6551,11 +6551,11 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address/tx</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6573,7 +6573,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
 </tr>
 </tbody></table>
 
-<h3 id="query">QUERY 参数</h3>
+<h3 id="query-query-parameters">QUERY 参数 QUERY Parameters</h3>
 
 <p>| 参数    | 类型     | 必需 | 说明                          |
 | &mdash;&ndash; | &mdash;&mdash; | &ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
@@ -6630,11 +6630,11 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个交易对象数组。每个交易的汇总信息 包含有本交易所涉及的任何比特币地址的净余额产生的影响。</p>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -6648,7 +6648,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
 </tr>
 </tbody></table>
 
-<h2 id=">获取地址的未花费输出</h2>
+<h2 id="get-address-unspent-outputs">获取地址的未花费输出 Get Address Unspent Outputs</h2>
 
 <p>获取指定目标地址上的未花费输出。按区块高度降序排列（未确认的交易在先）。</p>
 <pre class="highlight shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
@@ -6659,11 +6659,11 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre>
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/address/:address/unspents</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6710,7 +6710,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回一个未花费交易对象数组。每笔交易包含下列信息</p>
 
@@ -6763,7 +6763,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
 </tr>
 </tbody></table>
 
-<h3 id=">错误</h3>
+<h3 id="errors">错误 Errors</h3>
 
 <table><thead>
 <tr>
@@ -6777,7 +6777,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
 </tr>
 </tbody></table>
 
-<h2 id=">获取交易详细信息</h2>
+<h2 id="get-transaction-details">获取交易详细信息 Get Transaction Details</h2>
 <pre class="highlight shell"><code><span class="nv">TX</span><span class="o">=</span>af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
 curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
 </code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">txId</span> <span class="o">=</span> <span class="s1">'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648'</span><span class="p">;</span>
@@ -6788,11 +6788,11 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
 </code></pre>
 <p>获取指定交易散列值的详细信息</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/tx/:txid</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6856,11 +6856,11 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
   </span><span class="nt">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <p>返回交易的详细信息，包括此交易所涉及的所有比特币地址的净值。</p>
 
-<h2 id=">获取区块</h2>
+<h2 id="get-block">获取区块 Get Block</h2>
 <pre class="highlight shell"><code><span class="nv">BLOCK</span><span class="o">=</span>00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
 curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">blockId</span> <span class="o">=</span> <span class="s1">'00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a'</span><span class="p">;</span>
@@ -6871,7 +6871,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </code></pre>
 <p>获取比特币区块和该区块的交易。你可以使用 &#39;latest&rsquo; 以获取比特币网络上最新的区块。</p>
 
-<h3 id="http">HTTP 请求</h3>
+<h3 id="http-http-request">HTTP 请求 HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/v1/block/latest</code></p>
 
@@ -6879,7 +6879,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 
 <p><code class="prettyprint">GET /api/v1/block/:blockHash</code></p>
 
-<h3 id="url">URL 参数</h3>
+<h3 id="url-url-parameters">URL 参数 URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6926,7 +6926,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id=">响应</h3>
+<h3 id="response">响应 Response</h3>
 
 <table><thead>
 <tr>
@@ -6957,15 +6957,15 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </tr>
 </tbody></table>
 
-<h1 id="bitgo">BitGo 即时交易</h1>
+<h1 id="bitgo-bitgo-instant">BitGo 即时交易 BitGo Instant</h1>
 
 <p>通过 BitGo 即时交易发送链上交易可以即时存入接收者账户，带有 BitGo 的防止双重花费财务保障。 任何人均可接收 BitGo 即时交易。 要发送 BitGo 即时 交易，你需要 BitGo KRS 钱包，或者与 BitGo 签署担保协议。</p>
 
-<h2 id=">接收</h2>
+<h2 id="receiving">接收 Receiving</h2>
 
 <p>要使 BitGo 即时交易即时到帐，你需要遵守从 <a href="#list-wallet-transactions">列出钱包的交易</a> 和 <a href="#get-wallet-transaction">获取钱包的交易</a> API 返回的交易对象中的 <strong>instant: true</strong> 属性。 即时交易亦会有一个字段 <strong>instantId</strong> 可被用于在交易中 <a href="#get-instant-guarantee">获取即时交易保障</a>。</p>
 
-<h2 id=">发送</h2>
+<h2 id="sending">发送 Sending</h2>
 
 <p>首先你需要一个兼容 BitGo 即时交易服务的钱包。 可以通过在网页界面中创建 KRS 钱包 ，或使用 <a href="#create-wallet-with-keychains">创建钱包 API</a> 并指定 <strong>backupXpubProvider</strong> 参数。 若你已有非 KRS 钱包，可通过与 BitGo 签署担保协议以升级为支持 BitGo 即时服务。</p>
 
@@ -6977,7 +6977,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 
 <p>对我们的标准事务性计划用户，包括批量折扣计划用户 BitGo 即时交易无需任何附加费用。</p>
 
-<h1 id="oauth">合作伙伴 OAuth</h1>
+<h1 id="oauth-partner-oauth">合作伙伴 OAuth Partner OAuth</h1>
 
 <p>BitGo 的合作伙伴可以通过使用我们的 OAuth 端点以获取访问授权并以第三方 BitGo 账号的身份进行操作。 BitGo 遵循 OAuth 标准以允许安全的访问客户账号同时保证密码的安全。</p>
 
@@ -6991,7 +6991,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 <li>你在 Authorization 头中使用此访问令牌以该 BitGo 用户的身份进行 API 调用。</li>
 </ol>
 
-<h3 id="oauth">OAuth 变量</h3>
+<h3 id="oauth-oauth-variables">OAuth 变量 OAuth Variables</h3>
 
 <table><thead>
 <tr>
@@ -7017,7 +7017,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </tr>
 </tbody></table>
 
-<h3 id=">范围取值</h3>
+<h3 id="scope-values">范围取值 Scope Values</h3>
 
 <p>范围取值定义了 OAuth 会话中允许的操作。 这些范围将被提供给 BitGo OAuth 入口，因此 BitGo 会告知用户你的目的并指派给你带有所请求范围的合适的验证代码。</p>
 
@@ -7081,7 +7081,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </tr>
 </tbody></table>
 
-<h2 id="bitgo">第三方 BitGo 登录</h2>
+<h2 id="bitgo-3rd-party-bitgo-login">第三方 BitGo 登录 3rd Party BitGo Login</h2>
 
 <blockquote>
 <p>OAuth 入口重定向示例以引导你的用户到 BitGo OAuth</p>
@@ -7098,7 +7098,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 
 <p>参数可通过 GET 或 POST 进行发送。</p>
 
-<h3 id="oauth">OAuth 请求参数</h3>
+<h3 id="oauth-oauth-request-parameters">OAuth 请求参数 OAuth Request Parameters</h3>
 
 <blockquote>
 <p>示例将你的用户重定向回你的网站</p>
@@ -7150,7 +7150,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </tr>
 </tbody></table>
 
-<h3 id=">我们的服务器将重定向</h3>
+<h3 id="our-server-will-redirect">我们的服务器将重定向 Our server will redirect</h3>
 
 <p>当用户验证了你的应用程序后，我们将重定向他们回你的 URL。此重定向将包含 URL 参数：</p>
 
@@ -7166,7 +7166,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 </tr>
 </tbody></table>
 
-<h2 id=">获取访问令牌</h2>
+<h2 id="obtaining-access-tokens">获取访问令牌 Obtaining Access Tokens</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">bitgo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BitGoJS</span><span class="p">.</span><span class="nx">BitGo</span><span class="p">({</span><span class="na">clientId</span><span class="p">:</span><span class="nx">clientId</span><span class="p">,</span> <span class="na">clientSecret</span><span class="p">:</span><span class="nx">clientSecret</span><span class="p">});</span>
 <span class="kd">var</span> <span class="nx">authorizationCode</span> <span class="o">=</span> <span class="s1">'440261e26512877b7ebe86e2740da3030d81e88e'</span><span class="p">;</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">authenticateWithAuthCode</span><span class="p">({</span> <span class="na">authCode</span><span class="p">:</span> <span class="nx">authorizationCode</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -7203,7 +7203,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>生产环境端点：https://www.bitgo.com/oauth/token</li>
 </ul>
 
-<h3 id="oauth">OAuth 令牌请求参数</h3>
+<h3 id="oauth-oauth-token-request-parameters">OAuth 令牌请求参数 OAuth Token Request Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7241,7 +7241,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"id_token"</span><span class="p">:</span><span class="s2">"eyJ0eXAiOiJIUzI1NiJ96js46Ngvk-uC10YjYcEa4CqIAe-1hX2hYgXq6my...."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="oauth">OAuth 响应</h3>
+<h3 id="oauth-oauth-response">OAuth 响应 OAuth Response</h3>
 
 <p>使用此 API 我们的服务器将返回一个访问令牌。</p>
 
@@ -7281,7 +7281,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id="openid-json-web">OpenID JSON Web 令牌</h2>
+<h2 id="openid-json-web-openid-json-web-token">OpenID JSON Web 令牌 OpenID JSON Web Token</h2>
 
 <p>若合作伙伴验证请求有 openid 配置文件空间，则返回的 id_token 将会是 base64 编码格式的 JSON Web 令牌（JWT），以回应之前的 OAuth 访问令牌请求。 你应该使用你的客户端密钥验证这个 JSON web 令牌是否是使用 HS256 算法签名的（以确保其来自 BitGo）。</p>
 
@@ -7304,7 +7304,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
     </span><span class="nt">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TESTCLIENTID"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="id">ID 令牌索取</h3>
+<h3 id="id-id-token-claims">ID 令牌索取 ID Token Claims</h3>
 
 <table><thead>
 <tr>
@@ -7370,7 +7370,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">刷新访问令牌</h2>
+<h2 id="refreshing-access-tokens">刷新访问令牌 Refreshing Access Tokens</h2>
 <pre class="highlight javascript"><code><span class="c1">// var refreshToken = 'undefined'; // 若未设置，使用上次验证请求中保存的刷新令牌。</span>
 <span class="kd">var</span> <span class="nx">refreshToken</span> <span class="o">=</span> <span class="s1">'3f8aa90479b4e3f0ea4544ed302e3bfe91968581'</span> <span class="c1">// from above auth request</span>
 <span class="nx">bitgo</span><span class="p">.</span><span class="nx">refreshToken</span><span class="p">({</span> <span class="na">refreshToken</span><span class="p">:</span> <span class="nx">refreshToken</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -7413,7 +7413,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>刷新令牌从创建起有 2 周生命周期，仅在<em>单次使用</em>有效。每次使用后会签发给你一个新的刷新令牌。</p>
 
-<h3 id="oauth">OAuth 令牌请求参数</h3>
+<h3 id="oauth-oauth-token-request-parameters">OAuth 令牌请求参数 OAuth Token Request Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7439,7 +7439,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h1 id=">范例</h1>
+<h1 id="examples">范例 Examples</h1>
 
 <p>BitGo 提供了关于如何使用我们的 SDK 进行多个常用钱包操作的范例。此处详述的为重点。<aside class="info"> 我们的 SDK 和范例默认为连接到 Bitcoin TestNet 的 BitGo 测试环境。 欲知详情请查阅 </p>
 
@@ -7447,11 +7447,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>下文中的范例（还有更多）可在我们 SDK 仓库的 <code class="prettyprint">BitGoJS/examples</code> 目录中找到。 若范例有问题请通过电子邮件或 Git issues 提交。</p>
 
-<h3 id="id">获取钱包 ID</h3>
+<h3 id="id-obtaining-the-wallet-id">获取钱包 ID Obtaining the Wallet ID</h3>
 
 <p>当你在 BitGo 测试网站上创建钱包时，钱包 id 为第一个接收地址。当你从主菜单点击它时的 URI 中也包含 id。</p>
 
-<h2 id=">获取钱包余额</h2>
+<h2 id="get-wallet-balance">获取钱包余额 Get Wallet Balance</h2>
 
 <blockquote>
 <p>代码片段</p>
@@ -7479,11 +7479,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>此简单范例演示了如何进行验证并获取钱包。 比特币余额可在钱包模型中找到。</p>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node getWalletBalance.js &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;walletId&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7519,7 +7519,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">列出钱包的交易</h2>
+<h2 id="list-wallet-transactions">列出钱包的交易 List Wallet Transactions</h2>
 
 <blockquote>
 <p>代码片段</p>
@@ -7563,11 +7563,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>本范例演示了如何获取一个钱包的交易列表。这在校验收到的交易 ID 时很有用。</p>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node listWalletTransactions.js &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;walletId&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7603,7 +7603,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">地址标签</h2>
+<h2 id="address-labels">地址标签 Address Labels</h2>
 
 <p>$ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000</p>
 
@@ -7620,11 +7620,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>本范例演示了如何列出、设置以及删除地址上的标签。</p>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node addressLabels.js &lt;user&gt; &lt;pass&gt; &lt;otp&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7654,7 +7654,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">创建钱包</h2>
+<h2 id="create-wallet">创建钱包 Create Wallet</h2>
 
 <blockquote>
 <p>代码片段</p>
@@ -7703,11 +7703,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>使用与上述钥匙串对应的公钥创建钱包。<aside class="warning"> <strong>非常重要</strong> 的是要让用户打印 / 备份他们的用户和备份密钥。 跳过这步可能会导致资金损失！ </aside> </li>
 </ol>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node createWallet.js &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;label&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7743,7 +7743,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">发送比特币到某个地址</h2>
+<h2 id="send-bitcoins-to-an-address">发送比特币到某个地址 Send Bitcoins to an Address</h2>
 
 <blockquote>
 <p>代码片段</p>
@@ -7784,11 +7784,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 <li>调用 wallet.sendCoins 方法，将会查找用户密钥，进行解密，创建交易并签名然后发送至 BitGo 以供签名。</li>
 </ol>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node sendBitcoin &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;walletId&gt; &lt;walletPassphrase&gt; &lt;destinationAddress&gt; &lt;amountSatoshis&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7842,7 +7842,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id="webhook-oracle">Webhook Oracle 策略</h2>
+<h2 id="webhook-oracle-webhook-oracle-policy">Webhook Oracle 策略 Webhook Oracle Policy</h2>
 
 <blockquote>
 <p>代码片段</p>
@@ -7947,11 +7947,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>当在本地测试时，在创建 URL 前可以先设置一个本地服务器（express 或任何 http 服务器都可以）， 然后运行工具比如 ngrok 以获取公开的 facing url。</p>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p><code class="prettyprint">node addPolicyWebhookAndSendCoins &lt;user&gt; &lt;pass&gt; &lt;otp&gt; &lt;walletId&gt; &lt;url&gt; &lt;walletPassphrase&gt; &lt;destinationAddress&gt; &lt;amountSatoshis&gt;</code></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
@@ -8011,7 +8011,7 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 </tr>
 </tbody></table>
 
-<h2 id=">恢复钱包</h2>
+<h2 id="recover-wallet">恢复钱包 Recover Wallet</h2>
 
 <p>RecoverWallet （恢复钱包）是一个工具可以用于恢复 BitGo 钱包中的资金无需使用 BitGo 服务。 这个工具作为演示用途提供以证明 BitGo 钱包是 100% 可恢复的即使在 BitGo 服务不可用的情形下。 我们没有期望这个工具会被用在生产环境。</p>
 
@@ -8019,11 +8019,11 @@ curl -X POST https://test.bitgo.com/oauth/token <span class="se">\</span>
 
 <p>这个 RecoverWallet 工具是交互形式或命令行形式。</p>
 
-<h3 id=">用法</h3>
+<h3 id="usage">用法 Usage</h3>
 
 <p>node recoverwallet.js &ndash;userKey <userkey from keycard> &ndash;backupKey <backupkey from keycard> &ndash;bitgoKey <bitgo public key from keycard></p>
 
-<h3 id=">参数</h3>
+<h3 id="parameters">参数 Parameters</h3>
 
 <table><thead>
 <tr>
