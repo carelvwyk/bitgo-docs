@@ -845,7 +845,7 @@ bitgo.keychains().createBackup({ provider: 'lastkeysolutions' }, function callba
 
 ### BODY 参数 BODY Parameters
 
-| 参数       | 类型     | 必需  | 说明                  |
+| 参数     | 类型    | 必需 | 说明                 |
 | -------- | ------ | --- | ------------------- |
 | provider | string | YES | 使用的 KRS 或密钥备份提供者的名称 |
 
