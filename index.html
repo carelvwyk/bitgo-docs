@@ -6666,45 +6666,135 @@ Note: The estimation algorithm is only accurate in the production environment (w
 <blockquote>
 <p>Example Market Model response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"latest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"blockchain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"totalbc"</span><span class="p">:</span><span class="w"> </span><span class="mi">14648675</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">125632</span><span class="w">
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">  
+      </span><span class="nt">"latest"</span><span class="p">:{</span><span class="w">  
+        </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"2017-01-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currencies"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483464065150</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ZAR"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">14166.72</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">14233.45</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">14227.79</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">14241.92</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461006210</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">10388.73</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">14265.1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">13742.4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">14265.1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">14126.03</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">14232.02</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"USD"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">1027.58</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">1032.42</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">1032.01</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">1033.03</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461006231</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">753.08</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">1037.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">1003.66</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">1037.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">1024.91</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">1032.6</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"INR"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">70270.03</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">70601.02</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">70572.95</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">70643.03</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461004821</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">51327.43</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">70797.84</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">68392.91</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">70797.84</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">70104.36</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">70630.36</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"GBP"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">838.49</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">842.44</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">842.1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">842.94</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461016786</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">591.95</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">843.7</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">816.89</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">843.7</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">836.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">842.77</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"EUR"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">986.6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">991.25</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">990.86</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">991.84</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461001800</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">703.68</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">996.2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">959.52</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">996.2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">986.51</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">993.91</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"CNY"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">7152.68</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">7186.37</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">7183.51</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">7190.64</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483462551515</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">5183.77</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">7207.67</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">6970.52</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">7207.67</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">7134.19</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">7187.72</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"CAD"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">1381.13</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">1387.63</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">1387.08</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">1388.46</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461014145</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">1002.36</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">1392.95</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">1348.37</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">1392.95</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">1375.99</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">1386.31</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"AUD"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="mf">1421.25</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="mf">68474.29</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1483464063</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last"</span><span class="p">:</span><span class="mf">1427.95</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bid"</span><span class="p">:</span><span class="mf">1427.38</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ask"</span><span class="p">:</span><span class="mf">1428.8</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cacheTime"</span><span class="p">:</span><span class="mi">1483461004781</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="mf">1013.22</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="mf">1443.58</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="mf">1393.18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="mf">1443.58</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="mf">1418.88</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="mf">1429.53</span><span class="w">
+          </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"currencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"AUD"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">337.58</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">337.44</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"bid"</span><span class="p">:</span><span class="w"> </span><span class="mf">337.18</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">337.44</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">337.59</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">335.91</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">345.69</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">322.85</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">345.69</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">333.21</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fri, 25 Sep 2015 06:31:31 -0000"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">516.11</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"USD"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"24h_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">234.34</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">236.92</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"bid"</span><span class="p">:</span><span class="w"> </span><span class="mf">236.59</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">236.39</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"lastHourHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">236.2</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"lastHourLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">234.66</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"monthlyHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">246.46</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"monthlyLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">227.08</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"prevDayHigh"</span><span class="p">:</span><span class="w"> </span><span class="mf">236.3</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"prevDayLow"</span><span class="p">:</span><span class="w"> </span><span class="mf">232.67</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fri, 25 Sep 2015 06:31:31 -0000"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"total_vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">59877.2</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-25T06:31:19.087Z"</span><span class="w">
+        </span><span class="nt">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="response">Response</h3>
 
@@ -6716,6 +6806,18 @@ Note: The estimation algorithm is only accurate in the production environment (w
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>24h_avg</td>
+<td>Average market price over the last 24 hours</td>
+</tr>
+<tr>
+<td>total_vol</td>
+<td>24 hour volume of bitcoins exchanged</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Unix timestamp this data was gathered at</td>
+</tr>
 <tr>
 <td>last</td>
 <td>Latest market price</td>
@@ -6729,36 +6831,32 @@ Note: The estimation algorithm is only accurate in the production environment (w
 <td>Lowest current ask price</td>
 </tr>
 <tr>
-<td>volume</td>
-<td>24 hour volume of bitcoins exchanged</td>
-</tr>
-<tr>
-<td>high</td>
-<td>Highest market price today</td>
-</tr>
-<tr>
-<td>low</td>
-<td>Lowest market price today</td>
-</tr>
-<tr>
-<td>monthlyHigh</td>
-<td>Highest market price this month</td>
+<td>cachetime</td>
+<td>Internal value used by BitGo</td>
 </tr>
 <tr>
 <td>monthlyLow</td>
-<td>Lowest market price this month</td>
+<td>The lowest monthly market price</td>
 </tr>
 <tr>
-<td>marketcap</td>
-<td>Bitcoin market cap</td>
+<td>monthlyHigh</td>
+<td>The highest monthly market price</td>
 </tr>
 <tr>
-<td>updateTime</td>
-<td>Datetime of when this data was updated</td>
+<td>prevDayLow</td>
+<td>The lowest market price of the previous day</td>
 </tr>
 <tr>
-<td>yesterday</td>
-<td>An object containing the prior listed fields, but for yesterday&rsquo;s market data</td>
+<td>prevDayHigh</td>
+<td>The highest market price of the previous day</td>
+</tr>
+<tr>
+<td>lastHourLow</td>
+<td>The lowest market price of the last hour</td>
+</tr>
+<tr>
+<td>lastHourHigh</td>
+<td>The highest market price of the last hour</td>
 </tr>
 </tbody></table>
 
