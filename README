@@ -1,0 +1,21 @@
+# BitGo API Documentation
+
+Please submit a pull request with any documentation changes you may find!
+
+## API Documentation Update Process For BitGo Employees
+
+Any time a new commit is pushed to the remote master branch, Jenkins will run Slate (our API documentation generator) and convert the `index.html.md` file into HTML. This HTML can be viewed at https://bitgo.github.io/bitgo-docs/.
+
+### Steps to Update Documentation at https://bitgo.github.io/bitgo-docs/
+
+1. Review `index.html.md`, making sure the changes are correct
+2. `arc diff` the changes for review, and then land it once it's accepted
+3. Go to https://bitgo.github.io/bitgo-docs/ to make sure HTML is correct
+
+### Steps to Update Documentation at bitgo.com/api
+
+1. Perform the above steps for updating the docs at https://bitgo.github.io/bitgo-docs/
+2. `git checkout` the `gh-pages` branch, which will contain the HTML file served by https://bitgo.github.io/bitgo-docs/
+3. Copy the `index.html` file into the BitGo client repository's static/api/ directory
+4. Run the server locally and go to http://localhost:3000/api and make sure the HTML is correct
+4. Create a diff in the BitGo client repository and land it once it's accepted
