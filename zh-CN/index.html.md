@@ -658,8 +658,7 @@ keychains.list({}, function callback(err, keychains) {
 
 ### QUERY 参数 QUERY Parameters
 
-| 参数    | 类型     | 必需 | 说明                           |
-
+| 参数    | 类型     | 必需 | 说明                           |
 | ----- | ------ | -- | ---------------------------- |
 | skip  | number | NO | 列表的初始索引号。默认值为 0。             |
 | limit | number | NO | 单次调用返回结果的最大数量（默认=100，最大=500） |
