@@ -4607,45 +4607,135 @@ curl -k https://test.bitgo.com/api/v1/market/latest
 > 市场模型响应示例
 
 ```json
-{
-    "latest": {
-        "blockchain": {
-            "totalbc": 14648675,
-            "transactions": 125632
+    {  
+      "latest":{  
+        "_id":"2017-01-03T00:00:00.000Z",
+        "currencies":{  
+          "cacheTime":1483464065150,
+          "ZAR":{  
+            "24h_avg":14166.72,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":14233.45,
+            "bid":14227.79,
+            "ask":14241.92,
+            "cacheTime":1483461006210,
+            "monthlyLow":10388.73,
+            "monthlyHigh":14265.1,
+            "prevDayLow":13742.4,
+            "prevDayHigh":14265.1,
+            "lastHourLow":14126.03,
+            "lastHourHigh":14232.02
+          },
+          "USD":{  
+            "24h_avg":1027.58,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":1032.42,
+            "bid":1032.01,
+            "ask":1033.03,
+            "cacheTime":1483461006231,
+            "monthlyLow":753.08,
+            "monthlyHigh":1037.5,
+            "prevDayLow":1003.66,
+            "prevDayHigh":1037.5,
+            "lastHourLow":1024.91,
+            "lastHourHigh":1032.6
+          },
+          "INR":{  
+            "24h_avg":70270.03,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":70601.02,
+            "bid":70572.95,
+            "ask":70643.03,
+            "cacheTime":1483461004821,
+            "monthlyLow":51327.43,
+            "monthlyHigh":70797.84,
+            "prevDayLow":68392.91,
+            "prevDayHigh":70797.84,
+            "lastHourLow":70104.36,
+            "lastHourHigh":70630.36
+          },
+          "GBP":{  
+            "24h_avg":838.49,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":842.44,
+            "bid":842.1,
+            "ask":842.94,
+            "cacheTime":1483461016786,
+            "monthlyLow":591.95,
+            "monthlyHigh":843.7,
+            "prevDayLow":816.89,
+            "prevDayHigh":843.7,
+            "lastHourLow":836.5,
+            "lastHourHigh":842.77
+          },
+          "EUR":{  
+            "24h_avg":986.6,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":991.25,
+            "bid":990.86,
+            "ask":991.84,
+            "cacheTime":1483461001800,
+            "monthlyLow":703.68,
+            "monthlyHigh":996.2,
+            "prevDayLow":959.52,
+            "prevDayHigh":996.2,
+            "lastHourLow":986.51,
+            "lastHourHigh":993.91
+          },
+          "CNY":{  
+            "24h_avg":7152.68,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":7186.37,
+            "bid":7183.51,
+            "ask":7190.64,
+            "cacheTime":1483462551515,
+            "monthlyLow":5183.77,
+            "monthlyHigh":7207.67,
+            "prevDayLow":6970.52,
+            "prevDayHigh":7207.67,
+            "lastHourLow":7134.19,
+            "lastHourHigh":7187.72
+          },
+          "CAD":{  
+            "24h_avg":1381.13,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":1387.63,
+            "bid":1387.08,
+            "ask":1388.46,
+            "cacheTime":1483461014145,
+            "monthlyLow":1002.36,
+            "monthlyHigh":1392.95,
+            "prevDayLow":1348.37,
+            "prevDayHigh":1392.95,
+            "lastHourLow":1375.99,
+            "lastHourHigh":1386.31
+          },
+          "AUD":{  
+            "24h_avg":1421.25,
+            "total_vol":68474.29,
+            "timestamp":1483464063,
+            "last":1427.95,
+            "bid":1427.38,
+            "ask":1428.8,
+            "cacheTime":1483461004781,
+            "monthlyLow":1013.22,
+            "monthlyHigh":1443.58,
+            "prevDayLow":1393.18,
+            "prevDayHigh":1443.58,
+            "lastHourLow":1418.88,
+            "lastHourHigh":1429.53
+          }
         },
-        "currencies": {
-            "AUD": {
-                "24h_avg": 337.58,
-                "ask": 337.44,
-                "bid": 337.18,
-                "last": 337.44,
-                "lastHourHigh": 337.59,
-                "lastHourLow": 335.91,
-                "monthlyHigh": 345.69,
-                "monthlyLow": 322.85,
-                "prevDayHigh": 345.69,
-                "prevDayLow": 333.21,
-                "timestamp": "Fri, 25 Sep 2015 06:31:31 -0000",
-                "total_vol": 516.11
-            },
-            "USD": {
-                "24h_avg": 234.34,
-                "ask": 236.92,
-                "bid": 236.59,
-                "last": 236.39,
-                "lastHourHigh": 236.2,
-                "lastHourLow": 234.66,
-                "monthlyHigh": 246.46,
-                "monthlyLow": 227.08,
-                "prevDayHigh": 236.3,
-                "prevDayLow": 232.67,
-                "timestamp": "Fri, 25 Sep 2015 06:31:31 -0000",
-                "total_vol": 59877.2
-            }
-        },
-        "updateTime": "2015-09-25T06:31:19.087Z"
+        "__v":0
+      }
     }
-}
 ```
 
 ### 响应 Response
@@ -4654,17 +4744,19 @@ curl -k https://test.bitgo.com/api/v1/market/latest
 
 | 字段          | 说明                |
 | ----------- | ----------------- |
+| 24h_avg | 最近 24 小时内的平均市场价 |
+| total_vol | 24 小时比特币交易量 |
+| timestamp | 数据搜集时间的 Unix 时间戳 |
 | last        | 最新市场价格            |
 | bid         | 当前最高买盘价           |
 | ask         | 当前最高卖盘价           |
-| volume      | 24 小时内交易的比特币数量    |
-| high        | 今日最高市场价           |
-| low         | 今日最低市场价           |
-| monthlyHigh | 本月最高市场价           |
-| monthlyLow  | 本月最低市场价           |
-| marketcap   | 比特币市场额度           |
-| updateTime  | 该数据的更新日期时间        |
-| yesterday   | 包含上列字段的对象，为昨日市场数据 |
+| cachetime | BitGo 内部使用的值    |
+| monthlyLow | 月最低市场价    |
+| monthlyHigh | 月最高市场价    |
+| prevDayLow | 前一日的最低市场价    |
+| prevDayHigh | 前一日的最高市场价    |
+| lastHourLow | 最近一小时的最低市场价  |
+| lastHourHigh | 最近一小时的最高市场价 |
 
 ## 恶意软件地址列表 Malware Address List
 
