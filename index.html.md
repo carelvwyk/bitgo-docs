@@ -1053,8 +1053,9 @@ https://test.bitgo.com/api/v1/wallet
 
 ```javascript
 var wallets = bitgo.wallets();
-wallets.list({}, function callback(err, wallets) {
+wallets.list({}, function callback(err, data) {
 // handle error, do something with wallets
+var wallets = data.wallets;
 for (id in wallets) {
   var wallet = wallets[id].wallet;
   console.log(JSON.stringify(wallet, null, 4));
