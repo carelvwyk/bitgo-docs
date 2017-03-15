@@ -2082,6 +2082,7 @@ Parameter | Type | Required | Description
 chain | number | NO | Optionally restrict to chain 0 or chain 1
 skip | number | NO | Skip this number of results
 limit | number | NO | Limit number of results to this number (default=25, max=500)
+details | boolean | NO | include balance and transaction count info
 
 > Example response
 
