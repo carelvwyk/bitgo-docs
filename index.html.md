@@ -150,7 +150,7 @@ PROD_ENDPOINT='https://www.bitgo.com/api/v1'
 curl "$TEST_ENDPOINT/ping"
 ```
 
-BitGo has 2 separate environments available for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
+BitGo provides two separate environments for development and production. For security reasons, all BitGo API requests are made using TLS over HTTPS.
 
 All responses are of content-type `application/json`
 
@@ -170,16 +170,16 @@ The BitGo production endpoint is live and used by partners and our own web appli
 * Production API: https://www.bitgo.com/api/v1
 
 ### Test Environment
-The BitGo test environment is used by default in our examples and SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts.
-You will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
+The BitGo test environment is used by default in our examples and the SDK. It is entirely separate from BitGo production and there is no overlap in data and accounts.
+To use the test environment, you will need to create accounts at <a href="https://test.bitgo.com/" target="_new">test.bitgo.com</a>.
 
 * BitGo Test Site: https://test.bitgo.com/
 * Test Environment API: https://test.bitgo.com/api/v1
 
-On the test environment only, you can use `0000000` in place of the OTP when authenticating with BitGo (for the purpose of automated tests).
+On the test environment only, you can use <code class="prettyprint">0000000</code> in place of the one-time password (OTP) when authenticating with BitGo (for the purpose of automated tests).
 
-This environment is connected to the Bitcoin TestNet which you can use <a href="http://tbtc.blockr.io/" target="_new">Blockr</a> to navigate.
-To get some test coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or talk to us.
+This environment is connected to the Bitcoin TestNet. A block explorer to navigate the Bitcoin TestNet can be found at <a href="https://testnet.smartbit.com.au/" target="_new">Smartbit</a>.
+To get some TestNet coins, try a <a href="http://tpfaucet.appspot.com/" target="_new">faucet</a> or send us a message with your testnet address requesting TBTC.
 
 ## BitGo Express REST API
 ```shell
@@ -229,19 +229,16 @@ error|The detailed description of the error
 BitGo's authentication is via the "Authorization" header, which allows the caller to specify an access token.
 
 Access tokens are used to maintain a session and are created via the password login (requires OTP) or Oauth login paths.
-Typical access tokens are valid for 1 hour and require an OTP unlock to spend funds.
+Typical access tokens are locked to a single IP-address and valid for 60 minutes. After expiry the user must re-authenticate.
 
-By default, tokens are bound to a single IP address and valid for 60 minutes, after which time the user must re-authenticate.
-
-For certain API calls, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional 2-factor code.
+For API calls that spend funds, a valid session token is not sufficient. To access these API calls, the session must be explicitly unlocked using the Unlock API, using an additional OTP.
 A single unlock call enables the user to do one transaction of any size (still subject to wallet policy), or any number of transactions up to an internal BitGo-managed quota.
 
 <aside class="info">
-APIs which require unlocking will include needsUnlock=true in their response, if the session is currently locked, or
-if the current unlock session has insufficient transaction quota remaining.
+APIs which require unlocking will include `needsUnlock=true` in their response, if the session is currently locked, or if the current unlock session has insufficient transaction quota remaining.
 </aside>
 
-Alternatively, access tokens created for API purposes can be unlocked indefinitely up to a certain amount, but must be bound to certain scopes when created.
+Alternatively, custom access tokens can be created bound to specific scopes for expiration time, permission level, and spending amount.
 
 ## API Access Tokens
 
@@ -263,7 +260,9 @@ bitgo.session({}, function callback(err, session) {
 });
 ```
 
-For the purposes of automation, developers can request long-lived access tokens which do not expire after 1 hour and are unlocked for a certain amount in funds.
+For the purposes of automation, developers can request long-lived access tokens with a custom expiration time that are already unlocked for a specified spending limit.
+
+### Manually via Settings
 
 1. Access the BitGo dashboard and head into the "Settings" page.
 2. Click on the "Developer" tab.
@@ -271,14 +270,18 @@ For the purposes of automation, developers can request long-lived access tokens 
 
 The token will come unlocked by default with your specified spending limit. Do not attempt to unlock the token again via API as this will reset the unlock.
 
-### Token Parameters
-Parameter | Description
--------- | -----------
-Label | A label used to identify the token so that you can choose to revoke it later.
-Duration | Time in seconds which the token will be valid for.
-Spending Limit | The token will come unlocked for a spending limit up this amount in BTC. Do not attempt to unlock the token via API as this will reset the limit.
-IP Addresses | Lock down the token such that BitGo will only accept it from certain IP addresses.
-Permissions | Auth Scope that the token will be created with
+### Access tokens via API
+Alternatively, custom access tokens can be requested via the API command `addAccessToken`. This call requires an OTP, a label, and an authorization scope. It may specify an expiration time, an IP whitelist, and a spending limit.
+
+### TOKEN Parameters
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+label | string | YES | The label identifying the token, e.g. for subsequent revocation.
+otp | string | YES | The 2-factor-authentication otp code.
+duration | number | NO | The duration in seconds for which the token will be valid. If this parameter is not set, the duration defaults to ten years.
+txValueLimit | number | NO | The total spending allowance permitted by this token given in satoshis. Do not attempt to unlock the token via API as this will reset the limit.
+ipRestrict | array of strings | NO | A whitelist of IP addresses that may use the token.
+scope | array of strings | YES | The list of privileges authorized by this token.
 
 ## Current User Profile
 
