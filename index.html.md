@@ -605,16 +605,13 @@ Please contact BitGo for a partner ID and more information.
 
 # Keychains
 
-All BitGo wallets are created using keychains. A keychain is a standard
-<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a>
-extended HD key.  Unlike traditional bitcoin keys, which represent a single
-<a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pair,
-a keychain can represent many key pairs, all derived from a common private key.
-This allows the user to retain a single private key, but generate an infinite
-number of public keys.  BitGo uses these extended keys to keep your bitcoin more private and secure.
+All BitGo wallets are created using keychains.
+Unlike traditional bitcoin keys that use independent single <a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" target="_new">ECDSA</a> key pairs, a keychain derives any number of key pairs from a single master private key.
+This allows the user to retain a single private key, but generate an infinite number of public keys.
+BitGo uses standard <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_new">BIP32</a> extended HD keys to keep your bitcoin more private and secure.
 
-To make wallet creation simple, BitGo maintains a list of Keychains
-for each user.  Each keychain may be used in any number of BitGo Wallets.
+To make wallet creation simple, BitGo maintains a list of keychains
+for each user. By default, a new keychain is created for each wallet. However, the user may chose to use one keychain for multiple BitGo Wallets in order to be able to rely on a single master private key. 
 
 There are two types of keychains:
 
@@ -733,18 +730,17 @@ console.dir(keychain);
 
 Local client-side function to create a new keychain.
 
-Optionally, a single parameter, 'seed', may be provided which uses a deterministic seed to create your keychain.  The seed should
-be an array of numbers at least 32 elements long.  Calling this function with the same seed will generate the same BIP32 keychain.
+Optionally, a seed may be provided as the only parameter. If provided the seed is used to deterministically create your keychain. The seed should be an array of numbers with at least 32 elements.  Calling this function with the same seed will generate the same BIP32 keychain.
 
 <aside class="warning">
 Creating your keychains is a critical step for safely securing your Bitcoin. When generating new keychains, this API uses a random
 number generator that adheres to industry standards. If you provide your own seed, you must take extreme caution when creating it.
 </aside>
 
-Returns an object containing the xprv and xpub for the new chain. The created keychain is not known to the BitGo service.
+Returns an object containing the `xprv` and `xpub` for the new chain. The created keychain is not known to the BitGo service.
 To use it with the BitGo service, use the Keychains.Add API.
 
-For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original xprv immediately to prevent theft.
+For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original `xprv` immediately to prevent theft.
 
 ## Add Keychain
 
