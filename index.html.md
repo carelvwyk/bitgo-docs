@@ -4648,7 +4648,6 @@ curl -k https://www.bitgo.com/api/v1/tx/fee?numBlocks=6
 ```
 
 Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions.
-Note: The estimation algorithm is only accurate in the production environment (www.bitgo.com) and for a minimum of 2 blocks ahead.
 
 ### HTTP Request
 
@@ -4659,31 +4658,40 @@ Note: The estimation algorithm is only accurate in the production environment (w
 ```json
 { "feePerKb": 21949,
     "numBlocks": 6,
-    "confidence": 95,
+    "confidence": 80,
     "multiplier": 1,
     "feeByBlockTarget": {
         "1": 62246,
         "2": 47730,
         "3": 35130,
         "4": 32837,
-        "5": 32837,
         "6": 21949,
         "7": 20017,
         "8": 18644,
         "9": 16545,
-        "10": 16545
     }
 }
 ```
 
+### Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+numBlocks | number | NO | The target number of blocks for the transaction to be confirmed. The accepted range is 1 - 1000 and the default value is 2.
+maxFee | number | NO | The maximum fee in satoshi per kilobyte that will be returned by the fee estimator.
+cpfpAware | boolean | NO | Indicates that the estimation should account for child-pays-for-parent, default is false. 
+txSize | number | NO | Size of the transaction in bytes, only used in combination with `cpfpAware:true`.
+inputs | array of  strings | NO | List of txIDs identifying unconfirmed transactions that the desired CPFP transaction will spend outputs from, is only used in combination with `cpfpAware:true`.
+ 
 ### Response
 
 Field | Description
 ----- | -----------
-confidence | confidence of the estimation as used by BitGo. do not use estimation if this value is less than 85.
-feePerKb | fee (in satoshis) per kilobyte to use
-multiplier | multiplier amount used by BitGo to compute the feePerKb. informational only - do not use.
-numBlocks | the target number of blocks requested for the estimate
+confidence | Confidence of the estimation as used by BitGo. Do not use estimation if this value is less than 85.
+feePerKb | The estimated fee rate in satoshis per kilobyte for the requested target number of blocks.
+multiplier | Multiplier amount used by BitGo to compute the feePerKb. informational only - do not use.
+numBlocks | The target number of blocks requested for the estimate
+feeByBlockTarget | List of fee rates for block targets between 1 and 1000. The response only includes the blocks for which the fee rate changes compared to the preceding block.
 
 ## Market Price Data
 
