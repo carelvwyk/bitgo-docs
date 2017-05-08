@@ -221,8 +221,8 @@ form:
 
 Parameter | Value
 --------- | -----
-status|The HTTP error status returned
-error|The detailed description of the error
+status | The HTTP error status returned
+error | The detailed description of the error
 
 # User Authentication
 
@@ -276,12 +276,12 @@ Alternatively, custom access tokens can be requested via the API command `addAcc
 ### TOKEN Parameters
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-label | string | YES | The label identifying the token, e.g. for subsequent revocation.
-otp | string | YES | The 2-factor-authentication otp code.
-duration | number | NO | The duration in seconds for which the token will be valid. If this parameter is not set, the duration defaults to ten years.
-txValueLimit | number | NO | The total spending allowance permitted by this token given in satoshis. Do not attempt to unlock the token via API as this will reset the limit.
-ipRestrict | array of strings | NO | A whitelist of IP addresses that may use the token.
-scope | array of strings | YES | The list of privileges authorized by this token.
+label | string | Yes | The label identifying the token, e.g. for subsequent revocation.
+otp | string | Yes | The 2-factor-authentication otp code.
+duration | number | No | The duration in seconds for which the token will be valid. If this parameter is not set, the duration defaults to ten years.
+txValueLimit | number | No | The total spending allowance permitted by this token given in satoshis. Do not attempt to unlock the token via API as this will reset the limit.
+ipRestrict | array of strings | No | A whitelist of IP addresses that may use the token.
+scope | array of strings | Yes | The list of privileges authorized by this token.
 
 ## Current User Profile
 
@@ -367,10 +367,10 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function ca
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-email|string|YES|The email address of the user
-password|string|YES|The password of the user
-otp|string|YES|The 2-factor-authentication token (Authy token).
-extensible | boolean | NO | True if the session is supposed to be extensible beyond a one-hour duration.
+email | string | Yes | The email address of the user
+password | string | Yes | The password of the user
+otp | string | Yes | The 2-factor-authentication token (Authy token).
+extensible | boolean | No | True if the session is supposed to be extensible beyond a one-hour duration.
 
 > Example Response
 
@@ -485,13 +485,17 @@ bitgo.session({}, function callback(err, session) {
 
 `GET /api/v1/user/session`
 
+### QUERY Parameters
+
+None
+
 ### Response
 
 Field | Description
 ----- | -----------
 client | OAuth client ID where the user token was obtained
 user | BitGo user ID
-expires | Timestamp which the login session is good until
+expires | Timestamp until which the login session will last 
 scope | List of allowed privileges for this session token
 origin | Origin hostname where token was created, if the session was initiated in the browser
 unlock | Available if session is unlocked. Shows number of transactions and expiry time of the unlock
@@ -523,7 +527,7 @@ bitgo.sendOTP({forceSMS: true}, function callback(err) {
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-forceSMS | boolean | NO | Use SMS to send the OTP to the user, even if they have Authy set up
+forceSMS | boolean | No | Use SMS to send the OTP to the user, even if they have Authy set up
 
 ### Response
 
@@ -557,8 +561,8 @@ bitgo.unlock({otp: otp}, function callback(err) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-otp | string | YES | An Authy OTP code for the account
-duration | number | NO | Desired duration of the unlock in seconds (default=600, max=3600)
+otp | string | Yes | An Authy OTP code for the account
+duration | number | No | Desired duration of the unlock in seconds (default=600, max=3600)
 
 ### Response
 
@@ -690,8 +694,8 @@ This API only provides the public keys and never the private data for a keychain
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=100, max=500)
+skip | number | No | The starting index number to list from.  Default is 0.
+limit | number | No | Max number of results to return in a single call (default=100, max=500)
 
 ### Response
 
@@ -784,8 +788,8 @@ If you provide the encrypted xprv, the security of this keychain is only as good
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-xpub | string | YES | The BIP32 xpub for this keychain
-encryptedXprv | string | NO | The encrypted, BIP32 xprv for this keychain
+xpub | string | Yes | The BIP32 xpub for this keychain
+encryptedXprv | string | No | The encrypted, BIP32 xprv for this keychain
 
 
 > Example Keychain Model response
@@ -887,7 +891,7 @@ This keychain will be stored on the third party service and usable for recovery 
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-provider | string | YES | name of the KRS or backup key provider to use
+provider | string | Yes | name of the KRS or backup key provider to use
 
 
 > Example Keychain Model response
@@ -931,7 +935,7 @@ Lookup a keychain by xpub
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-xpub | string | YES | The BIP32 xpub to lookup
+xpub | string | Yes | The BIP32 xpub to lookup
 
 
 > Example Keychain Model response
@@ -1002,7 +1006,7 @@ to the new value, your ability to sign with this keychain will be lost forever.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-encryptedXprv | string | NO | A new encrypted, BIP32 xprv for this keychain
+encryptedXprv | string | No | A new encrypted, BIP32 xprv for this keychain
 
 
 > Example Keychain Model response
@@ -1113,8 +1117,8 @@ Get the list of wallets for the user
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
+skip | number | No | The starting index number to list from.  Default is 0.
+limit | number | No | Max number of results to return in a single call (default=25, max=250)
 
 ### Response
 
@@ -1172,7 +1176,7 @@ new wallet must be registered with BitGo prior to using this API.
 
 BitGo currently only supports 2-of-3 (e.g. m=2 and n=3) wallets. The third keychain, and
 **only** the third keychain, _must_ be a BitGo key.
-The first keychain is by convention the user key, with it's **encrypted** xpriv is stored on BitGo.
+The first keychain is by convention the user key, with it's **encrypted** xpriv stored on BitGo.
 
 BitGo wallets currently are hard-coded with their root at **m/0/0** across all
 3 keychains (however, older legacy wallets may use different key paths).
@@ -1192,12 +1196,12 @@ is also the ID used to refer to a wallet in BitGo's system. The first change add
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-label | string | YES | A label for this wallet
-m | number | YES | The number of signatures required to redeem (must be 2)
-n | number | YES | The number of keys in the wallet (must be 3)
-keychains | array | YES | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key
-enterprise | string | NO | Enterprise ID to create this wallet under.
-disableTransactionNotifications | boolean | NO | Set to true to prevent wallet transaction notifications.
+label | string | Yes | A label for this wallet
+m | number | Yes | The number of signatures required to redeem (must be 2)
+n | number | Yes | The number of keys in the wallet (must be 3)
+keychains | array | Yes | An array of **n** keychain xpubs to use with this wallet; last must be a BitGo key
+enterprise | string | No | Enterprise ID to create this wallet under.
+disableTransactionNotifications | boolean | No | Set to true to prevent wallet transaction notifications.
 
 > Example response
 
@@ -1468,12 +1472,12 @@ By default, this method will create backup keychains locally. To create a wallet
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-passphrase | string | YES | The passphrase that will be used to encrypt the user keys of the wallet before sending it to BitGo
-label | string | YES | A label for this wallet
-backupXpub | string | NO | Public key of a backup keychain, created on another device, such that no 2 private keys are ever on the same machine. See also backupXpubProvider as an option to have your key hosted remotely.
-backupXpubProvider | string | NO | Create a backup xPub on your KRS of choice, e.g. "keyternal". This will make the wallet BitGo Instant compatible.
-enterprise | string | NO | Enterprise ID to create this wallet under.
-disableTransactionNotifications | boolean | NO | Set to true to prevent wallet transaction notifications..
+passphrase | string | Yes | The passphrase that will be used to encrypt the user keys of the wallet before sending it to BitGo
+label | string | Yes | A label for this wallet
+backupXpub | string | No | Public key of a backup keychain, created on another device, such that no 2 private keys are ever on the same machine. See also backupXpubProvider as an option to have your key hosted remotely.
+backupXpubProvider | string | No | Create a backup xPub on your KRS of choice, e.g. "keyternal". This will make the wallet BitGo Instant compatible.
+enterprise | string | No | Enterprise ID to create this wallet under.
+disableTransactionNotifications | boolean | No | Set to true to prevent wallet transaction notifications..
 
 > Example response
 
@@ -1549,8 +1553,8 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletid | bitcoin address (string) | YES | The ID of the wallet
-chain  | number | YES | 0 or 1
+walletid | bitcoin address (string) | Yes | The ID of the wallet
+chain  | number | Yes | 0 or 1
 
 > Example response
 
@@ -1643,17 +1647,17 @@ It will send the partially signed transaction to BitGo servers for processing, w
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-address | string | YES | Destination bitcoin address
-amount | number | YES | Amount to be sent (in Satoshis), e.g. 0.1 * 1e8 for a tenth of a Bitcoin
-walletPassphrase | string | YES | Passphrase for the wallet, used to decrypt the encrypted user key (on client)
-fee | number | NO | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
-message | String | NO | User-provided string (this does not hit the blockchain)
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. Set to true to require a minConfirms (explain in the line above) number of confirmations for unspents originating from the wallet's change addresses. If set to false then the minConfirms will only be enforced for unspents originating from wallets other than this user's wallet (i.e. non-change addresses).
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+address | string | Yes | Destination bitcoin address
+amount | number | Yes | Amount to be sent (in Satoshis), e.g. 0.1 * 1e8 for a tenth of a Bitcoin
+walletPassphrase | string | Yes | Passphrase for the wallet, used to decrypt the encrypted user key (on client)
+fee | number | No | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
+message | string | No | User-provided string (this does not hit the blockchain)
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
+enforceMinConfirms ForChange | boolean | No | Defaults to false. Set to true to require a minConfirms (explain in the line above) number of confirmations for unspents originating from the wallet's change addresses. If set to false then the minConfirms will only be enforced for unspents originating from wallets other than this user's wallet (i.e. non-change addresses).
+sequenceId | string | No | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
+instant | boolean | No | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
+otp | string | No | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
 
 > Example Response
 
@@ -1741,14 +1745,14 @@ This operation requires the session to be unlocked using the Unlock API.
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-recipients | string | YES | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
-message | string | NO | Notes about the transaction
-fee | number | NO | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+recipients | string | Yes | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
+message | string | No | Notes about the transaction
+fee | number | No | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
+enforceMinConfirms ForChange | boolean | No | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
+sequenceId | string | No | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
+otp | string | No | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
 
 > Example Response
 
@@ -1911,15 +1915,15 @@ Get transactions for a given wallet, ordered by reverse block height (unconfirme
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
-compact | boolean | NO | Omit inputs and outputs in the transaction results
+skip | number | No | The starting index number to list from.  Default is 0.
+limit | number | No | Max number of results to return in a single call (default=25, max=250)
+compact | boolean | No | Omit inputs and outputs in the transaction results
 
 ### Response
 
@@ -2015,8 +2019,8 @@ Get information about a transaction on a wallet.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-txId | transaction hash (string) | YES | The hash of the transaction to fetch
+walletId | bitcoin address (string) | Yes | The ID of the wallet
+txId | transaction hash (string) | Yes | The hash of the transaction to fetch
 
 ### Response
 
@@ -2024,10 +2028,10 @@ Returns a Transaction object
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | String | Hash of the transaction
-hex | String | Raw hex of the transaction
+id | string | Hash of the transaction
+hex | string | Raw hex of the transaction
 date | DateTime | Date this transaction was first seen
-blockhash | String | Hash of the block, if this transaction has been confirmed
+blockhash | string | Hash of the block, if this transaction has been confirmed
 height | Number | Height of the block this transaction was seen in
 confirmations | Number | Number of blocks this transaction has been part of the blockchain
 entries | Array | Consolidated entries of the transaction, taking into account net inputs/outputs
@@ -2035,9 +2039,9 @@ outputs | Array | Information about outputs of the transaction, including the wa
 fee | Number | Amount in Satoshis paid to the miners for this transaction
 pending | Boolean | Set to true if the transaction has not yet been confirmed on the blockchain
 instant | Boolean | Set to true if this transaction was sent using BitGo instant
-instantId | String | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo
-sequenceId | String | The sequenceId (unique custom data provided when the transaction was sent)
-comment | String | The comment as set on the transaction
+instantId | string | The identifier for the instant transaction to be used to reference / obtain the guarantee from BitGo
+sequenceId | string | The sequenceId (unique custom data provided when the transaction was sent)
+comment | string | The comment as set on the transaction
 
 ### Errors
 Response | Description
@@ -2078,16 +2082,16 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-chain | number | NO | Optionally restrict to chain 0 or chain 1
-skip | number | NO | Skip this number of results
-limit | number | NO | Limit number of results to this number (default=25, max=500)
-details | boolean | NO | include balance and transaction count info
+chain | number | No | Optionally restrict to chain 0 or chain 1
+skip | number | No | Skip this number of results
+limit | number | No | Limit number of results to this number (default=25, max=500)
+details | boolean | No | include balance and transaction count info
 
 > Example response
 
@@ -2171,8 +2175,8 @@ bitgo.wallets().get({ "id": id }, function(err, wallet) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-address | bitcoin address (string) | YES | The address on the wallet to get information of
+walletId | bitcoin address (string) | Yes | The ID of the wallet
+address | bitcoin address (string) | Yes | The address on the wallet to get information of
 
 > Example response
 
@@ -2284,8 +2288,8 @@ A pending transaction that has not yet been co-signed by BitGo will still have a
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
-sequenceId | custom user-provided string | YES | The unique id previously sent with an outgoing transaction.
+walletId | bitcoin address (string) | Yes | The ID of the wallet
+sequenceId | custom user-provided string | Yes | The unique id previously sent with an outgoing transaction.
 
 ### Response
 
@@ -2337,15 +2341,15 @@ that transaction.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-target | number | NO | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis).
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=100, max=250)
+target | number | No | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis).
+skip | number | No | The starting index number to list from.  Default is 0.
+limit | number | No | Max number of results to return in a single call (default=100, max=250)
 
 > Example response
 
@@ -2450,11 +2454,11 @@ transaction size limits and signing speed. Each iteration requires its own trans
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-target | number | NO | desired number of unspents after running the function
-maxInputCountPerConsolidation | number | NO | maximum number of unspents to be used for each iteration. Defaults to 85.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations
-walletPassphrase | string | NO | Passphrase of the wallet
-progressCallback | function | NO | Closure to be called after each iteration. It can be used for monitoring the progress.
+target | number | No | desired number of unspents after running the function
+maxInputCountPerConsolidation | number | No | maximum number of unspents to be used for each iteration. Defaults to 85.
+minConfirms | number | No | only choose unspent inputs with a certain number of confirmations
+walletPassphrase | string | No | Passphrase of the wallet
+progressCallback | function | No | Closure to be called after each iteration. It can be used for monitoring the progress.
 
 ## Fan Out Unspents
 
@@ -2493,9 +2497,9 @@ Take all the wallet's unspents (that match the selection criteria, such as minim
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-target | number | YES | desired number of unspents after running the function
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations
-walletPassphrase | string | NO | Passphrase of the wallet
+target | number | Yes | desired number of unspents after running the function
+minConfirms | number | No | only choose unspent inputs with a certain number of confirmations
+walletPassphrase | string | No | Passphrase of the wallet
 
 ## Create Transaction
 
@@ -2571,14 +2575,14 @@ This is an advanced method that allows you to manually specify the miner fee (co
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-recipients | string | YES | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
-fee | number | NO | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.
-feeRate | number | NO | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.
-feeTxConfirmTarget | number | NO | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
-minConfirms | number | NO | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
-enforceMinConfirms ForChange | boolean | NO | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
-minUnspentSize | number | NO | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
+recipients | string | Yes | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
+fee | number | No | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.
+feeRate | number | No | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
+enforceMinConfirms ForChange | boolean | No | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
+minUnspentSize | number | No | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
+instant | boolean | No | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
 
 ## Sign Transaction
 
@@ -2661,9 +2665,9 @@ This is client-side functionality only in the SDK.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-transactionHex | string | YES | The unsigned transaction, in hex string form
-unspents | array | YES | Array of unspents objects, which contain the chainpath and redeemScript.
-keychain | keychain object | YES | The decrypted keychain (object), with available xprv property.
+transactionHex | string | Yes | The unsigned transaction, in hex string form
+unspents | array | Yes | Array of unspents objects, which contain the chainpath and redeemScript.
+keychain | keychain object | Yes | The decrypted keychain (object), with available xprv property.
 
 ## Send Transaction
 
@@ -2765,11 +2769,11 @@ to an internally-set BitGo quota (currently set at 50 BTC).
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-tx | Transaction Object | YES | The transaction, in hex string form
-sequenceId | String | NO | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
-message | String | NO | User-provided string (this does not hit the blockchain)
-instant | boolean | NO | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
-otp | String | NO | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
+tx | Transaction Object | Yes | The transaction, in hex string form
+sequenceId | string | No | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
+message | string | No | User-provided string (this does not hit the blockchain)
+instant | boolean | No | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
+otp | string | No | A 7 digit code used to bypass a policy with the "getOTP" action type. See <a href="#wallet-policy">Wallet Policy</a> for more details
 
 ### Response
 
@@ -2847,12 +2851,12 @@ Parameter | Type | Description
 --------- | ---- | -----------
 amount | Number | Amount in Satoshis of the instant guarantee
 createTime | DateTime | The time at which the transaction was created
-guarantee | String | The message by BitGo to guarantee the instant transaction
-id | String | The instant guarantee ID on BitGo
-transactionId | String | The hash of the guaranteed transaction
-normalizedHash | String | The hash of the guaranteed transaction without signatures
-signature | String | Cryptographically signed guarantee, to provide an audit record in cases of a dispute
-state | String | The state of a transaction as monitored by BitGo (you do not need to take any action on this)
+guarantee | string | The message by BitGo to guarantee the instant transaction
+id | string | The instant guarantee ID on BitGo
+transactionId | string | The hash of the guaranteed transaction
+normalizedHash | string | The hash of the guaranteed transaction without signatures
+signature | string | Cryptographically signed guarantee, to provide an audit record in cases of a dispute
+state | string | The state of a transaction as monitored by BitGo (you do not need to take any action on this)
 
 ### Verifying BitGo's Guarantee
 
@@ -2902,7 +2906,7 @@ bitgo.getWalletAddress({ address: address }, function(err, result) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The address to look up information on
+address | bitcoin address (string) | Yes | The address to look up information on
 
 > Example response
 
@@ -2980,7 +2984,7 @@ for a default of 1 hour.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-duration | number | NO | length of time in seconds to freeze spend activity. Defaults to 1 hour.
+duration | number | No | length of time in seconds to freeze spend activity. Defaults to 1 hour.
 
 ### Response
 
@@ -3072,11 +3076,11 @@ The BitGo SDK does the following client-side to create a new wallet share:
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-email | string | YES | Email of the user to share the wallet with
-permissions | string | YES | Comma-separated list of permissions, e.g. view,spend,admin
-walletPassphrase | string | NO | Passphrase on the wallet being shared
-skipKeychain | boolean | NO | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band
-disableEmail | boolean | NO | Set to true to prevent a notification email sent to the user added
+email | string | Yes | Email of the user to share the wallet with
+permissions | string | Yes | Comma-separated list of permissions, e.g. view,spend,admin
+walletPassphrase | string | No | Passphrase on the wallet being shared
+skipKeychain | boolean | No | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band
+disableEmail | boolean | No | Set to true to prevent a notification email sent to the user added
 
 ### Response
 
@@ -3200,10 +3204,10 @@ Client-side operation to accept a wallet share. Performs the following steps:
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletShareId | bitcoin address (string) | YES | The incoming wallet share ID to accept
-newWalletPassphrase | string | NO | the passphrase to set on the wallet, for use during future spends
-userPassword | string | NO | the user's password to decrypt the shared private key
-overrideEncryptedXprv | string | NO | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band
+walletShareId | bitcoin address (string) | Yes | The incoming wallet share ID to accept
+newWalletPassphrase | string | No | the passphrase to set on the wallet, for use during future spends
+userPassword | string | No | the user's password to decrypt the shared private key
+overrideEncryptedXprv | string | No | Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band
 
 ### Response
 
@@ -3290,8 +3294,8 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 
 Parameter | Required | Description
 --------- | -------- | -----------
-wallet | YES | The ID of the wallet
-userId | YES | The user id of the user to remove (can be found on the wallet object)
+wallet | Yes | The ID of the wallet
+userId | Yes | The user id of the user to remove (can be found on the wallet object)
 
 ### Response
 
@@ -3402,7 +3406,7 @@ Gets the policy rules in operation on a wallet.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 ### Response
 
@@ -3465,7 +3469,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 ### Response
 
@@ -3589,8 +3593,8 @@ Field | Description | Possible Values
 ----- | ----------- | ---------------
 amount | The maximum allowed value of all transactions able to be sent during the time window | Number of satoshis
 timeWindow | The interval of time in which to sum transaction spend amounts and compare to the limit | Number of seconds
-groupTags | List of tags specific operations, ":tag" is appropriate is most circumstances | String Array
-excludeTags | Tags which define the group of wallet ids which, if spent to, will exclude that spend from the limit calculation. Also supports :tag to include current tag context | String Array
+groupTags | List of tags specific operations, ":tag" is appropriate is most circumstances | string Array
+excludeTags | Tags which define the group of wallet ids which, if spent to, will exclude that spend from the limit calculation. Also supports :tag to include current tag context | string Array
 
 ### Policy Type - transactionLimit
 
@@ -3730,7 +3734,7 @@ This operation requires the session to be unlocked using the Unlock API.
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-id | string | YES | the id of the policy rule to remove
+id | string | Yes | the id of the policy rule to remove
 
 ### Response
 
@@ -3800,8 +3804,8 @@ bitgo.pendingapprovals().list({
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | address (string) | NO | The base address of the wallet 
-enterprise | string | NO | The public ID of the enterprise
+walletId | address (string) | No | The base address of the wallet 
+enterprise | string | No | The public ID of the enterprise
 
 ### Response
 
@@ -3879,8 +3883,8 @@ bitgo.pendingapprovals().list({
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-state | string | YES | the new state of the pending approval: 'approved', 'rejected'
-otp | string | YES | the 2-factor-authentication otp code
+state | string | Yes | the new state of the pending approval: 'approved', 'rejected'
+otp | string | Yes | the 2-factor-authentication otp code
 
 ### Response
 
@@ -4074,14 +4078,14 @@ because it reserved for the wallet's label.
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
-address | bitcoin address (string) | YES | the bitcoin address being labeled
+walletId | bitcoin address (string) | Yes | id of the wallet (also the first receiving address)
+address | bitcoin address (string) | Yes | the bitcoin address being labeled
 
 ### PUT Parameters
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-label | string | YES | the address label
+label | string | Yes | the address label
 
 ### Response
 
@@ -4139,8 +4143,8 @@ Delete a label from a specific address and wallet.
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
-address | bitcoin address (string) | YES | the bitcoin address being labeled
+walletId | bitcoin address (string) | Yes | id of the wallet (also the first receiving address)
+address | bitcoin address (string) | Yes | the bitcoin address being labeled
 
 ### Response
 
@@ -4175,10 +4179,10 @@ The tag must have a name and exactly one of either a user, wallet, or enterprise
 
 Parameter | Type | Required | Description | Possible Values
 --------- | ---- | -------- | ----------- | ---------------
-name | string | YES |  The name of the tag. |
-user | id | NO |  The user id of the user who owns the tag, which can only be the id of the user adding the tag. |
-wallet | id | NO |  The id, not bitcoin address, of the wallet to own the tag. |
-enterprise | id | NO |  The id of the enterprise to own the tag. |
+name | string | Yes |  The name of the tag. |
+user | id | No |  The user id of the user who owns the tag, which can only be the id of the user adding the tag. |
+wallet | id | No |  The id, not bitcoin address, of the wallet to own the tag. |
+enterprise | id | No |  The id of the enterprise to own the tag. |
 
 ### Response
 
@@ -4210,7 +4214,7 @@ are required.
 
 Parameter | Type | Required | Description | Possible Values
 --------- | ---- | -------- | ----------- | ---------------
-tag | id | YES |  The id of the tag. |
+tag | id | Yes |  The id of the tag. |
 
 ### Response
 
@@ -4385,9 +4389,9 @@ There are 2 types of wallet webhooks available:
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction or pendingapproval
-url | string | YES | valid http/https url for callback requests
-numConfirmations | integer | NO | number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed.
+type | string | Yes | type of Webhook, e.g. transaction or pendingapproval
+url | string | Yes | valid http/https url for callback requests
+numConfirmations | integer | No | number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed.
 
 ### Response
 
@@ -4437,8 +4441,8 @@ Removing a Webhook will cause new events of the specified type to no longer trig
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction
-url | string | YES | valid http/https url for callback requests to be made at
+type | string | Yes | type of Webhook, e.g. transaction
+url | string | Yes | valid http/https url for callback requests to be made at
 
 ### Response
 
@@ -4493,7 +4497,7 @@ An array of Webhook objects
 Field | Description
 ----- | -----------
 type | type of Webhook, e.g. block
-coin | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
+coin | string | No | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
 url | http/https url for callback requests
 
 ## Add User Webhooks
@@ -4535,9 +4539,9 @@ Adds a webhook that will result in a HTTP callback at the specified URL from Bit
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. block
-coin | string | NO | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
-url | string | YES | valid http/https url for callback requests
+type | string | Yes | type of Webhook, e.g. block
+coin | string | No | the network token e.g. "bitcoin" or "eth" (defaults to bitcoin)
+url | string | Yes | valid http/https url for callback requests
 
 ### Response
 
@@ -4583,8 +4587,8 @@ Removing a Webhook will cause new events of the specified type to no longer trig
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-type | string | YES | type of Webhook, e.g. transaction
-url | string | YES | valid http/https url for callback requests to be made at
+type | string | Yes | type of Webhook, e.g. transaction
+url | string | Yes | valid http/https url for callback requests to be made at
 
 ### Response
 
@@ -4683,11 +4687,11 @@ Returns the recommended fee rate per kilobyte to confirm a transaction within a 
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-numBlocks | number | NO | The target number of blocks for the transaction to be confirmed. The accepted range is 1 - 1000 and the default value is 2.
-maxFee | number | NO | The maximum fee in satoshi per kilobyte that will be returned by the fee estimator.
-cpfpAware | boolean | NO | Indicates that the estimation should account for child-pays-for-parent, default is false. 
-txSize | number | NO | Size of the transaction in bytes, only used in combination with `cpfpAware:true`.
-inputs | array of  strings | NO | List of txIDs identifying unconfirmed transactions that the desired CPFP transaction will spend outputs from, is only used in combination with `cpfpAware:true`.
+numBlocks | number | No | The target number of blocks for the transaction to be confirmed. The accepted range is 1 - 1000 and the default value is 2.
+maxFee | number | No | The maximum fee in satoshi per kilobyte that will be returned by the fee estimator.
+cpfpAware | boolean | No | Indicates that the estimation should account for child-pays-for-parent, default is false. 
+txSize | number | No | Size of the transaction in bytes, only used in combination with `cpfpAware:true`.
+inputs | array of  strings | No | List of txIDs identifying unconfirmed transactions that the desired CPFP transaction will spend outputs from, is only used in combination with `cpfpAware:true`.
  
 ### Response
 
@@ -4980,7 +4984,7 @@ bitgo.blockchain().getAddress({ address: address }, function(err, response) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+address | bitcoin address (string) | Yes | The bitcoin address
 
 
 > Example response
@@ -5035,14 +5039,14 @@ bitgo.blockchain().getAddressTransactions({address: address}, function(err, resp
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+address | bitcoin address (string) | Yes | The bitcoin address
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-skip | number | NO | The starting index number to list from.  Default is 0.
-limit | number | NO | Max number of results to return in a single call (default=25, max=250)
+skip | number | No | The starting index number to list from.  Default is 0.
+limit | number | No | Max number of results to return in a single call (default=25, max=250)
 
 > Example response
 
@@ -5131,7 +5135,7 @@ bitgo.blockchain().getAddressUnspents({address: address}, function(err, response
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-address | bitcoin address (string) | YES | The bitcoin address
+address | bitcoin address (string) | Yes | The bitcoin address
 
 > Example response
 
@@ -5209,7 +5213,7 @@ Gets details for a transaction hash
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-txid | string | YES | The transaction ID (hash)
+txid | string | Yes | The transaction ID (hash)
 
 > Example response
 
@@ -5293,8 +5297,8 @@ Gets a Bitcoin block and the transactions within it. You can use 'latest' to get
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-id | variable | YES | The block hash (string), height (number) or 'latest' for the latest block
-extended | boolean | NO | Set to true to return details on each transaction within the block
+id | variable | Yes | The block hash (string), height (number) or 'latest' for the latest block
+extended | boolean | No | Set to true to return details on each transaction within the block
 
 > Example response
 
@@ -5438,13 +5442,13 @@ https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e
 
 Parameter | Required | Description
 -------- | -------- | -----------
-client_id | YES | Name of the OAuth application seeking access to 3rd party accounts
-redirect_uri | YES | Redirect Uri for BitGo to send users back to your site after they have authenticated on BitGo
-scope | YES | List of requested OAuth scopes, separated by spaces. Your access to the user's information will be dependent on these scopes
-state | NO | opaque string that you contain any custom information you wish to provide. Send back as a parameter in the redirect Uri
-signup | NO | boolean value to be used to control if the user defaults to login or sign up when they land on the OAuth gateway at BitGo
-email | NO | string value of the email username, used to pre-populate the value
-force_email | NO | if set to true, the email field (set above) will be readonly on the user's client
+client_id | Yes | Name of the OAuth application seeking access to 3rd party accounts
+redirect_uri | Yes | Redirect Uri for BitGo to send users back to your site after they have authenticated on BitGo
+scope | Yes | List of requested OAuth scopes, separated by spaces. Your access to the user's information will be dependent on these scopes
+state | No | opaque string that you contain any custom information you wish to provide. Send back as a parameter in the redirect Uri
+signup | No | boolean value to be used to control if the user defaults to login or sign up when they land on the OAuth gateway at BitGo
+email | No | string value of the email username, used to pre-populate the value
+force_email | No | if set to true, the email field (set above) will be readonly on the user's client
 
 ### Our server will redirect
 
@@ -5691,10 +5695,10 @@ The balance in bitcoins can be found on the wallet model.
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | string | YES | id of the wallet (also the first receiving address)
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
+walletId | string | Yes | id of the wallet (also the first receiving address)
 
 ## List Wallet Transactions
 
@@ -5750,10 +5754,10 @@ This example shows how to get the list of transactions on a wallet. This may be 
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | id of the wallet (also the first receiving address)
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
+walletId | bitcoin address (string) | Yes | id of the wallet (also the first receiving address)
 
 ## Address Labels
 
@@ -5782,9 +5786,9 @@ This example shows how to list, set, and delete labels on addresses.
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
 
 ## Create Wallet
 
@@ -5852,10 +5856,10 @@ Failure to do so can result in the loss of funds!
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-label | string | YES | the wallet name as shown in the BitGo UI
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
+label | string | Yes | the wallet name as shown in the BitGo UI
 
 ## Send Bitcoins to an Address
 
@@ -5906,13 +5910,13 @@ Sends Bitcoin to another bitcoin address. The example uses the following steps:
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI
-walletPassphrase | string | YES | the passphrase used to encrypt the user's private key
-destinationAddress | bitcoin address (string) | YES | the destination address of the wallet
-amountSatoshis | string | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
+walletId | bitcoin address (string) | Yes | the wallet name as shown in the BitGo UI
+walletPassphrase | string | Yes | the passphrase used to encrypt the user's private key
+destinationAddress | bitcoin address (string) | Yes | the destination address of the wallet
+amountSatoshis | string | Yes | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
 
 ## Webhook Oracle Policy
 
@@ -6030,14 +6034,14 @@ When testing locally, one can create a URL by first setting up a local server (e
 
 Name | Type | Required | Description
 --------- | ---- | -------- | -----------
-user | string | YES | username (your email on the test environment)
-pass | string | YES | password on BitGo
-otp | number | YES | the one-time-password (you can use 0000000 in the test environment)
-walletId | bitcoin address (string) | YES | the wallet name as shown in the BitGo UI
-url | http endpoint (string) | YES | the URL to set up the policy with
-walletPassphrase | string | YES | the passphrase used to encrypt the user's private key
-destinationAddress | bitcoin address (string) | YES | the destination address of the wallet
-amountSatoshis | string | YES | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
+user | string | Yes | username (your email on the test environment)
+pass | string | Yes | password on BitGo
+otp | number | Yes | the one-time-password (you can use 0000000 in the test environment)
+walletId | bitcoin address (string) | Yes | the wallet name as shown in the BitGo UI
+url | http endpoint (string) | Yes | the URL to set up the policy with
+walletPassphrase | string | Yes | the passphrase used to encrypt the user's private key
+destinationAddress | bitcoin address (string) | Yes | the destination address of the wallet
+amountSatoshis | string | Yes | the number of satoshis to send, e.g. 0.1*1e8 for 0.1 bitcoin
 
 ## Recover Wallet
 
@@ -6060,11 +6064,11 @@ The RecoverWallet tool is interactive or command line driven.
 
 Name | Meaning
 --------- | -----
-userKey|The user extended private key for the wallet. (Box A from the Wallet KeyCard)
-backupKey|The backup extended private key for the wallet.  (Box B from the Wallet KeyCard)
-bitgoKey|The bitgo extended public key for the wallet. (Box C from the Wallet KeyCard)
-testnet|Flag to use testnet instead of the production bitcoin network
-nosend|Flag to create the transaction but not send it
-password|The password to use to decrypt the userKey and backupKey
-destination|The bitcoin address to which you want to send the recovered funds
+userKey | The user extended private key for the wallet. (Box A from the Wallet KeyCard)
+backupKey | The backup extended private key for the wallet.  (Box B from the Wallet KeyCard)
+bitgoKey | The bitgo extended public key for the wallet. (Box C from the Wallet KeyCard)
+testnet | Flag to use testnet instead of the production bitcoin network
+nosend | Flag to create the transaction but not send it
+password | The password to use to decrypt the userKey and backupKey
+destination | The bitcoin address to which you want to send the recovered funds
 
