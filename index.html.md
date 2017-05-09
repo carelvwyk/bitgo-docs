@@ -428,7 +428,7 @@ bitgo.logout({}, function callback(err) {
 
 `GET /api/v1/user/logout`
 
-### BODY Parameters
+### QUERY Parameters
 
 None
 
@@ -1384,6 +1384,12 @@ Lookup wallet information, returning the wallet model including balances, permis
   "unconfirmedReceives": 0
 }
 ```
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+id | string | Yes | The id of the wallet to get.
 
 ### Response
 
