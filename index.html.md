@@ -2521,7 +2521,7 @@ curl -X PUT \
 http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/fanoutunspents
 ```
 
-Take all the wallet's unspents (that match the selection criteria, such as minimum confirm count) and spread them into a higher number of unspents.
+Take all the wallet's unspents (that match the selection criteria, such as minimum confirm count) and redistributes them into a higher number of equal-sized unspents.
 
 ### Parameters
 
@@ -2600,19 +2600,30 @@ This is an advanced method that allows you to manually specify the miner fee (co
     ]
 }
 ```
+### HTTP Request
+
+This method is only available client-side.
 
 ### Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 recipients | string | Yes | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
-fee | number | No | The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as 'undefined' for automatic.
-feeRate | number | No | The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as 'undefined' for automatic.
+fee | number | No | The absolute fee in satoshis to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
+feeRate | number | No | The fee in satoshis /per kB/ of transaction size to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
 feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+maxFeeRate | number | No | An upper bound for the fee rate in satoshi per kB. Useful to set as a safety measure when using dynamic fees.
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
 enforceMinConfirms ForChange | boolean | No | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
-minUnspentSize | number | No | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
 instant | boolean | No | set to true to request that the transaction be sent with BitGo's instant guarantee against double-spends (fees may apply).
+forceChangeAtEnd | boolean | No | Forces the change address to be the last output.
+changeAddress | address (string) | No | Specifies the change address instead of creating a new one.
+noSplitChange | boolean | No | Set to true to disable automatic change splitting for purposes of unspent management.
+targetWalletUnspents | number | No | Specify a number of target unspents to maintain in the wallet. 
+validate | boolean | No | Extra verification of the change addresses, which is always done server-side and is redundant client-side (defaults to true).
+minUnspentSize | number | No | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
+feeSingleKeySourceAddress | address (string) | No | Use this single key address to pay fees
+feeSingleKeyWIF | private key in WIF | No | Use the address based on this private key to pay fees
 
 ## Sign Transaction
 
@@ -2691,6 +2702,10 @@ This is client-side functionality only in the SDK.
 {"tx":"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."}
 ```
 
+### HTTP Request
+
+This method is only available client-side.
+
 ### Parameters
 
 Parameter | Type | Required | Description
@@ -2698,6 +2713,8 @@ Parameter | Type | Required | Description
 transactionHex | string | Yes | The unsigned transaction, in hex string form
 unspents | array | Yes | Array of unspents objects, which contain the chainpath and redeemScript.
 keychain | keychain object | Yes | The decrypted keychain (object), with available xprv property.
+signingKey | private key (string) | No | For legacy safe wallets, the private key string.
+validate | boolean | No | Extra verification of signatures (which are always verified server-side), defaults to global configuration.
 
 ## Send Transaction
 
@@ -2770,6 +2787,7 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
 </aside>
 
 Send a partially-signed transaction. The server will do one of the following:
+
 * reject the transaction
 * gather additional approvals from other wallet admins
 * apply the final signature, and submit to the Bitcoin P2P network
@@ -2857,7 +2875,7 @@ Anyone can receive instant transactions. Sending an instant transaction requires
 </aside>
 
 ### HTTP Request
-`GET /api/v1/instant/<id>`
+`GET /api/v1/instant/:id`
 
 > Example Response
 
@@ -2873,6 +2891,12 @@ Anyone can receive instant transactions. Sending an instant transaction requires
     "transactionId": "8ba08ef2a745246f309ec4eaff5d7652c4fc01e61eebd9aabc1c58996355acd7"
 }
 ```
+
+### URL Parameters
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+id | string | Yes | The instant guarantee id to be retrieved.
+
 ### Response
 
 Returns the instant guarantee message, including the amount and Transaction ID.
@@ -2908,8 +2932,7 @@ Response | Description
 
 ## Get Wallet by Address
 
-Given an address, returns the address information (including balances) and wallet the address is associated with.
-Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.
+Identifies the wallet to which a given address belongs and returns additional information about the address (including balances).
 
 ```shell
 ADDRESS=2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
@@ -3111,6 +3134,8 @@ permissions | string | Yes | Comma-separated list of permissions, e.g. view,spen
 walletPassphrase | string | No | Passphrase on the wallet being shared
 skipKeychain | boolean | No | Set to true if sharing a wallet with another user who will obtain the keychain out-of-band
 disableEmail | boolean | No | Set to true to prevent a notification email sent to the user added
+message | string | No | The message to be used for this share.
+reshare | boolean | No | Must be explicitly set to true if a user is being reinvited to share a wallet after resetting their password.
 
 ### Response
 
@@ -3230,6 +3255,10 @@ Client-side operation to accept a wallet share. Performs the following steps:
 * Re-encrypt the wallet with the user's chosen passphrase for future use.
 * Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.
 
+### HTTP Request
+
+This method is only available client-side.
+
 ### Parameters
 
 Parameter | Type | Required | Description
@@ -3274,7 +3303,13 @@ Can be used to cancel a pending outgoing wallet share, or reject an incoming sha
 
 ### HTTP Request
 
-`DELETE/api/v1/walletshare/:SHAREID`
+`DELETE/api/v1/walletshare/:walletShareId`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletShareId | string | Yes | The Wallet share to update.
 
 ### Response
 
