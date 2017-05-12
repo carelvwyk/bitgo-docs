@@ -593,6 +593,10 @@ bitgo.lock({}, function callback(err) {
 
 `POST /api/v1/user/lock`
 
+### BODY Parameters 
+
+None
+
 ### Response
 
 None
@@ -671,16 +675,13 @@ This API only provides the public keys and never the private data for a keychain
 {
     "keychains": [
         {
-            "xpub": "xpub661MyMwAqRbcEnCqci8PwkTJgBPbfU54z5rS44bBFtm23hudhYaf73e5Jt8e3JhYYizyFpFcXb4Ahd7wBHmoDFqf2GTGZFaHSC1JyJoURpw",
-            "ethAddress": "0xcc59479226f57543ae99ca47630275d9c899bed0"
+            "xpub": "xpub661MyMwAqRbcEnCqci8PwkTJgBPbfU54z5rS44bBFtm23hudhYaf73e5Jt8e3JhYYizyFpFcXb4Ahd7wBHmoDFqf2GTGZFaHSC1JyJoURpw"
         },
         {
-            "xpub": "xpub661MyMwAqRbcFHjomRhjJybA7rh75j4Cn9Hz4EPG9FUumurJFVbWVgqeDCkCJtnoB5zBHvqsSoi4ArVUKQszzfzuAk9L3LwLZKKQ4RQe8k3",
-            "ethAddress": "0x0ddbe738936e911f0db97bdab76cf731f813b378"
+            "xpub": "xpub661MyMwAqRbcFHjomRhjJybA7rh75j4Cn9Hz4EPG9FUumurJFVbWVgqeDCkCJtnoB5zBHvqsSoi4ArVUKQszzfzuAk9L3LwLZKKQ4RQe8k3"
         },
         {
             "xpub": "xpub69gHkWcECsrNhcpkPBvvpHq8uX4AwYWcciVZAkvdaKNEj2Cr2mAkUzyQ2X4f9W8fBTt6jp6rvAwUDym4GypkApJZUgKt81vpjyYVs4RDvE8",
-            "ethAddress": "0x848ce3d81e017ace770dbc69cf0c752e267a1509",
             "isBitGo": true
         }
     ],
@@ -727,8 +728,7 @@ console.dir(keychain);
 ```json
   {
     "xpub": "xpub661MyMwAqRbcFdEUWdhDhgKKQ9tQzLSuqZzVM2AZf9TiijPMD84tPYmemZcQosg63SZit3jGQpCDsbbeXPv7A3aT1phPaBgAWQWKwFUioPR",
-    "xprv": "xprv9s21ZrQH143K39A1QcADLYNar83vasj4UM4tYdkx6ovjqw4CfakdqkTAvFrY8BoR8TFTCYShYJ3XjZCicvyuavmYjPLVbmASmHrz144nVCy",
-    "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615"
+    "xprv": "xprv9s21ZrQH143K39A1QcADLYNar83vasj4UM4tYdkx6ovjqw4CfakdqkTAvFrY8BoR8TFTCYShYJ3XjZCicvyuavmYjPLVbmASmHrz144nVCy"
   }
 ```
 
@@ -745,6 +745,23 @@ Returns an object containing the `xprv` and `xpub` for the new chain. The create
 To use it with the BitGo service, use the Keychains.Add API.
 
 For security reasons, it is highly recommended that you [encrypt](#encrypt) and destroy the original `xprv` immediately to prevent theft.
+
+### HTTP Request
+
+This method is only available client-side.
+
+### Method Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+seed | array of numbers | No | Array of numbers with at least 32 elements.
+
+### Response
+
+Response | Description
+--------- | ---- | -------- | -----------
+xpub | BIP32 extended public key.
+xprv | BIP32 extended private key in /unencrypted/ form. It is highly recommended to encrypt the `xprv` before storage and then unencrypted destroy the original to prevent theft.
 
 ## Add Keychain
 
@@ -798,8 +815,7 @@ encryptedXprv | string | No | The encrypted, BIP32 xprv for this keychain
 {
   "xpub": "xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC",
   "encryptedXprv": "<encrypted data here>",
-  "path": "m",
-  "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615"
+  "path": "m"
 }
 ```
 
@@ -848,8 +864,7 @@ None.
 {
   "xpub": "xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL",
   "isBitGo": true,
-  "path": "m",
-  "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615"
+  "path": "m"
 }
 ```
 
@@ -899,7 +914,6 @@ provider | string | Yes | name of the KRS or backup key provider to use
 ```json
 {
   "xpub": "xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL",
-  "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615",
   "path": "m"
 }
 ```
@@ -943,7 +957,6 @@ xpub | string | Yes | The BIP32 xpub to lookup
 ```json
 {
   "xpub": "xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC",
-  "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615",
   "encryptedXprv": "<client-encrypted data here>",
   "path": "m"
 }
@@ -1002,10 +1015,17 @@ to the new value, your ability to sign with this keychain will be lost forever.
 
 `PUT /api/v1/keychain/:xpub`
 
+### URL Request
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+xpub | string | Yes | The xpub of the keychain to be updated.
+
 ### BODY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
+xpub | string | Yes | The xpub of the keychain to be updated.
 encryptedXprv | string | No | A new encrypted, BIP32 xprv for this keychain
 
 
@@ -1015,7 +1035,6 @@ encryptedXprv | string | No | A new encrypted, BIP32 xprv for this keychain
 {
   "xpub": "xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL",
   "encryptedXprv": "<encrypted data here>",
-  "ethAddress":"0x49e03847622a266335e2688be6e71a4975fe9615",
   "path": "m"
 }
 ```
@@ -1040,7 +1059,7 @@ This is called an *M-of-N* wallet.
 
 BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.
 
-To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last
+To create a wallet, three keychains must be provided. The first two keychains are provided by the user; the last
 must be a BitGo keychain. While BitGo can see the public portion of the first
 two keys, BitGo never has access to the private portion of these keys and
 therefore cannot conduct transactions without the user.  BitGo's single
@@ -1468,6 +1487,10 @@ Failure to do so can result in the loss of funds!
 ### BitGo Instant Wallets
 By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the **backupXpubProvider** parameter to specify a KRS, e.g. "keyternal".
 
+### HTTP Request
+
+This method is only available client-side.
+
 ### Method Parameters
 
 Name | Type | Required | Description
@@ -1553,7 +1576,7 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-walletid | bitcoin address (string) | Yes | The ID of the wallet
+walletId | bitcoin address (string) | Yes | The ID of the wallet
 chain  | number | Yes | 0 or 1
 
 > Example response
@@ -1924,6 +1947,7 @@ Parameter | Type | Required | Description
 skip | number | No | The starting index number to list from.  Default is 0.
 limit | number | No | Max number of results to return in a single call (default=25, max=250)
 compact | boolean | No | Omit inputs and outputs in the transaction results
+minHeight | number | No | A lower limit of blockchain height at which the transaction was confirmed. Does not filter unconfirmed transactions.
 
 ### Response
 
@@ -2350,6 +2374,8 @@ Parameter | Type | Required | Description
 target | number | No | The API will attempt to return enough unspents to accumulate to at least this amount (in satoshis).
 skip | number | No | The starting index number to list from.  Default is 0.
 limit | number | No | Max number of results to return in a single call (default=100, max=250)
+minConfirms | number | No | Only include unspents with at least this many confirmations.
+minSize | number | No | Only include unspents that are at least this many satoshis.
 
 > Example response
 
@@ -2459,6 +2485,10 @@ maxInputCountPerConsolidation | number | No | maximum number of unspents to be u
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations
 walletPassphrase | string | No | Passphrase of the wallet
 progressCallback | function | No | Closure to be called after each iteration. It can be used for monitoring the progress.
+minSize | number | No | Only use unspents with at least this many satoshis for consolidation.
+maxSize | number | No | Don't use any unspents larger than this number of satoshis in consolidation.
+maxIterationCount | integer | No | Maximum number of consolidation iterations to perform. Must be greater than or equal to 1.
+feeRate | number | No | Fee rate to be used for the consolidation transactions in satoshis per KB.
 
 ## Fan Out Unspents
 
@@ -3288,13 +3318,13 @@ https://test.bitgo.com/api/v1/wallet/$WALLETID/user/$USERID
 
 ### HTTP Request
 
-`DELETE /api/v1/wallet/:wallet/user/:userId`
+`DELETE /api/v1/wallet/:walletId/user/:userId`
 
 ### URL Parameters
 
 Parameter | Required | Description
 --------- | -------- | -----------
-wallet | Yes | The ID of the wallet
+walletId | Yes | The ID of the wallet
 userId | Yes | The user id of the user to remove (can be found on the wallet object)
 
 ### Response
@@ -3518,7 +3548,7 @@ bitgo.wallets().get({ "id": walletId }, function callback(err, wallet) {
 
 ### HTTP Request
 
-`PUT /api/v1/wallet/:wallet/policy/rule`
+`PUT /api/v1/wallet/:walletId/policy/rule`
 
 <aside class="info">
 This operation requires the session to be unlocked using the Unlock API.
@@ -3724,11 +3754,17 @@ Removes a policy rule with the id specified. This may require a secondary approv
 
 ### HTTP Request
 
-`DELETE /api/v1/wallet/:WALLETID/policy/rule`
+`DELETE /api/v1/wallet/:walletId/policy/rule`
 
 <aside class="info">
 This operation requires the session to be unlocked using the Unlock API.
 </aside>
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | address (string) | Yes | The base address of the wallet 
 
 ### BODY Parameters
 
@@ -3879,6 +3915,12 @@ bitgo.pendingapprovals().list({
 
 `PUT /api/v1/pendingapprovals/:pendingApprovalId`
 
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+pendingApprovalId | string | Yes | The ID of the pending approval to be updated.
+
 ### BODY Parameters
 
 Parameter | Type | Required | Description
@@ -4006,6 +4048,13 @@ Get the list of labels for the wallet
   ]
 }
 ```
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | bitcoin address (string) | Yes | The ID and first address of the wallet
+
 
 ### Response
 
@@ -4205,7 +4254,13 @@ Response | Description
 
 ### HTTP Request
 
-`POST /api/v1/wallet/:wallet/tag`
+`POST /api/v1/wallet/:walletId/tag`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | bitcoin address (string) | Yes | The ID and first address of the wallet
 
 ### BODY Parameters
 
@@ -4333,6 +4388,12 @@ Currently, the only types of webhooks that can be attached to a wallet are trans
 
 `GET /api/v1/wallet/:walletId/webhooks`
 
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | bitcoin address (string) | Yes | The ID and first address of the wallet
+
 ### Response
 
 An array of Webhook objects
@@ -4385,6 +4446,12 @@ There are 2 types of wallet webhooks available:
 
 `POST /api/v1/wallet/:walletId/webhooks`
 
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | bitcoin address (string) | Yes | The ID and first address of the wallet
+
 ### Parameters
 
 Parameter | Type | Required | Description
@@ -4436,6 +4503,12 @@ Removing a Webhook will cause new events of the specified type to no longer trig
 ### HTTP Request
 
 `DELETE /api/v1/wallet/:walletId/webhooks`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+walletId | bitcoin address (string) | Yes | The ID and first address of the wallet
 
 ### Parameters
 
