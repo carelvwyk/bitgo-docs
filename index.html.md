@@ -5375,6 +5375,91 @@ txid | string | Yes | The transaction ID (hash)
 
 Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.
 
+## Get Transaction That Spends A Given Output ID
+
+```shell
+TX=af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
+VOUT=0
+curl https://test.bitgo.com/api/v1/tx/input/$TX/$VOUT
+```
+
+```javascript
+var txId = 'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648';
+var vout = 0;
+bitgo.blockchain().getTransactionByInput({ txId: txId, vout: vout }, function(err, response) {
+  if (err) { console.log(err); process.exit(-1); }
+  console.log(JSON.stringify(response, null, 4));
+});
+```
+
+Gets details for a transaction that spends a specific output ID of another transaction
+
+### HTTP Request
+
+`GET /api/v1/tx/input/:txid/:vout`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+txid | string | Yes | The transaction ID (hash) of the output that was spent
+vout | number | Yes | The vout (output position on the parent transaction) of the output that was spent
+
+> Example response
+
+```json
+{
+  transactions:
+  [
+    {
+      "blockhash": "000000009249e7d725cc087cb781ade1dbfaf2bd777822948d5fccd4044f8299",
+      "confirmations": 16679,
+      "date": "2014-11-06T02:22:55.000Z",
+      "entries": [
+        {
+          "account": "2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov",
+          "value": 84000000
+        },
+        {
+          "account": "msj42CCGruhRsFrGATiUuh25dtxYtnpbTx",
+          "value": -85900000
+        },
+        {
+          "account": "mwahoJcaVuy2TiMtGDZV9PaujFeD9z1a1q",
+          "value": 1890000
+        }
+      ],
+      "fee": 10000,
+      "height": 306695,
+      "hex": "0100000001b6e8b36132d351b3d66b5452d8f4601e2271a7bb52b644397db956a4ffe2a053000000006a4730440220127c4adc1cf985cd884c383e69440ce4d48a0c4fdce6bf9d70faa0ee8092acb80220632cb6c99ded7f261814e602fc8fa8e7fe8cb6a95d45c497846b8624f7d19b3c012103df001c8b58ac42b6cbfc2223b8efaa7e9a1911e529bd2c8b7f90140079034e75ffffffff0200bd01050000000017a914c449a7fafb3b13b2952e064f2c3c58e851bb943087d0d61c00000000001976a914b0379374df5eab8be9a21ee96711712bdb781a9588ac00000000",
+      "id": "af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648",
+      "inputs": [
+        {
+          "previousHash": "53a0e2ffa456b97d3944b652bba771221e60f4d852546bd6b351d33261b3e8b6",
+          "previousOutputIndex": 0
+        }
+      ],
+      "outputs": [
+        {
+          "account": "2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov",
+          "value": 84000000,
+          "vout": 0
+        },
+        {
+          "account": "mwahoJcaVuy2TiMtGDZV9PaujFeD9z1a1q",
+          "value": 1890000,
+          "vout": 1
+        }
+      ],
+      "pending": false
+    }
+  ]
+}
+```
+
+### Response
+
+Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.
 
 ## Get Block
 
