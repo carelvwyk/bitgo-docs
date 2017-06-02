@@ -509,6 +509,9 @@
                     <a href="#get-transaction-details" class="toc-h2 toc-link" data-title="Blockchain Data">Get Transaction Details</a>
                   </li>
                   <li>
+                    <a href="#get-transaction-that-spends-a-given-output-id" class="toc-h2 toc-link" data-title="Blockchain Data">Get Transaction That Spends A Given Output ID</a>
+                  </li>
+                  <li>
                     <a href="#get-block" class="toc-h2 toc-link" data-title="Blockchain Data">Get Block</a>
                   </li>
               </ul>
@@ -1187,6 +1190,8 @@ https://test.bitgo.com/api/v1/user/lock <span class="se">\</span>
 <span class="p">});</span>
 </code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /api/v1/user/lock</code></p>
+<h3 id='body-parameters-4'>BODY Parameters</h3>
+<p>None</p>
 <h3 id='response-7'>Response</h3>
 <p>None</p>
 <h3 id='errors-3'>Errors</h3>
@@ -1258,16 +1263,13 @@ This API only provides the public keys and never the private data for a keychain
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"keychains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcEnCqci8PwkTJgBPbfU54z5rS44bBFtm23hudhYaf73e5Jt8e3JhYYizyFpFcXb4Ahd7wBHmoDFqf2GTGZFaHSC1JyJoURpw"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xcc59479226f57543ae99ca47630275d9c899bed0"</span><span class="w">
+            </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcEnCqci8PwkTJgBPbfU54z5rS44bBFtm23hudhYaf73e5Jt8e3JhYYizyFpFcXb4Ahd7wBHmoDFqf2GTGZFaHSC1JyJoURpw"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcFHjomRhjJybA7rh75j4Cn9Hz4EPG9FUumurJFVbWVgqeDCkCJtnoB5zBHvqsSoi4ArVUKQszzfzuAk9L3LwLZKKQ4RQe8k3"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x0ddbe738936e911f0db97bdab76cf731f813b378"</span><span class="w">
+            </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcFHjomRhjJybA7rh75j4Cn9Hz4EPG9FUumurJFVbWVgqeDCkCJtnoB5zBHvqsSoi4ArVUKQszzfzuAk9L3LwLZKKQ4RQe8k3"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub69gHkWcECsrNhcpkPBvvpHq8uX4AwYWcciVZAkvdaKNEj2Cr2mAkUzyQ2X4f9W8fBTt6jp6rvAwUDym4GypkApJZUgKt81vpjyYVs4RDvE8"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x848ce3d81e017ace770dbc69cf0c752e267a1509"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"isBitGo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -1328,8 +1330,7 @@ curl -X POST http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/keyc
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcFdEUWdhDhgKKQ9tQzLSuqZzVM2AZf9TiijPMD84tPYmemZcQosg63SZit3jGQpCDsbbeXPv7A3aT1phPaBgAWQWKwFUioPR"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"xprv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xprv9s21ZrQH143K39A1QcADLYNar83vasj4UM4tYdkx6ovjqw4CfakdqkTAvFrY8BoR8TFTCYShYJ3XjZCicvyuavmYjPLVbmASmHrz144nVCy"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
+    </span><span class="s2">"xprv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xprv9s21ZrQH143K39A1QcADLYNar83vasj4UM4tYdkx6ovjqw4CfakdqkTAvFrY8BoR8TFTCYShYJ3XjZCicvyuavmYjPLVbmASmHrz144nVCy"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Local client-side function to create a new keychain.</p>
@@ -1345,6 +1346,40 @@ number generator that adheres to industry standards. If you provide your own see
 To use it with the BitGo service, use the Keychains.Add API.</p>
 
 <p>For security reasons, it is highly recommended that you <a href="#encrypt">encrypt</a> and destroy the original <code>xprv</code> immediately to prevent theft.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p>This method is only available client-side.</p>
+<h3 id='method-parameters'>Method Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seed</td>
+<td>array of numbers</td>
+<td>No</td>
+<td>Array of numbers with at least 32 elements.</td>
+</tr>
+</tbody></table>
+<h3 id='response-9'>Response</h3>
+<table><thead>
+<tr>
+<th>Response</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xpub</td>
+<td>BIP32 extended public key.</td>
+</tr>
+<tr>
+<td>xprv</td>
+<td>BIP32 extended private key in /unencrypted/ form. It is highly recommended to encrypt the <code>xprv</code> before storage and then unencrypted destroy the original to prevent theft.</td>
+</tr>
+</tbody></table>
 <h2 id='add-keychain'>Add Keychain</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -1371,9 +1406,9 @@ For convenience, you can use BitGo&#39;s <a href="#encrypt">encrypt/decrypt func
 <aside class="warning">
 If you provide the encrypted xprv, the security of this keychain is only as good as your encryption.  Encryption is your responsibility.
 </aside>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /api/v1/keychain</code></p>
-<h3 id='body-parameters-4'>BODY Parameters</h3>
+<h3 id='body-parameters-5'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1402,10 +1437,9 @@ If you provide the encrypted xprv, the security of this keychain is only as good
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"encryptedXprv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;encrypted data here&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
+  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-9'>Response</h3>
+</span></code></pre><h3 id='response-10'>Response</h3>
 <p>Returns a Keychain Model object.</p>
 <h3 id='errors-5'>Errors</h3>
 <table><thead>
@@ -1435,9 +1469,9 @@ https://test.bitgo.com/api/v1/keychain/bitgo
 </code></pre>
 <p>Creates a new keychain on BitGo&#39;s servers and returns the public keychain to
 the caller.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /api/v1/keychain/bitgo</code></p>
-<h3 id='body-parameters-5'>BODY Parameters</h3>
+<h3 id='body-parameters-6'>BODY Parameters</h3>
 <p>None.</p>
 
 <blockquote>
@@ -1446,10 +1480,9 @@ the caller.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"isBitGo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="w">
+  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-10'>Response</h3>
+</span></code></pre><h3 id='response-11'>Response</h3>
 <p>Returns a Keychain Model object.</p>
 <h3 id='errors-6'>Errors</h3>
 <table><thead>
@@ -1478,9 +1511,9 @@ https://test.bitgo.com/api/v1/keychain/backup
 </code></pre>
 <p>Creates a new backup keychain on a third party specializing in key recovery services.
 This keychain will be stored on the third party service and usable for recovery purposes only.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /api/v1/keychain/backup</code></p>
-<h3 id='body-parameters-6'>BODY Parameters</h3>
+<h3 id='body-parameters-7'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1502,10 +1535,9 @@ This keychain will be stored on the third party service and usable for recovery 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-11'>Response</h3>
+</span></code></pre><h3 id='response-12'>Response</h3>
 <p>Returns a Keychain Model object.</p>
 <h2 id='get-keychain'>Get Keychain</h2><pre class="highlight shell tab-shell"><code><span class="nv">XPUB</span><span class="o">=</span>xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC
 
@@ -1517,7 +1549,7 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 <span class="p">});</span>
 </code></pre>
 <p>Lookup a keychain by xpub</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST /api/v1/keychain/:xpub</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1541,11 +1573,10 @@ https://test.bitgo.com/api/v1/keychain/<span class="nv">$XPUB</span>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGn6m3YB7CJ2ToyUJYEsBpCc2UDJP9s3hzFif9dKucLotrJBbLgNqojM4q4Sddweka1WG2NvMccYyo3SpnfRrTvMuXUTpHwC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"encryptedXprv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-encrypted data here&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-12'>Response</h3>
+</span></code></pre><h3 id='response-13'>Response</h3>
 <p>Returns a Keychain Model object.</p>
 <h3 id='errors-7'>Errors</h3>
 <table><thead>
@@ -1595,9 +1626,9 @@ If you change the encryptedXprv, the existing value
 is overwritten.  If the new value is incorrect, or you forget the password
 to the new value, your ability to sign with this keychain will be lost forever.
 </aside>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>PUT /api/v1/keychain/:xpub</code></p>
-<h3 id='body-parameters-7'>BODY Parameters</h3>
+<h3 id='url-request'>URL Request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1606,6 +1637,28 @@ to the new value, your ability to sign with this keychain will be lost forever.
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>xpub</td>
+<td>string</td>
+<td>Yes</td>
+<td>The xpub of the keychain to be updated.</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-8'>BODY Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xpub</td>
+<td>string</td>
+<td>Yes</td>
+<td>The xpub of the keychain to be updated.</td>
+</tr>
 <tr>
 <td>encryptedXprv</td>
 <td>string</td>
@@ -1620,10 +1673,9 @@ to the new value, your ability to sign with this keychain will be lost forever.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"xpub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xpub661MyMwAqRbcGzVAChrAGb6MYDrAXndUC7h8T7AF8UhfbjS7Au7UKTXmVXaFasQPdfmnUjccreRTMrW7kTmjzwMqVrTHNAFs8M3CXTJpcnL"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"encryptedXprv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;encrypted data here&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ethAddress"</span><span class="p">:</span><span class="s2">"0x49e03847622a266335e2688be6e71a4975fe9615"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-13'>Response</h3>
+</span></code></pre><h3 id='response-14'>Response</h3>
 <p>Returns a Keychain Model object.</p>
 <h3 id='errors-8'>Errors</h3>
 <table><thead>
@@ -1653,7 +1705,7 @@ This is called an <em>M-of-N</em> wallet.</p>
 
 <p>BitGo currently supports only 2-of-3 wallets. We use a policy layer to support m-of-n permission models.</p>
 
-<p>To create a wallet, 3 keychains must be provided. The first two keychains are provided by the user; the last
+<p>To create a wallet, three keychains must be provided. The first two keychains are provided by the user; the last
 must be a BitGo keychain. While BitGo can see the public portion of the first
 two keys, BitGo never has access to the private portion of these keys and
 therefore cannot conduct transactions without the user.  BitGo&#39;s single
@@ -1672,7 +1724,7 @@ https://test.bitgo.com/api/v1/wallet
 <span class="p">});</span>
 </code></pre>
 <p>Get the list of wallets for the user</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet</code></p>
 
 <blockquote>
@@ -1736,7 +1788,7 @@ https://test.bitgo.com/api/v1/wallet
 <td>Max number of results to return in a single call (default=25, max=250)</td>
 </tr>
 </tbody></table>
-<h3 id='response-14'>Response</h3>
+<h3 id='response-15'>Response</h3>
 <p>Returns an array of Wallet Model objects.</p>
 <h3 id='errors-9'>Errors</h3>
 <table><thead>
@@ -1803,9 +1855,9 @@ Below the root, the wallet supports two chains of addresses, 0 and 1. The
 <p>The first receiving address of a wallet is at the BIP32 path <strong>m/0/0/0/0</strong>, which
 is also the ID used to refer to a wallet in BitGo&#39;s system. The first change address of a wallet is at <strong>m/0/0/1/0</strong>.
 </aside></p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST /api/v1/wallet</code></p>
-<h3 id='body-parameters-8'>BODY Parameters</h3>
+<h3 id='body-parameters-9'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1882,7 +1934,7 @@ is also the ID used to refer to a wallet in BitGo&#39;s system. The first change
   </span><span class="s2">"balance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pendingApprovals"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-15'>Response</h3>
+</span></code></pre><h3 id='response-16'>Response</h3>
 <p>Returns a Wallet Model object.</p>
 <h3 id='errors-10'>Errors</h3>
 <table><thead>
@@ -1937,7 +1989,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 
 </code></pre>
 <p>Lookup wallet information, returning the wallet model including balances, permissions etc. The ID of a wallet is its first receiving address (/0/0)</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:id</code></p>
 
 <blockquote>
@@ -2051,7 +2103,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>
 <td>The id of the wallet to get.</td>
 </tr>
 </tbody></table>
-<h3 id='response-16'>Response</h3>
+<h3 id='response-17'>Response</h3>
 <p>Returns a Wallet Model object.</p>
 
 <table><thead>
@@ -2165,7 +2217,9 @@ Failure to do so can result in the loss of funds!
 </aside>
 <h3 id='bitgo-instant-wallets'>BitGo Instant Wallets</h3>
 <p>By default, this method will create backup keychains locally. To create a wallet that can be used to send BitGo Instant, use the <strong>backupXpubProvider</strong> parameter to specify a KRS, e.g. &quot;keyternal&quot;.</p>
-<h3 id='method-parameters'>Method Parameters</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p>This method is only available client-side.</p>
+<h3 id='method-parameters-2'>Method Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2228,7 +2282,7 @@ Failure to do so can result in the loss of funds!
  </span><span class="s2">"pendingApprovals"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight plaintext"><code>User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
 Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
-</code></pre><h3 id='response-17'>Response</h3>
+</code></pre><h3 id='response-18'>Response</h3>
 <table><thead>
 <tr>
 <th>Response</th>
@@ -2291,7 +2345,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">address</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-17'>HTTP Request</h3>
+</code></pre><h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST /api/v1/wallet/:walletId/address/:chain</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -2303,7 +2357,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
 </tr>
 </thead><tbody>
 <tr>
-<td>walletid</td>
+<td>walletId</td>
 <td>bitcoin address (string)</td>
 <td>Yes</td>
 <td>The ID of the wallet</td>
@@ -2326,7 +2380,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
   </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/0/42"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522102d83bba35a8022c247b645eed6f81ac41b7c1580de550e7e82c75ad63ee9ac2fd2103aeb681df5ac19e449a872b9e9347f1db5a0394d2ec5caf2a9c143f86e232b0d92103d728ad6758d4784effea04d47baafa216cf474866c2d4dc99b1e8e3eb936e73053ae"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-18'>Response</h3>
+</span></code></pre><h3 id='response-19'>Response</h3>
 <p>Returns a new bitcoin address which is associated with the wallet.</p>
 
 <table><thead>
@@ -2681,7 +2735,7 @@ This operation requires the session to be unlocked using the Unlock API.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0100000001c69d05d3897a25c611324a935d0c688669dc416cb8d8e9ebb36e364fa79547c8000.."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27374a97df2cd8a63640dd7a40fce9a1d8dfeec3cf7a8b2fbf1ef609f4a5370d"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-19'>Response</h3>
+</span></code></pre><h3 id='response-20'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -2850,7 +2904,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get transactions for a given wallet, ordered by reverse block height (unconfirmed transactions first).</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/tx</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
@@ -2895,8 +2949,14 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx
 <td>No</td>
 <td>Omit inputs and outputs in the transaction results</td>
 </tr>
+<tr>
+<td>minHeight</td>
+<td>number</td>
+<td>No</td>
+<td>A lower limit of blockchain height at which the transaction was confirmed. Does not filter unconfirmed transactions.</td>
+</tr>
 </tbody></table>
-<h3 id='response-20'>Response</h3>
+<h3 id='response-21'>Response</h3>
 <p>Returns an array of Transaction objects.  Each transaction contains summary
 information about how that transaction affected any wallet or bitcoin address involved
 in the transaction.</p>
@@ -2981,7 +3041,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get information about a transaction on a wallet.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/tx/:txId</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
@@ -3005,7 +3065,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 <td>The hash of the transaction to fetch</td>
 </tr>
 </tbody></table>
-<h3 id='response-21'>Response</h3>
+<h3 id='response-22'>Response</h3>
 <p>Returns a Transaction object</p>
 
 <table><thead>
@@ -3121,7 +3181,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">walletAddress</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-20'>HTTP Request</h3>
+</code></pre><h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/addresses</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
@@ -3203,7 +3263,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
   </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">28</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hasMore"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-22'>Response</h3>
+</span></code></pre><h3 id='response-23'>Response</h3>
 <p>Returns an array of Wallet Address objects.</p>
 
 <table><thead>
@@ -3262,7 +3322,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">walletAddress</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-21'>HTTP Request</h3>
+</code></pre><h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/addresses/:address</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -3301,7 +3361,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
     </span><span class="s2">"sent"</span><span class="p">:</span><span class="w"> </span><span class="mi">879990000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"txCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-23'>Response</h3>
+</span></code></pre><h3 id='response-24'>Response</h3>
 <p>Returns a wallet address object</p>
 
 <table><thead>
@@ -3407,7 +3467,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/sequence
 This is useful for tracking an unsigned/unconfirmed transaction via your own unique ID, as Bitcoin transaction IDs are not defined before co-signing and malleable before confirmation.</p>
 
 <p>A pending transaction that has not yet been co-signed by BitGo will still have a sequence id.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/tx/sequence/:sequenceId</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
@@ -3431,7 +3491,7 @@ This is useful for tracking an unsigned/unconfirmed transaction via your own uni
 <td>The unique id previously sent with an outgoing transaction.</td>
 </tr>
 </tbody></table>
-<h3 id='response-24'>Response</h3>
+<h3 id='response-25'>Response</h3>
 <p>Returns a WalletTx object, containing the history and state of the transaction on the Bitcoin network.</p>
 <h3 id='errors-17'>Errors</h3>
 <table><thead>
@@ -3475,7 +3535,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/unspents
 <p>In order to create a bitcoin transaction, the creator of the transaction
 will need to accumulate a set of bitcoin &#39;inputs&#39; for use in creation of
 that transaction.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/unspents</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -3520,6 +3580,18 @@ that transaction.</p>
 <td>No</td>
 <td>Max number of results to return in a single call (default=100, max=250)</td>
 </tr>
+<tr>
+<td>minConfirms</td>
+<td>number</td>
+<td>No</td>
+<td>Only include unspents with at least this many confirmations.</td>
+</tr>
+<tr>
+<td>minSize</td>
+<td>number</td>
+<td>No</td>
+<td>Only include unspents that are at least this many satoshis.</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -3563,7 +3635,7 @@ that transaction.</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-25'>Response</h3>
+</span></code></pre><h3 id='response-26'>Response</h3>
 <p>Returns an array of Unspent Input objects.</p>
 
 <table><thead>
@@ -3691,6 +3763,30 @@ transaction size limits and signing speed. Each iteration requires its own trans
 <td>No</td>
 <td>Closure to be called after each iteration. It can be used for monitoring the progress.</td>
 </tr>
+<tr>
+<td>minSize</td>
+<td>number</td>
+<td>No</td>
+<td>Only use unspents with at least this many satoshis for consolidation.</td>
+</tr>
+<tr>
+<td>maxSize</td>
+<td>number</td>
+<td>No</td>
+<td>Don&#39;t use any unspents larger than this number of satoshis in consolidation.</td>
+</tr>
+<tr>
+<td>maxIterationCount</td>
+<td>integer</td>
+<td>No</td>
+<td>Maximum number of consolidation iterations to perform. Must be greater than or equal to 1.</td>
+</tr>
+<tr>
+<td>feeRate</td>
+<td>number</td>
+<td>No</td>
+<td>Fee rate to be used for the consolidation transactions in satoshis per KB.</td>
+</tr>
 </tbody></table>
 <h2 id='fan-out-unspents'>Fan Out Unspents</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span> <span class="s2">"id"</span><span class="p">:</span> <span class="nx">walletId</span> <span class="p">},</span> <span class="kd">function</span> <span class="nx">callback</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="p">}</span>
@@ -3717,7 +3813,7 @@ curl -X PUT <span class="se">\</span>
 -d <span class="s2">"{ </span><span class="se">\"</span><span class="s2">walletPassphrase</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$WALLETPASSPHRASE</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">target</span><span class="se">\"</span><span class="s2">: 85, </span><span class="se">\"</span><span class="s2">minConfirms</span><span class="se">\"</span><span class="s2">: 1 }"</span> <span class="se">\</span>
 http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/wallet/<span class="nv">$WALLETID</span>/fanoutunspents
 </code></pre>
-<p>Take all the wallet&#39;s unspents (that match the selection criteria, such as minimum confirm count) and spread them into a higher number of unspents.</p>
+<p>Take all the wallet&#39;s unspents (that match the selection criteria, such as minimum confirm count) and redistributes them into a higher number of equal-sized unspents.</p>
 <h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
@@ -3808,7 +3904,9 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
         </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='parameters-5'>Parameters</h3>
+</span></code></pre><h3 id='http-request-26'>HTTP Request</h3>
+<p>This method is only available client-side.</p>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3827,19 +3925,25 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
 <td>fee</td>
 <td>number</td>
 <td>No</td>
-<td>The absolute fee in Satoshis to be paid to the Bitcoin miners. Set as &#39;undefined&#39; for automatic.</td>
+<td>The absolute fee in satoshis to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use &#39;feeTxConfirmTarget&#39; instead for dynamic fee estimates.</td>
 </tr>
 <tr>
 <td>feeRate</td>
 <td>number</td>
 <td>No</td>
-<td>The fee in Satoshis to be paid to the Bitcoin miners PER KB of transaction size. Set as &#39;undefined&#39; for automatic.</td>
+<td>The fee in satoshis /per kB/ of transaction size to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use &#39;feeTxConfirmTarget&#39; instead for dynamic fee estimates.</td>
 </tr>
 <tr>
 <td>feeTxConfirmTarget</td>
 <td>number</td>
 <td>No</td>
 <td>Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.</td>
+</tr>
+<tr>
+<td>maxFeeRate</td>
+<td>number</td>
+<td>No</td>
+<td>An upper bound for the fee rate in satoshi per kB. Useful to set as a safety measure when using dynamic fees.</td>
 </tr>
 <tr>
 <td>minConfirms</td>
@@ -3854,16 +3958,58 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
 <td>Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.</td>
 </tr>
 <tr>
+<td>instant</td>
+<td>boolean</td>
+<td>No</td>
+<td>set to true to request that the transaction be sent with BitGo&#39;s instant guarantee against double-spends (fees may apply).</td>
+</tr>
+<tr>
+<td>forceChangeAtEnd</td>
+<td>boolean</td>
+<td>No</td>
+<td>Forces the change address to be the last output.</td>
+</tr>
+<tr>
+<td>changeAddress</td>
+<td>address (string)</td>
+<td>No</td>
+<td>Specifies the change address instead of creating a new one.</td>
+</tr>
+<tr>
+<td>noSplitChange</td>
+<td>boolean</td>
+<td>No</td>
+<td>Set to true to disable automatic change splitting for purposes of unspent management.</td>
+</tr>
+<tr>
+<td>targetWalletUnspents</td>
+<td>number</td>
+<td>No</td>
+<td>Specify a number of target unspents to maintain in the wallet.</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>boolean</td>
+<td>No</td>
+<td>Extra verification of the change addresses, which is always done server-side and is redundant client-side (defaults to true).</td>
+</tr>
+<tr>
 <td>minUnspentSize</td>
 <td>number</td>
 <td>No</td>
 <td>Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).</td>
 </tr>
 <tr>
-<td>instant</td>
-<td>boolean</td>
+<td>feeSingleKeySourceAddress</td>
+<td>address (string)</td>
 <td>No</td>
-<td>set to true to request that the transaction be sent with BitGo&#39;s instant guarantee against double-spends (fees may apply).</td>
+<td>Use this single key address to pay fees</td>
+</tr>
+<tr>
+<td>feeSingleKeyWIF</td>
+<td>private key in WIF</td>
+<td>No</td>
+<td>Use the address based on this private key to pay fees</td>
 </tr>
 </tbody></table>
 <h2 id='sign-transaction'>Sign Transaction</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">bitgo</span><span class="p">.</span><span class="nx">wallets</span><span class="p">().</span><span class="nx">get</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">walletId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
@@ -3935,7 +4081,9 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
 <p>Example Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"tx"</span><span class="p">:</span><span class="s2">"0100000003f6a05b9ab9d7c62cb70a662a4016cbd4740d1d6d35d3c903e3a74fd9f943d09c00....."</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='parameters-6'>Parameters</h3>
+</span></code></pre><h3 id='http-request-27'>HTTP Request</h3>
+<p>This method is only available client-side.</p>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3961,6 +4109,18 @@ This method is for advanced API users. For most scenarios, <a href="#send-coins-
 <td>keychain object</td>
 <td>Yes</td>
 <td>The decrypted keychain (object), with available xprv property.</td>
+</tr>
+<tr>
+<td>signingKey</td>
+<td>private key (string)</td>
+<td>No</td>
+<td>For legacy safe wallets, the private key string.</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>boolean</td>
+<td>No</td>
+<td>Extra verification of signatures (which are always verified server-side), defaults to global configuration.</td>
 </tr>
 </tbody></table>
 <h2 id='send-transaction'>Send Transaction</h2><pre class="highlight shell tab-shell"><code><span class="nv">TX</span><span class="o">={</span>raw hex transaction<span class="o">}</span>
@@ -4027,17 +4187,20 @@ https://test.bitgo.com/api/v1/tx/send
 This method is for advanced API users. For most scenarios, <a href="#send-coins-to-address">Send Coins to Address</a> is the recommended method to send bitcoins from a wallet.
 </aside>
 
-<p>Send a partially-signed transaction. The server will do one of the following:
-* reject the transaction
-* gather additional approvals from other wallet admins
-* apply the final signature, and submit to the Bitcoin P2P network</p>
+<p>Send a partially-signed transaction. The server will do one of the following:</p>
+
+<ul>
+<li>reject the transaction</li>
+<li>gather additional approvals from other wallet admins</li>
+<li>apply the final signature, and submit to the Bitcoin P2P network</li>
+</ul>
 
 <aside class="info">
 This API requires the session to be unlocked using the Unlock API
 A single call to the Unlock API allows any single transaction, or multiple transactions up
 to an internally-set BitGo quota (currently set at 50 BTC).
 </aside>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST /api/v1/tx/send</code></p>
 
 <blockquote>
@@ -4050,7 +4213,7 @@ to an internally-set BitGo quota (currently set at 50 BTC).
   </span><span class="s2">"instant"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"instantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56651c4c4e82b975616b58647c77fe1dc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='body-parameters-9'>BODY Parameters</h3>
+</span></code></pre><h3 id='body-parameters-10'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4090,7 +4253,7 @@ to an internally-set BitGo quota (currently set at 50 BTC).
 <td>A 7 digit code used to bypass a policy with the &quot;getOTP&quot; action type. See <a href="#wallet-policy">Wallet Policy</a> for more details</td>
 </tr>
 </tbody></table>
-<h3 id='response-26'>Response</h3>
+<h3 id='response-27'>Response</h3>
 <p>Returns the sent transaction and its hash in hex-encoded form.</p>
 <h3 id='errors-19'>Errors</h3>
 <table><thead>
@@ -4162,8 +4325,8 @@ We back our promise with a cryptographically signed guarantee on each transactio
 <aside class="info">
 Anyone can receive instant transactions. Sending an instant transaction requires an instant-compatible / KRS BitGo wallet.
 </aside>
-<h3 id='http-request-25'>HTTP Request</h3>
-<p><code>GET /api/v1/instant/&lt;id&gt;</code></p>
+<h3 id='http-request-29'>HTTP Request</h3>
+<p><code>GET /api/v1/instant/:id</code></p>
 
 <blockquote>
 <p>Example Response</p>
@@ -4178,7 +4341,23 @@ Anyone can receive instant transactions. Sending an instant transaction requires
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ba08ef2a745246f309ec4eaff5d7652c4fc01e61eebd9aabc1c58996355acd7"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-27'>Response</h3>
+</span></code></pre><h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>Yes</td>
+<td>The instant guarantee id to be retrieved.</td>
+</tr>
+</tbody></table>
+<h3 id='response-28'>Response</h3>
 <p>Returns the instant guarantee message, including the amount and Transaction ID.</p>
 
 <table><thead>
@@ -4255,8 +4434,7 @@ You can save the guarantee &amp; signature locally to provide an audit record in
 </tr>
 </tbody></table>
 <h2 id='get-wallet-by-address'>Get Wallet by Address</h2>
-<p>Given an address, returns the address information (including balances) and wallet the address is associated with.
-Useful where one has many addresses / wallets, but does not know the wallet an address belongs to.</p>
+<p>Identifies the wallet to which a given address belongs and returns additional information about the address (including balances).</p>
 <pre class="highlight shell tab-shell"><code><span class="nv">ADDRESS</span><span class="o">=</span>2NBMGw7K9XiBPfvW3nUQcrANKncmAoLUdDX
 
 curl -X GET <span class="se">\</span>
@@ -4268,9 +4446,9 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-26'>HTTP Request</h3>
+</code></pre><h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET /api/v1/walletaddress/:address</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4302,7 +4480,7 @@ https://test.bitgo.com/api/v1/walletaddress/<span class="nv">$ADDRESS</span>
     </span><span class="s2">"txCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32uFQgny5bgj24nywQPo5cgEUGX6a1PuAp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-28'>Response</h3>
+</span></code></pre><h3 id='response-29'>Response</h3>
 <p>Returns a wallet address object</p>
 
 <table><thead>
@@ -4397,7 +4575,7 @@ for a default of 1 hour.</p>
 <td>length of time in seconds to freeze spend activity. Defaults to 1 hour.</td>
 </tr>
 </tbody></table>
-<h3 id='response-29'>Response</h3>
+<h3 id='response-30'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4544,8 +4722,20 @@ Each user on BitGo creates a public-private keypair for this purpose during thei
 <td>No</td>
 <td>Set to true to prevent a notification email sent to the user added</td>
 </tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>No</td>
+<td>The message to be used for this share.</td>
+</tr>
+<tr>
+<td>reshare</td>
+<td>boolean</td>
+<td>No</td>
+<td>Must be explicitly set to true if a user is being reinvited to share a wallet after resetting their password.</td>
+</tr>
 </tbody></table>
-<h3 id='response-30'>Response</h3>
+<h3 id='response-31'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4593,7 +4783,7 @@ https://test.bitgo.com/api/v1/walletShare
   <span class="p">});</span>
 </code></pre>
 <p>Gets lists of incoming and outgoing wallet shares for the logged-on account.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET /api/v1/walletShare</code></p>
 
 <blockquote>
@@ -4619,7 +4809,7 @@ https://test.bitgo.com/api/v1/walletShare
    </span><span class="p">],</span><span class="w">
    </span><span class="s2">"outgoing"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-31'>Response</h3>
+</span></code></pre><h3 id='response-32'>Response</h3>
 <p>Each wallet share object returned contains the following fields:</p>
 
 <table><thead>
@@ -4690,6 +4880,8 @@ This operation requires the session to be unlocked using the Unlock API.
 <li>Re-encrypt the wallet with the user&#39;s chosen passphrase for future use.</li>
 <li>Upload the encrypted keys to the BitGo service and sets the share to accepted, giving the user access to the wallet on BitGo.</li>
 </ul>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p>This method is only available client-side.</p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
@@ -4724,7 +4916,7 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>Set to an alternate encrypted xprv if you wish to store an encrypted xprv received out-of-band</td>
 </tr>
 </tbody></table>
-<h3 id='response-32'>Response</h3>
+<h3 id='response-33'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4757,9 +4949,25 @@ https://test.bitgo.com/api/v1/walletshare/<span class="nv">$SHAREID</span>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"canceled"</span><span class="p">,</span><span class="w"> </span><span class="s2">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Can be used to cancel a pending outgoing wallet share, or reject an incoming share. The share should not have been accepted yet.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
-<p><code>DELETE/api/v1/walletshare/:SHAREID</code></p>
-<h3 id='response-33'>Response</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
+<p><code>DELETE/api/v1/walletshare/:walletShareId</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletShareId</td>
+<td>string</td>
+<td>Yes</td>
+<td>The Wallet share to update.</td>
+</tr>
+</tbody></table>
+<h3 id='response-34'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4799,9 +5007,9 @@ curl -X DELETE <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<span class="nv">$USERID</span>
-</code></pre><h3 id='http-request-29'>HTTP Request</h3>
-<p><code>DELETE /api/v1/wallet/:wallet/user/:userId</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+</code></pre><h3 id='http-request-34'>HTTP Request</h3>
+<p><code>DELETE /api/v1/wallet/:walletId/user/:userId</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4810,7 +5018,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 </tr>
 </thead><tbody>
 <tr>
-<td>wallet</td>
+<td>walletId</td>
 <td>Yes</td>
 <td>The ID of the wallet</td>
 </tr>
@@ -4820,7 +5028,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/user/<spa
 <td>The user id of the user to remove (can be found on the wallet object)</td>
 </tr>
 </tbody></table>
-<h3 id='response-34'>Response</h3>
+<h3 id='response-35'>Response</h3>
 <p>Returns the updated Wallet Model for this wallet, or a Pending Approval object (if approval is required).</p>
 <h3 id='errors-22'>Errors</h3>
 <table><thead>
@@ -4920,9 +5128,9 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the policy rules in operation on a wallet.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/policy</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4938,7 +5146,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy
 <td>The ID of the wallet</td>
 </tr>
 </tbody></table>
-<h3 id='response-35'>Response</h3>
+<h3 id='response-36'>Response</h3>
 <p>Returns a Wallet Policy object, containing the rules set up on it</p>
 <h2 id='get-policy-status'>Get Policy Status</h2><pre class="highlight shell tab-shell"><code><span class="nv">WALLET</span><span class="o">=</span>2NEe9QhKPB2gnQLB3hffMuDcoFKZFjHYJYx
 
@@ -4980,9 +5188,9 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-31'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/policy/status</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4998,7 +5206,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/policy/stat
 <td>The ID of the wallet</td>
 </tr>
 </tbody></table>
-<h3 id='response-36'>Response</h3>
+<h3 id='response-37'>Response</h3>
 <p>Returns status results as generated by rules active on the wallet policy, including information about the limit usage.</p>
 <h2 id='set-policy-rule'>Set Policy Rule</h2>
 <p>Add or update a rule to a wallet&#39;s policy. A wallet policy&#39;s rules controls the conditions under which BitGo will use its single key to sign a transaction. 
@@ -5033,13 +5241,13 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
     <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">admin</span><span class="p">.</span><span class="nx">policy</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-32'>HTTP Request</h3>
-<p><code>PUT /api/v1/wallet/:wallet/policy/rule</code></p>
+</code></pre><h3 id='http-request-37'>HTTP Request</h3>
+<p><code>PUT /api/v1/wallet/:walletId/policy/rule</code></p>
 
 <aside class="info">
 This operation requires the session to be unlocked using the Unlock API.
 </aside>
-<h3 id='body-parameters-10'>BODY Parameters</h3>
+<h3 id='body-parameters-11'>BODY Parameters</h3>
 <p>Policy rule objects have a type, a condition, and an action. The type of policy often dictates the condition values.</p>
 
 <table><thead>
@@ -5101,7 +5309,7 @@ This operation requires the session to be unlocked using the Unlock API.
     </span><span class="p">}]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-37'>Response</h3>
+</span></code></pre><h3 id='response-38'>Response</h3>
 <p>Returns the updated Wallet Model object.</p>
 <h3 id='errors-23'>Errors</h3>
 <table><thead>
@@ -5384,13 +5592,29 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/policy/ru
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Removes a policy rule with the id specified. This may require a secondary approval if there is more than 1 administrator on the wallet.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
-<p><code>DELETE /api/v1/wallet/:WALLETID/policy/rule</code></p>
+<h3 id='http-request-38'>HTTP Request</h3>
+<p><code>DELETE /api/v1/wallet/:walletId/policy/rule</code></p>
 
 <aside class="info">
 This operation requires the session to be unlocked using the Unlock API.
 </aside>
-<h3 id='body-parameters-11'>BODY Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>address (string)</td>
+<td>Yes</td>
+<td>The base address of the wallet</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-12'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5406,7 +5630,7 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>the id of the policy rule to remove</td>
 </tr>
 </tbody></table>
-<h3 id='response-38'>Response</h3>
+<h3 id='response-39'>Response</h3>
 <p>Returns the updated Wallet Model object.</p>
 <h1 id='pending-approvals'>Pending Approvals</h1><h2 id='list-pending-approvals'>List Pending Approvals</h2>
 <p>List pending approvals on a wallet or an enterprise by providing either a wallet id or an enterprise in the url. By default, the request returns all the pending approvals for a user.  </p>
@@ -5453,9 +5677,9 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
        </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-34'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-39'>HTTP Request</h3>
 <p><code>GET /api/v1/pendingapprovals</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5477,7 +5701,7 @@ https://test.bitgo.com/api/v1/pendingapprovals?enterprise<span class="o">=</span
 <td>The public ID of the enterprise</td>
 </tr>
 </tbody></table>
-<h3 id='response-39'>Response</h3>
+<h3 id='response-40'>Response</h3>
 <p>Returns a list of pending approvals.</p>
 <h2 id='update-pending-approval'>Update Pending Approval</h2>
 <p>Update the state of a pending approval to either &#39;approved&#39; or &#39;rejected&#39;.</p>
@@ -5534,9 +5758,25 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
    </span><span class="p">],</span><span class="w">
    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"approved"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-35'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-40'>HTTP Request</h3>
 <p><code>PUT /api/v1/pendingapprovals/:pendingApprovalId</code></p>
-<h3 id='body-parameters-12'>BODY Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pendingApprovalId</td>
+<td>string</td>
+<td>Yes</td>
+<td>The ID of the pending approval to be updated.</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-13'>BODY Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5558,7 +5798,7 @@ https://test.bitgo.com/api/v1/pendingapprovals/:PENDINGAPPROVALID
 <td>the 2-factor-authentication otp code</td>
 </tr>
 </tbody></table>
-<h3 id='response-40'>Response</h3>
+<h3 id='response-41'>Response</h3>
 <p>Returns the updated pending approvals with the new state.</p>
 <h1 id='address-labels'>Address Labels</h1>
 <p>Labels allow you to keep track of addresses with human readable notes.
@@ -5578,7 +5818,7 @@ https://test.bitgo.com/api/v1/labels
 <span class="p">});</span>
 </code></pre>
 <p>Get the list of labels for the user</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <p><code>GET /api/v1/labels</code></p>
 
 <blockquote>
@@ -5598,7 +5838,7 @@ https://test.bitgo.com/api/v1/labels
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-41'>Response</h3>
+</span></code></pre><h3 id='response-42'>Response</h3>
 <p>Returns an array of Label Model objects.</p>
 
 <table><thead>
@@ -5660,7 +5900,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
 <span class="p">});</span>
 </code></pre>
 <p>Get the list of labels for the wallet</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <p><code>GET /api/v1/labels/:walletId</code></p>
 
 <blockquote>
@@ -5675,7 +5915,23 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-42'>Response</h3>
+</span></code></pre><h3 id='url-parameters-18'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>bitcoin address (string)</td>
+<td>Yes</td>
+<td>The ID and first address of the wallet</td>
+</tr>
+</tbody></table>
+<h3 id='response-43'>Response</h3>
 <p>Returns an array of Label Model objects.</p>
 
 <table><thead>
@@ -5746,7 +6002,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <p>Set a label on a specific address and associate it with a specific wallet.
 Labels are limited to 250 characters in length. Labels cannot be set on a wallet&#39;s first receiving address
 because it reserved for the wallet&#39;s label.</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <p><code>PUT /api/v1/labels/:walletId/:address</code></p>
 
 <blockquote>
@@ -5757,7 +6013,7 @@ because it reserved for the wallet&#39;s label.</p>
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-14'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5795,7 +6051,7 @@ because it reserved for the wallet&#39;s label.</p>
 <td>the address label</td>
 </tr>
 </tbody></table>
-<h3 id='response-43'>Response</h3>
+<h3 id='response-44'>Response</h3>
 <p>Returns a Label Model object.</p>
 
 <table><thead>
@@ -5850,7 +6106,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <span class="p">});</span>
 </code></pre>
 <p>Delete a label from a specific address and wallet.</p>
-<h3 id='http-request-39'>HTTP Request</h3>
+<h3 id='http-request-44'>HTTP Request</h3>
 <p><code>DELETE /api/v1/labels/:walletId/:address</code></p>
 
 <blockquote>
@@ -5861,7 +6117,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Noteworthy Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-15'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5883,7 +6139,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <td>the bitcoin address being labeled</td>
 </tr>
 </tbody></table>
-<h3 id='response-44'>Response</h3>
+<h3 id='response-45'>Response</h3>
 <p>Returns a Label Model object of the label that was deleted.</p>
 
 <table><thead>
@@ -5927,9 +6183,9 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 </tbody></table>
 <h1 id='tags'>Tags</h1>
 <p>Tags are an advanced policy feature for enterprise clients.</p>
-<h2 id='create-a-tag'>Create a tag</h2><h3 id='http-request-40'>HTTP Request</h3>
+<h2 id='create-a-tag'>Create a tag</h2><h3 id='http-request-45'>HTTP Request</h3>
 <p><code>POST /api/v1/tag</code></p>
-<h3 id='body-parameters-13'>BODY Parameters</h3>
+<h3 id='body-parameters-14'>BODY Parameters</h3>
 <p>The tag must have a name and exactly one of either a user, wallet, or enterprise.</p>
 
 <table><thead>
@@ -5970,7 +6226,7 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-45'>Response</h3>
+<h3 id='response-46'>Response</h3>
 <p>Returns the tag.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[id]"</span><span class="p">,</span><span class="w">
@@ -5989,9 +6245,25 @@ https://test.bitgo.com/api/v1/labels/<span class="nv">$WALLET</span>/<span class
 <td>The request parameters were missing or incorrect.</td>
 </tr>
 </tbody></table>
-<h2 id='add-a-tag-to-a-wallet'>Add a tag to a wallet</h2><h3 id='http-request-41'>HTTP Request</h3>
-<p><code>POST /api/v1/wallet/:wallet/tag</code></p>
-<h3 id='body-parameters-14'>BODY Parameters</h3>
+<h2 id='add-a-tag-to-a-wallet'>Add a tag to a wallet</h2><h3 id='http-request-46'>HTTP Request</h3>
+<p><code>POST /api/v1/wallet/:walletId/tag</code></p>
+<h3 id='url-parameters-21'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>bitcoin address (string)</td>
+<td>Yes</td>
+<td>The ID and first address of the wallet</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-15'>BODY Parameters</h3>
 <p>You must specify the id of the tag you are adding to the wallet, and no other parameters
 are required.</p>
 
@@ -6012,7 +6284,7 @@ are required.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-46'>Response</h3>
+<h3 id='response-47'>Response</h3>
 <p>Returns the wallet, tag, and number of wallettxs affected.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[id]"</span><span class="p">,</span><span class="w">
@@ -6149,9 +6421,25 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span></code></pre>
 <p>Gets list of webhooks set up on the wallet.
 Currently, the only types of webhooks that can be attached to a wallet are transaction and pendingapproval notifications.</p>
-<h3 id='http-request-42'>HTTP Request</h3>
+<h3 id='http-request-47'>HTTP Request</h3>
 <p><code>GET /api/v1/wallet/:walletId/webhooks</code></p>
-<h3 id='response-47'>Response</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>bitcoin address (string)</td>
+<td>Yes</td>
+<td>The ID and first address of the wallet</td>
+</tr>
+</tbody></table>
+<h3 id='response-48'>Response</h3>
 <p>An array of Webhook objects</p>
 
 <table><thead>
@@ -6202,8 +6490,24 @@ There is a limit of 10 Webhooks of each type per wallet.</p>
 <p>There are 2 types of wallet webhooks available:
 1. Transaction webhooks will fire on any transaction on the wallet.
 2. Pending approval webhooks will fire when an outgoing transaction has triggered policy on the wallet.</p>
-<h3 id='http-request-43'>HTTP Request</h3>
+<h3 id='http-request-48'>HTTP Request</h3>
 <p><code>POST /api/v1/wallet/:walletId/webhooks</code></p>
+<h3 id='url-parameters-23'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>bitcoin address (string)</td>
+<td>Yes</td>
+<td>The ID and first address of the wallet</td>
+</tr>
+</tbody></table>
 <h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
@@ -6232,7 +6536,7 @@ There is a limit of 10 Webhooks of each type per wallet.</p>
 <td>number of confirmations before triggering the transaction webhook. If 0 or unspecified, requests will be sent to the callback endpoint will be called when the transaction is first seen and when it is confirmed.</td>
 </tr>
 </tbody></table>
-<h3 id='response-48'>Response</h3>
+<h3 id='response-49'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6274,8 +6578,24 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.</p>
-<h3 id='http-request-44'>HTTP Request</h3>
+<h3 id='http-request-49'>HTTP Request</h3>
 <p><code>DELETE /api/v1/wallet/:walletId/webhooks</code></p>
+<h3 id='url-parameters-24'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletId</td>
+<td>bitcoin address (string)</td>
+<td>Yes</td>
+<td>The ID and first address of the wallet</td>
+</tr>
+</tbody></table>
 <h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
@@ -6298,7 +6618,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/webhooks
 <td>valid http/https url for callback requests to be made at</td>
 </tr>
 </tbody></table>
-<h3 id='response-49'>Response</h3>
+<h3 id='response-50'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6343,9 +6663,9 @@ https://test.bitgo.com/api/v1/webhooks
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Gets list of webhooks attached to the user. Currently, the only type of webhook that can be attached to a user is a block notification.</p>
-<h3 id='http-request-45'>HTTP Request</h3>
+<h3 id='http-request-50'>HTTP Request</h3>
 <p><code>GET /api/v1/webhooks</code></p>
-<h3 id='response-50'>Response</h3>
+<h3 id='response-51'>Response</h3>
 <p>An array of Webhook objects</p>
 
 <table><thead>
@@ -6389,7 +6709,7 @@ https://test.bitgo.com/api/v1/webhooks
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Adds a webhook that will result in a HTTP callback at the specified URL from BitGo when events are triggered. The webhook record is attached to the user account.</p>
-<h3 id='http-request-46'>HTTP Request</h3>
+<h3 id='http-request-51'>HTTP Request</h3>
 <p><code>POST /api/v1/webhooks</code></p>
 <h3 id='parameters-12'>Parameters</h3>
 <table><thead>
@@ -6419,7 +6739,7 @@ https://test.bitgo.com/api/v1/webhooks
 <td>valid http/https url for callback requests</td>
 </tr>
 </tbody></table>
-<h3 id='response-51'>Response</h3>
+<h3 id='response-52'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6454,7 +6774,7 @@ https://test.bitgo.com/api/v1/webhooks
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Removing a Webhook will cause new events of the specified type to no longer trigger HTTP callbacks to your URLs.</p>
-<h3 id='http-request-47'>HTTP Request</h3>
+<h3 id='http-request-52'>HTTP Request</h3>
 <p><code>DELETE /api/v1/webhooks</code></p>
 <h3 id='parameters-13'>Parameters</h3>
 <table><thead>
@@ -6478,7 +6798,7 @@ https://test.bitgo.com/api/v1/webhooks
 <td>valid http/https url for callback requests to be made at</td>
 </tr>
 </tbody></table>
-<h3 id='response-52'>Response</h3>
+<h3 id='response-53'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6533,7 +6853,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </code></pre><pre class="highlight shell tab-shell"><code>curl -k https://www.bitgo.com/api/v1/tx/fee?numBlocks<span class="o">=</span>6
 </code></pre>
 <p>Returns the recommended fee rate per kilobyte to confirm a transaction within a target number of blocks. This can be used to construct transactions.</p>
-<h3 id='http-request-48'>HTTP Request</h3>
+<h3 id='http-request-53'>HTTP Request</h3>
 <p><code>GET /api/v1/tx/fee?numBlocks=6</code></p>
 
 <blockquote>
@@ -6594,7 +6914,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 <td>List of txIDs identifying unconfirmed transactions that the desired CPFP transaction will spend outputs from, is only used in combination with <code>cpfpAware:true</code>.</td>
 </tr>
 </tbody></table>
-<h3 id='response-53'>Response</h3>
+<h3 id='response-54'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6631,7 +6951,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
 </code></pre><pre class="highlight shell tab-shell"><code>curl -k https://test.bitgo.com/api/v1/market/latest
 </code></pre>
 <p>Get information about the current market</p>
-<h3 id='http-request-49'>HTTP Request</h3>
+<h3 id='http-request-54'>HTTP Request</h3>
 <p><code>GET /api/v1/market/latest</code></p>
 
 <blockquote>
@@ -6766,7 +7086,7 @@ http://<span class="nv">$BITGO_EXPRESS_HOST</span>:3080/api/v1/encrypt
         </span><span class="s2">"__v"</span><span class="p">:</span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-54'>Response</h3>
+</span></code></pre><h3 id='response-55'>Response</h3>
 <p>Returns a Market Model object. All prices are denominated in the user&#39;s set currency.</p>
 
 <table><thead>
@@ -6835,7 +7155,7 @@ co-sign transactions to these addresses. This API provides the list of addresses
 blocked by BitGo. We recommend periodically polling this list (once a day, perhaps), in order to maintain
 your own block list. Otherwise you may accidentally submit bad transactions to BitGo, if one of your
 customers is infected and requests a withdrawal.</p>
-<h3 id='http-request-50'>HTTP Request</h3>
+<h3 id='http-request-55'>HTTP Request</h3>
 <p><code>GET /api/v1/malware/bitcoin</code></p>
 
 <blockquote>
@@ -6852,7 +7172,7 @@ customers is infected and requests a withdrawal.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-55'>Response</h3>
+</span></code></pre><h3 id='response-56'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6904,9 +7224,9 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-51'>HTTP Request</h3>
+</code></pre><h3 id='http-request-56'>HTTP Request</h3>
 <p><code>GET /api/v1/address/:address</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6931,7 +7251,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>
   </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">6900000</span><span class="p">,</span><span class="w">
   </span><span class="s2">"confirmedBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">6900000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-56'>Response</h3>
+</span></code></pre><h3 id='response-57'>Response</h3>
 <p>Returns address summary information.</p>
 
 <table><thead>
@@ -6978,9 +7298,9 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-52'>HTTP Request</h3>
+</code></pre><h3 id='http-request-57'>HTTP Request</h3>
 <p><code>GET /api/v1/address/:address/tx</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-26'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7068,7 +7388,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/tx
     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-57'>Response</h3>
+</span></code></pre><h3 id='response-58'>Response</h3>
 <p>Returns an array of Transaction objects.  Each transaction contains summary
 information about how that transaction affected the net balance of any
 bitcoin address involved in the transaction.</p>
@@ -7093,9 +7413,9 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
 <span class="p">});</span>
-</code></pre><h3 id='http-request-53'>HTTP Request</h3>
+</code></pre><h3 id='http-request-58'>HTTP Request</h3>
 <p><code>GET /api/v1/address/:address/unspents</code></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-27'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7140,7 +7460,7 @@ curl https://test.bitgo.com/api/v1/address/<span class="nv">$ADDRESS</span>/unsp
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-58'>Response</h3>
+</span></code></pre><h3 id='response-59'>Response</h3>
 <p>Returns an array of unspent Transaction objects.  Each transaction contains the following information</p>
 
 <table><thead>
@@ -7212,9 +7532,9 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
 <span class="p">});</span>
 </code></pre>
 <p>Gets details for a transaction hash</p>
-<h3 id='http-request-54'>HTTP Request</h3>
+<h3 id='http-request-59'>HTTP Request</h3>
 <p><code>GET /api/v1/tx/:txid</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-28'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7276,7 +7596,95 @@ curl https://test.bitgo.com/api/v1/tx/<span class="nv">$TX</span>
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-59'>Response</h3>
+</span></code></pre><h3 id='response-60'>Response</h3>
+<p>Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.</p>
+<h2 id='get-transaction-that-spends-a-given-output-id'>Get Transaction That Spends A Given Output ID</h2><pre class="highlight shell tab-shell"><code><span class="nv">TX</span><span class="o">=</span>af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648
+<span class="nv">VOUT</span><span class="o">=</span>0
+curl https://test.bitgo.com/api/v1/tx/input/<span class="nv">$TX</span>/<span class="nv">$VOUT</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">txId</span> <span class="o">=</span> <span class="s1">'af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">vout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">bitgo</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">().</span><span class="nx">getTransactionByInput</span><span class="p">({</span> <span class="na">txId</span><span class="p">:</span> <span class="nx">txId</span><span class="p">,</span> <span class="na">vout</span><span class="p">:</span> <span class="nx">vout</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre>
+<p>Gets details for a transaction that spends a specific output ID of another transaction</p>
+<h3 id='http-request-60'>HTTP Request</h3>
+<p><code>GET /api/v1/tx/input/:txid/:vout</code></p>
+<h3 id='url-parameters-29'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>txid</td>
+<td>string</td>
+<td>Yes</td>
+<td>The transaction ID (hash) of the output that was spent</td>
+</tr>
+<tr>
+<td>vout</td>
+<td>number</td>
+<td>Yes</td>
+<td>The vout (output position on the parent transaction) of the output that was spent</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">transactions</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"blockhash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000009249e7d725cc087cb781ade1dbfaf2bd777822948d5fccd4044f8299"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">16679</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-06T02:22:55.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">84000000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msj42CCGruhRsFrGATiUuh25dtxYtnpbTx"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-85900000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mwahoJcaVuy2TiMtGDZV9PaujFeD9z1a1q"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1890000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">306695</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0100000001b6e8b36132d351b3d66b5452d8f4601e2271a7bb52b644397db956a4ffe2a053000000006a4730440220127c4adc1cf985cd884c383e69440ce4d48a0c4fdce6bf9d70faa0ee8092acb80220632cb6c99ded7f261814e602fc8fa8e7fe8cb6a95d45c497846b8624f7d19b3c012103df001c8b58ac42b6cbfc2223b8efaa7e9a1911e529bd2c8b7f90140079034e75ffffffff0200bd01050000000017a914c449a7fafb3b13b2952e064f2c3c58e851bb943087d0d61c00000000001976a914b0379374df5eab8be9a21ee96711712bdb781a9588ac00000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"af867c86000da76df7ddb1054b273ca9e034e8c89d049b5b2795f9f590f67648"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"inputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"previousHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53a0e2ffa456b97d3944b652bba771221e60f4d852546bd6b351d33261b3e8b6"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"previousOutputIndex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NB96fbwy8eoHttuZTtbwvvhEYrBwz494ov"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">84000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"vout"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mwahoJcaVuy2TiMtGDZV9PaujFeD9z1a1q"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1890000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"vout"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-61'>Response</h3>
 <p>Returns detailed information on a transaction, including net effects on all bitcoin addresses involved in the transaction.</p>
 <h2 id='get-block'>Get Block</h2><pre class="highlight shell tab-shell"><code><span class="nv">BLOCK</span><span class="o">=</span>00000000000000066fff8a67fbb6fac31e9c4ce5b1eabc279ce53218106aa26a
 curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
@@ -7287,13 +7695,13 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
 <span class="p">});</span>
 </code></pre>
 <p>Gets a Bitcoin block and the transactions within it. You can use &#39;latest&#39; to get the latest block on the bitcoin network.</p>
-<h3 id='http-request-55'>HTTP Request</h3>
+<h3 id='http-request-61'>HTTP Request</h3>
 <p><code>GET /api/v1/block/latest</code></p>
 
 <p><code>GET /api/v1/block/:blockHeight</code></p>
 
 <p><code>GET /api/v1/block/:blockHash</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-30'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7338,7 +7746,7 @@ curl https://test.bitgo.com/api/v1/block/<span class="nv">$BLOCK</span>
         </span><span class="s2">"7d83ee2d59e06bc7efe49c647289d98842a7e9ec3b90c3cc965a81df08c08c8f"</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-60'>Response</h3>
+</span></code></pre><h3 id='response-62'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
