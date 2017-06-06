@@ -156,7 +156,7 @@ All responses are of content-type `application/json`
 
 > Example Response
 
-```
+```json
 {
     "status": "service is ok!",
     "environment": "BitGo Test"
@@ -457,7 +457,7 @@ bitgo.session({}, function callback(err, session) {
 
 > Example response
 
-```
+```json
 { "client": "bitgo",
   "user": "5458141599f715232500000530a94fd2",
   "scope":
@@ -1517,7 +1517,7 @@ disableTransactionNotifications | boolean | No | Set to true to prevent wallet t
  "balance": 0,
  "pendingApprovals": [] }
 ```
-```
+```plaintext
 User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
 Backup keychain encrypted xPrv: {"iv":"vNOUQpzUmHNPwKt..."}
 ```
@@ -4327,8 +4327,12 @@ Response | Description
 
 > Example transaction Webhook callback
 
-```
+```plaintext
 POST http://your.server.com/webhook
+```
+
+```json
+
 {
   "type": "transaction",
   "walletId": "2MwLxgWaAGmMT9asT4nAdeewWzPEz3Sn5Eg",
@@ -4338,8 +4342,11 @@ POST http://your.server.com/webhook
 
 > Example pending approval Webhook callback
 
-```
+```plaintext
 POST http://your.server.com/webhook
+```
+
+```json
 {
   "type": "pendingapproval",
   "pendingApprovalId": "55e79a1b5f9a20da1d3fe5b988a71c93",
@@ -5614,7 +5621,7 @@ wallet_freeze_all | Freeze all spend activity on all of the user's wallets
 
 > Example OAuth gateway redirect to send your users to BitGo OAuth
 
-```
+```plaintext
 https://test.bitgo.com/oauth/authorize?client_id=FBExchange&redirect_uri=https%3A%2F%2Ffbexchange.com%2Foauth_redirect&scope=openid%20profile%20wallet_view_enterprise&email=test@bitgo.com&signup=false
 ```
 
@@ -5629,7 +5636,7 @@ Parameters may be sent via GET or POST.
 
 > Example redirect URL from BitGo sending users back to your site
 
-```
+```plaintext
 https://fbexchange.com/oauth_redirect?code=440261e26512877b7ebe86e2740da3030d81e88e
 ```
 
@@ -5866,13 +5873,13 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
   });
 });
 ```
-```
+```plaintext
 $ node getWalletBalance.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 ```
 
 > Example output
 
-```
+```plaintext
 Logged in!
 Balance is: 0.6274
 ```
@@ -5922,13 +5929,12 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
   });
 });
 ```
-```
+
+```plaintext
 $ node listWalletTransactions.js tester@bitgo.com superhardseypassphrase 0000000 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
-```
 
 > Example output
 
-```
 Logged in!
 Balance is: 0.6274
 b9573e0e1d8f22fbfe314760b9abd0b6942132cfb2bd7f9fee9713b545a62689: Received 0.56000000BTC on 2014-11-17T21:20:59.000Z
@@ -5954,13 +5960,13 @@ walletId | bitcoin address (string) | Yes | id of the wallet (also the first rec
 
 ## Address Labels
 
-```
+```plaintext
 $ node addressLabels.js tester@bitgo.com superhardseypassphrase 0000000
 ```
 
 > Example output
 
-```
+```plaintext
 Enter the wallet ID: 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD
 Which label action do you wish to perform? [list, set, delete]: list
  muYhgJrYZHffyGUmuzETjMcBQZJqFo9Vkg    Secret Stash
@@ -5999,13 +6005,13 @@ otp | number | Yes | the one-time-password (you can use 0000000 in the test envi
 });
 ```
 
-```
+```plaintext
 $ node createWallet.js tester@bitgo.com superhardseypassphrase 0000000 'My API wallet'
 ```
 
 > Example output
 
-```
+```plaintext
 New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
 ```
 ```json
@@ -6021,7 +6027,7 @@ New Wallet: 2NAGz3TDs5HmBU2SEodtWyks9n5KXVCzBTf
  "balance": 0,
  "pendingApprovals": [] }
 ```
-```
+```plaintext
 BACK THIS UP:
 User keychain encrypted xPrv: {"iv":"v2aVEG5A8VwnI+ewS..."}
 Backup keychain xPub: xpub6GiRC55CRuv2Fx3ihR9EPCr7gauoJcHqvvdSgQkmMmqMQmvQ1KNSBmKPReryBv8E3qJWkHmCx3cWmLGvbDRzCAoV7HUf8A5LUdRhV46u9h5
@@ -6076,13 +6082,13 @@ bitgo.authenticate({ username: user, password: password, otp: otp }, function(er
   });
 });
 ```
-```
+```plaintext
 $ node sendBitcoin tester@bitgo.com superhardseypassphrase 0000000 2N91XzUxLrSkfDMaRcwQhe9DauhZMhUoxGr superhardseypassphrase 2N4Xz4itCdKKUREiySS7oBzoXUKnuxP4nRD 10000
 ```
 
 > Example output
 
-```
+```json
 { "tx": "01000000017bc6aca03146d8d10b875781...",
   "hash": "101f1f0f2218b0a0ac9aea1c054fbba7d2e75e09fbeeae7acea0254baa9505b7",
   "fee": 10000 }
@@ -6160,7 +6166,7 @@ $ node addPolicyWebhookAndSendCoins bencxr@fragnetics.com nicehardpassword 00000
 
 > Example output
 
-```
+```plaintext
 Getting wallet..
 Balance is: 1.2582
 { id: 'webhookRule1',
