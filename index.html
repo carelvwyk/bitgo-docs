@@ -2519,7 +2519,7 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>fee</td>
 <td>number</td>
 <td>No</td>
-<td>Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.</td>
+<td>The absolute fee in satoshis to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use &#39;feeTxConfirmTarget&#39; instead for dynamic fee estimates.</td>
 </tr>
 <tr>
 <td>message</td>
@@ -2528,10 +2528,28 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>User-provided string (this does not hit the blockchain)</td>
 </tr>
 <tr>
+<td>feeRate</td>
+<td>number</td>
+<td>No</td>
+<td>The fee in satoshis /per kB/ of transaction size to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use &#39;feeTxConfirmTarget&#39; instead for dynamic fee estimates.</td>
+</tr>
+<tr>
 <td>feeTxConfirmTarget</td>
 <td>number</td>
 <td>No</td>
 <td>Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.</td>
+</tr>
+<tr>
+<td>maxFeeRate</td>
+<td>number</td>
+<td>No</td>
+<td>An upper bound for the fee rate in satoshi per kB. Useful to set as a safety measure when using dynamic fees.</td>
+</tr>
+<tr>
+<td>minUnspentSize</td>
+<td>number</td>
+<td>No</td>
+<td>Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).</td>
 </tr>
 <tr>
 <td>minConfirms</td>
@@ -2543,7 +2561,7 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>enforceMinConfirms ForChange</td>
 <td>boolean</td>
 <td>No</td>
-<td>Defaults to false. Set to true to require a minConfirms (explain in the line above) number of confirmations for unspents originating from the wallet&#39;s change addresses. If set to false then the minConfirms will only be enforced for unspents originating from wallets other than this user&#39;s wallet (i.e. non-change addresses).</td>
+<td>Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.</td>
 </tr>
 <tr>
 <td>sequenceId</td>
@@ -2556,6 +2574,48 @@ This operation requires the session to be unlocked using the Unlock API.
 <td>boolean</td>
 <td>No</td>
 <td>set to true to request that the transaction be sent with BitGo&#39;s instant guarantee against double-spends (fees may apply).</td>
+</tr>
+<tr>
+<td>forceChangeAtEnd</td>
+<td>boolean</td>
+<td>No</td>
+<td>Forces the change address to be the last output.</td>
+</tr>
+<tr>
+<td>changeAddress</td>
+<td>address (string)</td>
+<td>No</td>
+<td>Specifies the change address instead of creating a new one.</td>
+</tr>
+<tr>
+<td>noSplitChange</td>
+<td>boolean</td>
+<td>No</td>
+<td>Set to true to disable automatic change splitting for purposes of unspent management.</td>
+</tr>
+<tr>
+<td>targetWalletUnspents</td>
+<td>number</td>
+<td>No</td>
+<td>Specify a number of target unspents to maintain in the wallet.</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>boolean</td>
+<td>No</td>
+<td>Extra verification of the change addresses, which is always done server-side and is redundant client-side (defaults to true).</td>
+</tr>
+<tr>
+<td>feeSingleKeySourceAddress</td>
+<td>address (string)</td>
+<td>No</td>
+<td>Use this single key address to pay fees</td>
+</tr>
+<tr>
+<td>feeSingleKeyWIF</td>
+<td>private key in WIF</td>
+<td>No</td>
+<td>Use the address based on this private key to pay fees</td>
 </tr>
 <tr>
 <td>otp</td>
