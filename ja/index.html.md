@@ -1519,7 +1519,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 | walletPassphrase             | 文字列   | YES | ウォレットのパスフレーズ、暗号化されたユーザーキーを（クライアント側で）復号するのに使用される                                                                                                                          |
 | fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                                                                                                |
 | message                      | 文字列   | NO  | ユーザーが提供した文字列(ブロックチェーンに送られることはない)                                                                                                                                         |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                                                                                                      |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：1 最大: 1000                                                                                                      |
 | minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。                                                                                    |
 | enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトはfalse。 ウォレットのお釣りアドレスからの、まだ消費されていないそれのminConfirms （上で説明）数の確認を要求するには、trueに設定する。 Falseに設定された場合、minConfirmsはユーザーのウォレットとは異なるウォレットからの、まだ消費されていないそれにのみ適用されます(お釣りでないアドレス)。 |
 | sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                                                                                                   |
@@ -1608,7 +1608,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 | recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
 | message                      | 文字列   | NO  | そのトランザクションに関するメモ                                                                               |
 | fee                          | 数字    | NO  | 手数料（単位はSatoshi）、空欄のままだと自動で検出される。十分であることが確実でない限り指定しないで下さい。                                      |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：1 最大: 1000                            |
 | minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
 | enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
 | sequenceId                   | 文字列   | NO  | このトランザクションの状態を、署名の前後で一意に識別するのに使用することができるユーザー提供のカスタム文字列                                         |
@@ -2435,7 +2435,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 | recipients                   | 文字列   | YES | 受信者オブジェクトの配列とそれぞれに送信する金額。例 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
 | fee                          | 数字    | NO  | 単位をSatoshiとする、ビットコインマイナーに支払われる絶対的な手数料。自動の場合「undefined」に設定。                                     |
 | feeRate                      | 数字    | NO  | ビットコインマイナーに支払われるトランザクションサイズのKBあたりの手数料。自動の場合「undefined」に設定。                                     |
-| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：2 最大: 20                            |
+| feeTxConfirmTarget           | 数字    | NO  | キロバイトごとの手数料を計算し、この数のブロックでのトランザクションの確認をターゲットにする。デフォルト: 2 最小：1 最大: 1000                            |
 | minConfirms                  | 数字    | NO  | 一定の数の確認があった消費されていないインプットだけを選択する。これを1に設定し、enforceMinConfirmsForChangeを使用することを私達は推奨します。          |
 | enforceMinConfirms ForChange | ブーリアン | NO  | デフォルトではfalse。トランザクションを構築する時、minConfirmsはウォレットからでない消費されなかった資金の時のみ適用されます。                        |
 | minUnspentSize               | 数字    | NO  | 使用可能と考えられる未使用分の単位をsatoshiとする最低額。デフォルトで5460 (トランザクションダストスパムへの対抗として)                             |

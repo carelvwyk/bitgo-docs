@@ -1574,7 +1574,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendcoins
 | walletPassphrase             | string  | YES | 钱包的密码，用于在客户端上解密已加密的用户密钥。                                                                                                      |
 | fee                          | number  | NO  | 费用（单位：聪），保留空白以供自动生成。除非你知道确实的费用，否则不要指定这个值。                                                                                     |
 | message                      | String  | NO  | 用户输入的字符串（此字符串不会到达区块链）                                                                                                         |
-| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                                                      |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：1，最大：1000.                                                                                      |
 | minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且 使用 enforceMinConfirmsForChange。                                                          |
 | enforceMinConfirms ForChange | boolean | NO  | 默认值为 false。 设为 true 以要求由钱包变更地址发起的未花费币拥有 minConfirms (前文已有说明) 数量的确认。 若设为 false 则 minConfirms 将仅被强制用户在源自非此用户钱包的未花费币上（也就是未变更地址）。 |
 | sequenceId                   | String  | NO  | 用户输入的自定义字符串，可用于识别签名前后的交易。                                                                                                     |
@@ -1671,7 +1671,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/sendmany
 | recipients                   | string  | YES | 数组包含有接收者对象和发送给每个接收者的金额，例如 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
 | message                      | string  | NO  | 交易备注                                                                                          |
 | fee                          | number  | NO  | 费用（单位：聪），保留空白以供自动生成。除非你知道确实的费用，否则不要指定这个值。                                                     |
-| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                      |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：1，最大：1000.                                                      |
 | minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且 使用 enforceMinConfirmsForChange。                          |
 | enforceMinConfirms ForChange | boolean | NO  | 默认为 false。当创建交易时，minConfirms 将仅被强制用于不是来自这个钱包的未花费币。                                            |
 | sequenceId                   | String  | NO  | 用户输入的自定义字符串，可用于识别签名前后的交易。                                                                     |
@@ -2497,7 +2497,7 @@ http://$BITGO_EXPRESS_HOST:3080/api/v1/wallet/$WALLETID/createtransaction
 | recipients                   | string  | YES | 数组包含有接收者对象和发送给每个接收者的金额，例如 [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..] |
 | fee                          | number  | NO  | 将会付给比特币矿工的绝对费用，单位为聪。设为 'undefined' 以供自动生成。                                                    |
 | feeRate                      | number  | NO  | 将会按照交易大小付给比特币矿工的每 KB 费用，单位为聪。设为 'undefined' 以供自动生成。                                           |
-| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：2，最大：20.                                                      |
+| feeTxConfirmTarget           | number  | NO  | 按每千字节计费，目标为设定数量区块的交易确认。默认：2， 最小：1，最大：1000.                                                      |
 | minConfirms                  | number  | NO  | 仅选择有指定数量确认的未花费输入（input）。我们推荐设置为 1 并且使用 enforceMinConfirmsForChange。                           |
 | enforceMinConfirms ForChange | boolean | NO  | 默认为 false。当创建交易时，minConfirms 将仅被强制用于不是来自这个钱包的未花费币。                                            |
 | minUnspentSize               | number  | NO  | 至少达到这个数字（单位为聪）的未花费币被视作可用。默认值 5460（为了对抗 tx dust spam）。                                         |

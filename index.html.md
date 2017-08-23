@@ -1676,7 +1676,7 @@ walletPassphrase | string | Yes | Passphrase for the wallet, used to decrypt the
 fee | number | No | The absolute fee in satoshis to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
 message | string | No | User-provided string (this does not hit the blockchain)
 feeRate | number | No | The fee in satoshis /per kB/ of transaction size to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
-feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 1, Maximum: 1000.
 maxFeeRate | number | No | An upper bound for the fee rate in satoshi per kB. Useful to set as a safety measure when using dynamic fees.
 minUnspentSize | number | No | Minimum amount in satoshis for an unspent to be considered usable. Defaults to 5460 (to combat tx dust spam).
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
@@ -1781,7 +1781,7 @@ Name | Type | Required | Description
 recipients | string | Yes | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
 message | string | No | Notes about the transaction
 fee | number | No | Fee (in Satoshis), leave blank for autodetect. Do not specify unless you are sure it is sufficient.
-feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 1, Maximum: 1000.
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
 enforceMinConfirms ForChange | boolean | No | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
 sequenceId | string | No | A custom user-provided string that can be used to uniquely identify the state of this transaction before and after signing
@@ -2621,7 +2621,7 @@ Parameter | Type | Required | Description
 recipients | string | Yes | array of recipient objects and the amount to send to each e.g. [{address: '38BKDNZbPcLogvVbcx2ekJ9E6Vv94DqDqw', amount: 1500}, ..]
 fee | number | No | The absolute fee in satoshis to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
 feeRate | number | No | The fee in satoshis /per kB/ of transaction size to be paid to the Bitcoin miners. HIGHLY recommended to leave undefined and use 'feeTxConfirmTarget' instead for dynamic fee estimates.
-feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 2, Maximum: 20.
+feeTxConfirmTarget | number | No | Calculate fees per kilobyte, targeting transaction confirmation in this number of blocks. Default: 2, Minimum: 1, Maximum: 1000.
 maxFeeRate | number | No | An upper bound for the fee rate in satoshi per kB. Useful to set as a safety measure when using dynamic fees.
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations. We recommend setting this to 1 and using enforceMinConfirmsForChange.
 enforceMinConfirms ForChange | boolean | No | Defaults to false. When constructing a transaction, minConfirms will only be enforced for unspents not originating from the wallet.
