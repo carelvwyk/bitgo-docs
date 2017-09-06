@@ -1138,6 +1138,7 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 skip | number | No | The starting index number to list from.  Default is 0.
 limit | number | No | Max number of results to return in a single call (default=25, max=250)
+enterpriseId | string | No | Filter list by Enterprise ID
 
 ### Response
 
