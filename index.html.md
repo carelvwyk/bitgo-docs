@@ -2494,6 +2494,7 @@ target | number | No | desired number of unspents after running the function
 maxInputCountPerConsolidation | number | No | maximum number of unspents to be used for each iteration. Defaults to 85.
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations
 walletPassphrase | string | No | Passphrase of the wallet
+xprv | string | No | the private key in string form, if walletPassphrase is not available
 progressCallback | function | No | Closure to be called after each iteration. It can be used for monitoring the progress.
 minSize | number | No | Only use unspents with at least this many satoshis for consolidation.
 maxSize | number | No | Don't use any unspents larger than this number of satoshis in consolidation.
@@ -2540,6 +2541,7 @@ Parameter | Type | Required | Description
 target | number | Yes | desired number of unspents after running the function
 minConfirms | number | No | only choose unspent inputs with a certain number of confirmations
 walletPassphrase | string | No | Passphrase of the wallet
+xprv | string | No | the private key in string form, if walletPassphrase is not available
 
 ## Create Transaction
 
