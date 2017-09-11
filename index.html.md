@@ -4404,11 +4404,11 @@ BitGo is currently actively working on webhooks. Please get in touch with us to 
 
 Type | Description
 ----- | -----------
-transaction | Activates when a transaction is seen/confirmed on any receive address of a wallet
-transactionRemoved | Activates when a transaction is removed from a user's wallet
-transactionExpire | Activates when a transaction is about to expire
-pendingapproval | Activates when a pending approval pertaining to a user's wallet is created, approved, or rejected
-block | Activates when a new block is seen on the Bitcoin network
+transaction | Activates when a transaction is seen/confirmed on any receive address of a wallet.
+transactionRemoved | Activates when a transaction is removed from a user's wallet due to a reorganization, a conflict with a confirmed transaction, or if a malleated version of the transaction was confirmed.
+transactionExpire | Activates when a transaction is about to expire. Transactions expire after 2 weeks waiting for a confirmation.
+pendingapproval | Activates when a pending approval pertaining to a user's wallet is created, approved, or rejected.
+block | Activates when a new block is seen on the Bitcoin network.
 
 ## List Wallet Webhooks
 
