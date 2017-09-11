@@ -1200,12 +1200,14 @@ The first keychain is by convention the user key, with it's **encrypted** xpriv 
 
 BitGo wallets currently are hard-coded with their root at **m/0/0** across all
 3 keychains (however, older legacy wallets may use different key paths).
-Below the root, the wallet supports two chains of addresses, 0 and 1. The
-**0-chain** is for external receiving addresses, while the **1-chain** is for internal
-(change) addresses.
+Below the root, the wallet supports four chains of addresses, 0 and 1, as well as 10 and 11.
+The **0-chain** is for external receiving addresses, while the **1-chain** is for internal (change) addresses.
+The **10-chain** is for external SegWit receiving addresses, while the **11-chain** is for internal SegWit (change) addresses.
 
-The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which
-is also the ID used to refer to a wallet in BitGo's system. The first change address of a wallet is at **m/0/0/1/0**.
+The first receiving address of a wallet is at the BIP32 path **m/0/0/0/0**, which is also the ID used to refer to a wallet in BitGo's system.
+The first change address of a wallet is at **m/0/0/1/0**.
+Correspondingly, the first SegWit receiving address of a wallet is at **m/0/0/10/0**, and the
+first SegWit change address of a wallet is at **m/0/0/11/0**.
 </aside>
 
 ### HTTP Request
@@ -1258,6 +1260,8 @@ disableTransactionNotifications | boolean | No | Set to true to prevent wallet t
 ### Response
 
 Returns a Wallet Model object.
+
+The path attribute gives the last two parts of the full path, so e.g. the fifteenth SegWit change address would be `/11/15`.
 
 ### Errors
 Response | Description
@@ -1550,6 +1554,9 @@ for creating change when spending from a wallet. It is considered best practice
 to generate a new receiving address for each new incoming transaction, in order
 to help maximize privacy.
 
+BitGo SDK 4.0.0 and later use SegWit addresses by default. SegWit addresses are derived on 10-chain for SegWit receive addresses and 11-chain for SegWit change addresses.
+
+
 ```shell
 CHAIN=0
 WALLETID="3GonoRKFSzcqJCktZPA2NHDd3jJoH4154o"
@@ -1579,6 +1586,7 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 walletId | bitcoin address (string) | Yes | The ID of the wallet
 chain  | number | Yes | 0 or 1
+| number | Yes | 10 or 11 for SegWit
 
 > Example response
 
@@ -1598,8 +1606,8 @@ Returns a new bitcoin address which is associated with the wallet.
 
 Field | Description
 ----- | -----------
-address | The chained address
-chain | the chain (0 or 1)
+address | the chained address
+chain | the chain (0, 1, 10 or 11)
 index | the index of the address within the chain (0, 1, 2, ...)
 path | the BIP32 path of the address relative to the wallet root
 redeemScript | the redeemScript for the address
@@ -2070,7 +2078,7 @@ blockhash | string | Hash of the block, if this transaction has been confirmed
 height | Number | Height of the block this transaction was seen in
 confirmations | Number | Number of blocks this transaction has been part of the blockchain
 entries | Array | Consolidated entries of the transaction, taking into account net inputs/outputs
-outputs | Array | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss)
+outputs | Array | Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for receive addresses, 1 for change addresses, 10 for SegWit receive addresses, 11 for SegWit change addresses)
 fee | Number | Amount in Satoshis paid to the miners for this transaction
 pending | Boolean | Set to true if the transaction has not yet been confirmed on the blockchain
 instant | Boolean | Set to true if this transaction was sent using BitGo instant
@@ -2123,7 +2131,7 @@ walletId | bitcoin address (string) | Yes | The ID of the wallet
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-chain | number | No | Optionally restrict to chain 0 or chain 1
+chain | number | No | Optionally restrict to chain 0, 1, 10 or 11
 skip | number | No | Skip this number of results
 limit | number | No | Limit number of results to this number (default=25, max=500)
 details | boolean | No | include balance and transaction count info
@@ -2165,7 +2173,7 @@ Returns an array of Wallet Address objects.
 
 Field | Description
 ----- | -----------
-chain | Which chain is the address on (0 or 1, currently)
+chain | Which chain is the address on (0, 1, 10, or 11)
 index | BIP32 index on the chain
 path | BIP32 path from wallet
 address | the bitcoin address
@@ -2237,7 +2245,7 @@ Field | Description
 ----- | -----------
 address | The bitcoin address being looked up
 balance | Current balance (satoshis) in this address
-chain | The HD chain used to generate this address (0 for user-generated, 1 for change)
+chain | The HD chain used to generate this address (0 for external receive addresses, 1 for change addresses, 10 for external SegWit receive addresses, 11 for SegWit change addresses)
 index | The index in the HD chain used to generate this address
 path | The HD path of the address on the wallet
 received | Total amount (satoshis) received on this address
@@ -2387,6 +2395,7 @@ skip | number | No | The starting index number to list from.  Default is 0.
 limit | number | No | Max number of results to return in a single call (default=100, max=250)
 minConfirms | number | No | Only include unspents with at least this many confirmations.
 minSize | number | No | Only include unspents that are at least this many satoshis.
+segwit | boolean | No | Defaults to false, but is passed and set to true automatically from SDK version 4.3.0 forward.
 
 > Example response
 
