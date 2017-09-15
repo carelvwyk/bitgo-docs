@@ -1585,8 +1585,7 @@ bitgo.wallets().get({ "id": id }, function callback(err, wallet) {
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 walletId | bitcoin address (string) | Yes | The ID of the wallet
-chain  | number | Yes | 0 or 1
-| number | Yes | 10 or 11 for SegWit
+chain  | number | Yes | 0, 1, 10 or 11 (10 or 11 for SegWit)
 
 > Example response
 
