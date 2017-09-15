@@ -1604,6 +1604,12 @@ https://test.bitgo.com/api/v1/wallet
 <td>No</td>
 <td>Max number of results to return in a single call (default=25, max=250)</td>
 </tr>
+<tr>
+<td>enterpriseId</td>
+<td>string</td>
+<td>No</td>
+<td>Filter list by Enterprise ID</td>
+</tr>
 </tbody></table>
 
 <h3 id="response">Response</h3>
@@ -1671,12 +1677,14 @@ The first keychain is by convention the user key, with it&rsquo;s <strong>encryp
 
 <p>BitGo wallets currently are hard-coded with their root at <strong>m/0/0</strong> across all
 3 keychains (however, older legacy wallets may use different key paths).
-Below the root, the wallet supports two chains of addresses, 0 and 1. The
-<strong>0-chain</strong> is for external receiving addresses, while the <strong>1-chain</strong> is for internal
-(change) addresses.</p>
+Below the root, the wallet supports four chains of addresses, 0 and 1, as well as 10 and 11.
+The <strong>0-chain</strong> is for external receiving addresses, while the <strong>1-chain</strong> is for internal (change) addresses.
+The <strong>10-chain</strong> is for external SegWit receiving addresses, while the <strong>11-chain</strong> is for internal SegWit (change) addresses.</p>
 
-<p>The first receiving address of a wallet is at the BIP32 path <strong>m/0/0/0/0</strong>, which
-is also the ID used to refer to a wallet in BitGo&rsquo;s system. The first change address of a wallet is at <strong>m/0/0/1/0</strong>.
+<p>The first receiving address of a wallet is at the BIP32 path <strong>m/0/0/0/0</strong>, which is also the ID used to refer to a wallet in BitGo&rsquo;s system.
+The first change address of a wallet is at <strong>m/0/0/1/0</strong>.
+Correspondingly, the first SegWit receiving address of a wallet is at <strong>m/0/0/10/0</strong>, and the
+first SegWit change address of a wallet is at <strong>m/0/0/11/0</strong>.
 </aside></p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1765,6 +1773,8 @@ is also the ID used to refer to a wallet in BitGo&rsquo;s system. The first chan
 <h3 id="response">Response</h3>
 
 <p>Returns a Wallet Model object.</p>
+
+<p>The path attribute gives the last two parts of the full path, so e.g. the fifteenth SegWit change address would be <code class="prettyprint">/11/15</code>.</p>
 
 <h3 id="errors">Errors</h3>
 
@@ -2189,6 +2199,8 @@ typically used for receiving funds, while the 1-chain is used internally
 for creating change when spending from a wallet. It is considered best practice
 to generate a new receiving address for each new incoming transaction, in order
 to help maximize privacy.</p>
+
+<p>BitGo SDK 4.0.0 and later use SegWit addresses by default. SegWit addresses are derived on 10-chain for SegWit receive addresses and 11-chain for SegWit change addresses.</p>
 <pre class="highlight shell tab-shell"><code><span class="nv">CHAIN</span><span class="o">=</span>0
 <span class="nv">WALLETID</span><span class="o">=</span><span class="s2">"3GonoRKFSzcqJCktZPA2NHDd3jJoH4154o"</span>
 curl -X POST -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -2227,7 +2239,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
 <td>chain</td>
 <td>number</td>
 <td>Yes</td>
-<td>0 or 1</td>
+<td>0, 1, 10 or 11 (10 or 11 for SegWit)</td>
 </tr>
 </tbody></table>
 
@@ -2254,11 +2266,11 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLETID</span>/address/<
 </thead><tbody>
 <tr>
 <td>address</td>
-<td>The chained address</td>
+<td>the chained address</td>
 </tr>
 <tr>
 <td>chain</td>
-<td>the chain (0 or 1)</td>
+<td>the chain (0, 1, 10 or 11)</td>
 </tr>
 <tr>
 <td>index</td>
@@ -3074,7 +3086,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/tx/<span cl
 <tr>
 <td>outputs</td>
 <td>Array</td>
-<td>Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for normal addresses, 1 for change addresss)</td>
+<td>Information about outputs of the transaction, including the wallet account, value, vout index, isMine, chain (0 for receive addresses, 1 for change addresses, 10 for SegWit receive addresses, 11 for SegWit change addresses)</td>
 </tr>
 <tr>
 <td>fee</td>
@@ -3183,7 +3195,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
 <td>chain</td>
 <td>number</td>
 <td>No</td>
-<td>Optionally restrict to chain 0 or chain 1</td>
+<td>Optionally restrict to chain 0, 1, 10 or 11</td>
 </tr>
 <tr>
 <td>skip</td>
@@ -3247,7 +3259,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses
 </thead><tbody>
 <tr>
 <td>chain</td>
-<td>Which chain is the address on (0 or 1, currently)</td>
+<td>Which chain is the address on (0, 1, 10, or 11)</td>
 </tr>
 <tr>
 <td>index</td>
@@ -3363,7 +3375,7 @@ https://test.bitgo.com/api/v1/wallet/<span class="nv">$WALLET</span>/addresses/<
 </tr>
 <tr>
 <td>chain</td>
-<td>The HD chain used to generate this address (0 for user-generated, 1 for change)</td>
+<td>The HD chain used to generate this address (0 for external receive addresses, 1 for change addresses, 10 for external SegWit receive addresses, 11 for SegWit change addresses)</td>
 </tr>
 <tr>
 <td>index</td>
@@ -3594,6 +3606,12 @@ that transaction.</p>
 <td>number</td>
 <td>No</td>
 <td>Only include unspents that are at least this many satoshis.</td>
+</tr>
+<tr>
+<td>segwit</td>
+<td>boolean</td>
+<td>No</td>
+<td>Defaults to false, but is passed and set to true automatically from SDK version 4.3.0 forward.</td>
 </tr>
 </tbody></table>
 
@@ -6637,23 +6655,23 @@ If a successful response is not received, BitGo will attempt to retry the webhoo
 </thead><tbody>
 <tr>
 <td>transaction</td>
-<td>Activates when a transaction is seen/confirmed on any receive address of a wallet</td>
+<td>Activates when a transaction is seen/confirmed on any receive address of a wallet.</td>
 </tr>
 <tr>
 <td>transactionRemoved</td>
-<td>Activates when a transaction is removed from a user&rsquo;s wallet</td>
+<td>Activates when a transaction is removed from a user&rsquo;s wallet due to a reorganization, a conflict with a confirmed transaction, or if a malleated version of the transaction was confirmed.</td>
 </tr>
 <tr>
 <td>transactionExpire</td>
-<td>Activates when a transaction is about to expire</td>
+<td>Activates when a transaction is about to expire. Transactions expire after 2 weeks waiting for a confirmation.</td>
 </tr>
 <tr>
 <td>pendingapproval</td>
-<td>Activates when a pending approval pertaining to a user&rsquo;s wallet is created, approved, or rejected</td>
+<td>Activates when a pending approval pertaining to a user&rsquo;s wallet is created, approved, or rejected.</td>
 </tr>
 <tr>
 <td>block</td>
-<td>Activates when a new block is seen on the Bitcoin network</td>
+<td>Activates when a new block is seen on the Bitcoin network.</td>
 </tr>
 </tbody></table>
 
